@@ -46,11 +46,11 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  * `-----------------------------------------------------------------------------------'
  */
 [_QWERTY] = LAYOUT( \
-  KC_GESC,    KC_1,            KC_2,    KC_3,    KC_4,    KC_5,    KC_6,    KC_7,    KC_8,      KC_9,      KC_0,    KC_BSPC, \
-  KC_TAB,     KC_Q,            KC_W,    KC_E,    KC_R,    KC_T,    KC_Y,    KC_U,    KC_I,      KC_O,      KC_P,    KC_ENT, \
-  KC_LCTL,    KC_A,            KC_S,    KC_D,    KC_F,    KC_G,    KC_H,    KC_J,    KC_K,      KC_L,      KC_SCLN, KC_QUOT, \
-  KC_SFTENT,  KC_Z,            KC_X,    KC_C,    KC_V,    KC_B,    KC_N,    KC_M,    KC_COMM,   KC_DOT,    KC_SLSH, KC_RSPC, \
-  _______,    DYN_MACRO_PLAY1, KC_LALT, KC_LGUI, LOWER,   KC_SPC,  KC_SPC,  RAISE,   TMUX_NEXT, TMUX_PREV, KC_MUTE, _______ \
+  KC_GESC,      KC_1,            KC_2,    KC_3,    KC_4,    KC_5,    KC_6,    KC_7,    KC_8,      KC_9,      KC_0,    KC_BSPC, \
+  KC_TAB,       KC_Q,            KC_W,    KC_E,    KC_R,    KC_T,    KC_Y,    KC_U,    KC_I,      KC_O,      KC_P,    KC_ENT, \
+  KC_LCTL,      KC_A,            KC_S,    KC_D,    KC_F,    KC_G,    KC_H,    KC_J,    KC_K,      KC_L,      KC_SCLN, KC_QUOT, \
+  KC_SFTENT,    KC_Z,            KC_X,    KC_C,    KC_V,    KC_B,    KC_N,    KC_M,    KC_COMM,   KC_DOT,    KC_SLSH, KC_RSPC, \
+  SH_TT,        DYN_MACRO_PLAY1, KC_LALT, KC_LGUI, LOWER,   KC_SPC,  KC_SPC,  RAISE,   TMUX_NEXT, TMUX_PREV, KC_MUTE, SH_TT \
 ),
 
 /* Lower
@@ -138,6 +138,21 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 )
 
 
+};
+
+// Each half duplicates the other half
+const keypos_t hand_swap_config[MATRIX_ROWS][MATRIX_COLS] = {
+  {{5, 5}, {4, 5}, {3, 5}, {2, 5}, {1, 5}, {0, 5}},
+  {{5, 6}, {4, 6}, {3, 6}, {2, 6}, {1, 6}, {0, 6}},
+  {{5, 7}, {4, 7}, {3, 7}, {2, 7}, {1, 7}, {0, 7}},
+  {{5, 8}, {4, 8}, {3, 8}, {2, 8}, {1, 8}, {0, 8}},
+  {{5, 9}, {4, 9}, {3, 9}, {2, 9}, {1, 9}, {0, 9}},
+
+  {{5, 0}, {4, 0}, {3, 0}, {2, 0}, {1, 0}, {0, 0}},
+  {{5, 1}, {4, 1}, {3, 1}, {2, 1}, {1, 1}, {0, 1}},
+  {{5, 2}, {4, 2}, {3, 2}, {2, 2}, {1, 2}, {0, 2}},
+  {{5, 3}, {4, 3}, {3, 3}, {2, 3}, {1, 3}, {0, 3}},
+  {{5, 4}, {4, 4}, {3, 4}, {2, 4}, {1, 4}, {0, 4}},
 };
 
 void persistent_default_layer_set(uint16_t default_layer) {
