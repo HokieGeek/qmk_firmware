@@ -20,13 +20,14 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 #include "config_common.h"
 
-/* Use I2C or Serial, not both */
 #define USE_SERIAL
 
-/* Select hand configuration */
 #define MASTER_LEFT
+// #define EE_HANDS
 
-#define TAPPING_TERM 200
+#define PERMISSIVE_HOLD
+
+#define TAPPING_TERM 150
 
 #define TAPPING_TOGGLE 2
 
