@@ -2,10 +2,7 @@
 
 extern keymap_config_t keymap_config;
 
-// Each layer gets a name for readability, which is then used in the keymap matrix below.
-// The underscores don't mean anything - you can have a layer called STUFF or any other name.
-// Layer names don't all need to be of the same length, obviously, and you can also skip them
-// entirely and just use numbers.
+// Layer names
 #define _QWERTY 0
 #define _LOWER 3
 #define _RAISE 4
@@ -16,9 +13,9 @@ enum custom_keycodes {
     LOWER,
     RAISE,
     ADJUST,
+
     TMUX_NEXT,
     TMUX_PREV,
-
     DYNAMIC_MACRO_RANGE,
 };
 
@@ -32,23 +29,23 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
 /* Qwerty
  * ,-----------------------------------------------------------------------------------.
- * | Esc  |   1  |   2  |   3  |   4  |   5  |   6  |   7  |   8  |   9  |   0  | Bksp |
+ * | GEsc |   1  |   2  |   3  |   4  |   5  |   6  |   7  |   8  |   9  |   0  | Bksp |
  * |------+------+------+------+------+------+------+------+------+------+------+------|
  * | Tab  |   Q  |   W  |   E  |   R  |   T  |   Y  |   U  |   I  |   O  |   P  |Enter |
  * |------+------+------+------+------+-------------+------+------+------+------+------|
  * | Ctrl |   A  |   S  |   D  |   F  |   G  |   H  |   J  |   K  |   L  |   ;  |  '   |
  * |------+------+------+------+------+------|------+------+------+------+------+------|
- * | ShEnt|   Z  |   X  |   C  |   V  |   B  |   N  |   M  |   ,  |   .  |   /  |Shift |
+ * | Shift|   Z  |   X  |   C  |   V  |   B  |   N  |   M  |   ,  |   .  |   /  |Shift |
  * |------+------+------+------+------+------+------+------+------+------+------+------|
  * | SWAP | MACR | Alt  | GUI  |Lower |Space |Space |Raise | TX_N | TX_P | Mute | SWAP |
  * `-----------------------------------------------------------------------------------'
  */
 [_QWERTY] = LAYOUT( \
-  KC_GESC,      KC_1,            KC_2,    KC_3,    KC_4,    KC_5,    KC_6,    KC_7,    KC_8,      KC_9,      KC_0,    KC_BSPC, \
-  KC_TAB,       KC_Q,            KC_W,    KC_E,    KC_R,    KC_T,    KC_Y,    KC_U,    KC_I,      KC_O,      KC_P,    KC_ENT, \
-  KC_LCTL,      KC_A,            KC_S,    KC_D,    KC_F,    KC_G,    KC_H,    KC_J,    KC_K,      KC_L,      KC_SCLN, KC_QUOT, \
-  KC_LSFT,    KC_Z,            KC_X,    KC_C,    KC_V,    KC_B,    KC_N,    KC_M,    KC_COMM,   KC_DOT,    KC_SLSH, KC_RSFT, \
-  SH_TT,        DYN_MACRO_PLAY1, KC_LALT, KC_LGUI, TT(LOWER),   KC_SPC,  KC_SPC,  TT(RAISE),   TMUX_NEXT, TMUX_PREV, KC_MUTE, SH_TT \
+  KC_GESC,  KC_1,            KC_2,    KC_3,    KC_4,       KC_5,    KC_6,    KC_7,       KC_8,       KC_9,       KC_0,     KC_BSPC, \
+  KC_TAB,   KC_Q,            KC_W,    KC_E,    KC_R,       KC_T,    KC_Y,    KC_U,       KC_I,       KC_O,       KC_P,     KC_ENT, \
+  KC_LCTL,  KC_A,            KC_S,    KC_D,    KC_F,       KC_G,    KC_H,    KC_J,       KC_K,       KC_L,       KC_SCLN,  KC_QUOT, \
+  KC_LSFT,  KC_Z,            KC_X,    KC_C,    KC_V,       KC_B,    KC_N,    KC_M,       KC_COMM,    KC_DOT,     KC_SLSH,  KC_RSFT, \
+  SH_TT,    DYN_MACRO_PLAY1, KC_LALT, KC_LGUI, TT(LOWER),  KC_SPC,  KC_SPC,  TT(RAISE),  TMUX_NEXT,  TMUX_PREV,  KC_MUTE,  SH_TT \
 ),
 
 /* Lower
@@ -65,11 +62,11 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  * `-----------------------------------------------------------------------------------'
  */
 [_LOWER] = LAYOUT( \
-  KC_TILD, _______,      _______, _______, _______, _______, _______, _______, _______, _______, _______, KC_DEL, \
-  KC_BSPC, _______,      _______, _______, _______, _______, _______, KC_UNDS, KC_PLUS, KC_LCBR, KC_RCBR, _______, \
-  KC_CAPS, _______,      _______, _______, _______, _______, KC_HOME, KC_PGDN, KC_PGUP, KC_END,  _______, KC_PIPE, \
-  _______, _______,      _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, \
-  SH_TG, DYN_REC_STOP,   _______, _______, _______, _______, _______, _______, _______, _______, KC_VOLD, SH_TG \
+  KC_TILD, _______,       _______, _______, _______, _______, _______, _______, _______, _______, _______, KC_DEL, \
+  KC_BSPC, _______,       _______, _______, _______, _______, _______, KC_UNDS, KC_PLUS, KC_LCBR, KC_RCBR, _______, \
+  KC_CAPS, _______,       _______, _______, _______, _______, KC_HOME, KC_PGDN, KC_PGUP, KC_END,  _______, KC_PIPE, \
+  _______, _______,       _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, \
+  _______, DYN_REC_STOP,  _______, _______, _______, _______, _______, _______, _______, _______, KC_VOLD, SH_TG \
 ),
 
 /* Raise
@@ -90,7 +87,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   KC_GRV,  _______,        _______, _______, _______, _______, _______, KC_MINS, KC_EQL,  KC_LBRC, KC_RBRC, _______, \
   _______, _______,        _______, _______, _______, _______, KC_LEFT, KC_DOWN, KC_UP,   KC_RGHT, _______, KC_BSLS, \
   _______, _______,        _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, \
-  SH_TG,   DYN_REC_START1, _______, _______, _______, _______, _______, _______, _______, _______, KC_VOLU, SH_TG \
+  _______, DYN_REC_START1, _______, _______, _______, _______, _______, _______, _______, _______, KC_VOLU, SH_TG \
 ),
 
 /* Adjust (Lower + Raise)
