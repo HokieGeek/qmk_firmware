@@ -26,6 +26,17 @@ enum custom_keycodes {
 #define _______ KC_TRNS
 #define XXXXXXX KC_NO
 
+//Tap Dance Declarations
+enum {
+    TD_SH_TT = 0
+};
+
+//Tap Dance Definitions
+qk_tap_dance_action_t tap_dance_actions[] = {
+    //Tap once for Esc, twice for Caps Lock
+    [TD_SH_TT]  = ACTION_TAP_DANCE_DOUBLE(SH_MON, SH_TG)
+};
+
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
 /* Qwerty
