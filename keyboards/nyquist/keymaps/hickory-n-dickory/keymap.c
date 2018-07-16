@@ -31,7 +31,6 @@ extern keymap_config_t keymap_config;
 #define SEND_ACCENT(str) SEND_STRING(SS_DOWN(X_LCTRL)SS_DOWN(X_LSHIFT)strSS_UP(X_LCTRL)SS_UP(X_LSHIFT));
 #endif
 
-
 enum custom_keycodes {
     QWERTY = SAFE_RANGE,
     LOWER,
