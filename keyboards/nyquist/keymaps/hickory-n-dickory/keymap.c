@@ -28,14 +28,17 @@ enum custom_keycodes {
 
 //Tap Dance Declarations
 enum {
-    TD_SH_TT = 0
+    TD_ACCENT_E = 0
 };
 
 //Tap Dance Definitions
 qk_tap_dance_action_t tap_dance_actions[] = {
-    //Tap once for Esc, twice for Caps Lock
-    [TD_SH_TT]  = ACTION_TAP_DANCE_DOUBLE(SH_MON, SH_TG)
+    // [TD_ACCENT_E]  = ACTION_TAP_DANCE_DOUBLE(KC_E, SEND_STRING(SS_LCTRL(SS_LSFT("u")))"00e9")
+    [TD_ACCENT_E]  = ACTION_TAP_DANCE_FN(tapdance_accent_e)
+            // UC(0x00e9))
 };
+
+// void tapdance_accent_e (qk_tap_dance_state_t *state, void *user_data) {
 
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
