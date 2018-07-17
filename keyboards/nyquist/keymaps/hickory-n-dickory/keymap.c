@@ -14,21 +14,24 @@ extern keymap_config_t keymap_config;
 
 // Accent defines
 #ifdef TARGET_MAC
-#define ACCENT_E_STRING SS_LALT("e")"e"
-#define ACCENT_A_STRING SS_LALT("e")"a"
-#define ACCENT_I_STRING SS_LALT("e")"i"
-#define ACCENT_O_STRING SS_LALT("e")"o"
-#define ACCENT_U_STRING SS_LALT("e")"u"
-#define ACCENT_N_STRING SS_LALT("n")"n"
-#define SEND_ACCENT(str) SEND_STRING(str)
+#define LATIN_E_STRING SS_LALT("e")"e"
+#define LATIN_A_STRING SS_LALT("e")"a"
+#define LATIN_I_STRING SS_LALT("e")"i"
+#define LATIN_O_STRING SS_LALT("e")"o"
+#define LATIN_U_STRING SS_LALT("e")"u"
+#define LATIN_N_STRING SS_LALT("n")"n"
+#define LATIN_IEXC_STRING SS_LALT("1")
+#define LATIN_IQS_STRING SS_LALT("?")
+#define SEND_LATIN(str) SEND_STRING(str)
 #else
-#define ACCENT_E_STRING "u00e9"
-#define ACCENT_A_STRING "u00e1"
-#define ACCENT_I_STRING "u00ed"
-#define ACCENT_O_STRING "u00f3"
-#define ACCENT_U_STRING "u00fc"
-#define ACCENT_N_STRING "u00f1"
-#define SEND_ACCENT(str) SEND_STRING(SS_DOWN(X_LCTRL)SS_DOWN(X_LSHIFT)strSS_UP(X_LCTRL)SS_UP(X_LSHIFT));
+#define LATIN_E_STRING "u00e9"
+#define LATIN_A_STRING "u00e1"
+#define LATIN_I_STRING "u00ed"
+#define LATIN_O_STRING "u00f3"
+#define LATIN_U_STRING "u00fc"
+#define LATIN_IEXC_STRING "u00a1"
+#define LATIN_IQS_STRING "u00bf"
+#define SEND_LATIN(str) SEND_STRING(SS_DOWN(X_LCTRL)SS_DOWN(X_LSHIFT)strSS_UP(X_LCTRL)SS_UP(X_LSHIFT));
 #endif
 
 enum custom_keycodes {
@@ -37,12 +40,14 @@ enum custom_keycodes {
     RAISE,
     ADJUST,
 
-    ACCENT_E,
-    ACCENT_A,
-    ACCENT_I,
-    ACCENT_O,
-    ACCENT_U,
-    ACCENT_N,
+    LATIN_E,
+    LATIN_A,
+    LATIN_I,
+    LATIN_O,
+    LATIN_U,
+    LATIN_N,
+    LATIN_IEXC,
+    LATIN_IQS,
 
     TMUX_NEXT,
     TMUX_PREV,
@@ -79,23 +84,23 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
 /* Lower
  * ,-----------------------------------------------------------------------------------.
- * |   ~  |      |      |      |      |      |      |      |      |   _  |   +  |      |
+ * |   ~  |   ¡  |      |      |      |      |      |      |      |   _  |   +  |      |
  * |------+------+------+------+------+-------------+------+------+------+------+------|
  * |      |      |      |   é  |      |      |      |   ú  |   í  |   ó  |   }  |Enter |
  * |------+------+------+------+------+-------------+------+------+------+------+------|
  * | Caps |   á  |      |      |      |      | Home | PgDn | PgUp | End  |   {  |  |   |
  * |------+------+------+------+------+------|------+------+------+------+------+------|
- * |      |      |      |      |      |      |  ñ   |      |      |      |      |      |
+ * |      |      |      |      |      |      |  ñ   |      |      |      |   ¿  |      |
  * |------+------+------+------+------+------+------+------+------+------+------+------|
  * |      |MSTOP |      |      |      |      |      |      |      |      | Vol- |      |
  * `-----------------------------------------------------------------------------------'
  */
 [_LOWER] = LAYOUT( \
-  KC_TILD,  _______,       _______, _______,  _______, _______, _______,  _______,  _______,  KC_UNDS,  KC_PLUS, KC_DEL, \
-  _______,  _______,       _______, ACCENT_E, _______, _______, _______,  ACCENT_U, ACCENT_I, ACCENT_O, KC_RCBR, _______, \
-  KC_CAPS,  ACCENT_A,      _______, _______,  _______, _______, KC_HOME,  KC_PGDN,  KC_PGUP,  KC_END,   KC_LCBR, KC_PIPE, \
-  _______,  _______,       _______, _______,  _______, _______, ACCENT_N, _______,  _______,  _______,  _______, _______, \
-  _______,  DYN_REC_STOP,  _______, _______,  _______, _______, _______,  _______,  _______,  _______,  KC_VOLD, _______ \
+  KC_TILD,  LATIN_IEXC,    _______, _______,  _______, _______, _______,  _______,  _______,  KC_UNDS,  KC_PLUS,   KC_DEL, \
+  _______,  _______,       _______, LATIN_E,  _______, _______, _______,  LATIN_U,  LATIN_I,  LATIN_O,  KC_RCBR,   _______, \
+  KC_CAPS,  LATIN_A,       _______, _______,  _______, _______, KC_HOME,  KC_PGDN,  KC_PGUP,  KC_END,   KC_LCBR,   KC_PIPE, \
+  _______,  _______,       _______, _______,  _______, _______, LATIN_N,  _______,  _______,  _______,  LATIN_IQS, _______, \
+  _______,  DYN_REC_STOP,  _______, _______,  _______, _______, _______,  _______,  _______,  _______,  KC_VOLD,   _______ \
 ),
 
 /* Raise
@@ -205,20 +210,24 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
             break;
 
         // MACROS
-        case ACCENT_E:
-        case ACCENT_A:
-        case ACCENT_I:
-        case ACCENT_O:
-        case ACCENT_U:
-        case ACCENT_N:
+        case LATIN_E:
+        case LATIN_A:
+        case LATIN_I:
+        case LATIN_O:
+        case LATIN_U:
+        case LATIN_N:
+        case LATIN_IEXC:
+        case LATIN_IQS:
             if (record->event.pressed) {
                 switch (keycode) {
-                case ACCENT_E: SEND_ACCENT(ACCENT_E_STRING); break;
-                case ACCENT_A: SEND_ACCENT(ACCENT_A_STRING); break;
-                case ACCENT_I: SEND_ACCENT(ACCENT_I_STRING); break;
-                case ACCENT_O: SEND_ACCENT(ACCENT_O_STRING); break;
-                case ACCENT_U: SEND_ACCENT(ACCENT_U_STRING); break;
-                case ACCENT_N: SEND_ACCENT(ACCENT_N_STRING); break;
+                case LATIN_E: SEND_LATIN(LATIN_E_STRING); break;
+                case LATIN_A: SEND_LATIN(LATIN_A_STRING); break;
+                case LATIN_I: SEND_LATIN(LATIN_I_STRING); break;
+                case LATIN_O: SEND_LATIN(LATIN_O_STRING); break;
+                case LATIN_U: SEND_LATIN(LATIN_U_STRING); break;
+                case LATIN_N: SEND_LATIN(LATIN_N_STRING); break;
+                case LATIN_IEXC: SEND_LATIN(LATIN_IEXC_STRING); break;
+                case LATIN_IQS: SEND_LATIN(LATIN_IQS_STRING); break;
                 }
             }
             return false;
