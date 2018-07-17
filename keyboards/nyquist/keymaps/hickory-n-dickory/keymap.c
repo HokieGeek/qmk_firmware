@@ -8,40 +8,51 @@ extern keymap_config_t keymap_config;
 #define _RAISE 4
 #define _ADJUST 16
 
+// Fillers to make layering more clear
+#define _______ KC_TRNS
+#define XXXXXXX KC_NO
+
+// Accent defines
+#ifdef TARGET_MAC
+#define ACCENT_E_STRING SS_LALT("e")"e"
+#define ACCENT_A_STRING SS_LALT("e")"a"
+#define ACCENT_I_STRING SS_LALT("e")"i"
+#define ACCENT_O_STRING SS_LALT("e")"o"
+#define ACCENT_U_STRING SS_LALT("e")"u"
+#define ACCENT_N_STRING SS_LALT("n")"n"
+#define SEND_ACCENT(str) SEND_STRING(str)
+#else
+#define ACCENT_E_STRING "u00e9"
+#define ACCENT_A_STRING "u00e9"
+#define ACCENT_I_STRING "u00e9"
+#define ACCENT_O_STRING "u00e9"
+#define ACCENT_U_STRING "u00e9"
+#define ACCENT_N_STRING "u00e9"
+#define SEND_ACCENT(str) SEND_STRING(SS_DOWN(X_LCTRL)SS_DOWN(X_LSHIFT)strSS_UP(X_LCTRL)SS_UP(X_LSHIFT));
+#endif
+
+
 enum custom_keycodes {
     QWERTY = SAFE_RANGE,
     LOWER,
     RAISE,
     ADJUST,
 
+    ACCENT_E,
+    ACCENT_A,
+    ACCENT_I,
+    ACCENT_O,
+    ACCENT_U,
+    ACCENT_N,
+
     TMUX_NEXT,
     TMUX_PREV,
     TMUX_LAST,
-    ACCENT_E,
+
     DYNAMIC_MACRO_RANGE,
 };
 
 #include "dynamic_macro.h"
-
-// Fillers to make layering more clear
-#define _______ KC_TRNS
-#define XXXXXXX KC_NO
-
-//Tap Dance Declarations
-/*
-enum {
-    TD_ACCENT_E = 0
-};
-
-//Tap Dance Definitions
-qk_tap_dance_action_t tap_dance_actions[] = {
-    // [TD_ACCENT_E]  = ACTION_TAP_DANCE_DOUBLE(KC_E, SEND_STRING(SS_LCTRL(SS_LSFT("u")))"00e9")
-    [TD_ACCENT_E]  = ACTION_TAP_DANCE_FN(tapdance_accent_e)
-            // UC(0x00e9))
-};
-*/
-
-// void tapdance_accent_e (qk_tap_dance_state_t *state, void *user_data) {
 
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
@@ -71,21 +82,21 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  * ,-----------------------------------------------------------------------------------.
  * |   ~  |      |      |      |      |      |      |      |      |   _  |   +  | Del  |
  * |------+------+------+------+------+-------------+------+------+------+------+------|
- * |      |      |      |      |      |      |      |      |      |      |   }  |Enter |
+ * |      |      |      |   é  |      |      |      |   ú  |   í  |   ó  |   }  |Enter |
  * |------+------+------+------+------+-------------+------+------+------+------+------|
- * | Caps |      |      |      |      |      | Home | PgDn | PgUp | End  |   {  |  |   |
+ * | Caps |   á  |      |      |      |      | Home | PgDn | PgUp | End  |   {  |  |   |
  * |------+------+------+------+------+------|------+------+------+------+------+------|
- * |      |      |      |      |      |      |      |      |      |      |      |      |
+ * |      |      |      |      |      |      |  ñ   |      |      |      |      |      |
  * |------+------+------+------+------+------+------+------+------+------+------+------|
  * |      |MSTOP |      |      |      |      |      |      |      |      | Vol- |      |
  * `-----------------------------------------------------------------------------------'
  */
 [_LOWER] = LAYOUT( \
-  KC_TILD,  _______,       _______, _______,  _______, _______, _______, _______, _______, KC_UNDS, KC_PLUS, KC_DEL, \
-  _______,  _______,       _______, ACCENT_E, _______, _______, _______, _______, _______, _______, KC_RCBR, _______, \
-  KC_CAPS,  _______,       _______, _______,  _______, _______, KC_HOME, KC_PGDN, KC_PGUP, KC_END,  KC_LCBR, KC_PIPE, \
-  _______,  _______,       _______, _______,  _______, _______, _______, _______, _______, _______, _______, _______, \
-  _______,  DYN_REC_STOP,  _______, _______,  _______, _______, _______, _______, _______, _______, KC_VOLD, _______ \
+  KC_TILD,  _______,       _______, _______,  _______, _______, _______,  _______,  _______,  KC_UNDS,  KC_PLUS, KC_DEL, \
+  _______,  _______,       _______, ACCENT_E, _______, _______, _______,  ACCENT_U, ACCENT_I, ACCENT_O, KC_RCBR, _______, \
+  KC_CAPS,  ACCENT_A,      _______, _______,  _______, _______, KC_HOME,  KC_PGDN,  KC_PGUP,  KC_END,   KC_LCBR, KC_PIPE, \
+  _______,  _______,       _______, _______,  _______, _______, ACCENT_N, _______,  _______,  _______,  _______, _______, \
+  _______,  DYN_REC_STOP,  _______, _______,  _______, _______, _______,  _______,  _______,  _______,  KC_VOLD, _______ \
 ),
 
 /* Raise
@@ -195,6 +206,25 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
             break;
 
         // MACROS
+        case ACCENT_E:
+        case ACCENT_A:
+        case ACCENT_I:
+        case ACCENT_O:
+        case ACCENT_U:
+        case ACCENT_N:
+            if (record->event.pressed) {
+                switch (keycode) {
+                case ACCENT_E: SEND_ACCENT(ACCENT_E_STRING); break;
+                case ACCENT_A: SEND_ACCENT(ACCENT_A_STRING); break;
+                case ACCENT_I: SEND_ACCENT(ACCENT_I_STRING); break;
+                case ACCENT_O: SEND_ACCENT(ACCENT_O_STRING); break;
+                case ACCENT_U: SEND_ACCENT(ACCENT_U_STRING); break;
+                case ACCENT_N: SEND_ACCENT(ACCENT_N_STRING); break;
+                }
+            }
+            return false;
+            break;
+
         case TMUX_NEXT:
             if (record->event.pressed) {
                 SEND_STRING(SS_LCTRL("a")"n");
@@ -212,16 +242,6 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
         case TMUX_LAST:
             if (record->event.pressed) {
                 SEND_STRING(SS_LCTRL("a")SS_LCTRL("a"));
-            }
-            return false;
-            break;
-
-        case ACCENT_E:
-            if (record->event.pressed) {
-                // SEND_STRING(SS_LALT("e")SS_LCTRL("e"));
-                // SEND_STRING(SS_LCTRL(SS_LSFT("u"))"00e9");
-                // SEND_STRING(SS_DOWN(X_LCTRL)SS_DOWN(X_LSHIFT)SS_TAP(X_U)SS_TAP(X_0)SS_TAP(X_0)SS_TAP(X_E)SS_TAP(X_9)SS_UP(X_LCTRL)SS_UP(X_LSHIFT));
-                SEND_STRING(SS_DOWN(X_LCTRL)SS_DOWN(X_LSHIFT)"u00e9"SS_UP(X_LCTRL)SS_UP(X_LSHIFT));
             }
             return false;
             break;
