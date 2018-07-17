@@ -17,6 +17,7 @@ enum custom_keycodes {
     TMUX_NEXT,
     TMUX_PREV,
     TMUX_LAST,
+    ACCENT_E,
     DYNAMIC_MACRO_RANGE,
 };
 
@@ -27,11 +28,11 @@ enum custom_keycodes {
 #define XXXXXXX KC_NO
 
 //Tap Dance Declarations
+/*
 enum {
     TD_ACCENT_E = 0
 };
 
-/*
 //Tap Dance Definitions
 qk_tap_dance_action_t tap_dance_actions[] = {
     // [TD_ACCENT_E]  = ACTION_TAP_DANCE_DOUBLE(KC_E, SEND_STRING(SS_LCTRL(SS_LSFT("u")))"00e9")
@@ -80,11 +81,11 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  * `-----------------------------------------------------------------------------------'
  */
 [_LOWER] = LAYOUT( \
-  KC_TILD,  _______,       _______, _______, _______, _______, _______, _______, _______, KC_UNDS, KC_PLUS, KC_DEL, \
-  _______,  _______,       _______, _______, _______, _______, _______, _______, _______, _______, KC_RCBR, _______, \
-  KC_CAPS,  _______,       _______, _______, _______, _______, KC_HOME, KC_PGDN, KC_PGUP, KC_END,  KC_LCBR, KC_PIPE, \
-  _______,  _______,       _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, \
-  _______,  DYN_REC_STOP,  _______, _______, _______, _______, _______, _______, _______, _______, KC_VOLD, _______ \
+  KC_TILD,  _______,       _______, _______,  _______, _______, _______, _______, _______, KC_UNDS, KC_PLUS, KC_DEL, \
+  _______,  _______,       _______, ACCENT_E, _______, _______, _______, _______, _______, _______, KC_RCBR, _______, \
+  KC_CAPS,  _______,       _______, _______,  _______, _______, KC_HOME, KC_PGDN, KC_PGUP, KC_END,  KC_LCBR, KC_PIPE, \
+  _______,  _______,       _______, _______,  _______, _______, _______, _______, _______, _______, _______, _______, \
+  _______,  DYN_REC_STOP,  _______, _______,  _______, _______, _______, _______, _______, _______, KC_VOLD, _______ \
 ),
 
 /* Raise
@@ -211,6 +212,16 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
         case TMUX_LAST:
             if (record->event.pressed) {
                 SEND_STRING(SS_LCTRL("a")SS_LCTRL("a"));
+            }
+            return false;
+            break;
+
+        case ACCENT_E:
+            if (record->event.pressed) {
+                // SEND_STRING(SS_LALT("e")SS_LCTRL("e"));
+                // SEND_STRING(SS_LCTRL(SS_LSFT("u"))"00e9");
+                // SEND_STRING(SS_DOWN(X_LCTRL)SS_DOWN(X_LSHIFT)SS_TAP(X_U)SS_TAP(X_0)SS_TAP(X_0)SS_TAP(X_E)SS_TAP(X_9)SS_UP(X_LCTRL)SS_UP(X_LSHIFT));
+                SEND_STRING(SS_DOWN(X_LCTRL)SS_DOWN(X_LSHIFT)"u00e9"SS_UP(X_LCTRL)SS_UP(X_LSHIFT));
             }
             return false;
             break;
