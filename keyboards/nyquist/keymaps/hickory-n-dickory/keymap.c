@@ -34,6 +34,8 @@ extern keymap_config_t keymap_config;
 #define SEND_LATIN(str) SEND_STRING(SS_DOWN(X_LCTRL)SS_DOWN(X_LSHIFT)strSS_UP(X_LCTRL)SS_UP(X_LSHIFT));
 #endif
 
+#define SEND_TMUX(c) SEND_STRING(SS_LCTRL("a")c);
+
 enum custom_keycodes {
     QWERTY = SAFE_RANGE,
     LOWER,
@@ -73,7 +75,6 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  * | SWAP | MACR | Alt  | GUI  |Lower |Space |Space |Raise | TX_N | TX_P | Mute | SWAP |
  * `-----------------------------------------------------------------------------------'
  */
-// TD(TD_ACCENT_E)
 [_QWERTY] = LAYOUT( \
   KC_GESC,        KC_1,            KC_2,    KC_3,    KC_4,       KC_5,    KC_6,    KC_7,       KC_8,       KC_9,       KC_0,     KC_BSPC, \
   KC_TAB,         KC_Q,            KC_W,    KC_E,    KC_R,       KC_T,    KC_Y,    KC_U,       KC_I,       KC_O,       KC_P,     KC_ENT, \
@@ -144,7 +145,6 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, \
   _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______ \
 )
-
 
 };
 
@@ -234,22 +234,14 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
             break;
 
         case TMUX_NEXT:
-            if (record->event.pressed) {
-                SEND_STRING(SS_LCTRL("a")"n");
-            }
-            return false;
-            break;
-
         case TMUX_PREV:
-            if (record->event.pressed) {
-                SEND_STRING(SS_LCTRL("a")"p");
-            }
-            return false;
-            break;
-
         case TMUX_LAST:
             if (record->event.pressed) {
-                SEND_STRING(SS_LCTRL("a")SS_LCTRL("a"));
+                switch (keycode) {
+                case TMUX_NEXT: SEND_TMUX("n"); break;
+                case TMUX_PREV: SEND_TMUX("p"); break;
+                case TMUX_LAST: SEND_TMUX(SS_LCTRL("a")); break;
+                }
             }
             return false;
             break;
