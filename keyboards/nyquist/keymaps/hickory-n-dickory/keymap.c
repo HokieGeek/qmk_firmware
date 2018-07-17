@@ -23,11 +23,11 @@ extern keymap_config_t keymap_config;
 #define SEND_ACCENT(str) SEND_STRING(str)
 #else
 #define ACCENT_E_STRING "u00e9"
-#define ACCENT_A_STRING "u00e9"
-#define ACCENT_I_STRING "u00e9"
-#define ACCENT_O_STRING "u00e9"
-#define ACCENT_U_STRING "u00e9"
-#define ACCENT_N_STRING "u00e9"
+#define ACCENT_A_STRING "u00e1"
+#define ACCENT_I_STRING "u00ed"
+#define ACCENT_O_STRING "u00f3"
+#define ACCENT_U_STRING "u00fc"
+#define ACCENT_N_STRING "u00f1"
 #define SEND_ACCENT(str) SEND_STRING(SS_DOWN(X_LCTRL)SS_DOWN(X_LSHIFT)strSS_UP(X_LCTRL)SS_UP(X_LSHIFT));
 #endif
 
