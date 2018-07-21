@@ -6,8 +6,10 @@
 #define USE_SERIAL
 
 // #define MASTER_LEFT
-#define MASTER_RIGHT
-// #define EE_HANDS
+// #define MASTER_RIGHT
+#undef MASTER_LEFT
+#undef MASTER_RIGHT
+#define EE_HANDS
 
 #define PERMISSIVE_HOLD
 
