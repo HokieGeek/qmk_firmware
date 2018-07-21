@@ -3,6 +3,8 @@
 flash_eep() {
     eepfile=$1
 
+    local USB=""
+
     printf "Detecting  port, reset your controller now."
     ls /dev/tty* > /tmp/a1
     while [ -z $USB ]; do
@@ -15,9 +17,9 @@ flash_eep() {
     echo ""
     echo "Detected controller on  port at $USB. Flashing ${eepfile}"
     sleep 1
-    set +x
-    sudo avrdude -p atmega32u4 -P $USB -c avr109 -U eeprom:w:${eepfile} || exit 1
     set -x
+    sudo avrdude -p atmega32u4 -P $USB -c avr109 -U eeprom:w:${eepfile} || exit 1
+    set +x
 }
 
 read -p "Ensure the left side is plugged in..."
