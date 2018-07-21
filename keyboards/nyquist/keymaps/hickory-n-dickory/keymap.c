@@ -3,10 +3,9 @@
 extern keymap_config_t keymap_config;
 
 // Layer names
-#define _QWERTY 0
+#define _BASE 0
 #define _LOWER 3
 #define _RAISE 4
-#define _ADJUST 16
 
 // Fillers to make layering more clear
 #define _______ KC_TRNS
@@ -38,10 +37,8 @@ extern keymap_config_t keymap_config;
 #define SEND_TMUX(c) SEND_STRING(SS_LCTRL("a")c);
 
 enum custom_keycodes {
-    QWERTY = SAFE_RANGE,
-    LOWER,
+    LOWER = SAFE_RANGE,
     RAISE,
-    ADJUST,
 
     LATIN_E,
     LATIN_A,
@@ -76,7 +73,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  * | Lower| MACR | Alt  | GUI  | SWAP |Space |     |Space | SWAP | TX_N | TX_P | Mute |Raise |
  * `------------------------------------------     ------------------------------------------'
  */
-[_QWERTY] = LAYOUT( \
+[_BASE] = LAYOUT( \
   KC_GESC,        KC_1,            KC_2,    KC_3,    KC_4,   KC_5,         KC_6,    KC_7,   KC_8,       KC_9,       KC_0,     KC_BSPC, \
   KC_TAB,         KC_Q,            KC_W,    KC_E,    KC_R,   KC_T,         KC_Y,    KC_U,   KC_I,       KC_O,       KC_P,     KC_ENT, \
   KC_LCTL,        KC_A,            KC_S,    KC_D,    KC_F,   KC_G,         KC_H,    KC_J,   KC_K,       KC_L,       KC_SCLN,  KC_QUOT, \
@@ -126,27 +123,6 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   _______, DYN_REC_START1, _______, _______, _______, _______,      _______, _______, TMUX_LAST, _______, KC_VOLU, _______ \
 ),
 
-/* Adjust (Lower + Raise)
- * ,------------------------------------------     ------------------------------------------.
- * |      |      |      |      |      |      |     |      |      |      |      |      |      |
- * |------+------+------+------+------+------+     +------+------+------+------+------+------|
- * |      |Reset |      |      |      |      |     |      |      |      |      | Pscr |      |
- * |------+------+------+------+------+-------     -------+------+------+------+------+------|
- * |      |      |      |      |      |      |     |      |      |      |      |      |      |
- * |------+------+------+------+------+------|     |------+------+------+------+------+------|
- * |      |      |      |      |      |      |     |      |      |      |      |      |      |
- * |------+------+------+------+------+------+     +------+------+------+------+------+------|
- * |      |      |      |      |      |      |     |      |      |      |      |      |      |
- * `------------------------------------------     ------------------------------------------'
- */
-[_ADJUST] =  LAYOUT( \
-  _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, \
-  _______, RESET,   _______, _______, _______, _______, _______, _______, _______, _______, KC_PSCR, _______, \
-  _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, \
-  _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, \
-  _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______ \
-)
-
 };
 
 // Each half duplicates the other half
@@ -175,41 +151,6 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
     }
 
     switch (keycode) {
-        case QWERTY:
-            if (record->event.pressed) {
-                persistent_default_layer_set(1UL<<_QWERTY);
-            }
-            return false;
-            break;
-        case LOWER:
-            if (record->event.pressed) {
-                layer_on(_LOWER);
-                update_tri_layer(_LOWER, _RAISE, _ADJUST);
-            } else {
-                layer_off(_LOWER);
-                update_tri_layer(_LOWER, _RAISE, _ADJUST);
-            }
-            return false;
-            break;
-        case RAISE:
-            if (record->event.pressed) {
-                layer_on(_RAISE);
-                update_tri_layer(_LOWER, _RAISE, _ADJUST);
-            } else {
-                layer_off(_RAISE);
-                update_tri_layer(_LOWER, _RAISE, _ADJUST);
-            }
-            return false;
-            break;
-        case ADJUST:
-            if (record->event.pressed) {
-                layer_on(_ADJUST);
-            } else {
-                layer_off(_ADJUST);
-            }
-            return false;
-            break;
-
         // MACROS
         case LATIN_E:
         case LATIN_A:
