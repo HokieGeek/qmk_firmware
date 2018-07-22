@@ -3,7 +3,7 @@
 
 #if !defined(USE_SERIAL) && !defined(USE_I2C)
 #define USE_SERIAL
-#endif
+#endif // !USE_SERIAL && !USE_I2C
 
 #define PERMISSIVE_HOLD
 
@@ -16,5 +16,9 @@
 #undef TAPPING_TOGGLE
 #endif //TAPPING_TOGGLE
 #define TAPPING_TOGGLE 3
+
+#if !defined(MASTER_LEFT) && !defined(MASTER_RIGHT) && !defined(EE_HANDS)
+#define MASTER_LEFT
+#endif
 
 #endif
