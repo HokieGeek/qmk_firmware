@@ -3,6 +3,4 @@
 
 #include "config_common.h"
 
-#define MASTER_LEFT
-
 #endif
