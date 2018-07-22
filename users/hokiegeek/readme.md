@@ -4,6 +4,7 @@
 
 ### [Accents](#feature-accents)
 Spanish accents and special symbols are supported with the following keycodes:
+
 | keycode | accent |
 |---|---|
 | `LATIN_E`    |  |
