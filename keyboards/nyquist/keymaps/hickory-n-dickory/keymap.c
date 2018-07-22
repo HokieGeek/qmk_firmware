@@ -1,4 +1,5 @@
 #include QMK_KEYBOARD_H
+#include "hokiegeek.h"
 
 extern keymap_config_t keymap_config;
 
@@ -37,10 +38,7 @@ extern keymap_config_t keymap_config;
 #define SEND_TMUX(c) SEND_STRING(SS_LCTRL("a")c);
 
 enum custom_keycodes {
-    LOWER = SAFE_RANGE,
-    RAISE,
-
-    LATIN_E,
+    LATIN_E = SAFE_RANGE,
     LATIN_A,
     LATIN_I,
     LATIN_O,
@@ -140,11 +138,6 @@ const keypos_t hand_swap_config[MATRIX_ROWS][MATRIX_COLS] = {
   {{5, 3}, {4, 3}, {3, 3}, {2, 3}, {1, 3}, {0, 3}},
   {{5, 4}, {4, 4}, {3, 4}, {2, 4}, {1, 4}, {0, 4}},
 };
-
-void persistent_default_layer_set(uint16_t default_layer) {
-    eeconfig_update_default_layer(default_layer);
-    default_layer_set(default_layer);
-}
 
 bool process_record_user(uint16_t keycode, keyrecord_t *record) {
     if (!process_record_dynamic_macro(keycode, record)) {
