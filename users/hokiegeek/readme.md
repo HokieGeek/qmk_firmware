@@ -29,3 +29,8 @@ The following keycodes allow you to perform some tmux-related actions that I fre
 | `TMUX_PEEK` | Momentarily switches to last active window while key is down |
 
 The default prefix is set as "a" but can be overridden by setting the alternate value as the `TMUX_PREFIX` define.
+
+### Swap Hands
+Added a define which has a matrix that correctly swaps each half of a 5x12 ortho (particularly a split one).
+
+Requires that the QMK [Swap Hands](https://docs.qmk.fm/#/feature_swap_hands) feature be enabled.
