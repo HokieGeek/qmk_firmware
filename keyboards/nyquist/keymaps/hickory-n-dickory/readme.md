@@ -1,7 +1,7 @@
 # Hickory 'n Dickory (Nyquist rev. 2)
 
 ## Layout
-![Current layout](https://i.imgur.com/IxrZGbt.png)
+![Current layout](https://i.imgur.com/V3kMS5N.png)
 
 ## Features
 Most of the features here are defined in my [userspace files](../../../../users/hokiegeek/readme.md).
