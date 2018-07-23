@@ -4,15 +4,15 @@
 ![Current layout](https://i.imgur.com/V3kMS5N.png)
 
 ## Features
-Most of the features here are defined in my [userspace files](../../../../users/hokiegeek/readme.md).
-
 ### Accents
-Used as defined in my [userspace files](../../../../users/hokiegeek/readme.md#accents).
+Using keycodes defined in my [userspace files](../../../../users/hokiegeek/readme.md#accents).
 
 Each symbol is set as part of the lower layer for the respective ANSI character.
 
 ### TMUX
-Used as defined in my [userspace files](../../../../users/hokiegeek/readme.md#tmux).
+Using keycodes defined in my [userspace files](../../../../users/hokiegeek/readme.md#tmux).
+
+Mapped them two keys accessible with my right thumb.
 
 ### Swap Hands
-Enables the QMK [Swap Hands](https://docs.qmk.fm/#/feature_swap_hands) feature.
+Enabled and used as defined in my [userspace files](../../../../users/hokiegeek/readme.md#swap-hands).
