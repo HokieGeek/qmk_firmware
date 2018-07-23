@@ -2,21 +2,21 @@
 
 ## Features
 
-### [Accents](#feature-accents)
+### Accents
 Spanish accents and special symbols are supported with the following keycodes:
 
 | keycode | accent |
 |---|---|
-| `LATIN_E`    |  |
-| `LATIN_A`    |  |
-| `LATIN_I`    |  |
-| `LATIN_O`    |  |
-| `LATIN_U`    |  |
-| `LATIN_N`    |  |
-| `LATIN_IEXC` |  |
-| `LATIN_IQS`  |  |
+| `LATIN_E`    | é |
+| `LATIN_A`    | á |
+| `LATIN_I`    | í |
+| `LATIN_O`    | ó |
+| `LATIN_U`    | ú |
+| `LATIN_N`    | ň |
+| `LATIN_IEXC` | ¡ |
+| `LATIN_IQS`  | ¿ |
 
-### [TMUX](#feature-tmux)
+### TMUX
 | keycode | action |
 |---|---|
 | `TMUX_NEXT` | Traverses to next window |
