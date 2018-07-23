@@ -35,7 +35,8 @@
 #define SEND_LATIN(str) SEND_STRING(SS_DOWN(X_LCTRL)SS_DOWN(X_LSHIFT)SS_TAP(X_U)SS_TAP(X_0)SS_TAP(X_0) str SS_UP(X_LCTRL)SS_UP(X_LSHIFT));
 #endif
 
-#define SEND_TMUX(c) SEND_STRING(SS_LCTRL("a")c);
+#define TMUX_PREFIX "a"
+#define SEND_TMUX(c) SEND_STRING(SS_LCTRL(TMUX_PREFIX)c);
 
 enum userspace_custom_keycodes {
     LATIN_E = SAFE_RANGE,
