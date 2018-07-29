@@ -3,6 +3,9 @@
 
 #include "config_common.h"
 
-#define ACCENTS_MAC
+#undef MASTER_LEFT
+#define MASTER_RIGHT
+
+#define ACCENTS_LINUX
 
 #endif
