@@ -1,2 +1,5 @@
-#!/bin/sh
-sudo make EXTRAFLAGS=-DACCENTS_MAC nyquist/rev2:hickory-n-dickory:avrdude
+#!/bin/bash
+
+[[ $1 =~ "hick" ]] && kbd="hickory-n-dickory" || kbd="ansibles"
+
+sudo make nyquist/rev2:${kbd:-"ansibles"}:avrdude
