@@ -6,6 +6,7 @@
 #endif // !USE_SERIAL && !USE_I2C
 
 #define PERMISSIVE_HOLD
+#define PREVENT_STUCK_MODIFIERS
 
 #ifdef TAPPING_TERM
 #undef TAPPING_TERM
