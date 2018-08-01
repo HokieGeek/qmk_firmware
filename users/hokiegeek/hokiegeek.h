@@ -53,7 +53,9 @@ enum userspace_custom_keycodes {
     TMUX_LAST,
     TMUX_PEEK,
 
-    EMOJI_SHRUG,
+    ASCII_SHRUG,
+
+    QMK_MAKE,
 
     NEW_SAFE_RANGE,
 };
