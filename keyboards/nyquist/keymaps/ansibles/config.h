@@ -8,7 +8,4 @@
 
 #define ACCENTS_LINUX
 
-#define BACKLIGHT_BREATHING
-#define BREATHING_PERIOD 9
-
 #endif
