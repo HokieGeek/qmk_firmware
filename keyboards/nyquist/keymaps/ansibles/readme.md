@@ -1,7 +1,9 @@
 # Ansibles (Nyquist rev. 2)
 
+This is my second Nyquist which I use for my personal, non-work, computer.
+
 ## Layout
-![Current layout](https://i.imgur.com/e5SsTIE.png)
+![Current layout](https://i.imgur.com/ikjpIVL.png)
 
 ## Features
 ### Accents
@@ -18,4 +20,9 @@ Mapped them two keys accessible with my right thumb.
 Enabled and used as defined in my [userspace files](../../../../users/hokiegeek/readme.md#swap-hands).
 
 ### Lights
-TODO
+Have added backlight LEDS as well as RGB underglow and RGB indicator LEDs for CAPS LOCK and layer selection
+
+## Build log
+Google Photos album of my building this one
+
+https://photos.app.goo.gl/6rd7nZaLb5E6BCcDA
