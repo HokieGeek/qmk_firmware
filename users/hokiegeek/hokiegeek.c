@@ -44,10 +44,18 @@ bool userspace_process_record_user(uint16_t keycode, keyrecord_t *record) {
             return false;
             break;
 
-        // EMOJI
-        case EMOJI_SHRUG:
+        // ASCII
+        case ASCII_SHRUG:
             if (record->event.pressed) {
                 SEND_STRING("¯\\_(ツ)_/¯");
+            }
+            return false;
+            break;
+
+        // RANDOM
+        case QMK_MAKE:
+            if (record->event.pressed) {
+                send_string_with_delay_P(PSTR("sudo make " QMK_KEYBOARD ":" QMK_KEYMAP ":avrdude" SS_TAP(X_ENTER)), 10);
             }
             return false;
             break;
