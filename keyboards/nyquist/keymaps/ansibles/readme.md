@@ -3,7 +3,7 @@
 This is my second Nyquist which I use for my personal, non-work, computer.
 
 ## Layout
-![Current layout](https://i.imgur.com/ikjpIVL.png)
+![Current layout](https://i.imgur.com/03PSX0V.png)
 
 ## Features
 ### Accents
