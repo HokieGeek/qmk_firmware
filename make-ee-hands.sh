@@ -18,9 +18,8 @@ flash_eep() {
     echo "Detected controller on  port at $USB. Flashing ${eepfile}"
     sleep 1
     set -x
-    # sudo avrdude -p atmega32u4 -P $USB -c avr109 -U eeprom:w:${eepfile} || exit 1
-    sudo avrdude -p atmega32u4 -P $USB -c avr109 -U eeprom:r:${eepfile}.out:i || exit 1
-    # -U eeprom:r:filename.hex:i
+    sudo avrdude -p atmega32u4 -P $USB -c avr109 -U eeprom:w:${eepfile}:a || exit 1
+    # sudo avrdude -p atmega32u4 -P $USB -c avr109 -U eeprom:r:${eepfile}.out:i || exit 1
     set +x
 }
 
