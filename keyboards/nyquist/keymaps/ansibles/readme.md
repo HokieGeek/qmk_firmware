@@ -4,6 +4,7 @@ This is my second Nyquist which I use for my personal, non-work, computer.
 
 ## Layout
 ![Current layout](https://i.imgur.com/03PSX0V.png)
+[(link)](http://www.keyboard-layout-editor.com/#/gists/41f7d4c9d263b12958c5b8144c0984f8)
 
 ## Features
 ### Accents
