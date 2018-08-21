@@ -55,7 +55,15 @@ bool userspace_process_record_user(uint16_t keycode, keyrecord_t *record) {
         // RANDOM
         case QMK_MAKE:
             if (record->event.pressed) {
-                send_string_with_delay_P(PSTR("make " QMK_KEYBOARD ":" QMK_KEYMAP ":avrdude" SS_TAP(X_ENTER)), 10);
+                send_string_with_delay_P(PSTR("make " QMK_KEYBOARD ":" QMK_KEYMAP
+#if  (defined(BOOTLOADER_DFU) || defined(BOOTLOADER_LUFA_DFU) || defined(BOOTLOADER_QMK_DFU))
+                   ":dfu"
+#elif defined(BOOTLOADER_HALFKAY)
+                   ":teensy"
+#elif defined(BOOTLOADER_CATERINA)
+                   ":avrdude"
+#endif // bootloader options
+                   SS_TAP(X_ENTER)), 10);
             }
             return false;
             break;
