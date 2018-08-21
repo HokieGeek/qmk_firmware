@@ -1,5 +1,7 @@
 #!/bin/bash
 
-[[ $1 =~ "hick" ]] && kbd="hickory-n-dickory" || kbd="ansibles"
-
-make nyquist/rev2:${kbd:-"ansibles"}:avrdude
+[[ $1 =~ "hick" ]] && {
+    make nyquist/rev2:hickory-n-dickory:avrdude
+} || {
+    make nyquist/rev2:ansibles:dfu
+}

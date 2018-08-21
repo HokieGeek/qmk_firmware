@@ -8,4 +8,7 @@
 
 #define ACCENTS_LINUX
 
+#undef RGBLED_NUM
+#define RGBLED_NUM 20
+
 #endif
