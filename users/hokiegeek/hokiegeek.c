@@ -55,6 +55,7 @@ bool userspace_process_record_user(uint16_t keycode, keyrecord_t *record) {
         // RANDOM
         case QMK_MAKE:
             if (record->event.pressed) {
+                // Thanks, @drashna!
                 send_string_with_delay_P(PSTR("make " QMK_KEYBOARD ":" QMK_KEYMAP
 #if  (defined(BOOTLOADER_DFU) || defined(BOOTLOADER_LUFA_DFU) || defined(BOOTLOADER_QMK_DFU))
                    ":dfu"
