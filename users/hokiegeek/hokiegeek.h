@@ -38,6 +38,8 @@
 #define TMUX_PREFIX "a"
 #define SEND_TMUX(c) SEND_STRING(SS_LCTRL(TMUX_PREFIX)c);
 
+#define SEND_DELAYED(delay, str) send_string_with_delay_P(PSTR(str), delay)
+
 enum userspace_custom_keycodes {
     LATIN_E = SAFE_RANGE,
     LATIN_A,
