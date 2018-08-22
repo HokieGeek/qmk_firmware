@@ -3,8 +3,12 @@
 
 extern keymap_config_t keymap_config;
 
+#define _SHORTS 5
+
 enum custom_keycodes {
-    DYNAMIC_MACRO_RANGE = NEW_SAFE_RANGE,
+    SLACK_GIPHY = NEW_SAFE_RANGE,
+
+    DYNAMIC_MACRO_RANGE
 };
 
 #include "dynamic_macro.h"
@@ -74,6 +78,27 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   _______, DYN_REC_START1, _______, _______, _______, _______,      _______, TMUX_LAST, TMUX_PEEK, _______, KC_VOLU, _______ \
 ),
 
+/* Shortcuts
+ * ,------------------------------------------     ------------------------------------------.
+ * |      |      |      |      |      |      |     |      |      |      |      |      |      |
+ * |------+------+------+------+------+------|     |------+------+------+------+------+------|
+ * |      |      |      |      |      |      |     |      |      |      |      |      |      |
+ * |------+------+------+------+------+------|     |------+------+------+------+------+------|
+ * |      |      |      |      |      |      |     |      |      |      |      |      |      |
+ * |------+------+------+------+------+------|     |------+------+------+------+------+------|
+ * |      |      |      |      |      |      |     |      |      |      |      |      |      |
+ * |------+------+------+------+------+------|     |------+------+------+------+------+------|
+ * |      |      |      |      |      |      |     |      |      |      |      |      |      |
+ * `------------------------------------------     ------------------------------------------'
+ */
+[_SHORTS] = LAYOUT( \
+  _______, _______, _______, _______, _______, _______,      _______,     _______,     _______, _______, _______, _______, \
+  _______, _______, _______, _______, _______, _______,      _______,     _______,     _______, _______, _______, _______, \
+  _______, _______, _______, _______, _______, _______,      SLACK_GIPHY, SLACK_SHRUG, _______, _______, _______, _______, \
+  _______, _______, _______, _______, _______, _______,      _______,     _______,     _______, _______, _______, _______, \
+  _______, _______, _______, _______, _______, _______,      _______,     _______,     _______, _______, _______, _______  \
+),
+
 };
 
 // Each half duplicates the other half
@@ -82,6 +107,19 @@ const keypos_t hand_swap_config[MATRIX_ROWS][MATRIX_COLS] = SWAP_HANDS_ORTHO_5X1
 bool process_record_user(uint16_t keycode, keyrecord_t *record) {
     if (!process_record_dynamic_macro(keycode, record)) {
         return false;
+    }
+
+    switch (keycode) {
+        // SLACK
+        case SLACK_GIPHY:
+        case SLACK_SHRUG:
+            if (record->event.pressed) {
+                switch (keycode) {
+                case SLACK_GIPHY: SEND_STRING("/giphy "); break;
+                case SLACK_SHRUG: SEND_STRING("/shrug "); break;
+            }
+            return false;
+            break;
     }
 
     return userspace_process_record_user(keycode, record);
