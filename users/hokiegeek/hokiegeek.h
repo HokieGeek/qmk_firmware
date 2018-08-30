@@ -4,7 +4,9 @@
 #include "quantum.h"
 
 // Layer names
-#define _BASE 0
+#define _QWERTY 0
+#define _COLEMAK 1
+#define _WORKMAN 2
 #define _LOWER 3
 #define _RAISE 4
 
@@ -41,7 +43,10 @@
 #define SEND_DELAYED(delay, str) send_string_with_delay_P(PSTR(str), delay)
 
 enum userspace_custom_keycodes {
-    LATIN_E = SAFE_RANGE,
+    QWERTY = SAFE_RANGE,
+    COLEMAK,
+
+    LATIN_E,
     LATIN_A,
     LATIN_I,
     LATIN_O,
@@ -62,6 +67,17 @@ enum userspace_custom_keycodes {
     NEW_SAFE_RANGE,
 };
 
+#define LAYOUT_wrapper(...)  LAYOUT(__VA_ARGS__)
+
+#define __BASE_LCR1__ KC_GESC
+#define __BASE_LCR2__ KC_TAB
+#define __BASE_LCR3__ KC_LCTL
+#define __BASE_LCR4__ KC_LSFT
+
+#define __BASE_RCR1__ KC_BSPC
+#define __BASE_RCR2__ KC_ENT
+#define __BASE_RCR4__ KC_SFTENT
+
 /*
  * |   1  |   2  |   3  |   4  |   5  |   6  |   7  |   8  |   9  |   0  |
  * +------+------+------+------+------+------+------+------+------+------+
@@ -72,9 +88,28 @@ enum userspace_custom_keycodes {
  * |   Z  |   X  |   C  |   V  |   B  |   N  |   M  |   ,  |   .  |   /  |
  */
 #define ______NUMBERS______  KC_1,  KC_2,  KC_3,  KC_4,  KC_5,  KC_6,  KC_7,  KC_8,    KC_9,    KC_0
+
+/*
+ * |   Q  |   W  |   E  |   R  |   T  |   Y  |   U  |   I  |   O  |   P  |
+ * |------+------+------+------+------|------+------+------+------+------+------|
+ * |   A  |   S  |   D  |   F  |   G  |   H  |   J  |   K  |   L  |   ;  |  '   |
+ * |------+------+------+------+------|------+------+------+------+------+------|
+ * |   Z  |   X  |   C  |   V  |   B  |   N  |   M  |   ,  |   .  |   /  |
+ */
 #define _____QWERTY_R1_____  KC_Q,  KC_W,  KC_E,  KC_R,  KC_T,  KC_Y,  KC_U,  KC_I,    KC_O,    KC_P
 #define _____QWERTY_R2_____  KC_A,  KC_S,  KC_D,  KC_F,  KC_G,  KC_H,  KC_J,  KC_K,    KC_L,    KC_SCLN,  KC_QUOT
 #define _____QWERTY_R3_____  KC_Z,  KC_X,  KC_C,  KC_V,  KC_B,  KC_N,  KC_M,  KC_COMM, KC_DOT,  KC_SLSH
+
+/*
+ * |   Q  |   W  |   F  |   P  |   G  |   J  |   L  |   U  |   Y  |   ;  |
+ * |------+------+------+------+------|------+------+------+------+------+------|
+ * |   A  |   R  |   S  |   T  |   D  |   H  |   N  |   E  |   I  |   O  |  '   |
+ * |------+------+------+------+------|------+------+------+------+------+------|
+ * |   Z  |   X  |   C  |   V  |   B  |   K  |   M  |   ,  |   .  |   /  |
+ */
+#define _____COLEMAK_R1_____  KC_Q, KC_W,  KC_F,  KC_P,  KC_G,  KC_J,  KC_L,  KC_U,    KC_Y,    KC_SCLN
+#define _____COLEMAK_R2_____  KC_A, KC_R,  KC_S,  KC_T,  KC_D,  KC_H,  KC_N,  KC_E,    KC_I,    KC_O,    KC_QUOT
+#define _____COLEMAK_R3_____  KC_Z, KC_X,  KC_C,  KC_V,  KC_B,  KC_K,  KC_M,  KC_COMM, KC_DOT,  KC_SLSH
 
 #define SWAP_HANDS_ORTHO_5X12_SPLIT { \
   {{5, 5}, {4, 5}, {3, 5}, {2, 5}, {1, 5}, {0, 5}}, \
