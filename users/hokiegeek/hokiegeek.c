@@ -2,6 +2,20 @@
 
 bool userspace_process_record_user(uint16_t keycode, keyrecord_t *record) {
     switch (keycode) {
+        // LAYOUTS
+        case QWERTY:
+            if (record->event.pressed) {
+                set_single_persistent_default_layer(_QWERTY);
+            }
+            return false;
+            break;
+        case COLEMAK:
+            if (record->event.pressed) {
+                set_single_persistent_default_layer(_COLEMAK);
+            }
+            return false;
+            break;
+
         // ACCENTS
         case LATIN_E:
         case LATIN_A:
