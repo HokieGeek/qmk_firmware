@@ -17,7 +17,7 @@ enum custom_keycodes {
 
 #define _____BASE_BOTTOM_____  TT(_LOWER),  DYN_MACRO_PLAY1, SH_TT,   KC_LALT, KC_LGUI,  KC_SPC,       LT(_SHORTS, KC_SPC),  TMUX_NEXT,  TMUX_PREV,  SH_TT,   KC_MUTE,  TT(_RAISE)
 
-#define SEND_SLACK_SLASH(str) SEND_DELAYED(20, SS_TAP(X_SLASH) str SS_TAP(X_TAB))
+#define SEND_SLACK_SLASH(str) SEND_DELAYED(50, SS_TAP(X_SLASH) str SS_TAP(X_TAB))
 
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
@@ -144,7 +144,9 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
             if (record->event.pressed) {
                 switch (keycode) {
                 case SLACK_GIPHY: SEND_SLACK_SLASH("giphy"); break;
-                case SLACK_SHRUG: SEND_SLACK_SLASH("shrug"); break;
+                case SLACK_SHRUG: SEND_SLACK_SLASH("shrug");
+                                  SEND_STRING(SS_TAP(X_ENTER));
+                                  break;
                 case SLACK_REACT: SEND_STRING(SS_LGUI(SS_LSFT(SS_TAP(X_BSLASH)))); break;
                 }
             }
