@@ -72,10 +72,10 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  * `------------------------------------------     ------------------------------------------'
  */
 [_LOWER] = LAYOUT( \
-  KC_GRAVE,   LATIN_IEXC,    _______, _______, _______, KC_WH_U,      _______,  _______,  _______,  KC_UNDS,  KC_PLUS,   KC_DEL, \
-  _______,    _______,       _______, LATIN_E, KC_MS_U, KC_WH_D,      _______,  LATIN_U,  LATIN_I,  LATIN_O,  KC_LBRC,   _______, \
-  KC_CAPS,    LATIN_A,       _______, KC_MS_L, KC_MS_D, KC_MS_R,      KC_HOME,  KC_PGDN,  KC_PGUP,  KC_END,   KC_LCBR,   KC_PIPE, \
-  QMK_MAKE,   _______,       _______, KC_BTN3, KC_BTN2, KC_BTN1,      LATIN_N,  _______,  _______,  _______,  LATIN_IQS, KC_SYSREQ, \
+  KC_GRAVE,   LATIN_IEXC,    _______, _______, _______, _______,      _______,  _______,  _______,  KC_UNDS,  KC_PLUS,   KC_DEL, \
+  _______,    _______,       _______, LATIN_E, _______, _______,      _______,  LATIN_U,  LATIN_I,  LATIN_O,  KC_LBRC,   _______, \
+  KC_CAPS,    LATIN_A,       _______, KC_STOP, KC_PSCR, KC_FIND,      KC_HOME,  KC_PGDN,  KC_PGUP,  KC_END,   KC_LCBR,   KC_PIPE, \
+  QMK_MAKE,   _______,       _______, KC_UNDO, _______, KC_HELP,      LATIN_N,  _______,  _______,  _______,  LATIN_IQS, KC_SYSREQ, \
   _______,    DYN_REC_STOP,  _______, _______, _______, _______,      _______,  _______,  _______,  _______,  KC_VOLD,   _______ \
 ),
 
@@ -108,7 +108,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  * |------+------+------+------+------+-------     -------+------+------+------+------+------|
  * |      |      |      |      |      |      |     |      |      |      |      |      |      |
  * |------+------+------+------+------+------|     |------+------+------+------+------+------|
- * |      |      |      |      |      |      |     |      |      |      |      |      |      |
+ * |      |QWERTY|COLMAK|      |      |      |     |      |      |      |      |      |      |
  * |------+------+------+------+------+------+     +------+------+------+------+------+------|
  * |      |      |      |      |      |      |     |      |      |      |      |      |      |
  * `------------------------------------------     ------------------------------------------'
