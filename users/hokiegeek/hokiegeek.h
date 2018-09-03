@@ -3,6 +3,14 @@
 
 #include "quantum.h"
 
+// Encoder stuffs
+#ifndef ENCODER_RESOLUTION
+  #define ENCODER_RESOLUTION 4
+#endif
+
+#define ENC_A PF4
+#define ENC_B PB2
+
 // Layer names
 #define _QWERTY 0
 #define _COLEMAK 1
@@ -128,6 +136,8 @@ enum userspace_custom_keycodes {
 }
 
 
+void userspace_matrix_init_user(void);
+void userspace_matrix_scan_user(void);
 bool userspace_process_record_user(uint16_t keycode, keyrecord_t *record);
 
 #endif
