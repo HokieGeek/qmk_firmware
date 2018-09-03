@@ -1,8 +1,10 @@
-#USER_NAME := hokiegeek
+USER_NAME := hokiegeek
 
 BOOTLOADER = qmk-dfu
 
-# MOUSEKEY_ENABLE = yes
+TAP_DANCE_ENABLE = yes
+
+MOUSEKEY_ENABLE = yes
 
 CONSOLE_ENABLE = yes
 

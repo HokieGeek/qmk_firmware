@@ -3,7 +3,7 @@
 
 #include "config_common.h"
 
-// #undef MASTER_LEFT
-// #define MASTER_RIGHT
+#undef TAPPING_TERM
+#define TAPPING_TERM 400
 
 #endif
