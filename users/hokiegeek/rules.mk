@@ -19,3 +19,10 @@ endif
 ifndef AUDIO_ENABLE
 	AUDIO_ENABLE = no
 endif
+
+ifndef ENCODER_ENABLE
+	ENCODER_ENABLE = no
+endif
+ifeq ($(strip $(ENCODER_ENABLE)), yes)
+	SRC += encoder.c
+endif
