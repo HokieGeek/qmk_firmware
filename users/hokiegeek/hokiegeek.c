@@ -1,54 +1,44 @@
 #include "hokiegeek.h"
 #include <print.h>
 
-#ifndef ENCODER_RESOLUTION
-  #define ENCODER_RESOLUTION 4
-#endif
 
 // Encoder
 static uint8_t  encoder_state  = 0;
-static int8_t  encoder_value  = 0;
-static int8_t  encoder_LUT[]  = { 0, -1, 1, 0, 1, 0, 0, -1, -1, 0, 0, 1, 0, 1, -1, 0 };
+static int8_t   encoder_value  = 0;
+static int8_t   encoder_LUT[]  = { 0, -1, 1, 0, 1, 0, 0, -1, -1, 0, 0, 1, 0, 1, -1, 0 };
 
 __attribute__ ((weak))
 void encoder_update(bool clockwise) { }
 
 void check_encoder(void) {
-    uint8_t rotaryA = !!(PINB & _BV(PB2));
-    uint8_t rotaryB = !!(PINF & _BV(PF4));
+    uint8_t pinB = (PINB & (1 << ENC_B)) >> 1;
+    uint8_t pinA = (PINF & (1 << ENC_A)) >> 4;
 
-    encoder_state <<= 2;
-    encoder_state |= rotaryA | rotaryB;
-    // TODO encoder_state |= (palReadPad(GPIOB, 12) << 0) | (palReadPad(GPIOB, 13) << 1);
-    encoder_value += encoder_LUT[encoder_state & 0xF];
+    encoder_state <<= 2;                   //remember previous state
+    encoder_state |= ( (pinB) | (pinA) );  //add current state
+    encoder_value += encoder_LUT[( encoder_state & 0x0f )];
 
-    dprintf("%d\n", encoder_value);
-
-    if (encoder_value <= -ENCODER_RESOLUTION) { // direction is arbitrary here, but this clockwise
-        encoder_update(0);
-    } else
+    if (encoder_value <= -ENCODER_RESOLUTION) {
+        encoder_update(false);
+    }
     if (encoder_value >= ENCODER_RESOLUTION) {
-        encoder_update(1);
-    // } else {
-    //     SEND_STRING("?");
-        // register_code(KC_LSFT);
-        // register_code(KC_SLASH);
-        // unregister_code(KC_SLASH);
-        // unregister_code(KC_LSFT);
+        encoder_update(true);
     }
     encoder_value %= ENCODER_RESOLUTION;
 }
 
-void matrix_init_user(void) {
+void userspace_matrix_init_user(void) {
     // JTAG disable for PORT F. write JTD bit twice within four cycles.
     MCUCR |= (1<<JTD);
     MCUCR |= (1<<JTD);
 
-    DDRB &= ~(1 << 2); // Rotary input A -> Pin B2
-    DDRF &= ~(1 << 4); // Rotary input B -> Pin F4
+    DDRB &= ~(1 << ENC_B);
+    DDRF &= ~(1 << ENC_A);
+    PORTB |= (1 << ENC_B);
+    PORTF |= (1 << ENC_A);
 }
 
-void matrix_scan_user(void) {
+void userspace_matrix_scan_user(void) {
     check_encoder();
 }
 
