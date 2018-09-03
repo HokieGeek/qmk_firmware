@@ -3,13 +3,7 @@
 
 #include "quantum.h"
 
-// Encoder stuffs
-#ifndef ENCODER_RESOLUTION
-  #define ENCODER_RESOLUTION 4
-#endif
-
-#define ENC_A PF4
-#define ENC_B PB2
+#include "encoder.h"
 
 // Layer names
 #define _QWERTY 0
@@ -134,7 +128,6 @@ enum userspace_custom_keycodes {
   {{5, 3}, {4, 3}, {3, 3}, {2, 3}, {1, 3}, {0, 3}}, \
   {{5, 4}, {4, 4}, {3, 4}, {2, 4}, {1, 4}, {0, 4}}, \
 }
-
 
 void userspace_matrix_init_user(void);
 void userspace_matrix_scan_user(void);
