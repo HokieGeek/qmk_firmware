@@ -43,6 +43,7 @@ void encoder_actions (qk_tap_dance_state_t *state, void *user_data) {
         reset_tap_dance (state);
     } else if (state->count > 2 && state->pressed) {
         dprint("resetting");
+        send_string_with_delay_P(PSTR("make nyquist/rev2:encoder:dfu"SS_TAP(X_ENTER)), 10);
         reset_keyboard();
     }
 }
