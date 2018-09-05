@@ -129,6 +129,9 @@ enum userspace_custom_keycodes {
   {{5, 4}, {4, 4}, {3, 4}, {2, 4}, {1, 4}, {0, 4}}, \
 }
 
+void mousekey_tap(uint8_t);
+void key_tap(uint8_t);
+
 void userspace_matrix_init_user(void);
 void userspace_matrix_scan_user(void);
 bool userspace_process_record_user(uint16_t keycode, keyrecord_t *record);

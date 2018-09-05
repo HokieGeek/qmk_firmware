@@ -1,4 +1,17 @@
+#include <mousekey.h>
 #include "hokiegeek.h"
+
+void mousekey_tap(uint8_t code) {
+    mousekey_on(code);
+    mousekey_send();
+    mousekey_off(code);
+    mousekey_send();
+}
+
+void key_tap(uint8_t code) {
+    register_code(code);
+    unregister_code(code);
+}
 
 __attribute__ ((weak))
 void check_encoder(void) { }
