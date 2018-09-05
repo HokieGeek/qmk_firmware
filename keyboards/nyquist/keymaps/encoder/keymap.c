@@ -1,6 +1,5 @@
 #include QMK_KEYBOARD_H
 #include <print.h>
-#include <mousekey.h>
 #include "hokiegeek.h"
 
 extern keymap_config_t keymap_config;
@@ -9,17 +8,32 @@ enum layers {
     _SCROLL = 0,
     _VOL,
     _MON,
-    // _TODO,
     _LAST_
 };
 
-static bool encoderScrollVertical = true;
+#define def_layout LAYOUT( \
+ _______, _______, _______, _______, _______, TD(encoder), _______, _______, _______, _______, _______, _______, \
+ _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, \
+ _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, \
+ _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, \
+ _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______ )
+
+const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
+[_SCROLL] = def_layout,
+[_VOL] = def_layout,
+[_MON] = def_layout,
+};
+
+static bool encoderScrollVertical = false;
 static bool encoderMonBrightness = true;
 
 void encoder_actions (qk_tap_dance_state_t *state, void *user_data) {
     if (state->count == 1) {
         if (IS_LAYER_ON(_SCROLL)) {
             encoderScrollVertical = !encoderScrollVertical;
+        } else if (IS_LAYER_ON(_VOL)) {
+            register_code(KC_MUTE);
+            unregister_code(KC_MUTE);
         } else if (IS_LAYER_ON(_MON)) {
             encoderMonBrightness = !encoderMonBrightness;
         }
@@ -45,79 +59,41 @@ void encoder_actions (qk_tap_dance_state_t *state, void *user_data) {
 enum { encoder = 0 };
 qk_tap_dance_action_t tap_dance_actions[] = { [encoder]  = ACTION_TAP_DANCE_FN(encoder_actions) };
 
-#define def_layout LAYOUT( \
- _______, _______, _______, _______, _______, TD(encoder), _______, _______, _______, _______, _______, _______, \
- _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, \
- _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, \
- _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, \
- _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______ )
-
-const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
-[_SCROLL] = def_layout,
-[_VOL] = def_layout,
-[_MON] = def_layout,
-// [_TODO] = def_layout,
-};
-
 void encoder_update(bool clockwise) {
     if (IS_LAYER_ON(_SCROLL)) {
-        // dprintf("scroll\n");
         if (encoderScrollVertical) {
             if (clockwise) {
-                register_code(KC_PGDN);
-                unregister_code(KC_PGDN);
+                mousekey_tap(KC_MS_WH_DOWN);
             } else {
-                register_code(KC_PGUP);
-                unregister_code(KC_PGUP);
+                mousekey_tap(KC_MS_WH_UP);
             }
         } else {
             if (clockwise) {
-                mousekey_on(KC_WH_D);
-                mousekey_off(KC_WH_D);
+                mousekey_tap(KC_MS_WH_RIGHT);
             } else {
-                mousekey_on(KC_WH_U);
-                mousekey_off(KC_WH_U);
+                mousekey_tap(KC_MS_WH_LEFT);
             }
         }
     } else if (IS_LAYER_ON(_VOL)) {
-        // dprintf("volume\n");
         if (clockwise) {
-            register_code(KC_VOLU);
-            unregister_code(KC_VOLU);
+            key_tap(KC_VOLU);
         } else {
-            register_code(KC_VOLD);
-            unregister_code(KC_VOLD);
+            key_tap(KC_VOLD);
         }
     } else if (IS_LAYER_ON(_MON)) {
-        // dprintf("monitor\n");
         if (encoderMonBrightness) {
             if (clockwise) {
-                register_code(KC_FIND);
-                unregister_code(KC_FIND);
+                key_tap(KC_FIND);
             } else {
-                register_code(KC_HELP);
-                unregister_code(KC_HELP);
+                key_tap(KC_HELP);
             }
         } else {
             if (clockwise) {
-                register_code(KC_STOP);
-                unregister_code(KC_STOP);
+                key_tap(KC_UNDO);
             } else {
-                register_code(KC_UNDO);
-                unregister_code(KC_UNDO);
+                key_tap(KC_STOP);
             }
         }
-        /*
-    } else if (IS_LAYER_ON(_TODO)) {
-        // dprintf("warmth\n");
-        if (clockwise) {
-            register_code(KC_PGDN);
-            unregister_code(KC_PGDN);
-        } else {
-            register_code(KC_PGUP);
-            unregister_code(KC_PGUP);
-        }
-        */
     }
 }
 
