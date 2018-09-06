@@ -5,23 +5,10 @@
 extern keymap_config_t keymap_config;
 
 enum layers {
-    _SCROLL = 0,
-    _VOL,
+    _VOL = 0,
+    _SCROLL,
     _MON,
     _LAST_
-};
-
-#define def_layout LAYOUT( \
- _______, _______, _______, _______, _______, TD(encoder), _______, _______, _______, _______, _______, _______, \
- _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, \
- _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, \
- _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, \
- _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______ )
-
-const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
-[_SCROLL] = def_layout,
-[_VOL] = def_layout,
-[_MON] = def_layout,
 };
 
 static bool encoderScrollVertical = false;
@@ -29,11 +16,10 @@ static bool encoderMonBrightness = true;
 
 void encoder_actions (qk_tap_dance_state_t *state, void *user_data) {
     if (state->count == 1) {
-        if (IS_LAYER_ON(_SCROLL)) {
+        if (IS_LAYER_ON(_VOL)) {
+            key_tap(KC_MUTE);
+        } else if (IS_LAYER_ON(_SCROLL)) {
             encoderScrollVertical = !encoderScrollVertical;
-        } else if (IS_LAYER_ON(_VOL)) {
-            register_code(KC_MUTE);
-            unregister_code(KC_MUTE);
         } else if (IS_LAYER_ON(_MON)) {
             encoderMonBrightness = !encoderMonBrightness;
         }
@@ -59,8 +45,27 @@ void encoder_actions (qk_tap_dance_state_t *state, void *user_data) {
 enum { encoder = 0 };
 qk_tap_dance_action_t tap_dance_actions[] = { [encoder]  = ACTION_TAP_DANCE_FN(encoder_actions) };
 
+#define def_layout LAYOUT( \
+ _______, _______, _______, _______, _______, TD(encoder), _______, _______, _______, _______, _______, _______, \
+ _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, \
+ _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, \
+ _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, \
+ _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______ )
+
+const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
+[_VOL] = def_layout,
+[_SCROLL] = def_layout,
+[_MON] = def_layout,
+};
+
 void encoder_update(bool clockwise) {
-    if (IS_LAYER_ON(_SCROLL)) {
+    if (IS_LAYER_ON(_VOL)) {
+        if (clockwise) {
+            key_tap(KC_VOLU);
+        } else {
+            key_tap(KC_VOLD);
+        }
+    } else if (IS_LAYER_ON(_SCROLL)) {
         if (encoderScrollVertical) {
             if (clockwise) {
                 mousekey_tap(KC_MS_WH_DOWN);
@@ -73,12 +78,6 @@ void encoder_update(bool clockwise) {
             } else {
                 mousekey_tap(KC_MS_WH_LEFT);
             }
-        }
-    } else if (IS_LAYER_ON(_VOL)) {
-        if (clockwise) {
-            key_tap(KC_VOLU);
-        } else {
-            key_tap(KC_VOLD);
         }
     } else if (IS_LAYER_ON(_MON)) {
         if (encoderMonBrightness) {
@@ -100,7 +99,7 @@ void encoder_update(bool clockwise) {
 void matrix_init_user(void) {
     debug_enable = true;
 
-    layer_on(_SCROLL);
+    layer_on(_VOL);
 
     userspace_matrix_init_user();
 }
