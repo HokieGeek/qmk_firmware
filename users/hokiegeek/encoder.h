@@ -4,3 +4,7 @@
 
 #define ENC_A PF4
 #define ENC_B PB2
+
+#define KC_ENC TD(td_encoder)
+
+enum { td_encoder = 0 };

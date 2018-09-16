@@ -14,31 +14,33 @@ enum custom_keycodes {
 
 static bool encoderScrollVertical = false;
 static bool encoderMonBrightness = true;
+static bool encoderBacklightBrightness = true;
+static bool encoderDefaultVolume = true;
 
-void encoder_actions (qk_tap_dance_state_t *state, void *user_data) {
+void encoder_td_actions (qk_tap_dance_state_t *state, void *user_data) {
     if (state->count == 1) {
-        dprintf("HERE\n");
         if (IS_LAYER_ON(_CONTROL)) {
-            encoderMonBrightness = !encoderMonBrightness;
+            if (encoderBacklightBrightness) {
+                backlight_toggle();
+            }
         } else if (IS_LAYER_ON(_LOWER)) {
-            encoderScrollVertical = !encoderScrollVertical;
-        } else if (IS_LAYER_ON(_QWERTY) || IS_LAYER_ON(_COLEMAK)) {
-            key_tap(KC_MUTE);
-        }
-        /*
-    } else if (state->count == 2) {
-        dprintf("NEXT: ");
-        int i = 0;
-        for (; i < _LAST_; i++) {
-            if (IS_LAYER_ON(i)) {
-                i = (i + 1) % _LAST_;
-                layer_clear();
-                layer_on(i);
-                break;
+            encoderMonBrightness = !encoderMonBrightness;
+        } else { // Default layers
+            if (encoderDefaultVolume) {
+                key_tap(KC_MUTE);
+            } else {
+                encoderScrollVertical = !encoderScrollVertical;
             }
         }
-        dprintf("%d, %d\n", i, (i + 1) % _LAST_);
+    } else if (state->count == 2) {
+        if (IS_LAYER_ON(_CONTROL)) {
+            encoderBacklightBrightness = !encoderBacklightBrightness;
+        } else { // Default layers
+            encoderDefaultVolume = !encoderDefaultVolume;
+        }
+
         reset_tap_dance (state);
+        /*
     } else if (state->count > 2 && state->pressed) {
         send_string_with_delay_P(PSTR("make nyquist/rev2:encoder:dfu"SS_TAP(X_ENTER)), 10);
         reset_keyboard();
@@ -46,11 +48,10 @@ void encoder_actions (qk_tap_dance_state_t *state, void *user_data) {
     }
 }
 
-enum { encoder = 0 };
-qk_tap_dance_action_t tap_dance_actions[] = { [encoder]  = ACTION_TAP_DANCE_FN_ADVANCED_TIME(NULL, encoder_actions, NULL, 400) };
+qk_tap_dance_action_t tap_dance_actions[] = { [td_encoder]  = ACTION_TAP_DANCE_FN_ADVANCED_TIME(NULL, encoder_td_actions, NULL, 400) };
 
 #undef __BASE_RCR1__
-#define __BASE_RCR1__ TD(encoder)
+#define __BASE_RCR1__ KC_ENC
 
 // | Lower| MACR | SWAP | Alt  | GUI  |Space |     |Space | TX_N | TX_P | SWAP | Mute |Raise |
 #define _____BASE_BOTTOM_____  TT(_LOWER),  DYN_MACRO_PLAY1, SH_TT,   KC_LALT, KC_LGUI,  LT(_CONTROL, KC_SPC),        KC_SPC,  TMUX_NEXT,  TMUX_PREV,  SH_TT,   KC_MUTE,  TT(_RAISE)
@@ -169,6 +170,14 @@ const keypos_t hand_swap_config[MATRIX_ROWS][MATRIX_COLS] = SWAP_HANDS_ORTHO_5X1
 
 void encoder_update(bool clockwise) {
     if (IS_LAYER_ON(_CONTROL)) {
+        if (encoderBacklightBrightness) {
+            if (clockwise) {
+                backlight_increase();
+            } else {
+                backlight_decrease();
+            }
+        }
+    } else if (IS_LAYER_ON(_LOWER)) {
         if (encoderMonBrightness) {
             if (clockwise) {
                 key_tap(KC_FIND);
@@ -182,25 +191,27 @@ void encoder_update(bool clockwise) {
                 key_tap(KC_STOP);
             }
         }
-    } else if (IS_LAYER_ON(_LOWER)) {
-        if (encoderScrollVertical) {
+    } else { // Default layers
+        if (encoderDefaultVolume) {
             if (clockwise) {
-                mousekey_tap(KC_MS_WH_DOWN);
+                key_tap(KC_VOLU);
             } else {
-                mousekey_tap(KC_MS_WH_UP);
+                key_tap(KC_VOLD);
             }
         } else {
-            if (clockwise) {
-                mousekey_tap(KC_MS_WH_RIGHT);
+            if (encoderScrollVertical) {
+                if (clockwise) {
+                    mousekey_tap(KC_MS_WH_DOWN);
+                } else {
+                    mousekey_tap(KC_MS_WH_UP);
+                }
             } else {
-                mousekey_tap(KC_MS_WH_LEFT);
+                if (clockwise) {
+                    mousekey_tap(KC_MS_WH_RIGHT);
+                } else {
+                    mousekey_tap(KC_MS_WH_LEFT);
+                }
             }
-        }
-    } else if (IS_LAYER_ON(_QWERTY) || IS_LAYER_ON(_COLEMAK)) {
-        if (clockwise) {
-            key_tap(KC_VOLU);
-        } else {
-            key_tap(KC_VOLD);
         }
     }
 }
