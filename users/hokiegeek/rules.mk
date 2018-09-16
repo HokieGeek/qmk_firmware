@@ -1,5 +1,9 @@
 SRC += hokiegeek.c
 
+ifndef BOOTMAGIC_ENABLE
+	BOOTMAGIC_ENABLE = no
+endif
+
 ifndef COMMAND_ENABLE
 	COMMAND_ENABLE = no
 endif

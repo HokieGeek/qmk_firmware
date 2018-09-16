@@ -1,5 +1,6 @@
 #include QMK_KEYBOARD_H
 #include "hokiegeek.h"
+#include <print.h>
 
 extern keymap_config_t keymap_config;
 
@@ -10,6 +11,46 @@ enum custom_keycodes {
 };
 
 #include "dynamic_macro.h"
+
+static bool encoderScrollVertical = false;
+static bool encoderMonBrightness = true;
+
+void encoder_actions (qk_tap_dance_state_t *state, void *user_data) {
+    if (state->count == 1) {
+        dprintf("HERE\n");
+        if (IS_LAYER_ON(_QWERTY) || IS_LAYER_ON(_COLEMAK)) {
+            key_tap(KC_MUTE);
+        } else if (IS_LAYER_ON(_LOWER)) {
+            encoderScrollVertical = !encoderScrollVertical;
+        } else if (IS_LAYER_ON(_CONTROL)) {
+            encoderMonBrightness = !encoderMonBrightness;
+        }
+        /*
+    } else if (state->count == 2) {
+        dprintf("NEXT: ");
+        int i = 0;
+        for (; i < _LAST_; i++) {
+            if (IS_LAYER_ON(i)) {
+                i = (i + 1) % _LAST_;
+                layer_clear();
+                layer_on(i);
+                break;
+            }
+        }
+        dprintf("%d, %d\n", i, (i + 1) % _LAST_);
+        reset_tap_dance (state);
+    } else if (state->count > 2 && state->pressed) {
+        send_string_with_delay_P(PSTR("make nyquist/rev2:encoder:dfu"SS_TAP(X_ENTER)), 10);
+        reset_keyboard();
+        */
+    }
+}
+
+enum { encoder = 0 };
+qk_tap_dance_action_t tap_dance_actions[] = { [encoder]  = ACTION_TAP_DANCE_FN_ADVANCED_TIME(NULL, encoder_actions, NULL, 400) };
+
+#undef __BASE_RCR1__
+#define __BASE_RCR1__ TD(encoder)
 
 // | Lower| MACR | SWAP | Alt  | GUI  |Space |     |Space | TX_N | TX_P | SWAP | Mute |Raise |
 #define _____BASE_BOTTOM_____  TT(_LOWER),  DYN_MACRO_PLAY1, SH_TT,   KC_LALT, KC_LGUI,  LT(_CONTROL, KC_SPC),        KC_SPC,  TMUX_NEXT,  TMUX_PREV,  SH_TT,   KC_MUTE,  TT(_RAISE)
@@ -125,6 +166,56 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
 // Each half duplicates the other half
 const keypos_t hand_swap_config[MATRIX_ROWS][MATRIX_COLS] = SWAP_HANDS_ORTHO_5X12_SPLIT;
+
+void encoder_update(bool clockwise) {
+    if (IS_LAYER_ON(_CONTROL)) {
+        if (encoderMonBrightness) {
+            if (clockwise) {
+                key_tap(KC_FIND);
+            } else {
+                key_tap(KC_HELP);
+            }
+        } else {
+            if (clockwise) {
+                key_tap(KC_UNDO);
+            } else {
+                key_tap(KC_STOP);
+            }
+        }
+    } else if (IS_LAYER_ON(_LOWER)) {
+        if (encoderScrollVertical) {
+            if (clockwise) {
+                mousekey_tap(KC_MS_WH_DOWN);
+            } else {
+                mousekey_tap(KC_MS_WH_UP);
+            }
+        } else {
+            if (clockwise) {
+                mousekey_tap(KC_MS_WH_RIGHT);
+            } else {
+                mousekey_tap(KC_MS_WH_LEFT);
+            }
+        }
+    } else if (IS_LAYER_ON(_QWERTY) || IS_LAYER_ON(_COLEMAK)) {
+        if (clockwise) {
+            key_tap(KC_VOLU);
+        } else {
+            key_tap(KC_VOLD);
+        }
+    }
+}
+
+void matrix_init_user(void) {
+    // debug_enable = true;
+
+    layer_on(_QWERTY);
+
+    userspace_matrix_init_user();
+}
+
+void matrix_scan_user(void) {
+    userspace_matrix_scan_user();
+}
 
 bool process_record_user(uint16_t keycode, keyrecord_t *record) {
     if (!process_record_dynamic_macro(keycode, record)) {
