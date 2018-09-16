@@ -18,12 +18,12 @@ static bool encoderMonBrightness = true;
 void encoder_actions (qk_tap_dance_state_t *state, void *user_data) {
     if (state->count == 1) {
         dprintf("HERE\n");
-        if (IS_LAYER_ON(_QWERTY) || IS_LAYER_ON(_COLEMAK)) {
-            key_tap(KC_MUTE);
+        if (IS_LAYER_ON(_CONTROL)) {
+            encoderMonBrightness = !encoderMonBrightness;
         } else if (IS_LAYER_ON(_LOWER)) {
             encoderScrollVertical = !encoderScrollVertical;
-        } else if (IS_LAYER_ON(_CONTROL)) {
-            encoderMonBrightness = !encoderMonBrightness;
+        } else if (IS_LAYER_ON(_QWERTY) || IS_LAYER_ON(_COLEMAK)) {
+            key_tap(KC_MUTE);
         }
         /*
     } else if (state->count == 2) {
