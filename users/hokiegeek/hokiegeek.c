@@ -106,6 +106,7 @@ bool userspace_process_record_user(uint16_t keycode, keyrecord_t *record) {
                    ":avrdude"
 #endif // bootloader options
                    SS_TAP(X_ENTER));
+                reset_keyboard();
             }
             return false;
             break;
