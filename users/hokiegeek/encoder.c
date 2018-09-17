@@ -1,6 +1,3 @@
-#ifndef USERSPACE_ENCODER
-#define USERSPACE_ENCODER
-
 #include "quantum.h"
 #include "encoder.h"
 
@@ -40,5 +37,3 @@ void encoder_init(void) {
     PORTB |= (1 << ENC_B);
     PORTF |= (1 << ENC_A);
 }
-
-#endif // USERSPACE_ENCODER

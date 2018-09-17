@@ -12,49 +12,11 @@ enum custom_keycodes {
 
 #include "dynamic_macro.h"
 
-static bool encoderScrollVertical = false;
-static bool encoderMonBrightness = true;
-static bool encoderBacklightBrightness = true;
-static bool encoderDefaultVolume = true;
-
-void encoder_td_actions (qk_tap_dance_state_t *state, void *user_data) {
-    if (state->count == 1) {
-        if (IS_LAYER_ON(_CONTROL)) {
-            if (encoderBacklightBrightness) {
-                backlight_toggle();
-            }
-        } else if (IS_LAYER_ON(_LOWER)) {
-            encoderMonBrightness = !encoderMonBrightness;
-        } else { // Default layers
-            if (encoderDefaultVolume) {
-                key_tap(KC_MUTE);
-            } else {
-                encoderScrollVertical = !encoderScrollVertical;
-            }
-        }
-    } else if (state->count == 2) {
-        if (IS_LAYER_ON(_CONTROL)) {
-            encoderBacklightBrightness = !encoderBacklightBrightness;
-        } else { // Default layers
-            encoderDefaultVolume = !encoderDefaultVolume;
-        }
-
-        reset_tap_dance (state);
-        /*
-    } else if (state->count > 2 && state->pressed) {
-        send_string_with_delay_P(PSTR("make nyquist/rev2:encoder:dfu"SS_TAP(X_ENTER)), 10);
-        reset_keyboard();
-        */
-    }
-}
-
-qk_tap_dance_action_t tap_dance_actions[] = { [td_encoder]  = ACTION_TAP_DANCE_FN_ADVANCED_TIME(NULL, encoder_td_actions, NULL, 400) };
-
 #undef __BASE_RCR1__
 #define __BASE_RCR1__ KC_ENC
 
-// | Lower| MACR | SWAP | Alt  | GUI  |Space |     |Space | TX_N | TX_P | SWAP | Mute |Raise |
-#define _____BASE_BOTTOM_____  TT(_LOWER),  DYN_MACRO_PLAY1, SH_TT,   KC_LALT, KC_LGUI,  LT(_CONTROL, KC_SPC),        KC_SPC,  TMUX_NEXT,  TMUX_PREV,  SH_TT,   KC_MUTE,  TT(_RAISE)
+// | Lower| MACR | SWAP | Alt  | GUI  |Space |     |Space | TX_N | TX_P | SWAP |      |Raise |
+#define _____BASE_BOTTOM_____  TT(_LOWER),  DYN_MACRO_PLAY1, SH_TT,   KC_LALT, KC_LGUI,  LT(_CONTROL, KC_SPC),        KC_SPC,  TMUX_NEXT,  TMUX_PREV,  SH_TT,  _______,  TT(_RAISE)
 
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
@@ -89,7 +51,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  * |------+------+------+------+------+------|     |------+------+------+------+------+------|
  * | Shift|   Z  |   X  |   C  |   V  |   B  |     |   K  |   M  |   ,  |   .  |   /  |ShEnt |
  * |------+------+------+------+------+------+     +------+------+------+------+------+------|
- * | Lower| MACR | SWAP | Alt  | GUI  |Space |     |Space | TX_N | TX_P | SWAP | Mute |Raise |
+ * | Lower| MACR | SWAP | Alt  | GUI  |Space |     |Space | TX_N | TX_P | SWAP |      |Raise |
  * `------------------------------------------     ------------------------------------------'
  */
 [_COLEMAK] = LAYOUT_wrapper( \
@@ -110,15 +72,15 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  * |------+------+------+------+------+------|     |------+------+------+------+------+------|
  * |      |      |      |      |      |      |     |  ñ   |      |      |      |   ¿  |Sysreq|
  * |------+------+------+------+------+------+     +------+------+------+------+------+------|
- * |      |MSTOP |      |      |      |      |     |      |      |      |      | Vol- |      |
+ * |      |MSTOP |      |      |      |      |     |      |      |      |      |      |      |
  * `------------------------------------------     ------------------------------------------'
  */
 [_LOWER] = LAYOUT( \
   KC_GRAVE,  LATIN_IEXC,    _______, _______, _______, _______,      _______,  _______,  _______,  KC_UNDS,  KC_PLUS,   _______, \
   KC_CAPS,   _______,       _______, LATIN_E, _______, _______,      _______,  LATIN_U,  LATIN_I,  LATIN_O,  KC_LBRC,   _______, \
-  _______,   LATIN_A,       _______, KC_STOP, KC_PSCR, KC_FIND,      KC_HOME,  KC_PGDN,  KC_PGUP,  KC_END,   KC_LCBR,   KC_PIPE, \
-  _______,   _______,       _______, KC_UNDO, _______, KC_HELP,      LATIN_N,  _______,  _______,  _______,  LATIN_IQS, KC_SYSREQ, \
-  _______,   DYN_REC_STOP,  _______, _______, _______, _______,      _______,  _______,  _______,  _______,  KC_VOLD,   _______ \
+  _______,   LATIN_A,       _______, _______, KC_PSCR, _______,      KC_HOME,  KC_PGDN,  KC_PGUP,  KC_END,   KC_LCBR,   KC_PIPE, \
+  _______,   _______,       _______, _______, _______, _______,      LATIN_N,  _______,  _______,  _______,  LATIN_IQS, KC_SYSREQ, \
+  _______,   DYN_REC_STOP,  _______, _______, _______, _______,      _______,  _______,  _______,  _______,  _______,   _______ \
 ),
 
 /* Raise
@@ -131,7 +93,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  * |------+------+------+------+------+------|     |------+------+------+------+------+------|
  * |  F1  |  F2  |  F3  |  F4  |  F5  |  F6  |     |  F7  |  F8  |  F9  |  F10 | F11  | F12  |
  * |------+------+------+------+------+------+     +------+------+------+------+------+------|
- * |      | MREC |      |      |      |      |     |      | TX_L |TX_PK |      | Vol+ |      |
+ * |      | MREC |      |      |      |      |     |      | TX_L |TX_PK |      |      |      |
  * `------------------------------------------     ------------------------------------------'
  */
 [_RAISE] = LAYOUT( \
@@ -139,7 +101,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   _______, _______,        _______, _______, _______, _______,      _______, _______,   _______,   _______, KC_RBRC, KC_DEL, \
   _______, _______,        _______, _______, _______, _______,      KC_LEFT, KC_DOWN,   KC_UP,     KC_RGHT, KC_RCBR, KC_BSLS, \
   KC_F1,   KC_F2,          KC_F3,   KC_F4,   KC_F5,   KC_F6,        KC_F7,   KC_F8,     KC_F9,     KC_F10,  KC_F11,  KC_F12, \
-  _______, DYN_REC_START1, _______, _______, _______, _______,      _______, TMUX_LAST, TMUX_PEEK, _______, KC_VOLU, _______ \
+  _______, DYN_REC_START1, _______, _______, _______, _______,      _______, TMUX_LAST, TMUX_PEEK, _______, _______, _______ \
 ),
 
 /* Control
@@ -156,9 +118,9 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  * `------------------------------------------     ------------------------------------------'
  */
 [_CONTROL] = LAYOUT( \
-  _______,  RGB_TOG, _______, KC_WH_L, KC_WH_R, KC_WH_U,      _______, _______, _______, _______, _______, _______, \
-  _______,  BL_TOGG, _______, _______, KC_MS_U, KC_WH_D,      _______, _______, _______, _______, _______, _______, \
-  _______,  BL_STEP, _______, KC_MS_L, KC_MS_D, KC_MS_R,      _______, _______, _______, _______, _______, _______, \
+  _______,  _______, _______, _______, _______, _______,      _______, _______, _______, _______, _______, _______, \
+  _______,  _______, _______, _______, KC_MS_U, _______,      _______, _______, _______, _______, _______, _______, \
+  _______,  _______, _______, KC_MS_L, KC_MS_D, KC_MS_R,      _______, _______, _______, _______, _______, _______, \
   QMK_MAKE, QWERTY,  COLEMAK, KC_BTN3, KC_BTN2, KC_BTN1,      _______, _______, _______, _______, _______, _______, \
   _______,  _______, _______, _______, _______, _______,      _______, _______, _______, _______, _______, _______  \
 ),
@@ -168,9 +130,52 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 // Each half duplicates the other half
 const keypos_t hand_swap_config[MATRIX_ROWS][MATRIX_COLS] = SWAP_HANDS_ORTHO_5X12_SPLIT;
 
+typedef struct {
+    bool scrollVertical;
+    bool monBrightness;
+    bool backlightBrightness;
+    bool defaultVolume;
+} encoder_options;
+static encoder_options enc_opts;
+
+void encoder_td_actions (qk_tap_dance_state_t *state, void *user_data) {
+    if (state->count == 1) {
+        if (IS_LAYER_ON(_CONTROL)) {
+            if (enc_opts.backlightBrightness) {
+                backlight_toggle();
+            } else {
+                rgblight_toggle();
+            }
+        } else if (IS_LAYER_ON(_LOWER)) {
+            // TODO
+        } else { // Default layers
+            if (enc_opts.defaultVolume) {
+                key_tap(KC_MUTE);
+            } else {
+                enc_opts.scrollVertical = !enc_opts.scrollVertical;
+            }
+        }
+    } else if (state->count == 2) {
+        if (IS_LAYER_ON(_CONTROL)) {
+            enc_opts.backlightBrightness = !enc_opts.backlightBrightness;
+        } else if (IS_LAYER_ON(_LOWER)) {
+            enc_opts.monBrightness = !enc_opts.monBrightness;
+        } else { // Default layers
+            enc_opts.defaultVolume = !enc_opts.defaultVolume;
+        }
+        /*
+    } else if (state->count > 2 && state->pressed) {
+        send_string_with_delay_P(PSTR("make nyquist/rev2:encoder:dfu"SS_TAP(X_ENTER)), 10);
+        reset_keyboard();
+        */
+    }
+
+    reset_tap_dance (state);
+}
+
 void encoder_update(bool clockwise) {
     if (IS_LAYER_ON(_CONTROL)) {
-        if (encoderBacklightBrightness) {
+        if (enc_opts.backlightBrightness) {
             if (clockwise) {
                 backlight_increase();
             } else {
@@ -178,7 +183,7 @@ void encoder_update(bool clockwise) {
             }
         }
     } else if (IS_LAYER_ON(_LOWER)) {
-        if (encoderMonBrightness) {
+        if (enc_opts.monBrightness) {
             if (clockwise) {
                 key_tap(KC_FIND);
             } else {
@@ -192,14 +197,14 @@ void encoder_update(bool clockwise) {
             }
         }
     } else { // Default layers
-        if (encoderDefaultVolume) {
+        if (enc_opts.defaultVolume) {
             if (clockwise) {
                 key_tap(KC_VOLU);
             } else {
                 key_tap(KC_VOLD);
             }
         } else {
-            if (encoderScrollVertical) {
+            if (enc_opts.scrollVertical) {
                 if (clockwise) {
                     mousekey_tap(KC_MS_WH_DOWN);
                 } else {
@@ -216,8 +221,14 @@ void encoder_update(bool clockwise) {
     }
 }
 
+qk_tap_dance_action_t tap_dance_actions[] = { [td_encoder] = ACTION_TAP_DANCE_FN_ADVANCED_TIME(NULL, encoder_td_actions, NULL, 300) };
+
 void matrix_init_user(void) {
     // debug_enable = true;
+    enc_opts.scrollVertical = false;
+    enc_opts.monBrightness = true;
+    enc_opts.backlightBrightness = true;
+    enc_opts.defaultVolume = true;
 
     layer_on(_QWERTY);
 
