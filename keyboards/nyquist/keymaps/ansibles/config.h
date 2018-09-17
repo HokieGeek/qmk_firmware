@@ -3,6 +3,11 @@
 
 #include "config_common.h"
 
+// Have to define my own pins because my right board doesn't like the other pin I guess...
+// #undef MATRIX_ROW_PINS
+// #define MATRIX_ROW_PINS { D4, B2, E6, B4, B5 }
+// #define MATRIX_ROW_PINS_RIGHT { D4, D7, E6, B4, B5 }
+
 #undef MASTER_LEFT
 #define MASTER_RIGHT
 
