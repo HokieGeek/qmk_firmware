@@ -36,7 +36,7 @@ setting which can be changed by double-tapping the encoder button.
 
 | Layers | Function | Twist action | Click action |
 | ------ | ------ | ------------ | ------------ |
-| \_QWERTY  \_COLEMAK | Volume | Increase / Decrease volume | Toggle mute |
+| \_QWERTY<br>\_COLEMAK | Volume | Increase / Decrease volume | Toggle mute |
 | | Vert / Horiz Scrolling | Scroll up/down or left/right | Toggle vert / horiz |
 | \_LOWER | Monitor Brightness | Increase / Decrease brightness | |
 | | Monitor Warmth | Increase / Decrease warmth | |
