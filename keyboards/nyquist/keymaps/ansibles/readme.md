@@ -1,6 +1,9 @@
-# Ansibles (Nyquist rev. 2)
+# Ansibles: Earth and Belt (Nyquist rev. 2)
 
-This is my second Nyquist which I use for my personal, non-work, computer.
+This is my second Nyquist which I use for my non-work computer.
+
+For this build I added some contacts on the side so that when it's sitting
+on my laptop, I don't need the cable.
 
 ## Layout
 [![Current layout](https://i.imgur.com/ePmuOxV.png)](http://www.keyboard-layout-editor.com/#/gists/41f7d4c9d263b12958c5b8144c0984f8)
