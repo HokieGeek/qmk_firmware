@@ -15,7 +15,7 @@ enum custom_keycodes {
 
 #include "dynamic_macro.h"
 
-#define _____BASE_BOTTOM_____  TT(_LOWER),  DYN_MACRO_PLAY1, SH_TT,   KC_LALT, KC_LGUI,  KC_SPC,       LT(_SHORTS, KC_SPC),  TMUX_NEXT,  TMUX_PREV,  SH_TT,   KC_MUTE,  TT(_RAISE)
+#define _____BASE_BOTTOM_____  TT(_LOWER),  DYN_MACRO_PLAY1, SH_TT,   KC_LALT, KC_LGUI,  KC_SPC,       LT(_SHORTS, KC_SPC),  KC_TMUX,  _______,  SH_TT,   KC_MUTE,  TT(_RAISE)
 
 #define SEND_SLACK_SLASH(str) SEND_DELAYED(50, SS_TAP(X_SLASH) str SS_TAP(X_TAB))
 
@@ -31,7 +31,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  * |------+------+------+------+------+------|     |------+------+------+------+------+------|
  * | Shift|   Z  |   X  |   C  |   V  |   B  |     |   N  |   M  |   ,  |   .  |   /  |ShEnt |
  * |------+------+------+------+------+------+     +------+------+------+------+------+------|
- * | Lower| MACR | SWAP | Alt  | GUI  |Space |     |Space | TX_N | TX_P | SWAP | Mute |Raise |
+ * | Lower| MACR | SWAP | Alt  | GUI  |Space |     |Space | TMUX |      | SWAP | Mute |Raise |
  * `------------------------------------------     ------------------------------------------'
  */
 [_QWERTY] = LAYOUT_wrapper( \
@@ -52,7 +52,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  * |------+------+------+------+------+------|     |------+------+------+------+------+------|
  * | Shift|   Z  |   X  |   C  |   V  |   B  |     |   K  |   M  |   ,  |   .  |   /  |ShEnt |
  * |------+------+------+------+------+------+     +------+------+------+------+------+------|
- * | Lower| MACR | SWAP | Alt  | GUI  |Space |     |Space | TX_N | TX_P | SWAP | Mute |Raise |
+ * | Lower| MACR | SWAP | Alt  | GUI  |Space |     |Space | TMUX |      | SWAP | Mute |Raise |
  * `------------------------------------------     ------------------------------------------'
  */
 [_COLEMAK] = LAYOUT_wrapper( \
@@ -78,8 +78,8 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  */
 [_LOWER] = LAYOUT( \
   KC_GRAVE,   LATIN_IEXC,    _______, _______,  _______, _______,      _______,  _______,  _______,  KC_UNDS,  KC_PLUS,   KC_DEL, \
-  _______,    QWERTY,        COLEMAK, LATIN_E,  _______, _______,      _______,  LATIN_U,  LATIN_I,  LATIN_O,  KC_LBRC,   _______, \
-  KC_CAPS,    LATIN_A,       _______, _______,  _______, _______,      KC_HOME,  KC_PGDN,  KC_PGUP,  KC_END,   KC_LCBR,   KC_PIPE, \
+  KC_CAPS,    QWERTY,        COLEMAK, LATIN_E,  _______, _______,      _______,  LATIN_U,  LATIN_I,  LATIN_O,  KC_LBRC,   _______, \
+  _______,    LATIN_A,       _______, _______,  _______, _______,      KC_HOME,  KC_PGDN,  KC_PGUP,  KC_END,   KC_LCBR,   KC_PIPE, \
   QMK_MAKE,   _______,       _______, _______,  _______, _______,      LATIN_N,  _______,  _______,  _______,  LATIN_IQS, KC_SYSREQ, \
   _______,    DYN_REC_STOP,  _______, _______,  _______, _______,      _______,  _______,  _______,  _______,  KC_VOLD,   _______ \
 ),
