@@ -4,6 +4,7 @@
 #include "quantum.h"
 
 #include "encoder.h"
+#include "tmux.h"
 
 // Layer names
 #define _QWERTY 0
@@ -39,13 +40,10 @@
 #define SEND_LATIN(str) SEND_STRING(SS_DOWN(X_LCTRL)SS_DOWN(X_LSHIFT)SS_TAP(X_U)SS_TAP(X_0)SS_TAP(X_0) str SS_UP(X_LCTRL)SS_UP(X_LSHIFT));
 #endif
 
-#define TMUX_PREFIX "a"
-#define SEND_TMUX(c) SEND_STRING(SS_LCTRL(TMUX_PREFIX)c);
-
 #define SEND_DELAYED(delay, str) send_string_with_delay_P(PSTR(str), delay)
 
 enum userspace_custom_keycodes {
-    QWERTY = SAFE_RANGE,
+    QWERTY = TMUX_SAFE_RANGE,
     COLEMAK,
 
     LATIN_E,
@@ -56,11 +54,6 @@ enum userspace_custom_keycodes {
     LATIN_N,
     LATIN_IEXC,
     LATIN_IQS,
-
-    TMUX_NEXT,
-    TMUX_PREV,
-    TMUX_LAST,
-    TMUX_PEEK,
 
     ASCII_SHRUG,
 
@@ -76,8 +69,6 @@ enum userspace_custom_keycodes {
 #define __BASE_LCR3__ KC_LCTL
 #define __BASE_LCR4__ KC_LSFT
 
-// #define __BASE_RCR1__ KC_BSPC
-// #define __BASE_RCR2__ KC_ENT
 #define __BASE_RCR1__ KC_TRNS
 #define __BASE_RCR2__ KC_BSPC
 #define __BASE_RCR4__ KC_SFTENT
@@ -136,4 +127,4 @@ void userspace_matrix_init_user(void);
 void userspace_matrix_scan_user(void);
 bool userspace_process_record_user(uint16_t keycode, keyrecord_t *record);
 
-#endif
+#endif // USERSPACE

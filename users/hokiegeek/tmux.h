@@ -1,0 +1,31 @@
+#ifndef USERSPACE_TMUX
+#define USERSPACE_TMUX
+
+#include "quantum.h"
+
+enum tmux_custom_keycodes {
+    TMUX_NEXT = SAFE_RANGE,
+    TMUX_PREV,
+    TMUX_LAST,
+    TMUX_PEEK,
+
+    TMUX_SAFE_RANGE,
+};
+
+enum { td_tmux = 1 };
+#define KC_TMUX TD(td_tmux)
+#define TMUX_PREFIX "a"
+#define SEND_TMUX(c) SEND_STRING(SS_LCTRL(TMUX_PREFIX)c);
+
+enum {
+    SINGLE = 1,
+    DOUBLE = 2,
+    HOLD   = 3
+};
+
+void td_tmux_finished(qk_tap_dance_state_t *state, void *user_data);
+void td_tmux_reset(qk_tap_dance_state_t *state, void *user_data);
+
+bool tmux_process_record_user(uint16_t keycode, keyrecord_t *record);
+
+#endif // USERSPACE_TMUX
