@@ -67,24 +67,6 @@ bool userspace_process_record_user(uint16_t keycode, keyrecord_t *record) {
             return false;
             break;
 
-        // TMUX
-        case TMUX_NEXT:
-        case TMUX_PREV:
-        case TMUX_LAST:
-            if (record->event.pressed) {
-                switch (keycode) {
-                case TMUX_NEXT: SEND_TMUX("n"); break;
-                case TMUX_PREV: SEND_TMUX("p"); break;
-                case TMUX_LAST: SEND_TMUX(SS_LCTRL("a")); break;
-                }
-            }
-            return false;
-            break;
-        case TMUX_PEEK:
-            SEND_TMUX(SS_LCTRL("a"))
-            return false;
-            break;
-
         // ASCII
         case ASCII_SHRUG:
             if (record->event.pressed) {
@@ -111,5 +93,6 @@ bool userspace_process_record_user(uint16_t keycode, keyrecord_t *record) {
             return false;
             break;
     }
-    return true;
+
+    return tmux_process_record_user(keycode, record);
 }
