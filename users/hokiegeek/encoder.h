@@ -8,6 +8,13 @@
 #define ENC_A PF4
 #define ENC_B PB2
 
+typedef struct {
+    bool scrollVertical;
+    bool monBrightness;
+    bool backlightBrightness;
+    bool defaultVolume;
+} encoder_options;
+
 enum { td_encoder = 0 };
 
 #define ENCODER_TD_ENTRY [td_encoder] = ACTION_TAP_DANCE_FN_ADVANCED_TIME(NULL, encoder_td_actions, NULL, 400)

@@ -30,3 +30,5 @@ endif
 ifeq ($(strip $(ENCODER_ENABLE)), yes)
 	SRC += encoder.c
 endif
+
+SRC += tmux.c
