@@ -33,6 +33,7 @@ The default prefix is set as "a" but can be overridden by setting the alternate 
 
 #### Tapdance
 There is also a tapdance accessible via the `KC_TMUX` which provides several of the same actions as the keycodes.
+
 | dance move | action |
 |---|---|
 | Single tap | Traverses to next window |
