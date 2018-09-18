@@ -94,7 +94,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  * |------+------+------+------+------+------|     |------+------+------+------+------+------|
  * |  F1  |  F2  |  F3  |  F4  |  F5  |  F6  |     |  F7  |  F8  |  F9  |  F10 | F11  | F12  |
  * |------+------+------+------+------+------+     +------+------+------+------+------+------|
- * |      | MREC |      |      |      |      |     |      | TX_L |TX_PK | Vol+ |      |      |
+ * |      | MREC |      |      |      |      |     |      | TX_P |      | Vol+ |      |      |
  * `------------------------------------------     ------------------------------------------'
  */
 [_RAISE] = LAYOUT( \
@@ -102,7 +102,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   _______, _______,        _______, _______, _______, _______,      _______, _______,   _______,   _______, KC_RBRC, _______, \
   _______, _______,        _______, _______, _______, _______,      KC_LEFT, KC_DOWN,   KC_UP,     KC_RGHT, KC_RCBR, KC_BSLS, \
   KC_F1,   KC_F2,          KC_F3,   KC_F4,   KC_F5,   KC_F6,        KC_F7,   KC_F8,     KC_F9,     KC_F10,  KC_F11,  KC_F12, \
-  _______, DYN_REC_START1, _______, _______, _______, _______,      _______, TMUX_LAST, TMUX_PEEK, _______, KC_VOLU, _______ \
+  _______, DYN_REC_START1, _______, _______, _______, _______,      _______, TMUX_PREV, _______, _______, KC_VOLU, _______ \
 ),
 
 /* Shortcuts
@@ -130,6 +130,10 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
 // Each half duplicates the other half
 const keypos_t hand_swap_config[MATRIX_ROWS][MATRIX_COLS] = SWAP_HANDS_ORTHO_5X12_SPLIT;
+
+qk_tap_dance_action_t tap_dance_actions[] = {
+    [td_tmux] = ACTION_TAP_DANCE_FN_ADVANCED_TIME(NULL, td_tmux_finished, td_tmux_reset, 100)
+};
 
 bool process_record_user(uint16_t keycode, keyrecord_t *record) {
     if (!process_record_dynamic_macro(keycode, record)) {
