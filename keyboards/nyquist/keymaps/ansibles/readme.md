@@ -6,7 +6,7 @@ For this build I added some contacts on the side so that when it's sitting
 on my laptop, I don't need the cable.
 
 ## Layout
-[![Current layout](https://i.imgur.com/ePmuOxV.png)](http://www.keyboard-layout-editor.com/#/gists/41f7d4c9d263b12958c5b8144c0984f8)
+[![Current layout](https://i.imgur.com/YwmAO9x.png)](http://www.keyboard-layout-editor.com/#/gists/41f7d4c9d263b12958c5b8144c0984f8)
 
 ## Features
 ### Accents
@@ -17,7 +17,7 @@ Each symbol is set as part of the lower layer for the respective ANSI character.
 ### TMUX
 Using keycodes defined in my [userspace files](../../../../users/hokiegeek/readme.md#tmux).
 
-Mapped them to two keys accessible with my right thumb.
+Mapped them the key under my right thumb.
 
 ### Swap Hands
 Enabled and used as defined in my [userspace files](../../../../users/hokiegeek/readme.md#swap-hands).
@@ -34,13 +34,13 @@ activated by twisting the knob as well as clicking the encoder once.
 In addition, the function for a given layer is dependent on another
 setting which can be changed by double-tapping the encoder button.
 
-| Layers | Function | Twist action | Click action |
+| layers | function | twist action | click action |
 | ------ | ------ | ------------ | ------------ |
-| \_QWERTY<br>\_COLEMAK | Volume | Increase / Decrease volume | Toggle mute |
+| `_QWERTY`<br>`_COLEMAK` | Volume | Increase / Decrease volume | Toggle mute |
 | | Vert / Horiz Scrolling | Scroll up/down or left/right | Toggle vert / horiz |
-| \_LOWER | Monitor Brightness | Increase / Decrease brightness | |
+| `_LOWER` | Monitor Brightness | Increase / Decrease brightness | |
 | | Monitor Warmth | Increase / Decrease warmth | |
-| \_CONTROL | Kbd Backlight | Increase / Decrease brightness | Toggle backlight |
+| `_CONTROL` | Kbd Backlight | Increase / Decrease brightness | Toggle backlight |
 | | Kbd Underglow | | Toggle underglow |
 
 ## Build log
