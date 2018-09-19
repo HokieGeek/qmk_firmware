@@ -118,5 +118,9 @@ bool userspace_process_record_user(uint16_t keycode, keyrecord_t *record) {
             break;
     }
 
+#ifdef TAP_DANCE_ENABLE
     return tmux_process_record_user(keycode, record);
+#else
+    return true;
+#endif
 }
