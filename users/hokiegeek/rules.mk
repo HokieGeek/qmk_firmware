@@ -31,4 +31,6 @@ ifeq ($(strip $(ENCODER_ENABLE)), yes)
 	SRC += encoder.c
 endif
 
-SRC += tmux.c
+ifeq ($(strip $(TAP_DANCE_ENABLE)), yes)
+	SRC += tmux.c
+endif
