@@ -66,7 +66,7 @@ enum userspace_custom_keycodes {
 
 #define __BASE_LCR1__ KC_GESC
 #define __BASE_LCR2__ KC_TAB
-#define __BASE_LCR3__ KC_LCTL
+#define __BASE_LCR3__ LCTL_T(KC_TAB)
 #define __BASE_LCR4__ KC_LSFT
 
 #define __BASE_RCR1__ KC_TRNS
