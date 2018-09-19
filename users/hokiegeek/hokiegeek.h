@@ -4,7 +4,10 @@
 #include "quantum.h"
 
 #include "encoder.h"
+
+#ifdef TAP_DANCE_ENABLE
 #include "tmux.h"
+#endif
 
 // Layer names
 #define _QWERTY 0
@@ -43,7 +46,11 @@
 #define SEND_DELAYED(delay, str) send_string_with_delay_P(PSTR(str), delay)
 
 enum userspace_custom_keycodes {
+#ifdef TAP_DANCE_ENABLE
     QWERTY = TMUX_SAFE_RANGE,
+#else
+    QWERTY = SAFE_RANGE,
+#endif
     COLEMAK,
 
     LATIN_E,
