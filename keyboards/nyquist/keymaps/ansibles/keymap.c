@@ -7,7 +7,8 @@ extern keymap_config_t keymap_config;
 #define _CONTROL 10
 
 enum custom_keycodes {
-    DYNAMIC_MACRO_RANGE = NEW_SAFE_RANGE,
+    CTLTAB = NEW_SAFE_RANGE,
+    DYNAMIC_MACRO_RANGE
 };
 
 #include "dynamic_macro.h"
@@ -240,6 +241,22 @@ void matrix_scan_user(void) {
 bool process_record_user(uint16_t keycode, keyrecord_t *record) {
     if (!process_record_dynamic_macro(keycode, record)) {
         return false;
+    }
+
+    switch (keycode) {
+        case CTLTAB:
+            if (record->event.pressed) {
+                register_code(KC_LCTL);
+                register_code(KC_TAB);
+                unregister_code(KC_TAB);
+                unregister_code(KC_LCTL);
+            }
+            return false;
+            break;
+        // default:
+        //     SEND_STRING("wtf"SS_TAP(X_ENTER));
+        //     return false;
+        //     break;
     }
 
     return userspace_process_record_user(keycode, record);
