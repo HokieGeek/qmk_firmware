@@ -1,0 +1,45 @@
+#ifndef USERSPACE_LATIN
+#define USERSPACE_LATIN
+
+#include "hokiegeek.h"
+
+#ifdef ACCENTS_MAC
+#define LATIN_E_STRING    SS_LALT("e")"e"
+#define LATIN_A_STRING    SS_LALT("e")"a"
+#define LATIN_I_STRING    SS_LALT("e")"i"
+#define LATIN_O_STRING    SS_LALT("e")"o"
+#define LATIN_U_STRING    SS_LALT("e")"u"
+#define LATIN_N_STRING    SS_LALT("n")"n"
+#define LATIN_IEXC_STRING SS_LALT("1")
+#define LATIN_IQS_STRING  SS_LALT("?")
+#define SEND_LATIN(str)   SEND_STRING(str)
+#else
+#define LATIN_E_STRING    SS_TAP(X_E)SS_TAP(X_9)
+#define LATIN_A_STRING    SS_TAP(X_E)SS_TAP(X_1)
+#define LATIN_I_STRING    SS_TAP(X_E)SS_TAP(X_D)
+#define LATIN_O_STRING    SS_TAP(X_F)SS_TAP(X_3)
+#define LATIN_U_STRING    SS_TAP(X_F)SS_TAP(X_A)
+#define LATIN_N_STRING    SS_TAP(X_F)SS_TAP(X_1)
+#define LATIN_IEXC_STRING SS_TAP(X_A)SS_TAP(X_1)
+#define LATIN_IQS_STRING  SS_TAP(X_B)SS_TAP(X_F)
+#define SEND_LATIN(str)   SEND_STRING(SS_DOWN(X_LCTRL)SS_DOWN(X_LSHIFT)SS_TAP(X_U)SS_TAP(X_0)SS_TAP(X_0) str SS_UP(X_LCTRL)SS_UP(X_LSHIFT));
+#endif
+
+/*
+enum latin_custom_keycodes {
+    LATIN_E = _LATIN_START,
+    LATIN_A,
+    LATIN_I,
+    LATIN_O,
+    LATIN_U,
+    LATIN_N,
+    LATIN_IEXC,
+    LATIN_IQS,
+
+    LATIN_SAFE_RANGE,
+};
+*/
+
+bool latin_process_record_user(uint16_t keycode, keyrecord_t *record);
+
+#endif // USERSPACE_LATIN

@@ -1,4 +1,4 @@
-SRC += hokiegeek.c
+SRC += hokiegeek.c latin.c
 
 ifndef BOOTMAGIC_ENABLE
 	BOOTMAGIC_ENABLE = no
