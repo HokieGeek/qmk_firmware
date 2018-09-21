@@ -13,6 +13,30 @@ void key_tap(uint8_t code) {
     unregister_code(code);
 }
 
+td_state process_td_state(qk_tap_dance_state_t *state, void *user_data) {
+    if (state->count == 1) {
+        if (state->interrupted || !state->pressed) {
+            return SINGLE;
+        } else {
+            return SINGLE_HOLD;
+        }
+    } else if (state->count == 2) {
+        if (state->interrupted || !state->pressed) {
+            return DOUBLE;
+        } else {
+            return DOUBLE_HOLD;
+        }
+    } else if (state->count == 3) {
+        if (state->interrupted || !state->pressed) {
+            return TRIPLE;
+        } else {
+            return TRIPLE_HOLD;
+        }
+    } else {
+        return OTHER;
+    }
+}
+
 __attribute__ ((weak))
 void check_encoder(void) { }
 

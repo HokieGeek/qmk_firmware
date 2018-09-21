@@ -19,7 +19,7 @@ Spanish accents and special symbols are supported with the following keycodes:
 The symbols will be entered as linux unicode values unless you set the `ACCENTS_MAC` define which will perform a MacOS key combo to get the symbols.
 
 ### TMUX
-The default prefix is set as "a" but can be overridden by setting the alternate value as the `TMUX_PREFIX` define.
+The default prefix is set as `X_A` but can be overridden by setting the alternate value as the `TMUX_PREFIX` define.
 
 #### Keycodes
 The following keycodes allow you to perform some tmux-related actions that I frequently use.
@@ -38,8 +38,8 @@ There is also a tapdance accessible via the `KC_TMUX` keycode which provides sev
 |---|---|
 | Single tap | Traverses to next window |
 | Double tap | Switches to last active window |
-| Hold | Momentarily switches to last active window while key is down |
-
+| Single hold | Sends TMUX prefix |
+| Double hold | Momentarily switches to last active window while key is down |
 
 ### Swap Hands
 Added a define which has a matrix that correctly swaps each half of a 5x12 ortho (particularly a split one).
