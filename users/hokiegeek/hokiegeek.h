@@ -4,6 +4,7 @@
 #include "quantum.h"
 
 #include "encoder.h"
+#include "latin.h"
 
 #ifdef TAP_DANCE_ENABLE
 #include "tmux.h"
@@ -20,38 +21,15 @@
 #define _______ KC_TRNS
 #define XXXXXXX KC_NO
 
-// Accent defines
-#ifdef ACCENTS_MAC
-#define LATIN_E_STRING SS_LALT("e")"e"
-#define LATIN_A_STRING SS_LALT("e")"a"
-#define LATIN_I_STRING SS_LALT("e")"i"
-#define LATIN_O_STRING SS_LALT("e")"o"
-#define LATIN_U_STRING SS_LALT("e")"u"
-#define LATIN_N_STRING SS_LALT("n")"n"
-#define LATIN_IEXC_STRING SS_LALT("1")
-#define LATIN_IQS_STRING SS_LALT("?")
-#define SEND_LATIN(str) SEND_STRING(str)
-#else
-#define LATIN_E_STRING    SS_TAP(X_E)SS_TAP(X_9)
-#define LATIN_A_STRING    SS_TAP(X_E)SS_TAP(X_1)
-#define LATIN_I_STRING    SS_TAP(X_E)SS_TAP(X_D)
-#define LATIN_O_STRING    SS_TAP(X_F)SS_TAP(X_3)
-#define LATIN_U_STRING    SS_TAP(X_F)SS_TAP(X_A)
-#define LATIN_N_STRING    SS_TAP(X_F)SS_TAP(X_1)
-#define LATIN_IEXC_STRING SS_TAP(X_A)SS_TAP(X_1)
-#define LATIN_IQS_STRING  SS_TAP(X_B)SS_TAP(X_F)
-#define SEND_LATIN(str) SEND_STRING(SS_DOWN(X_LCTRL)SS_DOWN(X_LSHIFT)SS_TAP(X_U)SS_TAP(X_0)SS_TAP(X_0) str SS_UP(X_LCTRL)SS_UP(X_LSHIFT));
-#endif
-
 #define SEND_DELAYED(delay, str) send_string_with_delay_P(PSTR(str), delay)
 
 enum userspace_custom_keycodes {
-#ifdef TAP_DANCE_ENABLE
-    QWERTY = TMUX_SAFE_RANGE,
-#else
     QWERTY = SAFE_RANGE,
-#endif
     COLEMAK,
+
+    QMK_MAKE,
+
+    ASCII_SHRUG,
 
     LATIN_E,
     LATIN_A,
@@ -62,9 +40,12 @@ enum userspace_custom_keycodes {
     LATIN_IEXC,
     LATIN_IQS,
 
-    ASCII_SHRUG,
-
-    QMK_MAKE,
+#ifdef TAP_DANCE_ENABLE
+    TMUX_NEXT,
+    TMUX_PREV,
+    TMUX_LAST,
+    TMUX_PEEK,
+#endif
 
     NEW_SAFE_RANGE,
 };
