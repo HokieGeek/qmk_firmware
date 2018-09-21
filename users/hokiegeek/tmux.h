@@ -14,14 +14,9 @@ enum tmux_custom_keycodes {
 
 enum { td_tmux = 1 };
 #define KC_TMUX TD(td_tmux)
-#define TMUX_PREFIX "a"
-#define SEND_TMUX(c) SEND_STRING(SS_LCTRL(TMUX_PREFIX)c);
-
-enum {
-    SINGLE = 1,
-    DOUBLE = 2,
-    HOLD   = 3
-};
+#define TMUX_PREFIX X_A
+#define SS_TMUX_PREFIX SS_DOWN(X_LCTRL)SS_TAP(TMUX_PREFIX)SS_UP(X_LCTRL)
+#define SEND_TMUX(c) SEND_STRING(SS_TMUX_PREFIX""c);
 
 void td_tmux_finished(qk_tap_dance_state_t *state, void *user_data);
 void td_tmux_reset(qk_tap_dance_state_t *state, void *user_data);
