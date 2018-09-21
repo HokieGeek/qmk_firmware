@@ -217,7 +217,7 @@ void encoder_update(bool clockwise) {
 
 qk_tap_dance_action_t tap_dance_actions[] = {
     [td_encoder] = ACTION_TAP_DANCE_FN_ADVANCED_TIME(NULL, encoder_td_actions, NULL, 300),
-    [td_tmux] = ACTION_TAP_DANCE_FN_ADVANCED_TIME(NULL, td_tmux_finished, td_tmux_reset, 100)
+    [td_tmux] = ACTION_TAP_DANCE_FN_ADVANCED_TIME(NULL, td_tmux_finished, td_tmux_reset, 120)
 };
 
 void matrix_init_user(void) {

@@ -123,6 +123,17 @@ enum userspace_custom_keycodes {
 void mousekey_tap(uint8_t);
 void key_tap(uint8_t);
 
+typedef enum {
+    OTHER = 0,
+    SINGLE = 1,
+    DOUBLE = 2,
+    TRIPLE = 3,
+    SINGLE_HOLD = 4,
+    DOUBLE_HOLD = 5,
+    TRIPLE_HOLD = 6
+} td_state;
+td_state process_td_state(qk_tap_dance_state_t *state, void *user_data);
+
 void userspace_matrix_init_user(void);
 void userspace_matrix_scan_user(void);
 bool userspace_process_record_user(uint16_t keycode, keyrecord_t *record);
