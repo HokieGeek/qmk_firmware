@@ -10,13 +10,16 @@ enum custom_keycodes {
     SLACK_SHRUG,
     SLACK_REACT,
 
+    NO_NOTIF,
+
     DYNAMIC_MACRO_RANGE
 };
 
 #include "dynamic_macro.h"
 
 #undef __BASE_RCR1__
-#define __BASE_RCR1__ KC_MUTE
+#define __BASE_RCR1__ TD(td_mute)
+// #define __BASE_RCR1__ KC_MUTE
 
 #define _____BASE_BOTTOM_____  TT(_LOWER),  DYN_MACRO_PLAY1, SH_TT,   KC_LALT, KC_LGUI,  KC_SPC,       LT(_SHORTS, KC_SPC),  KC_TMUX,  _______,  SH_TT,   _______,  TT(_RAISE)
 
@@ -135,8 +138,13 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 const keypos_t hand_swap_config[MATRIX_ROWS][MATRIX_COLS] = SWAP_HANDS_ORTHO_5X12_SPLIT;
 
 #ifdef TAP_DANCE_ENABLE
+enum {
+    td_last = td_tmux,
+    td_mute
+};
 qk_tap_dance_action_t tap_dance_actions[] = {
-    [td_tmux] = ACTION_TAP_DANCE_FN_ADVANCED_TIME(NULL, td_tmux_finished, td_tmux_reset, 100)
+    [td_tmux] = ACTION_TAP_DANCE_FN_ADVANCED_TIME(NULL, td_tmux_finished, td_tmux_reset, 100),
+    [td_mute] = ACTION_TAP_DANCE_DOUBLE(KC_MUTE, NO_NOTIF)
 };
 #endif
 
@@ -146,6 +154,9 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
     }
 
     switch (keycode) {
+        case NO_NOTIF:
+            break;
+
         // SLACK
         case SLACK_GIPHY:
         case SLACK_SHRUG:
