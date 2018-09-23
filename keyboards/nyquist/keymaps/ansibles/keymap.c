@@ -7,6 +7,10 @@ extern keymap_config_t keymap_config;
 #define _MOUSE 9
 #define _CONTROL 10
 
+enum {
+    td_ctltab_mouse = TD_SAFE_RANGE
+};
+
 enum custom_keycodes {
     CTLTAB = NEW_SAFE_RANGE,
     DYNAMIC_MACRO_RANGE
@@ -246,27 +250,18 @@ void encoder_update(bool clockwise) {
     }
 }
 
-static int td_ctltab_mouse_state = 0;
-void td_ctltab_mouse_finished(qk_tap_dance_state_t *state, void *user_data) {
-    td_ctltab_mouse_state = process_td_state(state, user_data);
-
-    switch (td_ctltab_mouse_state) {
-        case SINGLE:      tap_ctltab(); break;
-        case SINGLE_HOLD: layer_on(_MOUSE); break;
+void mouse_layer_on_hold(td_stage stage) {
+    switch (stage) {
+        case TD_FINISHED: layer_on(_MOUSE); break;
+        case TD_RESET: layer_off(_MOUSE); break;
+        default: break;
     }
-}
-
-void td_ctltab_mouse_reset(qk_tap_dance_state_t *state, void *user_data) {
-    switch (td_ctltab_mouse_state) {
-        case SINGLE_HOLD: layer_off(_MOUSE); break;
-    }
-    td_ctltab_mouse_state = 0;
 }
 
 qk_tap_dance_action_t tap_dance_actions[] = {
     TD_ENCODER_ENTRY,
     TD_TMUX_ENTRY,
-    [td_ctltab_mouse] = ACTION_TAP_DANCE_FN_ADVANCED(NULL, td_ctltab_mouse_finished, td_ctltab_mouse_reset)
+    [td_ctltab_mouse] = ACTION_TAP_DANCE_TAP_HOLD(tap_ctltab_td, mouse_layer_on_hold)
 };
 
 void matrix_init_user(void) {

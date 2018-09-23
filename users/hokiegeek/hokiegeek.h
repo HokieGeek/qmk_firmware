@@ -3,10 +3,11 @@
 
 #include "quantum.h"
 
-#include "encoder.h"
 #include "latin.h"
 
 #ifdef TAP_DANCE_ENABLE
+#include "td_extras.h"
+#include "encoder.h"
 #include "tmux.h"
 #endif
 
@@ -110,22 +111,18 @@ enum userspace_custom_keycodes {
 }
 #endif
 
-#define TD_SAFE_RANGE 8
+#ifdef TAP_DANCE_ENABLE
+enum {
+    td_encoder = 0,
+    td_tmux = 1,
+    TD_SAFE_RANGE
+};
+#endif
 
 void mousekey_tap(uint8_t);
 void key_tap(uint8_t);
 void tap_ctltab(void);
-
-typedef enum {
-    OTHER = 0,
-    SINGLE = 1,
-    DOUBLE = 2,
-    TRIPLE = 3,
-    SINGLE_HOLD = 4,
-    DOUBLE_HOLD = 5,
-    TRIPLE_HOLD = 6
-} td_state;
-td_state process_td_state(qk_tap_dance_state_t *state, void *user_data);
+void tap_ctltab_td(td_stage);
 
 void userspace_matrix_init_user(void);
 void userspace_matrix_scan_user(void);
