@@ -16,7 +16,6 @@ enum tmux_custom_keycodes {
 };
 */
 
-enum { td_tmux = 1 };
 #define KC_TMUX TD(td_tmux)
 #define TMUX_PREFIX X_A
 #define SS_TMUX_PREFIX SS_DOWN(X_LCTRL)SS_TAP(TMUX_PREFIX)SS_UP(X_LCTRL)
