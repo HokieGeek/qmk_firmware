@@ -20,28 +20,8 @@ void tap_ctltab() {
     unregister_code(KC_LCTL);
 }
 
-td_state process_td_state(qk_tap_dance_state_t *state, void *user_data) {
-    if (state->count == 1) {
-        if (state->interrupted || !state->pressed) {
-            return SINGLE;
-        } else {
-            return SINGLE_HOLD;
-        }
-    } else if (state->count == 2) {
-        if (state->interrupted || !state->pressed) {
-            return DOUBLE;
-        } else {
-            return DOUBLE_HOLD;
-        }
-    } else if (state->count == 3) {
-        if (state->interrupted || !state->pressed) {
-            return TRIPLE;
-        } else {
-            return TRIPLE_HOLD;
-        }
-    } else {
-        return OTHER;
-    }
+void tap_ctltab_td(td_stage stage) {
+    tap_ctltab();
 }
 
 __attribute__ ((weak))
