@@ -52,8 +52,8 @@ enum userspace_custom_keycodes {
 
 #define LAYOUT_wrapper(...)  LAYOUT(__VA_ARGS__)
 
-#define __BASE_LCR1__ KC_GESC
-#define __BASE_LCR2__ KC_TAB
+#define __BASE_LCR1__ LT(_CONTROL, KC_ESC)
+#define __BASE_LCR2__ KC_GRAVE
 #define __BASE_LCR3__ LCTL_T(KC_TAB)
 #define __BASE_LCR4__ KC_LSFT
 
@@ -94,6 +94,7 @@ enum userspace_custom_keycodes {
 #define _____COLEMAK_R2_____  KC_A, KC_R,  KC_S,  KC_T,  KC_D,  KC_H,  KC_N,  KC_E,    KC_I,    KC_O,    KC_QUOT
 #define _____COLEMAK_R3_____  KC_Z, KC_X,  KC_C,  KC_V,  KC_B,  KC_K,  KC_M,  KC_COMM, KC_DOT,  KC_SLSH
 
+#ifdef SWAP_HANDS_ENABLE
 #define SWAP_HANDS_ORTHO_5X12_SPLIT { \
   {{5, 5}, {4, 5}, {3, 5}, {2, 5}, {1, 5}, {0, 5}}, \
   {{5, 6}, {4, 6}, {3, 6}, {2, 6}, {1, 6}, {0, 6}}, \
@@ -107,9 +108,13 @@ enum userspace_custom_keycodes {
   {{5, 3}, {4, 3}, {3, 3}, {2, 3}, {1, 3}, {0, 3}}, \
   {{5, 4}, {4, 4}, {3, 4}, {2, 4}, {1, 4}, {0, 4}}, \
 }
+#endif
+
+#define TD_SAFE_RANGE 8
 
 void mousekey_tap(uint8_t);
 void key_tap(uint8_t);
+void tap_ctltab(void);
 
 typedef enum {
     OTHER = 0,

@@ -13,6 +13,13 @@ void key_tap(uint8_t code) {
     unregister_code(code);
 }
 
+void tap_ctltab() {
+    register_code(KC_LCTL);
+    register_code(KC_TAB);
+    unregister_code(KC_TAB);
+    unregister_code(KC_LCTL);
+}
+
 td_state process_td_state(qk_tap_dance_state_t *state, void *user_data) {
     if (state->count == 1) {
         if (state->interrupted || !state->pressed) {

@@ -4,6 +4,7 @@
 
 extern keymap_config_t keymap_config;
 
+#define _MOUSE 9
 #define _CONTROL 10
 
 enum custom_keycodes {
@@ -13,11 +14,15 @@ enum custom_keycodes {
 
 #include "dynamic_macro.h"
 
+enum {
+    td_ctltab_mouse = TD_SAFE_RANGE
+};
+
 #undef __BASE_RCR1__
 #define __BASE_RCR1__ KC_ENC
 
 // | Lower| MACR | SWAP | Alt  | GUI  |Space |     |Space | TX_N | TX_P | SWAP |      |Raise |
-#define _____BASE_BOTTOM_____  TT(_LOWER),  _______, SH_TT,   _______, KC_LGUI,  LALT_T(KC_SPC),        LT(_CONTROL, KC_SPC),  KC_TMUX,  _______,  SH_TT,  DYN_MACRO_PLAY1,  TT(_RAISE)
+#define _____BASE_BOTTOM_____  TT(_LOWER),  _______, SH_TT,   _______, KC_LGUI,  LALT_T(KC_SPC),        TD(td_ctltab_mouse),  KC_TMUX,  _______,  SH_TT,  DYN_MACRO_PLAY1,  TT(_RAISE)
 
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
@@ -106,6 +111,28 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   _______, _______, _______, _______, _______, _______,      _______, TMUX_PREV, _______, _______, DYN_REC_START1, _______ \
 ),
 
+/* Mouse
+ * ,------------------------------------------     ------------------------------------------.
+ * |      |      |      |      |      |      |     |      |      |      |      |      |      |
+ * |------+------+------+------+------+-------     +------+------+------+------+------+------|
+ * |      |      |      |      |      |      |     |      |      |      |      |      |      |
+ * |------+------+------+------+------+-------     -------+------+------+------+------+------|
+ * |      |      |      |      |      |      |     |      |      |      |      |      |      |
+ * |------+------+------+------+------+------|     |------+------+------+------+------+------|
+ * |      |      |      |      |      |      |     |      |      |      |      |      |      |
+ * |------+------+------+------+------+------+     +------+------+------+------+------+------|
+ * |      |      |      |      |      |      |     |      |      |      |      |      |      |
+ * `------------------------------------------     ------------------------------------------'
+ */
+[_MOUSE] = LAYOUT( \
+  _______,  _______, _______, _______, _______, _______,      _______, _______, _______, _______, _______, _______, \
+  _______,  _______, _______, _______, _______, _______,      _______, _______, _______, _______, _______, _______, \
+  _______,  _______, _______, _______, _______, _______,      KC_MS_L, KC_MS_D, KC_MS_U, KC_MS_R, _______, _______, \
+  _______,  _______, _______, _______, _______, _______,      KC_BTN1, KC_BTN3, KC_BTN2, _______, _______, _______, \
+  _______,  _______, _______, _______, _______, _______,      _______, _______, _______, _______, _______, _______  \
+),
+
+
 /* Control
  * ,------------------------------------------     ------------------------------------------.
  * |      |      |      |      |      |      |     |      |      |      |      |      |      |
@@ -122,15 +149,17 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 [_CONTROL] = LAYOUT( \
   _______,  _______, _______, _______, _______, _______,      _______, _______, _______, _______, _______, _______, \
   QMK_MAKE, QWERTY,  COLEMAK, _______, _______, _______,      _______, _______, _______, _______, _______, _______, \
-  KC_CAPS,  _______, _______, _______, _______, _______,      KC_MS_L, KC_MS_D, KC_MS_U, KC_MS_R, _______, _______, \
-  _______,  _______, _______, _______, _______, _______,      KC_BTN1, KC_BTN2, KC_BTN3, _______, _______, _______, \
+  KC_CAPS,  _______, _______, _______, _______, _______,      _______, _______, _______, _______, _______, _______, \
+  _______,  _______, _______, _______, _______, _______,      _______, _______, _______, _______, _______, _______, \
   _______,  _______, _______, _______, _______, _______,      _______, _______, _______, _______, _______, _______  \
 ),
 
 };
 
+#ifdef SWAP_HANDS_ENABLE
 // Each half duplicates the other half
 const keypos_t hand_swap_config[MATRIX_ROWS][MATRIX_COLS] = SWAP_HANDS_ORTHO_5X12_SPLIT;
+#endif
 
 static encoder_options enc_opts;
 
@@ -217,9 +246,27 @@ void encoder_update(bool clockwise) {
     }
 }
 
+static int td_ctltab_mouse_state = 0;
+void td_ctltab_mouse_finished(qk_tap_dance_state_t *state, void *user_data) {
+    td_ctltab_mouse_state = process_td_state(state, user_data);
+
+    switch (td_ctltab_mouse_state) {
+        case SINGLE:      tap_ctltab(); break;
+        case SINGLE_HOLD: layer_on(_MOUSE); break;
+    }
+}
+
+void td_ctltab_mouse_reset(qk_tap_dance_state_t *state, void *user_data) {
+    switch (td_ctltab_mouse_state) {
+        case SINGLE_HOLD: layer_off(_MOUSE); break;
+    }
+    td_ctltab_mouse_state = 0;
+}
+
 qk_tap_dance_action_t tap_dance_actions[] = {
     TD_ENCODER_ENTRY,
-    TD_TMUX_ENTRY
+    TD_TMUX_ENTRY,
+    [td_ctltab_mouse] = ACTION_TAP_DANCE_FN_ADVANCED(NULL, td_ctltab_mouse_finished, td_ctltab_mouse_reset)
 };
 
 void matrix_init_user(void) {
@@ -241,22 +288,6 @@ void matrix_scan_user(void) {
 bool process_record_user(uint16_t keycode, keyrecord_t *record) {
     if (!process_record_dynamic_macro(keycode, record)) {
         return false;
-    }
-
-    switch (keycode) {
-        case CTLTAB:
-            if (record->event.pressed) {
-                register_code(KC_LCTL);
-                register_code(KC_TAB);
-                unregister_code(KC_TAB);
-                unregister_code(KC_LCTL);
-            }
-            return false;
-            break;
-        // default:
-        //     SEND_STRING("wtf"SS_TAP(X_ENTER));
-        //     return false;
-        //     break;
     }
 
     return userspace_process_record_user(keycode, record);
