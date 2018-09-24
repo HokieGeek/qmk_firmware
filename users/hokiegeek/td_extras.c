@@ -53,7 +53,7 @@ void td_single_double_funcs(qk_tap_dance_state_t *state, void *user_data) {
     }
 }
 
-void td_key(td_stage stage, uint16_t key) {
+void td_key_mod(td_stage stage, uint16_t key) {
     switch (stage) {
         case TD_ON_EACH_TAP: break;
         case TD_FINISHED: register_code(key); break;
@@ -61,6 +61,13 @@ void td_key(td_stage stage, uint16_t key) {
     }
 }
 
+void td_key(td_stage stage, uint16_t key) {
+    if (stage == TD_FINISHED) {
+        register_code(key);
+        unregister_code(key);
+    }
+}
+
 inline void td_shift(td_stage stage) {
-    td_key(stage, KC_LSHIFT);
+    td_key_mod(stage, KC_LSHIFT);
 }
