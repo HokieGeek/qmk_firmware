@@ -2,6 +2,7 @@
 #define USERSPACE_LATIN
 
 #include "hokiegeek.h"
+#include "td_extras.h"
 
 #ifdef ACCENTS_MAC
 #define LATIN_E_STRING    SS_LALT("e")"e"
@@ -25,9 +26,14 @@
 #define SEND_LATIN(str)   SEND_STRING(SS_DOWN(X_LCTRL)SS_DOWN(X_LSHIFT)SS_TAP(X_U)SS_TAP(X_0)SS_TAP(X_0) str SS_UP(X_LCTRL)SS_UP(X_LSHIFT));
 #endif
 
+void latin_latch_td(td_stage);
+#define TD_SHIFT_LATIN [td_shift_latin] = ACTION_TAP_DANCE_DOUBLE_FUNCS(td_shift, latin_latch_td)
+#define SFT_LAT TD(td_shift_latin)
+
 /*
 enum latin_custom_keycodes {
-    LATIN_E = _LATIN_START,
+    LATIN_LATCH = _LATIN_START,
+    LATIN_E,
     LATIN_A,
     LATIN_I,
     LATIN_O,
