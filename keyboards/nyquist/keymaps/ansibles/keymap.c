@@ -26,7 +26,7 @@ enum {
 #define __BASE_RCR1__ KC_ENC
 
 // | Lower| MACR | SWAP | Alt  | GUI  |Space |     |Space | TX_N | TX_P | SWAP |      |Raise |
-#define _____BASE_BOTTOM_____  TT(_LOWER),  _______, SH_TT,   _______, KC_LGUI,  LALT_T(KC_SPC),        TD(td_ctltab_mouse),  KC_TMUX,  _______,  SH_TT,  DYN_MACRO_PLAY1,  TT(_RAISE)
+#define _____BASE_BOTTOM_____  TT(_LOWER),  _______, SH_TT,   _______, KC_LGUI,  LALT_T(KC_SPC),        TD(td_ctltab_mouse),  KC_TMUX, _______,  SH_TT,  DYN_MACRO_PLAY1,  TT(_RAISE)
 
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
@@ -261,6 +261,7 @@ void mouse_layer_on_hold(td_stage stage) {
 qk_tap_dance_action_t tap_dance_actions[] = {
     TD_ENCODER_ENTRY,
     TD_TMUX_ENTRY,
+    TD_SHIFT_LATIN,
     [td_ctltab_mouse] = ACTION_TAP_DANCE_TAP_HOLD(tap_ctltab_td, mouse_layer_on_hold)
 };
 
