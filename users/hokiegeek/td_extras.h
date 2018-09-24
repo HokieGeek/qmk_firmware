@@ -12,7 +12,6 @@ typedef enum {
     DOUBLE_HOLD,
     TRIPLE_HOLD
 } td_state;
-td_state process_td_state(qk_tap_dance_state_t *state, void *user_data);
 
 typedef enum {
     TD_ON_EACH_TAP = 0,
@@ -29,9 +28,21 @@ typedef struct {
     .fn = { NULL, td_tap_hold_funcs_finished, td_tap_hold_funcs_reset }, \
     .user_data = (void *)&((td_funcs_t) { f1, f2 }),  \
   }
-// #define ACTION_TAP_DANCE_DOUBLE_FUNCS(kc1, kc2) {
+
+#define ACTION_TAP_DANCE_DOUBLE_FUNCS(f1, f2) { \
+    .fn = { NULL, td_single_double_funcs, NULL }, \
+    .user_data = (void *)&((td_funcs_t) { f1, f2 }),  \
+  }
+// .custom_tapping_term = 
+
+td_state process_td_state(qk_tap_dance_state_t *state, void *user_data);
 
 void td_tap_hold_funcs_finished(qk_tap_dance_state_t *state, void *user_data);
 void td_tap_hold_funcs_reset(qk_tap_dance_state_t *state, void *user_data);
+void td_single_double_funcs(qk_tap_dance_state_t *state, void *user_data);
+
+void td_key(td_stage, uint16_t);
+
+void td_shift(td_stage);
 
 #endif // USERSPACE_TD_EXTRAS
