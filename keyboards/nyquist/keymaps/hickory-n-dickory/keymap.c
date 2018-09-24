@@ -10,8 +10,6 @@ enum custom_keycodes {
     SLACK_SHRUG,
     SLACK_REACT,
 
-    NO_NOTIF,
-
     DYNAMIC_MACRO_RANGE
 };
 
@@ -21,9 +19,9 @@ enum custom_keycodes {
 #ifdef TAP_DANCE_ENABLE
 enum {
     td_last = td_tmux,
-    td_mute
+    td_mute_notif
 };
-#define __BASE_RCR1__ TD(td_mute)
+#define __BASE_RCR1__ TD(td_mute_notif)
 #else
 #define __BASE_RCR1__ KC_MUTE
 #endif
@@ -147,9 +145,17 @@ const keypos_t hand_swap_config[MATRIX_ROWS][MATRIX_COLS] = SWAP_HANDS_ORTHO_5X1
 #endif
 
 #ifdef TAP_DANCE_ENABLE
+void td_mute(td_stage stage) {
+    td_key(stage, KC_MUTE);
+}
+void td_no_notif(td_stage stage) {
+    if (stage == TD_FINISHED) {
+        SEND_STRING(SS_LGUI(SS_LSFT(SS_TAP(X_GRAVE))));
+    }
+}
 qk_tap_dance_action_t tap_dance_actions[] = {
     TD_TMUX_ENTRY,
-    [td_mute] = ACTION_TAP_DANCE_DOUBLE(KC_MUTE, NO_NOTIF)
+    [td_mute_notif] = ACTION_TAP_DANCE_DOUBLE_FUNCS(td_mute, td_no_notif)
 };
 #endif
 
@@ -159,9 +165,6 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
     }
 
     switch (keycode) {
-        case NO_NOTIF:
-            break;
-
         // SLACK
         case SLACK_GIPHY:
         case SLACK_SHRUG:
