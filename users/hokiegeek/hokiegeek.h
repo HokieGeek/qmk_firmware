@@ -17,6 +17,7 @@
 #define _WORKMAN 2
 #define _LOWER 3
 #define _RAISE 4
+#define _CONTROL 10
 
 // Fillers to make layering more clear
 #define _______ KC_TRNS

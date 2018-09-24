@@ -5,7 +5,6 @@
 extern keymap_config_t keymap_config;
 
 #define _MOUSE 9
-#define _CONTROL 10
 
 enum {
     td_ctltab_mouse = TD_SAFE_RANGE
