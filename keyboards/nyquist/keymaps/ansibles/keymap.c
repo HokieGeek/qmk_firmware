@@ -17,10 +17,6 @@ enum custom_keycodes {
 
 #include "dynamic_macro.h"
 
-enum {
-    td_ctltab_mouse = TD_SAFE_RANGE
-};
-
 #undef __BASE_RCR1__
 #define __BASE_RCR1__ KC_ENC
 

@@ -26,8 +26,10 @@
 #define SEND_LATIN(str)   SEND_STRING(SS_DOWN(X_LCTRL)SS_DOWN(X_LSHIFT)SS_TAP(X_U)SS_TAP(X_0)SS_TAP(X_0) str SS_UP(X_LCTRL)SS_UP(X_LSHIFT));
 #endif
 
-void latin_latch_td(td_stage);
-#define TD_SHIFT_LATIN [td_shift_latin] = ACTION_TAP_DANCE_DOUBLE_FUNCS(td_shift, latin_latch_td)
+void td_latin_finished(qk_tap_dance_state_t *state, void *user_data);
+void td_latin_reset(qk_tap_dance_state_t *state, void *user_data);
+
+#define TD_SHIFT_LATIN [td_shift_latin] = ACTION_TAP_DANCE_FN_ADVANCED_TIME(NULL, td_latin_finished, td_latin_reset, 90)
 #define SFT_LAT TD(td_shift_latin)
 
 /*

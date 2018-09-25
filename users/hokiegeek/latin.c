@@ -1,17 +1,30 @@
 #include "latin.h"
 #include "td_extras.h"
 
-static bool useLatinChar = false;
-inline void latin_latch_td(td_stage stage) {
-    useLatinChar = true;
+bool useLatinChar = false;
+
+// static int td_latin_state = 0;
+
+void td_latin_finished(qk_tap_dance_state_t *state, void *user_data) {
+    td_state td_latin_state = process_td_state(state, user_data);
+    // key_tap(KC_Q);
+
+    switch (td_latin_state) {
+        case SINGLE_HOLD: register_code(KC_LSHIFT); break;
+        case DOUBLE:      useLatinChar = true; break;
+        default: break;
+    }
+}
+
+void td_latin_reset(qk_tap_dance_state_t *state, void *user_data) {
+    // if (td_latin_state == SINGLE_HOLD) {
+        unregister_code(KC_LSHIFT);
+    // }
+    // td_latin_state = 0;
 }
 
 bool latin_process_record_user(uint16_t keycode, keyrecord_t *record) {
     switch (keycode) {
-        case LATIN_LATCH:
-            useLatinChar = true;
-            break;
-        case LATIN_E:
         case LATIN_A:
         case LATIN_I:
         case LATIN_O:
