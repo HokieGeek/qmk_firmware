@@ -45,7 +45,6 @@ bool latin_process_record_user(uint16_t keycode, keyrecord_t *record) {
                         case LATIN_IEXC:    SEND_LATIN(LATIN_IEXC_STRING); break;
                         case LATIN_IQS:     SEND_LATIN(LATIN_IQS_STRING); break;
                     }
-                    useLatinChar = false;
                 } else {
                     switch (keycode) {
                         case LATIN_E:       key_tap(KC_E); break;
@@ -59,9 +58,11 @@ bool latin_process_record_user(uint16_t keycode, keyrecord_t *record) {
                     }
                 }
             }
+            useLatinChar = false;
             return false;
             break;
     }
+    useLatinChar = false;
 
     return true;
 }
