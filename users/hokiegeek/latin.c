@@ -10,8 +10,8 @@ void td_latin_finished(qk_tap_dance_state_t *state, void *user_data) {
     // key_tap(KC_Q);
 
     switch (td_latin_state) {
+        case SINGLE:      useLatinChar = true; break;
         case SINGLE_HOLD: register_code(KC_LSHIFT); break;
-        case DOUBLE:      useLatinChar = true; break;
         default: break;
     }
 }
@@ -25,6 +25,7 @@ void td_latin_reset(qk_tap_dance_state_t *state, void *user_data) {
 
 bool latin_process_record_user(uint16_t keycode, keyrecord_t *record) {
     switch (keycode) {
+        case LATIN_E:
         case LATIN_A:
         case LATIN_I:
         case LATIN_O:
@@ -53,16 +54,8 @@ bool latin_process_record_user(uint16_t keycode, keyrecord_t *record) {
                         case LATIN_O:       key_tap(KC_O); break;
                         case LATIN_U:       key_tap(KC_U); break;
                         case LATIN_N:       key_tap(KC_N); break;
-
-                        case LATIN_IEXC:    register_code(KC_LSHIFT);
-                                            key_tap(KC_1);
-                                            unregister_code(KC_LSHIFT);
-                                            break;
-
-                        case LATIN_IQS:     register_code(KC_LSHIFT);
-                                            key_tap(KC_SLASH);
-                                            unregister_code(KC_LSHIFT);
-                                            break;
+                        case LATIN_IEXC:    key_tap(KC_1); break;
+                        case LATIN_IQS:     key_tap(KC_SLASH); break;
                     }
                 }
             }
