@@ -58,7 +58,7 @@ enum userspace_custom_keycodes {
 #define __BASE_LCR1__ LT(_CONTROL, KC_ESC)
 #define __BASE_LCR2__ KC_GRAVE
 #define __BASE_LCR3__ LCTL_T(KC_TAB)
-#define __BASE_LCR4__ KC_LSFT // SFT_LAT //
+#define __BASE_LCR4__ SFT_LAT // KC_LSFT //
 
 #define __BASE_RCR1__ KC_TRNS
 #define __BASE_RCR2__ KC_BSPC
@@ -73,7 +73,7 @@ enum userspace_custom_keycodes {
  * +------+------+------+------+------|------+------+------+------+------+------|
  * |   Z  |   X  |   C  |   V  |   B  |   N  |   M  |   ,  |   .  |   /  |
  */
-#define ______NUMBERS______  KC_1,  KC_2,  KC_3,  KC_4,  KC_5,  KC_6,  KC_7,  KC_8,    KC_9,    KC_0
+#define ______NUMBERS______  LATIN_IEXC,  KC_2,  KC_3,  KC_4,  KC_5,  KC_6,  KC_7,  KC_8,    KC_9,    KC_0
 
 /*
  * |   Q  |   W  |   E  |   R  |   T  |   Y  |   U  |   I  |   O  |   P  |
@@ -82,9 +82,9 @@ enum userspace_custom_keycodes {
  * |------+------+------+------+------|------+------+------+------+------+------|
  * |   Z  |   X  |   C  |   V  |   B  |   N  |   M  |   ,  |   .  |   /  |
  */
-#define _____QWERTY_R1_____  KC_Q,  KC_W,  KC_E,  KC_R,  KC_T,  KC_Y,  KC_U,  KC_I,    KC_O,    KC_P
-#define _____QWERTY_R2_____  KC_A,  KC_S,  KC_D,  KC_F,  KC_G,  KC_H,  KC_J,  KC_K,    KC_L,    KC_SCLN,  KC_QUOT
-#define _____QWERTY_R3_____  KC_Z,  KC_X,  KC_C,  KC_V,  KC_B,  KC_N,  KC_M,  KC_COMM, KC_DOT,  KC_SLSH
+#define _____QWERTY_R1_____  KC_Q,  KC_W,  LATIN_E,  KC_R,  KC_T,  KC_Y,  LATIN_U,  LATIN_I,    LATIN_O,    KC_P
+#define _____QWERTY_R2_____  LATIN_A,  KC_S,  KC_D,  KC_F,  KC_G,  KC_H,  KC_J,  KC_K,    KC_L,    KC_SCLN,  KC_QUOT
+#define _____QWERTY_R3_____  KC_Z,  KC_X,  KC_C,  KC_V,  KC_B,  LATIN_N,  KC_M,  KC_COMM, KC_DOT,  LATIN_IQS
 
 /*
  * |   Q  |   W  |   F  |   P  |   G  |   J  |   L  |   U  |   Y  |   ;  |
@@ -93,9 +93,9 @@ enum userspace_custom_keycodes {
  * |------+------+------+------+------|------+------+------+------+------+------|
  * |   Z  |   X  |   C  |   V  |   B  |   K  |   M  |   ,  |   .  |   /  |
  */
-#define _____COLEMAK_R1_____  KC_Q, KC_W,  KC_F,  KC_P,  KC_G,  KC_J,  KC_L,  KC_U,    KC_Y,    KC_SCLN
-#define _____COLEMAK_R2_____  KC_A, KC_R,  KC_S,  KC_T,  KC_D,  KC_H,  KC_N,  KC_E,    KC_I,    KC_O,    KC_QUOT
-#define _____COLEMAK_R3_____  KC_Z, KC_X,  KC_C,  KC_V,  KC_B,  KC_K,  KC_M,  KC_COMM, KC_DOT,  KC_SLSH
+#define _____COLEMAK_R1_____  KC_Q, KC_W,  KC_F,  KC_P,  KC_G,  KC_J,  KC_L,  LATIN_U,    KC_Y,    KC_SCLN
+#define _____COLEMAK_R2_____  LATIN_A, KC_R,  KC_S,  KC_T,  KC_D,  KC_H,  LATIN_N,  LATIN_E,    LATIN_I,    LATIN_O,    KC_QUOT
+#define _____COLEMAK_R3_____  KC_Z, KC_X,  KC_C,  KC_V,  KC_B,  KC_K,  KC_M,  KC_COMM, KC_DOT,  LATIN_IQS
 
 #ifdef SWAP_HANDS_ENABLE
 #define SWAP_HANDS_ORTHO_5X12_SPLIT { \
