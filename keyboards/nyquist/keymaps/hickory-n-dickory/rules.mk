@@ -1,6 +1,5 @@
 USER_NAME := hokiegeek
 
-SWAP_HANDS_ENABLE = yes
 TAP_DANCE_ENABLE = yes
 
 ifndef QUANTUM_DIR

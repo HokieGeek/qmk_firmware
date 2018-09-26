@@ -6,7 +6,7 @@ For this build I added some contacts on the side so that when it's sitting
 on my laptop, I don't need the cable.
 
 ## Layout
-[![Current layout](https://i.imgur.com/YwmAO9x.png)](http://www.keyboard-layout-editor.com/#/gists/41f7d4c9d263b12958c5b8144c0984f8)
+[![Current layout](https://i.imgur.com/5Bip6jh.png)](http://www.keyboard-layout-editor.com/#/gists/41f7d4c9d263b12958c5b8144c0984f8)
 
 ## Features
 ### Accents
@@ -18,9 +18,6 @@ Each symbol is set as part of the lower layer for the respective ANSI character.
 Using keycodes defined in my [userspace files](../../../../users/hokiegeek/readme.md#tmux).
 
 Mapped them the key under my right thumb.
-
-### Swap Hands
-Enabled and used as defined in my [userspace files](../../../../users/hokiegeek/readme.md#swap-hands).
 
 ### Lights
 Have added backlight LEDS as well as RGB underglow and RGB indicator LEDs for CAPS LOCK and layer selection
@@ -40,7 +37,7 @@ setting which can be changed by double-tapping the encoder button.
 | | Vert / Horiz Scrolling | Scroll up/down or left/right | Toggle vert / horiz |
 | `_LOWER` | Monitor Brightness | Increase / Decrease brightness | |
 | | Monitor Warmth | Increase / Decrease warmth | |
-| `_CONTROL` | Kbd Backlight | Increase / Decrease brightness | Toggle backlight |
+| `_ADJUST` | Kbd Backlight | Increase / Decrease brightness | Toggle backlight |
 | | Kbd Underglow | | Toggle underglow |
 
 ## Build log
