@@ -17,7 +17,7 @@
 #define _WORKMAN 2
 #define _LOWER 3
 #define _RAISE 4
-#define _CONTROL 10
+#define _ADJUST 15
 
 // Fillers to make layering more clear
 #define _______ KC_TRNS
@@ -55,10 +55,12 @@ enum userspace_custom_keycodes {
 
 #define LAYOUT_wrapper(...)  LAYOUT(__VA_ARGS__)
 
-#define __BASE_LCR1__ LT(_CONTROL, KC_ESC)
-#define __BASE_LCR2__ KC_GRAVE
+#define CSTAB LCTL(LSFT(KC_TAB))
+
+#define __BASE_LCR1__ KC_TRNS
+#define __BASE_LCR2__ LT(_ADJUST, KC_ESC)
 #define __BASE_LCR3__ LCTL_T(KC_TAB)
-#define __BASE_LCR4__ SFT_LAT // KC_LSFT //
+#define __BASE_LCR4__ SFT_LAT
 
 #define __BASE_RCR1__ KC_TRNS
 #define __BASE_RCR2__ KC_BSPC
@@ -74,6 +76,7 @@ enum userspace_custom_keycodes {
  * |   Z  |   X  |   C  |   V  |   B  |   N  |   M  |   ,  |   .  |   /  |
  */
 #define ______NUMBERS______  LATIN_IEXC,  KC_2,  KC_3,  KC_4,  KC_5,  KC_6,  KC_7,  KC_8,    KC_9,    KC_0
+#define ______SYMBOLS______  KC_EXLM, KC_AT,   KC_HASH, KC_DLR,  KC_PERC, KC_CIRC, KC_AMPR,  KC_ASTR,    KC_LPRN, KC_RPRN
 
 /*
  * |   Q  |   W  |   E  |   R  |   T  |   Y  |   U  |   I  |   O  |   P  |

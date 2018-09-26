@@ -26,7 +26,7 @@ enum {
 #define __BASE_RCR1__ KC_MUTE
 #endif
 
-#define _____BASE_BOTTOM_____  TT(_LOWER),  DYN_MACRO_PLAY1, SH_TT,   KC_LALT, KC_LGUI,  KC_SPC,       LT(_SHORTS, KC_SPC),  KC_TMUX,  _______,  SH_TT,   _______,  TT(_RAISE)
+#define _____BASE_BOTTOM_____  TT(_LOWER),  DYN_MACRO_PLAY1, _______,   _______, KC_LGUI,  LALT_T(KC_SPC),       LT(_SHORTS, KC_SPC),  KC_TMUX,  _______,  _______,   _______,  TT(_RAISE)
 
 #define SEND_SLACK_SLASH(str) SEND_DELAYED(50, SS_TAP(X_SLASH) str SS_TAP(X_TAB))
 
@@ -88,7 +88,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  * `------------------------------------------     ------------------------------------------'
  */
 [_LOWER] = LAYOUT( \
-  KC_GRAVE,   LATIN_IEXC,    _______, _______,  _______, _______,      _______,  _______,  _______,  KC_UNDS,  KC_PLUS,   KC_VOLD, \
+  KC_TILD,   LATIN_IEXC,    _______, _______,  _______, _______,      _______,  _______,  _______,  KC_UNDS,  KC_PLUS,   KC_VOLD, \
   KC_CAPS,    QWERTY,        COLEMAK, LATIN_E,  _______, _______,      _______,  LATIN_U,  LATIN_I,  LATIN_O,  KC_LBRC,   KC_DEL, \
   _______,    LATIN_A,       _______, _______,  _______, _______,      KC_HOME,  KC_PGDN,  KC_PGUP,  KC_END,   KC_LCBR,   KC_PIPE, \
   QMK_MAKE,   _______,       _______, _______,  _______, _______,      LATIN_N,  _______,  _______,  _______,  LATIN_IQS, KC_SYSREQ, \
@@ -110,7 +110,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  */
 [_RAISE] = LAYOUT( \
   _______, _______,        _______, _______, _______, _______,      _______, _______,   _______, KC_MINS, KC_EQL,  KC_VOLU, \
-  _______, _______,        _______, _______, _______, _______,      _______, _______,   _______, _______, KC_RBRC, KC_DEL, \
+  KC_GRAVE, _______,        _______, _______, _______, _______,      _______, _______,   _______, _______, KC_RBRC, KC_DEL, \
   _______, _______,        _______, _______, _______, _______,      KC_LEFT, KC_DOWN,   KC_UP,   KC_RGHT, KC_RCBR, KC_BSLS, \
   KC_F1,   KC_F2,          KC_F3,   KC_F4,   KC_F5,   KC_F6,        KC_F7,   KC_F8,     KC_F9,   KC_F10,  KC_F11,  KC_F12, \
   _______, DYN_REC_START1, _______, _______, _______, _______,      _______, TMUX_PREV, _______, _______, _______, _______ \
