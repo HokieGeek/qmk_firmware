@@ -87,7 +87,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  * |      |MSTOP |      |      |      |      |     |      |      |      |      |      |      |
  * `------------------------------------------     ------------------------------------------'
  */
-[_LOWER] = LAYOUT( \
+[_LOWER] = LAYOUT_wrapper( \
   _______,   _______,       _______, _______,  _______, _______,      _______,  _______,  _______,  KC_UNDS,  KC_PLUS,  KC_VOLD, \
   KC_TILD, ______SYMBOLS______,       KC_EQL, \
   _______,   _______,       _______, _______,  _______, _______,      KC_HOME,  KC_PGDN,  KC_PGUP,  KC_END,   KC_MINS,  KC_PIPE, \
@@ -108,7 +108,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  * |      | MREC |      |      |      |      |     |      | TX_P |      |      |      |      |
  * `------------------------------------------     ------------------------------------------'
  */
-[_RAISE] = LAYOUT( \
+[_RAISE] = LAYOUT_wrapper( \
   _______, _______,        _______, _______, _______, _______,      _______, _______,   _______, KC_MINS, KC_EQL,  KC_VOLU, \
   KC_GRAVE, ______NUMBERS______, KC_PLUS,
   _______, _______,        _______, _______, _______, _______,      KC_LEFT, KC_DOWN,   KC_UP,   KC_RGHT, KC_UNDS, KC_BSLS, \
