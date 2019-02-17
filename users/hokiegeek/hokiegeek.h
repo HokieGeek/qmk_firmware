@@ -7,7 +7,7 @@
 
 #ifdef TAP_DANCE_ENABLE
 #include "td_extras.h"
-#include "encoder.h"
+#include "hgencoder.h"
 #include "tmux.h"
 #endif
 
