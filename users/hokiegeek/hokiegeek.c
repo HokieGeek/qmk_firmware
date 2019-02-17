@@ -27,11 +27,7 @@ void tap_ctltab_td(td_stage stage) {
 __attribute__ ((weak))
 void check_encoder(void) { }
 
-__attribute__ ((weak))
-void encoder_init(void) { }
-
 void userspace_matrix_init_user(void) {
-    encoder_init();
 }
 
 void userspace_matrix_scan_user(void) {
