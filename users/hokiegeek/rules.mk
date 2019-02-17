@@ -28,7 +28,7 @@ ifndef ENCODER_ENABLE
 	ENCODER_ENABLE = no
 endif
 ifeq ($(strip $(ENCODER_ENABLE)), yes)
-	SRC += encoder.c
+	SRC += hgencoder.c
 endif
 
 ifeq ($(strip $(TAP_DANCE_ENABLE)), yes)

@@ -1,5 +1,5 @@
 #include "quantum.h"
-#include "encoder.h"
+#include "hgencoder.h"
 
 // Encoder
 static uint8_t  encoder_state  = 0;
@@ -24,16 +24,4 @@ void check_encoder(void) {
         encoder_update(true);
     }
     encoder_value %= ENCODER_RESOLUTION;
-}
-
-void encoder_init(void) {
-    // TODO: use this if nyquist
-    // JTAG disable for PORT F. write JTD bit twice within four cycles.
-    MCUCR |= (1<<JTD);
-    MCUCR |= (1<<JTD);
-
-    DDRB &= ~(1 << ENC_B);
-    DDRF &= ~(1 << ENC_A);
-    PORTB |= (1 << ENC_B);
-    PORTF |= (1 << ENC_A);
 }
