@@ -7,8 +7,10 @@
 
 #ifdef TAP_DANCE_ENABLE
 #include "td_extras.h"
-#include "hgencoder.h"
 #include "tmux.h"
+#ifdef ENCODER_ENABLE
+#include "hgencoder.h"
+#endif
 #endif
 
 // Layer names
