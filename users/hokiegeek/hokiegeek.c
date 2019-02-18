@@ -24,14 +24,10 @@ void tap_ctltab_td(td_stage stage) {
     tap_ctltab();
 }
 
-__attribute__ ((weak))
-void check_encoder(void) { }
-
 void userspace_matrix_init_user(void) {
 }
 
 void userspace_matrix_scan_user(void) {
-    check_encoder();
 }
 
 bool userspace_process_record_user(uint16_t keycode, keyrecord_t *record) {

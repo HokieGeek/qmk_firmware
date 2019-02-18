@@ -159,6 +159,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 const keypos_t hand_swap_config[MATRIX_ROWS][MATRIX_COLS] = SWAP_HANDS_ORTHO_5X12_SPLIT;
 #endif
 
+#ifdef TAP_DANCE_ENABLE
 static encoder_options enc_opts;
 
 void encoder_td_actions (qk_tap_dance_state_t *state, void *user_data) {
@@ -196,48 +197,50 @@ void encoder_td_actions (qk_tap_dance_state_t *state, void *user_data) {
     reset_tap_dance (state);
 }
 
-void encoder_update(bool clockwise) {
-    if (IS_LAYER_ON(_ADJUST)) {
-        if (enc_opts.backlightBrightness) {
-            if (clockwise) {
-                backlight_increase();
-            } else {
-                backlight_decrease();
-            }
-        }
-    } else if (IS_LAYER_ON(_LOWER)) {
-        if (enc_opts.monBrightness) {
-            if (clockwise) {
-                key_tap(KC_FIND);
-            } else {
-                key_tap(KC_HELP);
-            }
-        } else {
-            if (clockwise) {
-                key_tap(KC_UNDO);
-            } else {
-                key_tap(KC_STOP);
-            }
-        }
-    } else { // Default layers
-        if (enc_opts.defaultVolume) {
-            if (clockwise) {
-                key_tap(KC_VOLU);
-            } else {
-                key_tap(KC_VOLD);
-            }
-        } else {
-            if (enc_opts.scrollVertical) {
+void encoder_update_user(uint8_t index, bool clockwise) {
+    if (index == 0) {
+        if (IS_LAYER_ON(_ADJUST)) {
+            if (enc_opts.backlightBrightness) {
                 if (clockwise) {
-                    mousekey_tap(KC_MS_WH_DOWN);
+                    backlight_increase();
                 } else {
-                    mousekey_tap(KC_MS_WH_UP);
+                    backlight_decrease();
+                }
+            }
+        } else if (IS_LAYER_ON(_LOWER)) {
+            if (enc_opts.monBrightness) {
+                if (clockwise) {
+                    key_tap(KC_FIND);
+                } else {
+                    key_tap(KC_HELP);
                 }
             } else {
                 if (clockwise) {
-                    mousekey_tap(KC_MS_WH_RIGHT);
+                    key_tap(KC_UNDO);
                 } else {
-                    mousekey_tap(KC_MS_WH_LEFT);
+                    key_tap(KC_STOP);
+                }
+            }
+        } else { // Default layers
+            if (enc_opts.defaultVolume) {
+                if (clockwise) {
+                    key_tap(KC_VOLU);
+                } else {
+                    key_tap(KC_VOLD);
+                }
+            } else {
+                if (enc_opts.scrollVertical) {
+                    if (clockwise) {
+                        mousekey_tap(KC_MS_WH_DOWN);
+                    } else {
+                        mousekey_tap(KC_MS_WH_UP);
+                    }
+                } else {
+                    if (clockwise) {
+                        mousekey_tap(KC_MS_WH_RIGHT);
+                    } else {
+                        mousekey_tap(KC_MS_WH_LEFT);
+                    }
                 }
             }
         }
@@ -258,13 +261,16 @@ qk_tap_dance_action_t tap_dance_actions[] = {
     TD_SHIFT_LATIN,
     [td_ctltab_mouse] = ACTION_TAP_DANCE_TAP_HOLD(tap_ctltab_td, mouse_layer_on_hold)
 };
+#endif
 
 void matrix_init_user(void) {
     // debug_enable = true;
+#ifdef TAP_DANCE_ENABLE
     enc_opts.scrollVertical = false;
     enc_opts.monBrightness = true;
     enc_opts.backlightBrightness = true;
     enc_opts.defaultVolume = true;
+#endif
 
     layer_on(_QWERTY);
 
