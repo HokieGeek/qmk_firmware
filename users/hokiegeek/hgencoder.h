@@ -5,11 +5,6 @@
   #define ENCODER_RESOLUTION 4
 #endif
 
-#define ENC_A PF4
-#define ENC_B PB2
-#define ENCODERS_PAD_A { PF4 }
-#define ENCODERS_PAD_B { PB2 }
-
 typedef struct {
     bool scrollVertical;
     bool monBrightness;

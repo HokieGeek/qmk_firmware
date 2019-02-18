@@ -17,7 +17,7 @@
 #define RGBLED_NUM 20
 
 #define NUMBER_OF_ENCODERS 1
-#define ENCODERS_PAD_A { PF4 }
-#define ENCODERS_PAD_B { PB2 }
+#define ENCODERS_PAD_A { B2 }
+#define ENCODERS_PAD_B { F4 }
 
 #endif

@@ -14,6 +14,8 @@ endif
 
 ifndef BACKLIGHT_ENABLE
 	BACKLIGHT_ENABLE = no
+else
+	SLEEP_LED_ENABLE = no
 endif
 
 ifndef RGBLIGHT_ENABLE
@@ -21,14 +23,13 @@ ifndef RGBLIGHT_ENABLE
 endif
 
 ifndef AUDIO_ENABLE
+	MIDI_ENABLE = no
 	AUDIO_ENABLE = no
+	FAUXCLICKY_ENABLE = no
 endif
 
 ifndef ENCODER_ENABLE
 	ENCODER_ENABLE = no
-endif
-ifeq ($(strip $(ENCODER_ENABLE)), yes)
-	SRC += hgencoder.c
 endif
 
 ifeq ($(strip $(TAP_DANCE_ENABLE)), yes)
