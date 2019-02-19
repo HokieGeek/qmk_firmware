@@ -29,7 +29,7 @@
 void td_latin_finished(qk_tap_dance_state_t *state, void *user_data);
 void td_latin_reset(qk_tap_dance_state_t *state, void *user_data);
 
-#define TD_SHIFT_LATIN [td_shift_latin] = ACTION_TAP_DANCE_FN_ADVANCED_TIME(NULL, td_latin_finished, td_latin_reset, 80)
+#define TD_SHIFT_LATIN [td_shift_latin] = ACTION_TAP_DANCE_FN_ADVANCED_TIME(NULL, td_latin_finished, td_latin_reset, 110)
 #define SFT_LAT TD(td_shift_latin)
 
 /*
