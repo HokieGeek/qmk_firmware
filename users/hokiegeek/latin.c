@@ -47,14 +47,14 @@ bool latin_process_record_user(uint16_t keycode, keyrecord_t *record) {
                     }
                 } else {
                     switch (keycode) {
-                        case LATIN_E:       key_tap(KC_E); break;
-                        case LATIN_A:       key_tap(KC_A); break;
-                        case LATIN_I:       key_tap(KC_I); break;
-                        case LATIN_O:       key_tap(KC_O); break;
-                        case LATIN_U:       key_tap(KC_U); break;
-                        case LATIN_N:       key_tap(KC_N); break;
-                        case LATIN_IEXC:    key_tap(KC_1); break;
-                        case LATIN_IQS:     key_tap(KC_SLASH); break;
+                        case LATIN_E:       key_tap(LATIN_E_PRIMARY_KC); break;
+                        case LATIN_A:       key_tap(LATIN_A_PRIMARY_KC); break;
+                        case LATIN_I:       key_tap(LATIN_I_PRIMARY_KC); break;
+                        case LATIN_O:       key_tap(LATIN_O_PRIMARY_KC); break;
+                        case LATIN_U:       key_tap(LATIN_U_PRIMARY_KC); break;
+                        case LATIN_N:       key_tap(LATIN_N_PRIMARY_KC); break;
+                        case LATIN_IEXC:    key_tap(LATIN_IEXC_PRIMARY_KC); break;
+                        case LATIN_IQS:     key_tap(LATIN_IQS_PRIMARY_KC); break;
                     }
                 }
             }
