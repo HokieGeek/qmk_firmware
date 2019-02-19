@@ -4,10 +4,10 @@
 
 extern keymap_config_t keymap_config;
 
-#define _MOUSE 9
+#define _EXTRAS 9
 
 enum {
-    td_ctltab_mouse = TD_SAFE_RANGE
+    td_ctltab_extras = TD_SAFE_RANGE
 };
 
 enum custom_keycodes {
@@ -20,8 +20,8 @@ enum custom_keycodes {
 #undef __BASE_RCR1__
 #define __BASE_RCR1__ KC_ENC
 
-// | Lower| MACR | SWAP | Alt  | GUI  |Space |     |Space | TX_N | TX_P | SWAP |      |Raise |
-#define _____BASE_BOTTOM_____  TT(_LOWER),  _______, _______,   _______, KC_LGUI,  LALT_T(KC_SPC), TD(td_ctltab_mouse),  KC_TMUX, _______,  _______,  DYN_MACRO_PLAY1,  TT(_RAISE)
+// | Lower|      |      | Alt  |      |AltSpc|     |CtlTb | TMUX |      |      | MACR |Raise |
+#define _____BASE_BOTTOM_____  TT(_LOWER),  _______, _______,   _______, KC_LGUI,  LALT_T(KC_SPC), TD(td_ctltab_extras),  KC_TMUX, _______,  _______,  DYN_MACRO_PLAY1,  TT(_RAISE)
 
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
@@ -35,7 +35,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  * |------+------+------+------+------+------|     |------+------+------+------+------+------|
  * |Sftlat|   Z  |   X  |   C  |   V  |   B  |     |   N  |   M  |   ,  |   .  |   /  |ShEnt |
  * |------+------+------+------+------+------+     +------+------+------+------+------+------|
- * | Lower|      |      |      | GUI  |AltSpc|     |Space | TMUX |      |      | MACR |Raise |
+ * | Lower|      |      |      | GUI  |AltSpc|     |CtlTb | TMUX |      |      | MACR |Raise |
  * `------------------------------------------     ------------------------------------------'
  */
 [_QWERTY] = LAYOUT_wrapper( \
@@ -109,7 +109,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   _______,  _______, _______, _______, _______, _______,      CSTAB, TMUX_PREV, _______, _______, DYN_REC_START1, _______ \
 ),
 
-/* Mouse
+/* Extras
  * ,------------------------------------------     ------------------------------------------.
  * |      |      |      |      |      |      |     |      |      |      |      |      |      |
  * |------+------+------+------+------+-------     +------+------+------+------+------+------|
@@ -122,7 +122,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  * |      |      |      |      |      |      |     |      |      |      |      |      |      |
  * `------------------------------------------     ------------------------------------------'
  */
-[_MOUSE] = LAYOUT( \
+[_EXTRAS] = LAYOUT( \
   _______,  _______, _______, _______, _______, _______,      _______, _______, _______, _______, _______, _______, \
   _______,  _______, _______, _______, _______, _______,      _______, _______, _______, _______, _______, _______, \
   _______,  _______, _______, _______, _______, _______,      KC_MS_L, KC_MS_D, KC_MS_U, KC_MS_R, _______, _______, \
@@ -247,10 +247,10 @@ void encoder_update_user(uint8_t index, bool clockwise) {
     }
 }
 
-void mouse_layer_on_hold(td_stage stage) {
+void extras_layer_on_hold(td_stage stage) {
     switch (stage) {
-        case TD_FINISHED: layer_on(_MOUSE); break;
-        case TD_RESET: layer_off(_MOUSE); break;
+        case TD_FINISHED: layer_on(_EXTRAS); break;
+        case TD_RESET: layer_off(_EXTRAS); break;
         default: break;
     }
 }
@@ -259,7 +259,7 @@ qk_tap_dance_action_t tap_dance_actions[] = {
     TD_ENCODER_ENTRY,
     TD_TMUX_ENTRY,
     TD_SHIFT_LATIN,
-    [td_ctltab_mouse] = ACTION_TAP_DANCE_TAP_HOLD(tap_ctltab_td, mouse_layer_on_hold)
+    [td_ctltab_extras] = ACTION_TAP_DANCE_TAP_HOLD(tap_ctltab_td, extras_layer_on_hold)
 };
 #endif
 
