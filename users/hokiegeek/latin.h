@@ -4,6 +4,15 @@
 #include "hokiegeek.h"
 #include "td_extras.h"
 
+#define LATIN_E_PRIMARY_KC    KC_E
+#define LATIN_A_PRIMARY_KC    KC_A
+#define LATIN_I_PRIMARY_KC    KC_I
+#define LATIN_O_PRIMARY_KC    KC_O
+#define LATIN_U_PRIMARY_KC    KC_U
+#define LATIN_N_PRIMARY_KC    KC_N
+#define LATIN_IEXC_PRIMARY_KC KC_1
+#define LATIN_IQS_PRIMARY_KC  KC_SLASH
+
 #ifdef ACCENTS_MAC
 #define LATIN_E_STRING    SS_LALT("e")"e"
 #define LATIN_A_STRING    SS_LALT("e")"a"
