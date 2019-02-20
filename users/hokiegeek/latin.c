@@ -62,7 +62,10 @@ bool latin_process_record_user(uint16_t keycode, keyrecord_t *record) {
             return false;
             break;
     }
-    useLatinChar = false;
+
+    if (keycode < QK_LAYER_TAP_TOGGLE || keycode > QK_LAYER_TAP_TOGGLE_MAX) {
+        useLatinChar = false;
+    }
 
     return true;
 }
