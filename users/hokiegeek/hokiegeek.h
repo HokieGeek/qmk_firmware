@@ -123,6 +123,7 @@ enum {
     td_encoder = 0,
     td_tmux,
     td_shift_latin,
+    td_skdm1,
     TD_SAFE_RANGE
 };
 #endif
