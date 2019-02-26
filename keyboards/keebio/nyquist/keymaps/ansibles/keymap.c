@@ -17,11 +17,46 @@ enum custom_keycodes {
 
 #include "dynamic_macro.h"
 
+static int td_skdm1_state = 0;
+static bool td_skdm1_recording = false;
+
+void td_skdm1_finished(qk_tap_dance_state_t *state, void *user_data) {
+    uint16_t keycode = 0; // DYNAMIC_MACRO_RANGE;
+    keyrecord_t record;
+    td_skdm1_state = process_td_state(state, user_data);
+
+    switch (td_skdm1_state) {
+        case SINGLE: keycode = DYN_MACRO_PLAY1; break;
+        case DOUBLE:
+            if (td_skdm1_recording) {
+                keycode = DYN_REC_STOP;
+                td_skdm1_recording = false;
+            } else {
+                keycode = DYN_REC_START1;
+                td_skdm1_recording = true;
+            }
+            break;
+    }
+
+    // if (keycode >= DYNAMIC_MACRO_RANGE) {
+        record.event.pressed = true;
+        process_record_dynamic_macro(keycode, &record);
+        record.event.pressed = false;
+        process_record_dynamic_macro(keycode, &record);
+    // }
+}
+
+void td_skdm1_reset(qk_tap_dance_state_t *state, void *user_data) {
+    td_skdm1_state = 0;
+}
+
+#define TD_SKDM1_ENTRY [td_skdm1] = ACTION_TAP_DANCE_FN_ADVANCED_TIME(NULL, td_skdm1_finished, td_skdm1_reset, 160)
+
 #undef __BASE_RCR1__
 #define __BASE_RCR1__ KC_ENC
 
 // | Lower|      |      | Alt  |      |AltSpc|     |CtlTb | TMUX |      |      | MACR |Raise |
-#define _____BASE_BOTTOM_____  TT(_LOWER),  _______, _______,   _______, KC_LGUI,  LALT_T(KC_SPC), TD(td_ctltab_extras),  KC_TMUX, _______,  _______,  DYN_MACRO_PLAY1,  TT(_RAISE)
+#define _____BASE_BOTTOM_____  TT(_LOWER),  _______, _______,   _______, KC_LGUI,  LALT_T(KC_SPC), TD(td_ctltab_extras),  KC_TMUX, _______,  _______,  TD(td_skdm1),  TT(_RAISE)
 
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
@@ -259,6 +294,7 @@ qk_tap_dance_action_t tap_dance_actions[] = {
     TD_ENCODER_ENTRY,
     TD_TMUX_ENTRY,
     TD_SHIFT_LATIN,
+    TD_SKDM1_ENTRY,
     [td_ctltab_extras] = ACTION_TAP_DANCE_TAP_HOLD(tap_ctltab_td, extras_layer_on_hold)
 };
 #endif
