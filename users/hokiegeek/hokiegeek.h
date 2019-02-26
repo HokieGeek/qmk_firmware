@@ -35,6 +35,7 @@
 #define LAYOUT_wrapper(...)  LAYOUT(__VA_ARGS__)
 
 #define CSTAB LCTL(LSFT(KC_TAB))
+#define ALTPSCR LALT(KC_PSCR)
 
 #define __BASE_LCR1__ KC_TRNS
 #define __BASE_LCR2__ LT(_ADJUST, KC_ESC)
