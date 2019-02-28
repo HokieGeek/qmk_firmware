@@ -1,4 +1,4 @@
-SRC += hokiegeek.c latin.c
+SRC += hokiegeek.c taps.c latin.c
 
 ifndef BOOTMAGIC_ENABLE
 	BOOTMAGIC_ENABLE = no
@@ -33,5 +33,5 @@ ifndef ENCODER_ENABLE
 endif
 
 ifeq ($(strip $(TAP_DANCE_ENABLE)), yes)
-	SRC += td_extras.c tmux.c
+	SRC += td_extras.c tmux.c skdm.c
 endif
