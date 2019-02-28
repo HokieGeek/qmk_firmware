@@ -6,7 +6,7 @@ For this build I added some contacts on the side so that when it's sitting
 on my laptop, I don't need the cable.
 
 ## Layout
-[![Current layout](https://i.imgur.com/snMusRf.png)](http://www.keyboard-layout-editor.com/#/gists/41f7d4c9d263b12958c5b8144c0984f8)
+[![Current layout](https://i.imgur.com/Rai5YAD.png)](http://www.keyboard-layout-editor.com/#/gists/41f7d4c9d263b12958c5b8144c0984f8)
 
 ## Features
 ### Accents
@@ -18,6 +18,11 @@ Each symbol is set as part of the lower layer for the respective ANSI character.
 Using keycodes defined in my [userspace files](../../../../users/hokiegeek/readme.md#tmux).
 
 Mapped them the key under my right thumb.
+
+### Single-Key Dynamic Macro
+Using keycodes defined in my [userspace files](../../../../users/hokiegeek/readme.md#skdm).
+
+With one key I can record and play back a macro
 
 ### Lights
 Have added backlight LEDS as well as RGB underglow and RGB indicator LEDs for CAPS LOCK and layer selection
