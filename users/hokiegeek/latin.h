@@ -1,7 +1,7 @@
 #ifndef USERSPACE_LATIN
 #define USERSPACE_LATIN
 
-#include "hokiegeek.h"
+#include "keycodes.h"
 #include "td_extras.h"
 
 #define LATIN_E_PRIMARY_KC    KC_E

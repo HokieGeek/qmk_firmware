@@ -11,52 +11,14 @@ enum {
 };
 
 enum custom_keycodes {
-    CTLTAB = NEW_SAFE_RANGE,
-    DYNAMIC_MACRO_RANGE
+    CTLTAB = NEW_SAFE_RANGE
 };
-
-#include "dynamic_macro.h"
-
-static int td_skdm1_state = 0;
-static bool td_skdm1_recording = false;
-
-void td_skdm1_finished(qk_tap_dance_state_t *state, void *user_data) {
-    uint16_t keycode = 0; // DYNAMIC_MACRO_RANGE;
-    keyrecord_t record;
-    td_skdm1_state = process_td_state(state, user_data);
-
-    switch (td_skdm1_state) {
-        case SINGLE: keycode = DYN_MACRO_PLAY1; break;
-        case DOUBLE:
-            if (td_skdm1_recording) {
-                keycode = DYN_REC_STOP;
-                td_skdm1_recording = false;
-            } else {
-                keycode = DYN_REC_START1;
-                td_skdm1_recording = true;
-            }
-            break;
-    }
-
-    // if (keycode >= DYNAMIC_MACRO_RANGE) {
-        record.event.pressed = true;
-        process_record_dynamic_macro(keycode, &record);
-        record.event.pressed = false;
-        process_record_dynamic_macro(keycode, &record);
-    // }
-}
-
-void td_skdm1_reset(qk_tap_dance_state_t *state, void *user_data) {
-    td_skdm1_state = 0;
-}
-
-#define TD_SKDM1_ENTRY [td_skdm1] = ACTION_TAP_DANCE_FN_ADVANCED_TIME(NULL, td_skdm1_finished, td_skdm1_reset, 160)
 
 #undef __BASE_RCR1__
 #define __BASE_RCR1__ KC_ENC
 
-// | Lower|      |      | Alt  |      |AltSpc|     |CtlTb | TMUX |      |      | MACR |Raise |
-#define _____BASE_BOTTOM_____  TT(_LOWER),  _______, _______,   _______, KC_LGUI,  LALT_T(KC_SPC), TD(td_ctltab_extras),  KC_TMUX, _______,  _______,  TD(td_skdm1),  TT(_RAISE)
+// | Lower|      |      |      | GUI  |AltSpc|     |CtlTb | TMUX |      |      | MACR |Raise |
+#define _____BASE_BOTTOM_____  TT(_LOWER),  _______, _______,   _______, KC_LGUI,  LALT_T(KC_SPC), TD(td_ctltab_extras),  KC_TMUX, _______,  _______,  KC_SKDM1,  TT(_RAISE)
 
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
@@ -68,7 +30,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  * |------+------+------+------+------+-------     -------+------+------+------+------+------|
  * |Ctl/Tb|   A  |   S  |   D  |   F  |   G  |     |   H  |   J  |   K  |   L  |   ;  |  '   |
  * |------+------+------+------+------+------|     |------+------+------+------+------+------|
- * |Sftlat|   Z  |   X  |   C  |   V  |   B  |     |   N  |   M  |   ,  |   .  |   /  |ShEnt |
+ * |SftLat|   Z  |   X  |   C  |   V  |   B  |     |   N  |   M  |   ,  |   .  |   /  |ShEnt |
  * |------+------+------+------+------+------+     +------+------+------+------+------+------|
  * | Lower|      |      |      | GUI  |AltSpc|     |CtlTb | TMUX |      |      | MACR |Raise |
  * `------------------------------------------     ------------------------------------------'
@@ -89,7 +51,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  * |------+------+------+------+------+-------     -------+------+------+------+------+------|
  * |Ctl/Tb|   A  |   R  |   S  |   T  |   D  |     |   H  |   N  |   E  |   I  |   O  |  '   |
  * |------+------+------+------+------+------|     |------+------+------+------+------+------|
- * |Sftlat|   Z  |   X  |   C  |   V  |   B  |     |   K  |   M  |   ,  |   .  |   /  |ShEnt |
+ * |SftLat|   Z  |   X  |   C  |   V  |   B  |     |   K  |   M  |   ,  |   .  |   /  |ShEnt |
  * |------+------+------+------+------+------+     +------+------+------+------+------+------|
  * | Lower|      |      |      | GUI  |AltSpc|     |CtlTb | TMUX |      |      | MACR |Raise |
  * `------------------------------------------     ------------------------------------------'
@@ -116,11 +78,11 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  * `------------------------------------------     ------------------------------------------'
  */
 [_LOWER] = LAYOUT_wrapper( \
-  _______, _______, _______, _______, _______, _______,      _______, _______, _______, KC_MINS, KC_EQL,       _______, \
+  _______, _______, _______, _______, _______, _______,      _______, _______, _______, KC_MINS, KC_EQL,  _______, \
   KC_TILD, ______SYMBOLS______,       KC_EQL, \
-  _______, _______, _______, _______, KC_PSCR, _______,      KC_HOME, KC_PGDN, KC_PGUP, KC_END,  KC_MINS,      KC_PIPE, \
-  _______, _______, _______, _______, _______, _______,      _______, KC_LCBR, KC_RCBR, KC_LBRC, KC_RBRC,      _______, \
-  _______, _______, _______, _______, _______, _______,      _______, _______, _______, _______, DYN_REC_STOP, _______ \
+  _______, _______, _______, _______, KC_PSCR, _______,      KC_HOME, KC_PGDN, KC_PGUP, KC_END,  KC_MINS, KC_PIPE, \
+  _______, _______, _______, _______, _______, _______,      _______, KC_LCBR, KC_RCBR, KC_LBRC, KC_RBRC, _______, \
+  _______, _______, _______, _______, _______, _______,      _______, _______, _______, _______, _______, _______ \
 ),
 
 /* Raise
@@ -137,11 +99,11 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  * `------------------------------------------     ------------------------------------------'
  */
 [_RAISE] = LAYOUT_wrapper( \
-  _______,  _______, _______, _______, _______, _______,      _______, _______,   _______,   KC_UNDS, KC_PLUS,  _______, \
+  _______,  _______, _______, _______, _______, _______,      _______, _______,   _______,  KC_UNDS, KC_PLUS, _______, \
   KC_GRAVE, ______NUMBERS______, KC_PLUS,
-  _______,  _______, _______, _______, _______, _______,      KC_LEFT, KC_DOWN,   KC_UP,     KC_RGHT, KC_UNDS, KC_BSLS, \
-  KC_F1,    KC_F2,   KC_F3,   KC_F4,   KC_F5,   KC_F6,        KC_F7,   KC_F8,     KC_F9,     KC_F10,  KC_F11,  KC_F12, \
-  _______,  _______, _______, _______, _______, _______,      CSTAB, TMUX_PREV, _______, _______, DYN_REC_START1, _______ \
+  _______,  _______, _______, _______, _______, _______,      KC_LEFT, KC_DOWN,   KC_UP,    KC_RGHT, KC_UNDS, KC_BSLS, \
+  KC_F1,    KC_F2,   KC_F3,   KC_F4,   KC_F5,   KC_F6,        KC_F7,   KC_F8,     KC_F9,    KC_F10,  KC_F11,  KC_F12, \
+  _______,  _______, _______, _______, _______, _______,      CSTAB,   TMUX_PREV, _______,  _______, _______, _______ \
 ),
 
 /* Extras
@@ -318,9 +280,5 @@ void matrix_scan_user(void) {
 }
 
 bool process_record_user(uint16_t keycode, keyrecord_t *record) {
-    if (!process_record_dynamic_macro(keycode, record)) {
-        return false;
-    }
-
     return userspace_process_record_user(keycode, record);
 }
