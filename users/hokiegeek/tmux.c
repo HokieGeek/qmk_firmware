@@ -1,6 +1,6 @@
 #include "tmux.h"
 
-#include "hokiegeek.h"
+#include "keycodes.h"
 #include "td_extras.h"
 
 static int td_tmux_state = 0;

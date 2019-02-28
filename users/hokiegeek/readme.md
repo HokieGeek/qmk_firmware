@@ -41,6 +41,15 @@ There is also a tapdance accessible via the `KC_TMUX` keycode which provides sev
 | Single hold | Sends TMUX prefix |
 | Double hold | Momentarily switches to last active window while key is down |
 
+### SKDM
+Single-key Dynamic Macro is a tapdance accessible via the `KC_SKDM1` and `KC_SKDM2` keycodes. Allows you to do recording and playback of a macro 1 with a single key.
+
+| dance move | action |
+|---|---|
+| Single tap | Playback any recorded macro in the register |
+| Double tap | Stop recording macro to the indicated register |
+| Triple tap | Begin recording macro to the indicated register |
+
 ### Swap Hands
 Added a define which has a matrix that correctly swaps each half of a 5x12 ortho (particularly a split one).
 

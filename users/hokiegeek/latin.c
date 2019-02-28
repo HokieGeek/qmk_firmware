@@ -1,5 +1,6 @@
 #include "latin.h"
 #include "td_extras.h"
+#include "taps.h"
 
 bool useLatinChar = false;
 

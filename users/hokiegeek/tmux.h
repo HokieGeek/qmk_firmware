@@ -3,8 +3,6 @@
 
 #include "quantum.h"
 
-#include "hokiegeek.h"
-
 /*
 enum tmux_custom_keycodes {
     TMUX_NEXT = SAFE_RANGE,

@@ -8,10 +8,15 @@
 #ifdef TAP_DANCE_ENABLE
 #include "td_extras.h"
 #include "tmux.h"
+#include "skdm.h"
 #ifdef ENCODER_ENABLE
 #include "hgencoder.h"
 #endif
 #endif
+
+#include "taps.h"
+
+#include "keycodes.h"
 
 // Layer names
 #define _QWERTY 0
@@ -26,34 +31,6 @@
 #define XXXXXXX KC_NO
 
 #define SEND_DELAYED(delay, str) send_string_with_delay_P(PSTR(str), delay)
-
-enum userspace_custom_keycodes {
-    QWERTY = SAFE_RANGE,
-    COLEMAK,
-
-    QMK_MAKE,
-
-    ASCII_SHRUG,
-
-    LATIN_LATCH,
-    LATIN_E,
-    LATIN_A,
-    LATIN_I,
-    LATIN_O,
-    LATIN_U,
-    LATIN_N,
-    LATIN_IEXC,
-    LATIN_IQS,
-
-#ifdef TAP_DANCE_ENABLE
-    TMUX_NEXT,
-    TMUX_PREV,
-    TMUX_LAST,
-    TMUX_PEEK,
-#endif
-
-    NEW_SAFE_RANGE,
-};
 
 #define LAYOUT_wrapper(...)  LAYOUT(__VA_ARGS__)
 
@@ -128,10 +105,9 @@ enum {
 };
 #endif
 
-void mousekey_tap(uint8_t);
-void key_tap(uint8_t);
-void tap_ctltab(void);
 void tap_ctltab_td(td_stage);
+
+bool process_record_dynamic_macro(uint16_t keycode, keyrecord_t *record);
 
 void userspace_matrix_init_user(void);
 void userspace_matrix_scan_user(void);
