@@ -1,4 +1,4 @@
-# Ansibles: Earth and Belt (Nyquist rev. 2)
+# Ansibles: Luna and Belt (Nyquist rev. 2)
 
 This is my second Nyquist which I use for my non-work computer.
 
