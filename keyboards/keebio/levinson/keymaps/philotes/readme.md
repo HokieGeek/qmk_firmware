@@ -1,0 +1,43 @@
+# Philotes (Levinson rev. 2.5)
+
+## Layout
+[![Current layout](https://i.imgur.com/cnz1slS.png)](http://www.keyboard-layout-editor.com/#/gists/0c8aa037a9bdb55fb7416c1add2a9d01)
+
+## Features
+### Accents
+Using keycodes defined in my [userspace files](../../../../users/hokiegeek/readme.md#accents).
+
+Each symbol is set as part of the lower layer for the respective ANSI character.
+
+### TMUX
+Using keycodes defined in my [userspace files](../../../../users/hokiegeek/readme.md#tmux).
+
+Mapped them the key under my right thumb.
+
+### Single-Key Dynamic Macro
+Using keycodes defined in my [userspace files](../../../../users/hokiegeek/readme.md#skdm).
+
+With one key I can record and play back a macro
+
+### Encoder
+I replaced the top right key with a rotary encoder.
+
+The function of the encoder changes depending on the selected layers. The function is
+activated by twisting the knob as well as clicking the encoder once.
+
+In addition, the function for a given layer is dependent on another
+setting which can be changed by double-tapping the encoder button.
+
+| layers | function | twist action | click action |
+| ------ | ------ | ------------ | ------------ |
+| `_QWERTY`<br>`_COLEMAK` | Volume | Increase / Decrease volume | Toggle mute |
+| | Vert / Horiz Scrolling | Scroll up/down or left/right | Toggle vert / horiz |
+| `_LOWER` | Monitor Brightness | Increase / Decrease brightness | |
+| | Monitor Warmth | Increase / Decrease warmth | |
+| `_ADJUST` | Kbd Backlight | Increase / Decrease brightness | Toggle backlight |
+| | Kbd Underglow | | Toggle underglow |
+
+## Build log
+Google Photos album of my building this one
+
+https://photos.app.goo.gl/fGUuQ3qTkxsBUWcd8
