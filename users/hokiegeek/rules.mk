@@ -1,3 +1,5 @@
+EXTRAFLAGS += -flto
+
 SRC += hokiegeek.c taps.c latin.c
 
 ifndef BOOTMAGIC_ENABLE
