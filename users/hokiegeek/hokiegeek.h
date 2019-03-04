@@ -3,6 +3,9 @@
 
 #include "quantum.h"
 
+#define NO_ACTION_MACRO
+#define NO_ACTION_FUNCTION
+
 #include "latin.h"
 
 #ifdef TAP_DANCE_ENABLE

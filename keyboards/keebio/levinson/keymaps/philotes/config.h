@@ -1,5 +1,7 @@
 #pragma once
 
+#define NO_ACTION_ONESHOT
+
 #undef MASTER_LEFT
 #define MASTER_RIGHT
 
