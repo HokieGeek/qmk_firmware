@@ -9,11 +9,7 @@ enum custom_keycodes {
     SLACK_GIPHY = NEW_SAFE_RANGE,
     SLACK_SHRUG,
     SLACK_REACT,
-
-    DYNAMIC_MACRO_RANGE
 };
-
-#include "dynamic_macro.h"
 
 #undef __BASE_RCR1__
 #ifdef TAP_DANCE_ENABLE
@@ -26,7 +22,7 @@ enum {
 #define __BASE_RCR1__ KC_MUTE
 #endif
 
-#define _____BASE_BOTTOM_____  TT(_LOWER),  DYN_MACRO_PLAY1, _______,   _______, KC_LGUI,  LALT_T(KC_SPC),       TD(td_ctltab_shorts),  KC_TMUX,  _______,  _______,   _______,  TT(_RAISE)
+#define _____BASE_BOTTOM_____  TT(_LOWER),  _______, _______,   _______, KC_LGUI,  LALT_T(KC_SPC),       TD(td_ctltab_shorts),  KC_TMUX,  _______,  _______,   KC_SKDM1,  TT(_RAISE)
 
 #define SEND_SLACK_SLASH(str) SEND_DELAYED(50, SS_TAP(X_SLASH) str SS_TAP(X_TAB))
 
@@ -92,7 +88,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   KC_TILD, ______SYMBOLS______,       KC_EQL, \
   _______,   _______,       _______, _______,  _______, _______,      KC_HOME,  KC_PGDN,  KC_PGUP,  KC_END,   KC_MINS,  KC_PIPE, \
   _______,   _______,       _______, _______,  _______, _______,      _______,  KC_LCBR,  KC_RCBR,  KC_LBRC,  KC_RBRC,  _______, \
-  _______, _______, _______, _______, _______, _______,      _______, _______, _______, _______, DYN_REC_STOP, _______ \
+  _______,   _______,       _______, _______, _______, _______,       _______, _______, _______, _______, _______, _______ \
 ),
 
 /* Raise
@@ -113,7 +109,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   KC_GRAVE, ______NUMBERS______, KC_PLUS,
   _______, _______, _______, _______, _______, _______,      KC_LEFT, KC_DOWN,   KC_UP,   KC_RGHT, KC_UNDS, KC_BSLS, \
   KC_F1,   KC_F2, KC_F3,   KC_F4,   KC_F5,   KC_F6,        KC_F7,   KC_F8,     KC_F9,   KC_F10,  KC_F11,  KC_F12, \
-  _______,  _______, _______, _______, _______, _______,      CSTAB, TMUX_PREV, _______, _______, DYN_REC_START1, _______ \
+  _______,  _______, _______, _______, _______, _______,      CSTAB, TMUX_PREV, _______, _______, _______, _______ \
 ),
 
 /* Shortcuts
