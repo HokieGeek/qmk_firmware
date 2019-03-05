@@ -3,8 +3,6 @@
 
 extern keymap_config_t keymap_config;
 
-#define _EXTRAS 9
-
 enum {
     td_ctltab_extras = TD_SAFE_RANGE
 };
@@ -14,8 +12,7 @@ enum custom_keycodes {
 };
 
 // | Lower|      |      |      | GUI  |AltSpc|     |CtlTb | TMUX |      |      | MACR |Raise |
-// #define _____BASE_BOTTOM_____  TT(_LOWER),  _______, _______,   _______, KC_LGUI,  LALT_T(KC_SPC), TD(td_ctltab_extras),  KC_TMUX, KC_ENC,  _______,  KC_SKDM1,  TT(_RAISE)
-#define _____BASE_BOTTOM_____  TT(_LOWER),  BL_TOGG, KC_MUTE,   _______, KC_LGUI,  LALT_T(KC_SPC), TD(td_ctltab_extras),  KC_TMUX, KC_ENC,  KC_ENC,  KC_SKDM1,  TT(_RAISE)
+#define _____BASE_BOTTOM_____  TT(_LOWER),  _______, _______,   _______, KC_LGUI,      LALT_T(KC_SPC), TD(td_ctltab_extras),  KC_TMUX, KC_ENC,  KC_ENC,  KC_SKDM1,  TT(_RAISE)
 
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
@@ -63,11 +60,11 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  * |------+------+------+------+------+------|     |------+------+------+------+------+------|
  * |      |      |      |      |      |      |     |      |  {   |  }   |  [   |  ]   |      |
  * |------+------+------+------+------+------+     +------+------+------+------+------+------|
- * |      |      |      |      |      |      |     |      |      |      |      |MSTOP |      |
+ * |      |      |      |      |      |      |     |      |      |      |      |      |      |
  * `------------------------------------------     ------------------------------------------'
  */
 [_LOWER] = LAYOUT_wrapper( \
-  KC_TILD, ______SYMBOLS______,       KC_EQL, \
+  KC_TILD,          ______SYMBOLS______,        KC_EQL, \
   _______, _______, _______, _______, ALTPSCR, _______,      KC_HOME, KC_PGDN, KC_PGUP, KC_END,  KC_MINS, KC_PIPE, \
   _______, _______, _______, _______, _______, _______,      _______, KC_LCBR, KC_RCBR, KC_LBRC, KC_RBRC, _______, \
   _______, _______, KC_VOLD, _______, _______, _______,      _______, _______, _______, _______, _______, _______ \
@@ -81,11 +78,11 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  * |------+------+------+------+------+------|     |------+------+------+------+------+------|
  * |  F1  |  F2  |  F3  |  F4  |  F5  |  F6  |     |  F7  |  F8  |  F9  |  F10 | F11  | F12  |
  * |------+------+------+------+------+------+     +------+------+------+------+------+------|
- * |      |      |      |      |      |      |     |      | TX_P |      |      | MREC |      |
+ * |      |      |      |      |      |      |     |CSTAB | TX_P |      |      |      |      |
  * `------------------------------------------     ------------------------------------------'
  */
 [_RAISE] = LAYOUT_wrapper( \
-  KC_GRAVE, ______NUMBERS______, KC_PLUS,
+  KC_GRAVE,          ______NUMBERS______,       KC_PLUS,
   _______,  _______, _______, _______, KC_PSCR, _______,      KC_LEFT, KC_DOWN,   KC_UP,    KC_RGHT, KC_UNDS, KC_BSLS, \
   KC_F1,    KC_F2,   KC_F3,   KC_F4,   KC_F5,   KC_F6,        KC_F7,   KC_F8,     KC_F9,    KC_F10,  KC_F11,  KC_F12, \
   _______,  _______, KC_VOLU, _______, _______, _______,      CSTAB,   TMUX_PREV, _______,  _______, _______, _______ \
@@ -129,9 +126,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
 };
 
-#ifdef TAP_DANCE_ENABLE
-static encoder_options enc_opts;
-
+#ifdef ENCODER_ENABLE
 void encoder_td_actions (qk_tap_dance_state_t *state, void *user_data) {
     if (state->count == 1) {
         if (IS_LAYER_ON(_ADJUST)) {
@@ -157,11 +152,6 @@ void encoder_td_actions (qk_tap_dance_state_t *state, void *user_data) {
         } else { // Default layers
             enc_opts.defaultVolume = !enc_opts.defaultVolume;
         }
-        /*
-    } else if (state->count > 2 && state->pressed) {
-        send_string_with_delay_P(PSTR("make nyquist/rev2:encoder:dfu"SS_TAP(X_ENTER)), 10);
-        reset_keyboard();
-        */
     }
 
     reset_tap_dance (state);
@@ -220,7 +210,7 @@ void encoder_update_user(uint8_t index, bool clockwise) {
 void extras_layer_on_hold(td_stage stage) {
     switch (stage) {
         case TD_FINISHED: layer_on(_EXTRAS); break;
-        case TD_RESET: layer_off(_EXTRAS); break;
+        case TD_RESET:    layer_off(_EXTRAS); break;
         default: break;
     }
 }
@@ -235,21 +225,9 @@ qk_tap_dance_action_t tap_dance_actions[] = {
 #endif
 
 void matrix_init_user(void) {
-    // debug_enable = true;
-#ifdef TAP_DANCE_ENABLE
-    enc_opts.scrollVertical = false;
-    enc_opts.monBrightness = true;
-    enc_opts.backlightBrightness = true;
-    enc_opts.defaultVolume = true;
-#endif
-
-    layer_on(_QWERTY);
+    layer_on(_COLEMAK);
 
     userspace_matrix_init_user();
-}
-
-void matrix_scan_user(void) {
-    userspace_matrix_scan_user();
 }
 
 bool process_record_user(uint16_t keycode, keyrecord_t *record) {
