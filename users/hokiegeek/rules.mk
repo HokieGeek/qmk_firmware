@@ -37,3 +37,6 @@ endif
 ifeq ($(strip $(TAP_DANCE_ENABLE)), yes)
 	SRC += td_extras.c tmux.c skdm.c
 endif
+ifeq ($(strip $(ENCODER_ENABLE)), yes)
+	SRC += hgencoder.c
+endif

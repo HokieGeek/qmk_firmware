@@ -6,10 +6,13 @@ void tap_ctltab_td(td_stage stage) {
 }
 
 void userspace_matrix_init_user(void) {
+#ifdef ENCODER_ENABLE
+    hgencoder_init();
+#endif
 }
 
-void userspace_matrix_scan_user(void) {
-}
+// void userspace_matrix_scan_user(void) {
+// }
 
 bool userspace_process_record_user(uint16_t keycode, keyrecord_t *record) {
     if (!process_record_dynamic_macro(keycode, record)) {

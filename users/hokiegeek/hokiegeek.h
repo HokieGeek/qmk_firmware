@@ -3,10 +3,9 @@
 
 #include "quantum.h"
 
+// Disabling deprecated features
 #define NO_ACTION_MACRO
 #define NO_ACTION_FUNCTION
-
-#include "latin.h"
 
 #ifdef TAP_DANCE_ENABLE
 #include "td_extras.h"
@@ -17,8 +16,8 @@
 #endif
 #endif
 
+#include "latin.h"
 #include "taps.h"
-
 #include "keycodes.h"
 
 // Layer names
@@ -27,6 +26,7 @@
 #define _WORKMAN 2
 #define _LOWER 3
 #define _RAISE 4
+#define _EXTRAS 9
 #define _ADJUST 15
 
 // Fillers to make layering more clear
@@ -109,7 +109,7 @@ void tap_ctltab_td(td_stage);
 bool process_record_dynamic_macro(uint16_t keycode, keyrecord_t *record);
 
 void userspace_matrix_init_user(void);
-void userspace_matrix_scan_user(void);
+// void userspace_matrix_scan_user(void);
 bool userspace_process_record_user(uint16_t keycode, keyrecord_t *record);
 
 #endif // USERSPACE
