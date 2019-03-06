@@ -126,14 +126,16 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
 };
 
-#ifdef ENCODER_ENABLE
+#if defined(TAP_DANCE_ENABLE) && defined(ENCODER_ENABLE)
 void encoder_td_actions (qk_tap_dance_state_t *state, void *user_data) {
     if (state->count == 1) {
         if (IS_LAYER_ON(_ADJUST)) {
             if (enc_opts.backlightBrightness) {
                 backlight_toggle();
+#ifdef RGBLIGHT_ENABLE
             } else {
                 rgblight_toggle();
+#endif
             }
         } else if (IS_LAYER_ON(_LOWER)) {
             // TODO
@@ -156,7 +158,9 @@ void encoder_td_actions (qk_tap_dance_state_t *state, void *user_data) {
 
     reset_tap_dance (state);
 }
+#endif
 
+#ifdef ENCODER_ENABLE
 void encoder_update_user(uint8_t index, bool clockwise) {
     if (index == 0) {
         if (IS_LAYER_ON(_ADJUST)) {
@@ -206,7 +210,9 @@ void encoder_update_user(uint8_t index, bool clockwise) {
         }
     }
 }
+#endif
 
+#ifdef TAP_DANCE_ENABLE
 void extras_layer_on_hold(td_stage stage) {
     switch (stage) {
         case TD_FINISHED: layer_on(_EXTRAS); break;
@@ -216,7 +222,9 @@ void extras_layer_on_hold(td_stage stage) {
 }
 
 qk_tap_dance_action_t tap_dance_actions[] = {
+#ifdef ENCODER_ENABLE
     TD_ENCODER_ENTRY,
+#endif
     TD_TMUX_ENTRY,
     TD_SHIFT_LATIN,
     TD_SKDM1_ENTRY,

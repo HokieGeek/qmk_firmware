@@ -1,9 +1,13 @@
 #include <mousekey.h>
 #include "hokiegeek.h"
 
+#ifdef TAP_DANCE_ENABLE
 void tap_ctltab_td(td_stage stage) {
     tap_ctltab();
 }
+#else
+#include "dynamic_macro.h"
+#endif
 
 void userspace_matrix_init_user(void) {
 #ifdef ENCODER_ENABLE

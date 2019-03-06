@@ -21,12 +21,10 @@ enum userspace_custom_keycodes {
     LATIN_IEXC,
     LATIN_IQS,
 
-#ifdef TAP_DANCE_ENABLE
     TMUX_NEXT,
     TMUX_PREV,
     TMUX_LAST,
     TMUX_PEEK,
-#endif
 
     DYNAMIC_MACRO_RANGE,
     NEW_SAFE_RANGE = DYNAMIC_MACRO_RANGE + 5,
