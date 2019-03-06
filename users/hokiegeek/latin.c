@@ -1,10 +1,12 @@
 #include "latin.h"
-#include "td_extras.h"
 #include "taps.h"
 
 bool useLatinChar = false;
 
 // static int td_latin_state = 0;
+
+#ifdef TAP_DANCE_ENABLE
+#include "td_extras.h"
 
 void td_latin_finished(qk_tap_dance_state_t *state, void *user_data) {
     td_state td_latin_state = process_td_state(state, user_data);
@@ -23,6 +25,7 @@ void td_latin_reset(qk_tap_dance_state_t *state, void *user_data) {
     // }
     // td_latin_state = 0;
 }
+#endif
 
 bool latin_process_record_user(uint16_t keycode, keyrecord_t *record) {
     switch (keycode) {
