@@ -11,9 +11,16 @@
 #include "td_extras.h"
 #include "tmux.h"
 #include "skdm.h"
+#else
+#define TD(n) KC_NO
+#define KC_TMUX KC_NO
+#define KC_SKDM1 KC_NO
+#define KC_SKDM2 KC_NO
+#endif
 #ifdef ENCODER_ENABLE
 #include "hgencoder.h"
-#endif
+#else
+#define KC_ENC KC_NO
 #endif
 
 #include "latin.h"
@@ -94,17 +101,19 @@
 }
 #endif
 
-#ifdef TAP_DANCE_ENABLE
 enum {
+#ifdef TAP_DANCE_ENABLE
     td_encoder = 0,
     td_tmux,
     td_shift_latin,
     td_skdm1,
+#endif
     TD_SAFE_RANGE
 };
-#endif
 
+#ifdef TAP_DANCE_ENABLE
 void tap_ctltab_td(td_stage);
+#endif
 
 bool process_record_dynamic_macro(uint16_t keycode, keyrecord_t *record);
 
