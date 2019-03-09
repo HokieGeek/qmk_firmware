@@ -4,11 +4,21 @@
 extern keymap_config_t keymap_config;
 
 #define _SHORTS 5
+#define _CHUNKWM 6
 
 enum custom_keycodes {
     SLACK_GIPHY = NEW_SAFE_RANGE,
     SLACK_SHRUG,
     SLACK_REACT,
+    SLACK_RCTMB,
+    SLACK_RCTHS,
+    SLACK_RCHI5,
+    SLACK_G2SEW,
+    SLACK_G2ISE,
+    SLACK_G2ISU,
+    SLACK_G2LNG,
+
+    SF_SE
 };
 
 #undef __BASE_RCR1__
@@ -22,9 +32,14 @@ enum {
 #define __BASE_RCR1__ KC_MUTE
 #endif
 
-#define _____BASE_BOTTOM_____  TT(_LOWER),  _______, _______,   _______, KC_LGUI,  LALT_T(KC_SPC),       TD(td_ctltab_shorts),  KC_TMUX,  _______,  _______,   KC_SKDM1,  TT(_RAISE)
 
+#define _____BASE_BOTTOM_____  TT(_LOWER),  _______, _______, KC_LGUI,   MO(_CHUNKWM),  LALT_T(KC_SPC),       TD(td_ctltab_shorts),  KC_TMUX,  _______,  _______,   KC_SKDM1,  TT(_RAISE)
+
+#define SEND_APP_FRONT(app)   SEND_DELAYED(50, SS_LGUI(SS_TAP(X_SPACE)) app SS_TAP(X_ENTER))
 #define SEND_SLACK_SLASH(str) SEND_DELAYED(50, SS_TAP(X_SLASH) str SS_TAP(X_TAB))
+#define SEND_SLACK_REACT(str) SEND_DELAYED(30, SS_LGUI(SS_LSFT(SS_TAP(X_BSLASH))) str SS_TAP(X_ENTER))
+#define SEND_SLACK_GOTO(str)  SEND_APP_FRONT("slack");SEND_DELAYED(50, SS_LGUI(SS_TAP(X_K)) str SS_TAP(X_ENTER))
+#define EVERNOTE_FRONT(app)   SEND_APP_FRONT("evernote")
 
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
@@ -116,21 +131,42 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  * ,------------------------------------------     ------------------------------------------.
  * |      |      |      |      |      |      |     |      |      |      |      |      |      |
  * |------+------+------+------+------+------|     |------+------+------+------+------+------|
- * |      |      |      |      |      |      |     |      |      |      |      |      |      |
+ * |      |      |      |      |      |      |     |SF_SE |      |      |      |      |      |
  * |------+------+------+------+------+------|     |------+------+------+------+------+------|
- * |      |      |      |      |      |      |     |SGIPHY|SREACT|SSHRUG|      |      |      |
+ * |      |      |      |      |      |      |     |SSHRUG|SGIPHY|SRCTMB|SRCTHS|SRCTHI|SREACT|
  * |------+------+------+------+------+------|     |------+------+------+------+------+------|
- * |      |      |      |      |      |      |     |      |      |      |      |      |      |
+ * |      |      |      |      |      |      |     |SG2SEW|SG2ISE|SG2ISU|SG2LNG|      |      |
  * |------+------+------+------+------+------|     |------+------+------+------+------+------|
  * |      |      |      |      |      |      |     |      |      |      |      |      |      |
  * `------------------------------------------     ------------------------------------------'
  */
 [_SHORTS] = LAYOUT( \
   _______, _______, _______, _______, _______, _______,      _______,     _______,     _______,     _______, _______, _______, \
-  _______, _______, _______, _______, _______, _______,      _______,     _______,     _______,     _______, _______, _______, \
-  _______, _______, _______, _______, _______, _______,      SLACK_GIPHY, SLACK_REACT, SLACK_SHRUG, _______, _______, _______, \
-  _______, _______, _______, _______, _______, _______,      _______,     _______,     _______,     _______, _______, _______, \
+  _______, _______, _______, _______, _______, _______,      SF_SE,       _______,     _______,     _______,     _______,     _______, \
+  _______, _______, _______, _______, _______, _______,      SLACK_SHRUG, SLACK_GIPHY, SLACK_RCTMB, SLACK_RCTHS, SLACK_RCHI5, SLACK_REACT, \
+  _______, _______, _______, _______, _______, _______,      SLACK_G2SEW, SLACK_G2ISE, SLACK_G2ISU, SLACK_G2LNG, _______,     _______, \
   _______, _______, _______, _______, _______, _______,      _______,     _______,     _______,     _______, _______, _______  \
+),
+
+/* chunkwm
+ * ,------------------------------------------     ------------------------------------------.
+ * |      |      |      |      |      |      |     |      |      |      |      |      |      |
+ * |------+------+------+------+------+------|     |------+------+------+------+------+------|
+ * |      |      |      |      |      |      |     |      |      |      |      |      |      |
+ * |------+------+------+------+------+------|     |------+------+------+------+------+------|
+ * |      |      |      |      |      |      |     |      |      |      |      |      |      |
+ * |------+------+------+------+------+------|     |------+------+------+------+------+------|
+ * |      |      |      |      |      |      |     |      |      |      |      |      |      |
+ * |------+------+------+------+------+------|     |------+------+------+------+------+------|
+ * |      |      |      |      |      |      |     |      |      |      |      |      |      |
+ * `------------------------------------------     ------------------------------------------'
+ */
+[_CHUNKWM] = LAYOUT( \
+  _______, _______,    _______,    _______,    _______,      _______,            _______,    _______,    _______,    _______,    _______,    _______, \
+  _______, LGUI(KC_1), LGUI(KC_2), LGUI(KC_3), LGUI(KC_4),   LGUI(KC_5),         LGUI(KC_6), LGUI(KC_7), LGUI(KC_8), LGUI(KC_9), LGUI(KC_0), _______, \
+  _______, _______,    _______,    _______,    LGUI(KC_SPC), _______,            MEH(KC_H),  S(C(KC_N)), S(C(KC_E)), MEH(KC_I),  _______,    _______, \
+  _______, _______,    _______,    _______,    _______,      _______,            _______,    MEH(KC_M),  _______,    _______,    _______,    _______, \
+  _______, _______,    _______,    _______,    _______,      LCAG(KC_SPC),       _______,    _______,    _______,    _______,    _______,    _______  \
 ),
 
 /* Adjust
@@ -195,6 +231,13 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
         case SLACK_GIPHY:
         case SLACK_SHRUG:
         case SLACK_REACT:
+        case SLACK_RCTMB:
+        case SLACK_RCTHS:
+        case SLACK_RCHI5:
+        case SLACK_G2SEW:
+        case SLACK_G2ISE:
+        case SLACK_G2ISU:
+        case SLACK_G2LNG:
             if (record->event.pressed) {
                 switch (keycode) {
                 case SLACK_GIPHY: SEND_SLACK_SLASH("giphy"); break;
@@ -202,7 +245,23 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
                                   SEND_STRING(SS_TAP(X_ENTER));
                                   break;
                 case SLACK_REACT: SEND_STRING(SS_LGUI(SS_LSFT(SS_TAP(X_BSLASH)))); break;
+                case SLACK_RCTMB: SEND_SLACK_REACT("+1"); break;
+                case SLACK_RCTHS: SEND_SLACK_REACT("this"); break;
+                case SLACK_RCHI5: SEND_SLACK_REACT("hi-5"); break;
+                case SLACK_G2SEW: SEND_SLACK_GOTO("se-world"); break;
+                case SLACK_G2ISE: SEND_SLACK_GOTO("ises"); break;
+                case SLACK_G2ISU: SEND_SLACK_GOTO("inside-sales-us"); break;
+                case SLACK_G2LNG: SEND_SLACK_GOTO("the-lounge"); break;
                 }
+            }
+            return false;
+            break;
+        case SF_SE:
+            if (record->event.pressed) {
+                switch (keycode) {
+                    case SF_SE: SEND_DELAYED(10, "#Sales Engineer"); break;
+                }
+                SEND_STRING(SS_TAP(X_ENTER));
             }
             return false;
             break;
