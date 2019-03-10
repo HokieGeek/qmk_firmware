@@ -8,8 +8,8 @@
 // #define MATRIX_ROW_PINS { D4, B2, E6, B4, B5 }
 // #define MATRIX_ROW_PINS_RIGHT { D4, D7, E6, B4, B5 }
 
-#undef MASTER_LEFT
-#define MASTER_RIGHT
+// #undef MASTER_LEFT
+// #define MASTER_RIGHT
 
 #define ACCENTS_LINUX
 
