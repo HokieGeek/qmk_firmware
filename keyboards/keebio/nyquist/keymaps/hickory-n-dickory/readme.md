@@ -3,7 +3,7 @@
 This is my first kit build for work. The split layout is fantastic, particularly while I am standing.
 
 ## Layout
-[![Current layout](https://i.imgur.com/qUPWtRP.png)](http://www.keyboard-layout-editor.com/#/gists/2a937d11ee2809daad21a1bef64e227d)
+[![Current layout](https://i.imgur.com/X6VCaZP.png)](http://www.keyboard-layout-editor.com/#/gists/2a937d11ee2809daad21a1bef64e227d)
 
 
 ## Features
