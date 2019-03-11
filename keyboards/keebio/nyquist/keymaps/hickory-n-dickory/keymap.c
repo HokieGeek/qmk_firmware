@@ -31,15 +31,13 @@ enum {
 #define MUTER KC_MUTE
 #endif
 
-
-#define _____BASE_BOTTOM_____  TT(_LOWER),  _______, _______, KC_LGUI,   MO(_CHUNKWM),  LALT_T(KC_SPC),       TD(td_ctltab_shorts),  KC_TMUX,  MUTER,  _______,   KC_SKDM1,  TT(_RAISE)
-
 #define SEND_APP_FRONT(app)   SEND_DELAYED(50, SS_LGUI(SS_TAP(X_SPACE)) app SS_TAP(X_ENTER))
 #define SEND_SLACK_SLASH(str) SEND_DELAYED(50, SS_TAP(X_SLASH) str SS_TAP(X_TAB))
 #define SEND_SLACK_REACT(str) SEND_DELAYED(30, SS_LGUI(SS_LSFT(SS_TAP(X_BSLASH))) str SS_TAP(X_ENTER))
-#define SEND_SLACK_GOTO(str)  SEND_APP_FRONT("slack");SEND_DELAYED(50, SS_LGUI(SS_TAP(X_K)) str SS_TAP(X_ENTER))
-#define EVERNOTE_FRONT(app)   SEND_APP_FRONT("evernote")
+#define SEND_SLACK_GOTO(str)  SEND_DELAYED(50, SS_LGUI(SS_TAP(X_K)) str SS_TAP(X_ENTER))
 
+#define _____BASE_TOP_____     KC_F13, _______, _______, _______, _______, _______,   MEH(KC_F15), MEH(KC_F16), _______, _______, _______, _______
+#define _____BASE_BOTTOM_____  TT(_LOWER),  _______, _______, KC_LGUI,   MO(_CHUNKWM),  LALT_T(KC_SPC),       TD(td_ctltab_shorts),  KC_TMUX,  MUTER,  _______,   KC_SKDM1,  TT(_RAISE)
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
 /* Qwerty
@@ -56,7 +54,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  * `------------------------------------------     ------------------------------------------'
  */
 [_QWERTY] = LAYOUT_wrapper( \
-  __BASE_LCR1__, ______NUMBERS______, __BASE_RCR1__, \
+  _____BASE_TOP_____, \
   __BASE_LCR2__, _____QWERTY_R1_____, __BASE_RCR2__, \
   __BASE_LCR3__, _____QWERTY_R2_____, \
   __BASE_LCR4__, _____QWERTY_R3_____, __BASE_RCR4__, \
@@ -77,7 +75,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  * `------------------------------------------     ------------------------------------------'
  */
 [_COLEMAK] = LAYOUT_wrapper( \
-  __BASE_LCR1__, ______NUMBERS______,  __BASE_RCR1__, \
+  _____BASE_TOP_____, \
   __BASE_LCR2__, _____COLEMAK_R1_____, __BASE_RCR2__, \
   __BASE_LCR3__, _____COLEMAK_R2_____, \
   __BASE_LCR4__, _____COLEMAK_R3_____, __BASE_RCR4__, \
@@ -98,11 +96,11 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  * `------------------------------------------     ------------------------------------------'
  */
 [_LOWER] = LAYOUT_wrapper( \
-  _______,   _______,  _______, _______,  _______, _______,      _______,  _______,  _______,  _______,  _______,  _______, \
+  MEH(KC_F13),   _______,  _______, _______,  _______, _______,      _______,  _______,  _______,  _______,  _______,  KC_VOLD, \
   KC_TILD,            ______SYMBOLS______,       KC_EQL, \
   _______,  _______,  _______,  _______,  _______,  _______,      KC_HOME,  KC_PGDN,  KC_PGUP,  KC_END,   KC_MINS,  KC_PIPE, \
   _______,  _______,  _______,  _______,  _______,  _______,      _______,  KC_LCBR,  KC_RCBR,  KC_LBRC,  KC_RBRC,  _______, \
-  _______,   _______,  _______, _______,  _______, _______,      _______,  _______,  KC_VOLD,  _______,  _______,  _______ \
+  _______,   _______,  _______, _______,  _______, KC_BSPC,      _______,  _______,  KC_VOLD,  _______,  _______,  _______ \
 ),
 
 /* Raise
@@ -119,11 +117,11 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  * `------------------------------------------     ------------------------------------------'
  */
 [_RAISE] = LAYOUT_wrapper( \
-  _______, _______,        _______, _______, _______, _______,      _______, _______,   _______, _______, _______,  _______, \
+  HYPR(KC_F13), _______,        _______, _______, _______, _______,      _______, _______,   _______, _______, _______,  _______, \
   KC_GRAVE,         ______NUMBERS______, KC_PLUS, \
   _______,  _______, _______, _______, _______, _______,      KC_LEFT, KC_DOWN,   KC_UP,   KC_RGHT, KC_UNDS, KC_BSLS, \
   KC_F1,    KC_F2, KC_F3,   KC_F4,   KC_F5,   KC_F6,          KC_F7,   KC_F8,     KC_F9,   KC_F10,  KC_F11,  KC_F12, \
-  _______, _______, _______, _______, _______, _______,      CSTAB, TMUX_PREV, KC_VOLU, _______, _______, _______ \
+  _______, _______, _______, _______, _______, KC_BSPC,      CSTAB, TMUX_PREV, KC_VOLU, _______, _______, _______ \
 ),
 
 /* Shortcuts
@@ -134,7 +132,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  * |------+------+------+------+------+------|     |------+------+------+------+------+------|
  * |      |      |      |      |      |      |     |SSHRUG|SGIPHY|SRCTMB|SRCTHS|SRCTHI|SREACT|
  * |------+------+------+------+------+------|     |------+------+------+------+------+------|
- * |      |      |      |      |      |      |     |SG2SEW|SG2ISE|SG2ISU|SG2LNG|      |      |
+ * |      |      |      |      |      |      |     |SG2SEW|SG2LNG|SG2ISE|SG2ISU|      |      |
  * |------+------+------+------+------+------|     |------+------+------+------+------+------|
  * |      |      |      |      |      |      |     |      |      |      |      |      |      |
  * `------------------------------------------     ------------------------------------------'
@@ -143,8 +141,8 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   _______, _______, _______, _______, _______, _______,      _______,     _______,     _______,     _______, _______, _______, \
   _______, _______, _______, _______, _______, _______,      SF_SE,       _______,     _______,     _______,     _______,     _______, \
   _______, _______, _______, _______, _______, _______,      SLACK_SHRUG, SLACK_GIPHY, SLACK_RCTMB, SLACK_RCTHS, SLACK_RCHI5, SLACK_REACT, \
-  _______, _______, _______, _______, _______, _______,      SLACK_G2SEW, SLACK_G2ISE, SLACK_G2ISU, SLACK_G2LNG, _______,     _______, \
-  _______, _______, _______, _______, _______, _______,      _______,     _______,     _______,     _______, _______, _______  \
+  _______, _______, _______, _______, _______, _______,      SLACK_G2SEW, SLACK_G2LNG, SLACK_G2ISE, SLACK_G2ISU, _______,     _______, \
+  _______, _______, _______, _______, _______, KC_BSPC,      _______,     _______,     _______,     _______,     _______,     _______  \
 ),
 
 /* chunkwm
