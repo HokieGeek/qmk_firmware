@@ -14,6 +14,8 @@ enum custom_keycodes {
 
 #undef __BASE_RCR1__
 #define __BASE_RCR1__ KC_ENC
+// #undef __BASE_LCR1__
+// #define __BASE_LCR1__ KC_PWR
 
 // | Lower|      |      |      | GUI  |AltSpc|     |CtlTb | TMUX |      |      | MACR |Raise |
 #define _____BASE_BOTTOM_____  TT(_LOWER),  _______, _______,   _______, KC_LGUI,  LALT_T(KC_SPC), TD(td_ctltab_extras),  KC_TMUX, _______,  _______,  KC_SKDM1,  TT(_RAISE)
