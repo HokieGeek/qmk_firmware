@@ -53,7 +53,7 @@
 #define __BASE_LCR4__ SFT_LAT
 
 #define __BASE_RCR1__ KC_TRNS
-#define __BASE_RCR2__ KC_BSPC
+#define __BASE_RCR2__ KC_TRNS
 #define __BASE_RCR4__ KC_SFTENT
 
 /*
