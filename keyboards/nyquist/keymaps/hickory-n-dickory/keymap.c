@@ -24,24 +24,21 @@ enum custom_keycodes {
 #ifdef TAP_DANCE_ENABLE
 enum {
     td_mute_notif = TD_SAFE_RANGE,
-    td_ctltab_shorts,
-    td_bscp_chunkwm
+    td_ctltab_shorts
 };
 #define MUTER TD(td_mute_notif)
-#define CTLTAB_SHORTS TD(td_ctltab_shorts)
 #else
 #define MUTER KC_MUTE
-#define CTLTAB_SHORTS LCTL(KC_TAB)
 #endif
-#define BSCP_CHUNKWM LT(_CHUNKWM, KC_BSPC)
 
 #define SEND_APP_FRONT(app)   SEND_DELAYED(50, SS_LGUI(SS_TAP(X_SPACE)) app SS_TAP(X_ENTER))
 #define SEND_SLACK_SLASH(str) SEND_DELAYED(50, SS_TAP(X_SLASH) str SS_TAP(X_TAB))
 #define SEND_SLACK_REACT(str) SEND_DELAYED(30, SS_LGUI(SS_LSFT(SS_TAP(X_BSLASH))) str SS_TAP(X_ENTER))
 #define SEND_SLACK_GOTO(str)  SEND_DELAYED(50, SS_LGUI(SS_TAP(X_K)) str SS_TAP(X_ENTER))
 
-#define _____BASE_TOP_____     KC_F13, MEH(KC_F14), _______, _______, _______, _______,   MEH(KC_F15), MEH(KC_F16), _______, _______, _______, _______
-#define _____BASE_BOTTOM_____  TT(_LOWER),  _______, _______, KC_LGUI,   BSCP_CHUNKWM,  LALT_T(KC_SPC),       CTLTAB_SHORTS,  KC_TMUX,  MUTER,  _______,   KC_SKDM1,  TT(_RAISE)
+#define _____BASE_TOP_____     KC_F13, KC_A, KC_A, _______, _______, _______,   MEH(KC_F15), MEH(KC_F16), _______, _______, _______, _______
+#define _____BASE_BOTTOM_____  TT(_LOWER),  KC_A, MEH_T(KC_ESC), KC_LGUI,   MO(_CHUNKWM),  LALT_T(KC_SPC),       TD(td_ctltab_shorts),  KC_TMUX,  MUTER,  _______,   _______,  TT(_RAISE)
+
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
 /* Qwerty
@@ -96,15 +93,15 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  * |------+------+------+------+------+------|     |------+------+------+------+------+------|
  * |      |      |      |      |      |      |     |      |  {   |  }   |  [   |  ]   |      |
  * |------+------+------+------+------+------+     +------+------+------+------+------+------|
- * |      |      |      |      | BSPC |      |     |      |      | Vol- |      |      |      |
+ * |      |      |      |      |      |      |     |      |      | Vol- |      |      |      |
  * `------------------------------------------     ------------------------------------------'
  */
 [_LOWER] = LAYOUT_wrapper( \
-  MEH(KC_F13),  _______,  _______,  _______,  _______,  _______,      _______,  _______,  _______,  _______,  _______,  KC_VOLD, \
-  KC_TILD,                                              ______SYMBOLS______,                                            KC_EQL, \
-  _______,      _______,  _______,  _______,  _______,  _______,      KC_HOME,  KC_PGDN,  KC_PGUP,  KC_END,   KC_MINS,  KC_PIPE, \
-  _______,      _______,  _______,  _______,  _______,  _______,      _______,  KC_LCBR,  KC_RCBR,  KC_LBRC,  KC_RBRC,  _______, \
-  _______,      _______,  _______,  _______,  KC_BSPC,  _______,      _______,  _______,  KC_VOLD,  _______,  _______,  _______ \
+  MEH(KC_F13),   _______,  _______, _______,  _______, _______,      _______,  _______,  _______,  _______,  _______,  KC_VOLD, \
+  KC_TILD,   ______SYMBOLS______,       KC_EQL, \
+  _______,   _______,  _______, _______,  _______, _______,      KC_HOME,  KC_PGDN,  KC_PGUP,  KC_END,   KC_MINS,  KC_PIPE, \
+  _______,   _______,  _______, _______,  _______, _______,      _______,  KC_LCBR,  KC_RCBR,  KC_LBRC,  KC_RBRC,  _______, \
+  _______,   _______,  _______, _______,  _______, KC_BSPC,      _______,  _______,  KC_VOLD,  _______,  _______,  _______ \
 ),
 
 /* Raise
@@ -117,15 +114,15 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  * |------+------+------+------+------+------|     |------+------+------+------+------+------|
  * |  F1  |  F2  |  F3  |  F4  |  F5  |  F6  |     |  F7  |  F8  |  F9  |  F10 | F11  | F12  |
  * |------+------+------+------+------+------+     +------+------+------+------+------+------|
- * |      |      |      |      | BSPC |      |     |CSTAB | TX_P | Vol+ |      | MREC |      |
+ * |      |      |      |      |      |      |     |      | TX_P | Vol+ |      | MREC |      |
  * `------------------------------------------     ------------------------------------------'
  */
 [_RAISE] = LAYOUT_wrapper( \
-  HYPR(KC_F13),  _______,  _______,  _______,  _______,  _______,      _______,  _______,    _______,  _______,  _______,  _______, \
-  KC_GRAVE,                                              ______NUMBERS______,                                              KC_PLUS, \
-  _______,       _______,  _______,  _______,  _______,  _______,      KC_LEFT,  KC_DOWN,    KC_UP,    KC_RGHT,  KC_UNDS,  KC_BSLS, \
-  KC_F1,         KC_F2,    KC_F3,    KC_F4,    KC_F5,    KC_F6,        KC_F7,    KC_F8,      KC_F9,    KC_F10,   KC_F11,   KC_F12, \
-  _______,       _______,  _______,  _______,  KC_BSPC,  _______,      CSTAB,    TMUX_PREV,  KC_VOLU,  _______,  _______,  _______ \
+  HYPR(KC_F13), _______,        _______, _______, _______, _______,      _______, _______,   _______, _______, _______,  _______, \
+  KC_GRAVE, ______NUMBERS______, KC_PLUS, \
+  _______, _______,        _______, _______, _______, _______,      KC_LEFT, KC_DOWN,   KC_UP,   KC_RGHT, KC_UNDS, KC_BSLS, \
+  KC_F1,   KC_F2,          KC_F3,   KC_F4,   KC_F5,   KC_F6,        KC_F7,   KC_F8,     KC_F9,   KC_F10,  KC_F11,  KC_F12, \
+  _______, _______, _______, _______, _______, KC_BSPC,      CSTAB, TMUX_PREV, KC_VOLU, _______, _______, _______ \
 ),
 
 /* Shortcuts
@@ -146,7 +143,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   _______, _______, _______, _______, _______, _______,      SF_SE,       _______,     _______,     _______,     _______,     _______, \
   _______, _______, _______, _______, _______, _______,      SLACK_SHRUG, SLACK_GIPHY, SLACK_RCTMB, SLACK_RCTHS, SLACK_RCHI5, SLACK_REACT, \
   _______, _______, _______, _______, _______, _______,      SLACK_G2SEW, SLACK_G2LNG, SLACK_G2ISE, SLACK_G2ISU, _______,     _______, \
-  _______, _______, _______, _______, _______, _______,      _______,     _______,     _______,     _______,     _______,     _______  \
+  _______, _______, _______, _______, _______, KC_BSPC,      _______,     _______,     _______,     _______,     _______,     _______  \
 ),
 
 /* chunkwm
@@ -163,11 +160,11 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  * `------------------------------------------     ------------------------------------------'
  */
 [_CHUNKWM] = LAYOUT( \
-  _______,     _______,    _______,    _______,    _______,       _______,            _______,    _______,    _______,    _______,    _______,    _______, \
-  _______,     LGUI(KC_1), LGUI(KC_2), LGUI(KC_3), LGUI(KC_4),    LGUI(KC_5),         LGUI(KC_6), LGUI(KC_7), LGUI(KC_8), LGUI(KC_9), LGUI(KC_0), _______, \
-  MEH(KC_TAB), _______,    _______,    _______,    LGUI(KC_SPC),  _______,            MEH(KC_H),  S(C(KC_N)), S(C(KC_E)), MEH(KC_I),  _______,    _______, \
-  _______,     _______,    _______,    _______,    MEH(KC_V),     _______,            _______,    MEH(KC_M),  _______,    _______,    _______,    LGUI(KC_ENTER), \
-  _______,     _______,    _______,    _______,    _______,       LCAG(KC_SPC),       _______,    _______,    _______,    _______,    _______,    _______  \
+  _______,     _______,    _______,    _______,    _______,      _______,            _______,    _______,    _______,    _______,    _______,    _______, \
+  _______,     LGUI(KC_1), LGUI(KC_2), LGUI(KC_3), LGUI(KC_4),   LGUI(KC_5),         LGUI(KC_6), LGUI(KC_7), LGUI(KC_8), LGUI(KC_9), LGUI(KC_0), _______, \
+  MEH(KC_TAB), _______,    _______,    _______,    LGUI(KC_SPC), _______,            MEH(KC_H),  LSFT(LCTL(KC_N)), LSFT(LCTL(KC_E)), MEH(KC_I),  _______,    _______, \
+  _______,     MEH(KC_Z),  MEH(KC_X),  _______,    MEH(KC_V),    _______,            _______,    MEH(KC_M),  _______,    _______,    _______,    LGUI(KC_ENTER), \
+  _______,     _______,    _______,    _______,    _______,      LCAG(KC_SPC),       _______,    _______,    _______,    _______,    _______,    _______  \
 ),
 
 /* Adjust
@@ -223,9 +220,9 @@ qk_tap_dance_action_t tap_dance_actions[] = {
 #endif
 
 bool process_record_user(uint16_t keycode, keyrecord_t *record) {
-    if (!process_record_dynamic_macro(keycode, record)) {
-        return false;
-    }
+    // if (!process_record_dynamic_macro(keycode, record)) {
+    //     return false;
+    // }
 
     switch (keycode) {
         // SLACK
