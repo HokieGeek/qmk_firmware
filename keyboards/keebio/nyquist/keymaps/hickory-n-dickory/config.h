@@ -4,8 +4,8 @@
 #include "config_common.h"
 
 // GOD DAMMIT BROKE THE USB PORT AGAIN!
-#undef MASTER_LEFT
-#define MASTER_RIGHT
+// #undef MASTER_LEFT
+// #define MASTER_RIGHT
 
 #define ACCENTS_MAC
 
