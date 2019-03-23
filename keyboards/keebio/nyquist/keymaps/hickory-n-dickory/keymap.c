@@ -41,7 +41,7 @@ enum {
 #define SEND_SLACK_GOTO(str)  SEND_DELAYED(50, SS_LGUI(SS_TAP(X_K)) str SS_TAP(X_ENTER))
 
 #define _____BASE_TOP_____     KC_F13, MEH(KC_F14), _______, _______, _______, _______,   MEH(KC_F15), MEH(KC_F16), _______, _______, _______, _______
-#define _____BASE_BOTTOM_____  TT(_LOWER),  _______, _______, KC_LGUI,   BSCP_CHUNKWM,  LALT_T(KC_SPC),       CTLTAB_SHORTS,  KC_TMUX,  MUTER,  _______,   KC_SKDM1,  TT(_RAISE)
+#define _____BASE_BOTTOM_____  TT(_LOWER),  _______, KC_ENC,  KC_LGUI,   BSCP_CHUNKWM,  LALT_T(KC_SPC),       CTLTAB_SHORTS,  KC_TMUX,  MUTER,  _______,   KC_SKDM1,  TT(_RAISE)
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
 /* Qwerty
@@ -198,6 +198,90 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 const keypos_t hand_swap_config[MATRIX_ROWS][MATRIX_COLS] = SWAP_HANDS_ORTHO_5X12_SPLIT;
 #endif
 
+#if defined(TAP_DANCE_ENABLE) && defined(ENCODER_ENABLE)
+void encoder_td_actions (qk_tap_dance_state_t *state, void *user_data) {
+    if (state->count == 1) {
+        if (IS_LAYER_ON(_ADJUST)) {
+            // TODO
+        } else if (IS_LAYER_ON(_LOWER)) {
+            // TODO
+        } else { // Default layers
+            if (enc_opts.defaultVolume) {
+                key_tap(KC_MUTE);
+            } else {
+                enc_opts.scrollVertical = !enc_opts.scrollVertical;
+            }
+        }
+    } else if (state->count == 2) {
+        if (IS_LAYER_ON(_ADJUST)) {
+            // enc_opts.backlightBrightness = !enc_opts.backlightBrightness;
+        } else if (IS_LAYER_ON(_LOWER)) {
+            // enc_opts.monBrightness = !enc_opts.monBrightness;
+        } else { // Default layers
+            enc_opts.defaultVolume = !enc_opts.defaultVolume;
+        }
+    }
+
+    reset_tap_dance (state);
+}
+#endif
+
+#ifdef ENCODER_ENABLE
+void encoder_update_user(uint8_t index, bool clockwise) {
+    if (index == 0) {
+        if (IS_LAYER_ON(_ADJUST)) {
+            /*
+            if (enc_opts.backlightBrightness) {
+                if (clockwise) {
+                    backlight_increase();
+                } else {
+                    backlight_decrease();
+                }
+            }
+            */
+        } else if (IS_LAYER_ON(_LOWER)) {
+            /*
+            if (enc_opts.monBrightness) {
+                if (clockwise) {
+                    key_tap(KC_FIND);
+                } else {
+                    key_tap(KC_HELP);
+                }
+            } else {
+                if (clockwise) {
+                    key_tap(KC_UNDO);
+                } else {
+                    key_tap(KC_STOP);
+                }
+            }
+            */
+        } else { // Default layers
+            if (enc_opts.defaultVolume) {
+                if (clockwise) {
+                    key_tap(KC_VOLU);
+                } else {
+                    key_tap(KC_VOLD);
+                }
+            } else {
+                if (enc_opts.scrollVertical) {
+                    if (clockwise) {
+                        mousekey_tap(KC_MS_WH_DOWN);
+                    } else {
+                        mousekey_tap(KC_MS_WH_UP);
+                    }
+                } else {
+                    if (clockwise) {
+                        mousekey_tap(KC_MS_WH_RIGHT);
+                    } else {
+                        mousekey_tap(KC_MS_WH_LEFT);
+                    }
+                }
+            }
+        }
+    }
+}
+#endif
+
 #ifdef TAP_DANCE_ENABLE
 void td_mute(td_stage stage) {
     td_key(stage, KC_MUTE);
@@ -214,13 +298,23 @@ void shorts_layer_on_hold(td_stage stage) {
         default: break;
     }
 }
+
 qk_tap_dance_action_t tap_dance_actions[] = {
+#ifdef ENCODER_ENABLE
+    TD_ENCODER_ENTRY,
+#endif
     TD_TMUX_ENTRY,
     TD_SHIFT_LATIN,
     [td_mute_notif] = ACTION_TAP_DANCE_DOUBLE_FUNCS(td_mute, td_no_notif),
     [td_ctltab_shorts] = ACTION_TAP_DANCE_TAP_HOLD(tap_ctltab_td, shorts_layer_on_hold)
 };
 #endif
+
+void matrix_init_user(void) {
+    layer_on(_COLEMAK);
+
+    userspace_matrix_init_user();
+}
 
 bool process_record_user(uint16_t keycode, keyrecord_t *record) {
     if (!process_record_dynamic_macro(keycode, record)) {

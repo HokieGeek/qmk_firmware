@@ -3,9 +3,9 @@
 
 #include "config_common.h"
 
-// GOD DAMMIT BROKE THE USB PORT AGAIN!
-// #undef MASTER_LEFT
-// #define MASTER_RIGHT
+#define NUMBER_OF_ENCODERS 1
+#define ENCODERS_PAD_A { F1 }
+#define ENCODERS_PAD_B { F0 }
 
 #define ACCENTS_MAC
 
