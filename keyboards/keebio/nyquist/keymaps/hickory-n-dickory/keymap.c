@@ -23,14 +23,14 @@ enum custom_keycodes {
 
 #ifdef TAP_DANCE_ENABLE
 enum {
-    td_mute_notif = TD_SAFE_RANGE,
+    td_mac_notif = TD_SAFE_RANGE,
     td_ctltab_shorts,
     td_bscp_chunkwm
 };
-#define MUTER TD(td_mute_notif)
+#define MAC_NOTIFS TD(td_mac_notif)
 #define CTLTAB_SHORTS TD(td_ctltab_shorts)
 #else
-#define MUTER KC_MUTE
+#define MAC_NOTIFS G(S(KC_GRAVE))
 #define CTLTAB_SHORTS LCTL(KC_TAB)
 #endif
 #define BSCP_CHUNKWM LT(_CHUNKWM, KC_BSPC)
@@ -40,8 +40,8 @@ enum {
 #define SEND_SLACK_REACT(str) SEND_DELAYED(30, SS_LGUI(SS_LSFT(SS_TAP(X_BSLASH))) str SS_TAP(X_ENTER))
 #define SEND_SLACK_GOTO(str)  SEND_DELAYED(50, SS_LGUI(SS_TAP(X_K)) str SS_TAP(X_ENTER))
 
-#define _____BASE_TOP_____     KC_F13, MEH(KC_F14), _______, _______, _______, _______,   MEH(KC_F15), MEH(KC_F16), _______, _______, _______, _______
-#define _____BASE_BOTTOM_____  TT(_LOWER),  _______, KC_ENC,  KC_LGUI,   BSCP_CHUNKWM,  LALT_T(KC_SPC),       CTLTAB_SHORTS,  KC_TMUX,  MUTER,  _______,   KC_SKDM1,  TT(_RAISE)
+#define _____BASE_TOP_____     KC_F13, MEH(KC_F14), _______, _______, _______, _______,   MEH(KC_F15), MEH(KC_F16), _______, _______, _______, MAC_NOTIFS
+#define _____BASE_BOTTOM_____  TT(_LOWER),  _______, KC_ENC,  KC_LGUI,   BSCP_CHUNKWM,  LALT_T(KC_SPC),       CTLTAB_SHORTS,  KC_TMUX,  _______,  _______,   KC_SKDM1,  TT(_RAISE)
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
 /* Qwerty
@@ -283,8 +283,8 @@ void encoder_update_user(uint8_t index, bool clockwise) {
 #endif
 
 #ifdef TAP_DANCE_ENABLE
-void td_mute(td_stage stage) {
-    td_key(stage, KC_MUTE);
+void td_notifs(td_stage stage) {
+    td_key(stage, KC_F18);
 }
 void td_no_notif(td_stage stage) {
     if (stage == TD_FINISHED) {
@@ -305,7 +305,7 @@ qk_tap_dance_action_t tap_dance_actions[] = {
 #endif
     TD_TMUX_ENTRY,
     TD_SHIFT_LATIN,
-    [td_mute_notif] = ACTION_TAP_DANCE_DOUBLE_FUNCS(td_mute, td_no_notif),
+    [td_mac_notif] = ACTION_TAP_DANCE_DOUBLE_FUNCS(td_notifs, td_no_notif),
     [td_ctltab_shorts] = ACTION_TAP_DANCE_TAP_HOLD(tap_ctltab_td, shorts_layer_on_hold)
 };
 #endif
