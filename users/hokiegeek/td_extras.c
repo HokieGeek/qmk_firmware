@@ -68,6 +68,12 @@ void td_key(td_stage stage, uint16_t key) {
     }
 }
 
+// void td_send_stsing(td_stage stage, uint16_t key) {
+//     if (stage == TD_FINISHED) {
+//         SEND_STRING(SS_LGUI(SS_LSFT(SS_TAP(X_GRAVE))));
+//     }
+// }
+
 inline void td_shift(td_stage stage) {
     td_key_mod(stage, KC_LSHIFT);
 }
