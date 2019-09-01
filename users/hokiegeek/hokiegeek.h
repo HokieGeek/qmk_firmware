@@ -34,7 +34,7 @@
 #define _WORKMAN 2
 #define _LOWER 3
 #define _RAISE 4
-#define _VSCODE 8
+// #define _VSCODE 8
 #define _EXTRAS 9
 #define _ADJUST 15
 

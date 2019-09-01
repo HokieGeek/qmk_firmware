@@ -3,6 +3,9 @@
 
 #include "quantum.h"
 
+#define _VSCODE 8
+#define KC_VSCODE MO(_VSCODE)
+
 /*
  * |CMDPLT|XPLORE| TERM |      |      |      | ED_1 | ED_2 | ED_3 |      |      |      |
  * |------+------+------+------+------+------+------+------+------+------+------+------|
