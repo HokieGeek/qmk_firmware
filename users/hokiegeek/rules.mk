@@ -1,6 +1,6 @@
 EXTRAFLAGS += -flto
 
-SRC += hokiegeek.c taps.c latin.c
+SRC += hokiegeek.c taps.c latin.c vscode.c
 
 ifndef BOOTMAGIC_ENABLE
 	BOOTMAGIC_ENABLE = no
