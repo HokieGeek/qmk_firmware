@@ -12,7 +12,7 @@ enum custom_keycodes {
 };
 
 // | Lower|      |      |      | GUI  |AltSpc|     |CtlTb | TMUX | ENC  |      | MACR |Raise |
-#define _____BASE_BOTTOM_____  TT(_LOWER),  _______, _______,   _______, LGUI_T(KC_BSPC), LALT_T(KC_SPC),     TD(td_ctltab_extras),  KC_TMUX, KC_ENC,  G(S(KC_ENT)),  KC_SKDM1,  TT(_RAISE)
+#define _____BASE_BOTTOM_____  TT(_LOWER),  TT(_VSCODE), _______,   _______, LGUI_T(KC_BSPC), LALT_T(KC_SPC),     TD(td_ctltab_extras),  KC_TMUX, KC_ENC,  G(S(KC_ENT)),  KC_SKDM1,  TT(_RAISE)
 
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
@@ -86,6 +86,24 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   _______,  _______, _______, _______, KC_PSCR, _______,      KC_LEFT, KC_DOWN,   KC_UP,    KC_RGHT, KC_UNDS, KC_BSLS, \
   KC_F1,    KC_F2,   KC_F3,   KC_F4,   KC_F5,   KC_F6,        KC_F7,   KC_F8,     KC_F9,    KC_F10,  KC_F11,  KC_F12, \
   _______,  _______, _______, _______, KC_BSPC, _______,      CSTAB,   TMUX_PREV, _______,  _______, _______, _______ \
+),
+
+/* VSCODE
+ * ,------------------------------------------     ------------------------------------------.
+ * |      |      |      |      |      |      |     |      |      |      |      |      |      |
+ * |------+------+------+------+------+------|     |------+------+------+------+------+------|
+ * |      |      |      |      |      |      |     |      |      |      |      |      |      |
+ * |------+------+------+------+------+------|     |------+------+------+------+------+------|
+ * |      |      |      |      |      |      |     |      |      |      |      |      |      |
+ * |------+------+------+------+------+------|     |------+------+------+------+------+------|
+ * |      |      |      |      |      |      |     |      |      |      |      |      |      |
+ * `------------------------------------------     ------------------------------------------'
+ */
+[_VSCODE] = LAYOUT_wrapper( \
+  _____VSCODE_R1_____, \
+  _____VSCODE_R2_____, \
+  _____VSCODE_R3_____, \
+  _______,  _______, _______, _______, _______, _______,      _______, _______, _______, _______, _______, _______  \
 ),
 
 /* Extras
