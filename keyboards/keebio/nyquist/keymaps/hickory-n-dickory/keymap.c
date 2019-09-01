@@ -42,7 +42,7 @@ enum {
 #define SEND_SLACK_GOTO(str)  SEND_DELAYED(50, SS_LGUI(SS_TAP(X_K)) str SS_TAP(X_ENTER))
 
 #define _____BASE_TOP_____     KC_F13, MEH(KC_F14), _______, _______, _______, _______,   MEH(KC_F16), MEH(KC_F17), MEH(KC_F18), MEH(KC_F19), MEH(KC_F20), MAC_NOTIFS
-#define _____BASE_BOTTOM_____  TT(_LOWER),  _______, KC_ENC,  KC_LGUI,   BSCP_CHUNKWM,  LALT_T(KC_SPC),       CTLTAB_SHORTS,  KC_TMUX,  _______,  G(S(KC_ENT)),   KC_SKDM1,  TT(_RAISE)
+#define _____BASE_BOTTOM_____  TT(_LOWER),  KC_VSCODE, KC_ENC,  KC_LGUI,   BSCP_CHUNKWM,  LALT_T(KC_SPC),       CTLTAB_SHORTS,  KC_TMUX,  _______,  G(S(KC_ENT)),   KC_SKDM1,  TT(_RAISE)
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
 /* Qwerty
@@ -55,7 +55,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  * |------+------+------+------+------+------|     |------+------+------+------+------+------|
  * |Sftlat|   Z  |   X  |   C  |   V  |   B  |     |   N  |   M  |   ,  |   .  |   /  |ShEnt |
  * |------+------+------+------+------+------+     +------+------+------+------+------+------|
- * | Lower|      |      |      | GUI  |AltSpc|     |CtlTb | TMUX | MUTE |      | MACR |Raise |
+ * | Lower|VSCODE| ENC  |      | GUI  |AltSpc|     |CtlTb | TMUX | MUTE |      | MACR |Raise |
  * `------------------------------------------     ------------------------------------------'
  */
 [_QWERTY] = LAYOUT_wrapper( \
@@ -76,7 +76,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  * |------+------+------+------+------+------|     |------+------+------+------+------+------|
  * |Sftlat|   Z  |   X  |   C  |   V  |   B  |     |   K  |   M  |   ,  |   .  |   /  |ShEnt |
  * |------+------+------+------+------+------+     +------+------+------+------+------+------|
- * | Lower|      |      |      | GUI  |AltSpc|     |CtlTb | TMUX | MUTE |      | MACR |Raise |
+ * | Lower|VSCODE| ENC  |      | GUI  |AltSpc|     |CtlTb | TMUX | MUTE |      | MACR |Raise |
  * `------------------------------------------     ------------------------------------------'
  */
 [_COLEMAK] = LAYOUT_wrapper( \
@@ -190,6 +190,15 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   _______, _______,    _______,     _______, _______, _______,  _______,  _______,  _______,  _______,  _______,  _______,  \
   _______, _______,    _______,     _______, _______, _______,  _______,  _______,  _______,  _______,  _______,  _______,  \
   _______, _______,    _______,     _______, _______, _______,  _______,  _______,  _______,  _______,  _______,  _______  \
+),
+
+/* VSCODE */
+[_VSCODE] = LAYOUT_wrapper( \
+  _______,  _______, _______, _______, _______, _______,      _______, _______, _______, _______, _______, _______  \
+  _____VSCODE_R1_____, \
+  _____VSCODE_R2_____, \
+  _____VSCODE_R3_____, \
+  _______,  _______, _______, _______, _______, _______,      _______, _______, _______, _______, _______, _______  \
 ),
 
 /* Adjust
