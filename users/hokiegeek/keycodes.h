@@ -26,6 +26,8 @@ enum userspace_custom_keycodes {
     TMUX_LAST,
     TMUX_PEEK,
 
+    // VSC_TODO,
+
     DYNAMIC_MACRO_RANGE,
     NEW_SAFE_RANGE = DYNAMIC_MACRO_RANGE + 5,
 };
