@@ -27,6 +27,10 @@ bool userspace_process_record_user(uint16_t keycode, keyrecord_t *record) {
         return false;
     }
 
+    if (!vscode_process_record_user(keycode, record)) {
+        return false;
+    }
+
 #ifdef TAP_DANCE_ENABLE
     if (!tmux_process_record_user(keycode, record)) {
         return false;
