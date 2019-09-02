@@ -39,6 +39,7 @@ setting which can be changed by double-tapping the encoder button.
 | | Vert / Horiz Scrolling | Scroll up/down or left/right | Toggle vert / horiz |
 | `_LOWER` | Monitor Brightness | Increase / Decrease brightness | |
 | | Monitor Warmth | Increase / Decrease warmth | |
+| `_RAISE` | Zoom | Zoom in / Zoom out | |
 | `_ADJUST` | Kbd Backlight | Increase / Decrease brightness | Toggle backlight |
 | | Kbd Underglow | | Toggle underglow |
 

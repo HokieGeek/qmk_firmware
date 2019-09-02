@@ -15,18 +15,24 @@ inline void key_tap(uint8_t code) {
     unregister_code(code);
 }
 
+inline void tap_mod_key(uint8_t mod, uint8_t code) {
+    register_code(mod);
+    key_tap(code);
+    unregister_code(mod);
+}
+
+inline void tap_ctrl_key(uint8_t code) {
+    tap_mod_key(KC_LCTL, code);
+}
+
 inline void tap_ctltab() {
-    register_code(KC_LCTL);
-    register_code(KC_TAB);
-    unregister_code(KC_TAB);
-    unregister_code(KC_LCTL);
+    tap_mod_key(KC_LCTL, KC_TAB);
 }
 
 inline void tap_gui_shift_enter() {
     register_code(KC_LGUI);
     register_code(KC_LSHIFT);
-    register_code(KC_ENTER);
-    unregister_code(KC_ENTER);
+    key_tap(KC_ENTER);
     unregister_code(KC_LSHIFT);
     unregister_code(KC_LGUI);
 }
