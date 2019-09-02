@@ -1,6 +1,9 @@
 #include "vscode.h"
 
 #include "keycodes.h"
+#include "taps.h"
+
+uint8_t vsc_scm_mods[] = {2, KC_LCTRL, KC_LSHIFT};
 
 void vscode_layer_on_hold(td_stage stage) {
     switch (stage) {
@@ -14,14 +17,8 @@ bool vscode_process_record_user(uint16_t keycode, keyrecord_t *record) {
     switch (keycode) {
         case VSC_SCM:
             if (record->event.pressed) {
-                register_code(KC_LCTRL);
-                register_code(KC_LSHIFT);
-                register_code(KC_G);
-                unregister_code(KC_G);
-                unregister_code(KC_LSHIFT);
-                unregister_code(KC_LCTRL);
-                register_code(KC_G);
-                unregister_code(KC_G);
+                tap_mods_key(vsc_scm_mods, KC_G);
+                tap_key(KC_G);
             }
             return false;
     }
