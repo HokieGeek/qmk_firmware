@@ -54,3 +54,6 @@ Single-key Dynamic Macro is a tapdance accessible via the `KC_SKDM1` and `KC_SKD
 Added a define which has a matrix that correctly swaps each half of a 5x12 ortho (particularly a split one).
 
 Requires that the QMK [Swap Hands](https://docs.qmk.fm/#/feature_swap_hands) feature be enabled.
+
+### vscode
+Just a layer for some shortcuts and macros in VSCode
