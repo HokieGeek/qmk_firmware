@@ -154,7 +154,7 @@ void encoder_td_actions (qk_tap_dance_state_t *state, void *user_data) {
             // TODO
         } else { // Default layers
             if (enc_opts.defaultVolume) {
-                key_tap(KC_MUTE);
+                tap_key(KC_MUTE);
             } else {
                 enc_opts.scrollVertical = !enc_opts.scrollVertical;
             }
@@ -187,15 +187,15 @@ void encoder_update_user(uint8_t index, bool clockwise) {
         } else if (IS_LAYER_ON(_LOWER)) {
             if (enc_opts.monBrightness) {
                 if (clockwise) {
-                    key_tap(KC_FIND);
+                    tap_key(KC_FIND);
                 } else {
-                    key_tap(KC_HELP);
+                    tap_key(KC_HELP);
                 }
             } else {
                 if (clockwise) {
-                    key_tap(KC_UNDO);
+                    tap_key(KC_UNDO);
                 } else {
-                    key_tap(KC_STOP);
+                    tap_key(KC_STOP);
                 }
             }
         } else if (IS_LAYER_ON(_RAISE)) {
@@ -207,22 +207,22 @@ void encoder_update_user(uint8_t index, bool clockwise) {
         } else { // Default layers
             if (enc_opts.defaultVolume) {
                 if (clockwise) {
-                    key_tap(KC_VOLU);
+                    tap_key(KC_VOLU);
                 } else {
-                    key_tap(KC_VOLD);
+                    tap_key(KC_VOLD);
                 }
             } else {
                 if (enc_opts.scrollVertical) {
                     if (clockwise) {
-                        mousekey_tap(KC_MS_WH_DOWN);
+                        tap_mousekey(KC_MS_WH_DOWN);
                     } else {
-                        mousekey_tap(KC_MS_WH_UP);
+                        tap_mousekey(KC_MS_WH_UP);
                     }
                 } else {
                     if (clockwise) {
-                        mousekey_tap(KC_MS_WH_RIGHT);
+                        tap_mousekey(KC_MS_WH_RIGHT);
                     } else {
-                        mousekey_tap(KC_MS_WH_LEFT);
+                        tap_mousekey(KC_MS_WH_LEFT);
                     }
                 }
             }

@@ -3,11 +3,12 @@
 
 #ifdef TAP_DANCE_ENABLE
 void tap_gui_shift_enter_td(td_stage stage) {
-    tap_gui_shift_enter();
+    uint8_t mods[] = {2, KC_LGUI, KC_LSHIFT};
+    tap_mods_key(mods, KC_ENTER);
 }
 
 void tap_ctltab_td(td_stage stage) {
-    tap_ctltab();
+    tap_mod_key(KC_LCTL, KC_TAB);
 }
 #else
 #include "dynamic_macro.h"
