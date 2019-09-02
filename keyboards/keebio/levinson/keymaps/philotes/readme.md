@@ -6,7 +6,7 @@ Just like Ansibles, I added some contacts on the side so that when it's sitting
 on my laptop, I don't need the cable that connects the two halves of this split keyboard.
 
 ## Layout
-[![Current layout](https://i.imgur.com/iSS6hoa.png)](http://www.keyboard-layout-editor.com/#/gists/0c8aa037a9bdb55fb7416c1add2a9d01)
+[![Current layout](https://i.imgur.com/uCz6tl3.png)](http://www.keyboard-layout-editor.com/#/gists/0c8aa037a9bdb55fb7416c1add2a9d01)
 
 ## Features
 ### Accents
