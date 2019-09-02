@@ -198,6 +198,12 @@ void encoder_update_user(uint8_t index, bool clockwise) {
                     key_tap(KC_STOP);
                 }
             }
+        } else if (IS_LAYER_ON(_RAISE)) {
+            if (clockwise) {
+                tap_mod_key(KC_LCTL, KC_KP_PLUS);
+            } else {
+                tap_mod_key(KC_LCTL, KC_KP_MINUS);
+            }
         } else { // Default layers
             if (enc_opts.defaultVolume) {
                 if (clockwise) {
