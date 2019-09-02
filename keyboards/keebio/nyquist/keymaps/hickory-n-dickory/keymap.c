@@ -14,12 +14,6 @@ enum custom_keycodes {
     SLACK_RCTMB,
     SLACK_RCTHS,
     SLACK_RCHI5,
-    SLACK_G2SEW,
-    SLACK_G2ISE,
-    SLACK_G2ISU,
-    SLACK_G2LNG,
-
-    SF_SE
 };
 
 #ifdef TAP_DANCE_ENABLE
@@ -44,7 +38,7 @@ enum {
 #define SEND_SLACK_GOTO(str)  SEND_DELAYED(50, SS_LGUI(SS_TAP(X_K)) str SS_TAP(X_ENTER))
 
 #define _____BASE_TOP_____     KC_F13, MEH(KC_F14), _______, _______, _______, _______,   MEH(KC_F16), MEH(KC_F17), MEH(KC_F18), MEH(KC_F19), MEH(KC_F20), MAC_NOTIFS
-#define _____BASE_BOTTOM_____  TT(_LOWER),  KC_VSCODE, KC_ENC,  KC_LGUI,   BSCP_CHUNKWM,  LALT_T(KC_SPC),       CTLTAB_SHORTS,  KC_TMUX,  _______,  TERM_VSCODE,   KC_SKDM1,  TT(_RAISE)
+#define _____BASE_BOTTOM_____  MO(_LOWER),  _______, KC_ENC,  KC_LGUI,   BSCP_CHUNKWM,  LALT_T(KC_SPC),       CTLTAB_SHORTS,  KC_TMUX,  _______,  TERM_VSCODE,   KC_SKDM1,  TT(_RAISE)
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
 /* Qwerty
@@ -105,7 +99,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 [_LOWER] = LAYOUT_wrapper( \
   MEH(KC_F13),  _______,  _______,  _______,  _______,  _______,      _______,  _______,  _______,  _______,  _______,  KC_VOLD, \
   KC_TILD,                                              ______SYMBOLS______,                                            KC_EQL, \
-  _______,      _______,  _______,  _______,  _______,  _______,      KC_HOME,  KC_PGDN,  KC_PGUP,  KC_END,   KC_MINS,  KC_PIPE, \
+  KC_CAPS,      _______,  _______,  _______,  _______,  _______,      KC_HOME,  KC_PGDN,  KC_PGUP,  KC_END,   KC_MINS,  KC_PIPE, \
   _______,      _______,  _______,  _______,  _______,  _______,      _______,  KC_LCBR,  KC_RCBR,  KC_LBRC,  KC_RBRC,  _______, \
   _______,      _______,  _______,  _______,  KC_BSPC,  _______,      _______,  _______,  KC_VOLD,  _______,  _______,  _______ \
 ),
@@ -135,7 +129,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  * ,------------------------------------------     ------------------------------------------.
  * |      |      |      |      |      |      |     |      |      |      |      |      |      |
  * |------+------+------+------+------+------|     |------+------+------+------+------+------|
- * |      |      |      |      |      |      |     |SF_SE |      |      |      |      |      |
+ * |      |      |      |      |      |      |     |      |      |      |      |      |      |
  * |------+------+------+------+------+------|     |------+------+------+------+------+------|
  * |      |      |      |      |      |      |     |SSHRUG|SGIPHY|SRCTMB|SRCTHS|SRCTHI|SREACT|
  * |------+------+------+------+------+------|     |------+------+------+------+------+------|
@@ -207,7 +201,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  * ,------------------------------------------     ------------------------------------------.
  * |      |      |      |      |      |      |     |      |      |      |      |      |      |
  * |------+------+------+------+------+-------     +------+------+------+------+------+------|
- * |      |QWERTY|COLMAK|      |      |      |     |      |      |      |      |      |      |
+ * |QMAKE |QWERTY|COLMAK|RESET |      |      |     |      |      |      |      |      |      |
  * |------+------+------+------+------+-------     -------+------+------+------+------+------|
  * | Caps |      |      |      |      |      |     |      |      |      |      |      |      |
  * |------+------+------+------+------+------|     |------+------+------+------+------+------|
@@ -218,18 +212,18 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  */
 [_ADJUST] = LAYOUT( \
   TG(_CAMTASIA),   _______, _______, _______, _______, _______,      _______, _______, _______, _______, _______, _______, \
-  _______,   QWERTY,  COLEMAK, _______, _______, _______,      _______, _______, _______, _______, _______, _______, \
-  KC_CAPS,   _______, _______, _______, _______, _______,      _______, _______, _______, _______, _______, _______, \
-  QMK_MAKE,  _______, _______, _______, _______, _______,      _______, _______, _______, _______, _______, _______, \
+  QMK_MAKE,   QWERTY,  COLEMAK, RESET, _______, _______,      _______, _______, _______, _______, _______, _______, \
+  _______,   _______, _______, _______, _______, _______,      _______, _______, _______, _______, _______, _______, \
+  _______,  _______, _______, _______, _______, _______,      _______, _______, _______, _______, _______, _______, \
   _______,   _______, _______, _______, _______, _______,      _______, _______, _______, _______, _______, _______  \
 ),
 
 };
 
-#ifdef SWAP_HANDS_ENABLE
+// #ifdef SWAP_HANDS_ENABLE
 // Each half duplicates the other half
-const keypos_t hand_swap_config[MATRIX_ROWS][MATRIX_COLS] = SWAP_HANDS_ORTHO_5X12_SPLIT;
-#endif
+// const keypos_t hand_swap_config[MATRIX_ROWS][MATRIX_COLS] = SWAP_HANDS_ORTHO_5X12_SPLIT;
+// #endif
 
 #if defined(TAP_DANCE_ENABLE) && defined(ENCODER_ENABLE)
 void encoder_td_actions (qk_tap_dance_state_t *state, void *user_data) {
@@ -288,6 +282,12 @@ void encoder_update_user(uint8_t index, bool clockwise) {
                 }
             }
             */
+        } else if (IS_LAYER_ON(_RAISE)) {
+            if (clockwise) {
+                tap_mod_key(KC_LCTL, KC_KP_PLUS);
+            } else {
+                tap_mod_key(KC_LCTL, KC_KP_MINUS);
+            }
         } else { // Default layers
             if (enc_opts.defaultVolume) {
                 if (clockwise) {
@@ -349,6 +349,10 @@ void matrix_init_user(void) {
     userspace_matrix_init_user();
 }
 
+layer_state_t layer_state_set_user(layer_state_t state) {
+  return update_tri_layer_state(state, _LOWER, _RAISE, _ADJUST);
+}
+
 bool process_record_user(uint16_t keycode, keyrecord_t *record) {
     if (!process_record_dynamic_macro(keycode, record)) {
         return false;
@@ -362,10 +366,6 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
         case SLACK_RCTMB:
         case SLACK_RCTHS:
         case SLACK_RCHI5:
-        case SLACK_G2SEW:
-        case SLACK_G2ISE:
-        case SLACK_G2ISU:
-        case SLACK_G2LNG:
             if (record->event.pressed) {
                 switch (keycode) {
                 case SLACK_GIPHY: SEND_SLACK_SLASH("giphy"); break;
@@ -376,20 +376,7 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
                 case SLACK_RCTMB: SEND_SLACK_REACT("+1"); break;
                 case SLACK_RCTHS: SEND_SLACK_REACT("this"); break;
                 case SLACK_RCHI5: SEND_SLACK_REACT("hi-5"); break;
-                case SLACK_G2SEW: SEND_SLACK_GOTO("se-world"); break;
-                case SLACK_G2ISE: SEND_SLACK_GOTO("ises"); break;
-                case SLACK_G2ISU: SEND_SLACK_GOTO("inside-sales-us"); break;
-                case SLACK_G2LNG: SEND_SLACK_GOTO("the-lounge"); break;
                 }
-            }
-            return false;
-            break;
-        case SF_SE:
-            if (record->event.pressed) {
-                switch (keycode) {
-                    case SF_SE: SEND_DELAYED(10, "#Sales Engineer"); break;
-                }
-                SEND_STRING(SS_TAP(X_ENTER));
             }
             return false;
             break;

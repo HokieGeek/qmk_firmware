@@ -17,7 +17,7 @@ enum custom_keycodes {
 };
 
 // | Lower|      |      |      | GUI  |AltSpc|CtlTb | TMUX | ENC  | TERM_VSCODE | MACR |Raise |
-#define _____BASE_BOTTOM_____   TT(_LOWER), _______, _______,  _______, LGUI_T(KC_BSPC), LALT_T(KC_SPC),     TD(td_ctltab_extras),  KC_TMUX, KC_ENC,  TERM_VSCODE,  KC_SKDM1,  TT(_RAISE)
+#define _____BASE_BOTTOM_____   MO(_LOWER), _______, _______,  _______, LGUI_T(KC_BSPC), LALT_T(KC_SPC),     TD(td_ctltab_extras),  KC_TMUX, KC_ENC,  TERM_VSCODE,  KC_SKDM1,  TT(_RAISE)
 
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
