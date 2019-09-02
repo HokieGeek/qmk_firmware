@@ -4,7 +4,7 @@
 extern keymap_config_t keymap_config;
 
 #define _SHORTS 5
-#define _CHUNKWM 6
+#define _YABAI 6
 #define _CAMTASIA 7
 
 enum custom_keycodes {
@@ -20,7 +20,7 @@ enum custom_keycodes {
 enum {
     td_mac_notif = TD_SAFE_RANGE,
     td_ctltab_shorts,
-    td_bscp_chunkwm
+    td_bscp_yabai
 };
 #define MAC_NOTIFS TD(td_mac_notif)
 #define CTLTAB_SHORTS TD(td_ctltab_shorts)
@@ -30,7 +30,7 @@ enum {
 #define CTLTAB_SHORTS LCTL(KC_TAB)
 #define TERM_VSCODE G(S(KC_ENT))
 #endif
-#define BSCP_CHUNKWM LT(_CHUNKWM, KC_BSPC)
+#define BSCP_YABAI LT(_YABAI, KC_BSPC)
 
 #define SEND_APP_FRONT(app)   SEND_DELAYED(50, SS_LGUI(SS_TAP(X_SPACE)) app SS_TAP(X_ENTER))
 #define SEND_SLACK_SLASH(str) SEND_DELAYED(50, SS_TAP(X_SLASH) str SS_TAP(X_TAB))
@@ -38,7 +38,7 @@ enum {
 #define SEND_SLACK_GOTO(str)  SEND_DELAYED(50, SS_LGUI(SS_TAP(X_K)) str SS_TAP(X_ENTER))
 
 #define _____BASE_TOP_____     KC_F13, MEH(KC_F14), _______, _______, _______, _______,   MEH(KC_F16), MEH(KC_F17), MEH(KC_F18), MEH(KC_F19), MEH(KC_F20), MAC_NOTIFS
-#define _____BASE_BOTTOM_____  MO(_LOWER),  _______, KC_ENC,  KC_LGUI,   BSCP_CHUNKWM,  LALT_T(KC_SPC),       CTLTAB_SHORTS,  KC_TMUX,  _______,  TERM_VSCODE,   KC_SKDM1,  TT(_RAISE)
+#define _____BASE_BOTTOM_____  MO(_LOWER),  _______, KC_ENC,  KC_LGUI,   BSCP_YABAI,  LALT_T(KC_SPC),       CTLTAB_SHORTS,  KC_TMUX,  _______,  TERM_VSCODE,   KC_SKDM1,  TT(_RAISE)
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
 /* Qwerty
@@ -140,26 +140,26 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  */
 [_SHORTS] = LAYOUT( \
   _______, _______, _______, _______, _______, _______,      _______,     _______,     _______,     _______,     _______,     _______, \
-  _______, _______, _______, _______, _______, _______,      SF_SE,       _______,     _______,     _______,     _______,     _______, \
+  _______, _______, _______, _______, _______, _______,      _______,     _______,     _______,     _______,     _______,     _______, \
   _______, _______, _______, _______, _______, _______,      SLACK_SHRUG, SLACK_GIPHY, SLACK_RCTMB, SLACK_RCTHS, SLACK_RCHI5, SLACK_REACT, \
   _______, _______, _______, _______, _______, _______,      SLACK_G2SEW, SLACK_G2LNG, SLACK_G2ISE, SLACK_G2ISU, _______,     _______, \
   _______, _______, _______, _______, _______, _______,      _______,     _______,     _______,     _______,     _______,     _______  \
 ),
 
-/* chunkwm
+/* yabai
  * ,------------------------------------------     ------------------------------------------.
- * |      |      |      |      |      |      |     |      |      |      |      |      |      |
+ * |START | STOP |      |      |      |      |     |      |      |      |      |      |      |
  * |------+------+------+------+------+------|     |------+------+------+------+------+------|
  * |      |      |      |      |      |      |     |      |      |      |      |      |      |
  * |------+------+------+------+------+------|     |------+------+------+------+------+------|
- * |      |      |      |      |      |      |     |      |      |      |      |      |      |
+ * |LSTTOP|      |      |      |SPOTLT|      |     |      |      |      |      |      |      |
  * |------+------+------+------+------+------|     |------+------+------+------+------+------|
  * |      |      |      |      |      |      |     |      |      |      |      |      |      |
  * |------+------+------+------+------+------|     |------+------+------+------+------+------|
  * |      |      |      |      |      |      |     |      |      |      |      |      |      |
  * `------------------------------------------     ------------------------------------------'
  */
-[_CHUNKWM] = LAYOUT( \
+[_YABAI] = LAYOUT( \
   MEH(KC_F15), HYPR(KC_F15), _______,    _______,    _______,       _______,            _______,    _______,    _______,    _______,    _______,    _______, \
   _______,     LGUI(KC_1),   LGUI(KC_2), LGUI(KC_3), LGUI(KC_4),    LGUI(KC_5),         LGUI(KC_6), LGUI(KC_7), LGUI(KC_8), LGUI(KC_9), LGUI(KC_0), _______, \
   MEH(KC_TAB), _______,      _______,    _______,    LGUI(KC_SPC),  _______,            MEH(KC_H),  S(C(KC_N)), S(C(KC_E)), MEH(KC_I),  _______,    _______, \
