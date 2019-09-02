@@ -30,9 +30,11 @@ enum {
 };
 #define MAC_NOTIFS TD(td_mac_notif)
 #define CTLTAB_SHORTS TD(td_ctltab_shorts)
+#define TERM_VSCODE TD(td_terminal_vscode)
 #else
 #define MAC_NOTIFS G(S(KC_GRAVE))
 #define CTLTAB_SHORTS LCTL(KC_TAB)
+#define TERM_VSCODE G(S(KC_ENT))
 #endif
 #define BSCP_CHUNKWM LT(_CHUNKWM, KC_BSPC)
 
@@ -42,7 +44,7 @@ enum {
 #define SEND_SLACK_GOTO(str)  SEND_DELAYED(50, SS_LGUI(SS_TAP(X_K)) str SS_TAP(X_ENTER))
 
 #define _____BASE_TOP_____     KC_F13, MEH(KC_F14), _______, _______, _______, _______,   MEH(KC_F16), MEH(KC_F17), MEH(KC_F18), MEH(KC_F19), MEH(KC_F20), MAC_NOTIFS
-#define _____BASE_BOTTOM_____  TT(_LOWER),  KC_VSCODE, KC_ENC,  KC_LGUI,   BSCP_CHUNKWM,  LALT_T(KC_SPC),       CTLTAB_SHORTS,  KC_TMUX,  _______,  G(S(KC_ENT)),   KC_SKDM1,  TT(_RAISE)
+#define _____BASE_BOTTOM_____  TT(_LOWER),  KC_VSCODE, KC_ENC,  KC_LGUI,   BSCP_CHUNKWM,  LALT_T(KC_SPC),       CTLTAB_SHORTS,  KC_TMUX,  _______,  TERM_VSCODE,   KC_SKDM1,  TT(_RAISE)
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
 /* Qwerty

@@ -22,8 +22,11 @@ inline void tap_ctltab() {
     unregister_code(KC_LCTL);
 }
 
-/*
-void tap_ctltab_td(td_stage stage) {
-    tap_ctltab();
+inline void tap_gui_shift_enter() {
+    register_code(KC_LGUI);
+    register_code(KC_LSHIFT);
+    register_code(KC_ENTER);
+    unregister_code(KC_ENTER);
+    unregister_code(KC_LSHIFT);
+    unregister_code(KC_LGUI);
 }
-*/

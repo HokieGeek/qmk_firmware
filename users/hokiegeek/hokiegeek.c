@@ -2,6 +2,10 @@
 #include "hokiegeek.h"
 
 #ifdef TAP_DANCE_ENABLE
+void tap_gui_shift_enter_td(td_stage stage) {
+    tap_gui_shift_enter();
+}
+
 void tap_ctltab_td(td_stage stage) {
     tap_ctltab();
 }

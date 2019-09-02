@@ -48,6 +48,7 @@
 
 #define CSTAB LCTL(LSFT(KC_TAB))
 #define ALTPSCR LALT(KC_PSCR)
+#define TD_TERM_VSCODE_ENTRY [td_terminal_vscode] = ACTION_TAP_DANCE_TAP_HOLD(tap_gui_shift_enter_td, vscode_layer_on_hold)
 
 #define __BASE_LCR1__ KC_TRNS
 #define __BASE_LCR2__ LT(_ADJUST, KC_ESC)
@@ -109,11 +110,13 @@ enum {
     td_tmux,
     td_shift_latin,
     td_skdm1,
+    td_terminal_vscode,
 #endif
     TD_SAFE_RANGE
 };
 
 #ifdef TAP_DANCE_ENABLE
+void tap_gui_shift_enter_td(td_stage);
 void tap_ctltab_td(td_stage);
 #endif
 

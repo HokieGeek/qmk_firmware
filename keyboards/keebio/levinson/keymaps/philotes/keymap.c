@@ -3,16 +3,21 @@
 
 extern keymap_config_t keymap_config;
 
+#ifdef TAP_DANCE_ENABLE
 enum {
     td_ctltab_extras = TD_SAFE_RANGE
 };
+#define TERM_VSCODE TD(td_terminal_vscode)
+#else
+#define TERM_VSCODE G(S(KC_ENT))
+#endif
 
 enum custom_keycodes {
     CTLTAB = NEW_SAFE_RANGE
 };
 
-// | Lower|VSCODE|      |      | GUI  |AltSpc|     |CtlTb | TMUX | ENC  | TERM | MACR |Raise |
-#define _____BASE_BOTTOM_____  TT(_LOWER),  KC_VSCODE, _______,   _______, LGUI_T(KC_BSPC), LALT_T(KC_SPC),     TD(td_ctltab_extras),  KC_TMUX, KC_ENC,  G(S(KC_ENT)),  KC_SKDM1,  TT(_RAISE)
+// | Lower|      |      |      | GUI  |AltSpc|CtlTb | TMUX | ENC  | TERM_VSCODE | MACR |Raise |
+#define _____BASE_BOTTOM_____   TT(_LOWER), _______, _______,  _______, LGUI_T(KC_BSPC), LALT_T(KC_SPC),     TD(td_ctltab_extras),  KC_TMUX, KC_ENC,  TERM_VSCODE,  KC_SKDM1,  TT(_RAISE)
 
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
@@ -236,6 +241,7 @@ qk_tap_dance_action_t tap_dance_actions[] = {
     TD_TMUX_ENTRY,
     TD_SHIFT_LATIN,
     TD_SKDM1_ENTRY,
+    TD_TERM_VSCODE_ENTRY,
     [td_ctltab_extras] = ACTION_TAP_DANCE_TAP_HOLD(tap_ctltab_td, extras_layer_on_hold)
 };
 #endif
