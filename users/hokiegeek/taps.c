@@ -3,36 +3,32 @@
 #include <mousekey.h>
 #include "quantum.h"
 
-inline void mousekey_tap(uint8_t code) {
+inline void tap_mousekey(uint8_t code) {
     mousekey_on(code);
     mousekey_send();
     mousekey_off(code);
     mousekey_send();
 }
 
-inline void key_tap(uint8_t code) {
+inline void tap_key(uint8_t code) {
     register_code(code);
     unregister_code(code);
 }
 
-inline void tap_mod_key(uint8_t mod, uint8_t code) {
+inline void tap_mod_key(uint8_t mod, uint8_t key) {
     register_code(mod);
-    key_tap(code);
+    tap_key(key);
     unregister_code(mod);
 }
 
-inline void tap_ctrl_key(uint8_t code) {
-    tap_mod_key(KC_LCTL, code);
-}
+inline void tap_mods_key(uint8_t* mods, uint8_t key) {
+    for(int i = 1; i <= mods[0]; i++) {
+        register_code(mods[i]);
+    }
 
-inline void tap_ctltab() {
-    tap_mod_key(KC_LCTL, KC_TAB);
-}
+    tap_key(key);
 
-inline void tap_gui_shift_enter() {
-    register_code(KC_LGUI);
-    register_code(KC_LSHIFT);
-    key_tap(KC_ENTER);
-    unregister_code(KC_LSHIFT);
-    unregister_code(KC_LGUI);
+    for(int i = mods[0]; i >= 1; i--) {
+        unregister_code(mods[i]);
+    }
 }
