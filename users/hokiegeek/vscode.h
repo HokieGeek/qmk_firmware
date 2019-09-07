@@ -14,9 +14,9 @@
  * |------+------+------+------+------+------+------+------+------+------+------+------|
  * |      |      |      |      |      |      |      |      |RENAME|PALETT|XPLORE| ED_1 |
  */
-#define _____VSCODE_R1_____  _______, _______, _______, _______, _______, _______,    _______, _______, C(S(KC_M)),  VSC_SCM,      C(S(KC_F)), C(KC_GRAVE)
-#define _____VSCODE_R2_____  _______, _______, _______, _______, _______, _______,    _______, _______, _______,     C(S(KC_F10)), S(KC_F12),  C(S(KC_O))
-#define _____VSCODE_R3_____  _______, _______, _______, _______, _______, _______,    _______, _______, KC_F2,       C(KC_P),      C(S(KC_E)), C(KC_1)
+#define _____VSCODE_R1_____  _______, _______, _______, _______, _______, _______,    _______, _______, VSC_PROBS,   VSC_SCM,     VSC_FIND,    VSC_TERM
+#define _____VSCODE_R2_____  _______, _______, _______, _______, _______, _______,    _______, _______, _______,     VSC_PKDEFS,  VSC_PKSYMS,  VSC_G2SYM
+#define _____VSCODE_R3_____  _______, _______, _______, _______, _______, _______,    _______, _______, VSC_RENAME,  VSC_PALETT,  VSC_XPLORE,  VSC_ED_1
 
 void vscode_layer_on_hold(td_stage stage);
 bool vscode_process_record_user(uint16_t keycode, keyrecord_t *record);
