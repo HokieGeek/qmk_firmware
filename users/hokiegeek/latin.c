@@ -1,5 +1,6 @@
 #include "latin.h"
 #include "taps.h"
+#include "hokiegeek.h"
 
 bool useLatinChar = false;
 
@@ -40,14 +41,103 @@ bool latin_process_record_user(uint16_t keycode, keyrecord_t *record) {
             if (record->event.pressed) {
                 if (useLatinChar) {
                     switch (keycode) {
-                        case LATIN_E:       SEND_LATIN(LATIN_E_STRING); break;
-                        case LATIN_A:       SEND_LATIN(LATIN_A_STRING); break;
-                        case LATIN_I:       SEND_LATIN(LATIN_I_STRING); break;
-                        case LATIN_O:       SEND_LATIN(LATIN_O_STRING); break;
-                        case LATIN_U:       SEND_LATIN(LATIN_U_STRING); break;
-                        case LATIN_N:       SEND_LATIN(LATIN_N_STRING); break;
-                        case LATIN_IEXC:    SEND_LATIN(LATIN_IEXC_STRING); break;
-                        case LATIN_IQS:     SEND_LATIN(LATIN_IQS_STRING); break;
+                        // case LATIN_E:       SEND_LATIN(LATIN_E_STRING); break;
+                        case LATIN_E:
+                            switch (getTargetOS()) {
+                                case OS_MAC:
+                                    SEND_LATIN_MAC(SS_LALT("e")"e");
+                                    break;
+                                case OS_NIX:
+                                    SEND_LATIN_NIX(SS_TAP(X_E)SS_TAP(X_9));
+                                    break;
+                                case OS_WIN:
+                                    break;
+                            }
+                            break;
+                        case LATIN_A:
+                            switch (getTargetOS()) {
+                                case OS_MAC:
+                                    SEND_LATIN_MAC(SS_LALT("e")"a");
+                                    break;
+                                case OS_NIX:
+                                    SEND_LATIN_NIX(SS_TAP(X_E)SS_TAP(X_1));
+                                    break;
+                                case OS_WIN:
+                                    break;
+                            }
+                            break;
+                        case LATIN_I:
+                            switch (getTargetOS()) {
+                                case OS_MAC:
+                                    SEND_LATIN_MAC(SS_LALT("e")"i");
+                                    break;
+                                case OS_NIX:
+                                    SEND_LATIN_NIX(SS_TAP(X_E)SS_TAP(X_D));
+                                    break;
+                                case OS_WIN:
+                                    break;
+                            }
+                            break;
+                        case LATIN_O:
+                            switch (getTargetOS()) {
+                                case OS_MAC:
+                                    SEND_LATIN_MAC(SS_LALT("e")"o");
+                                    break;
+                                case OS_NIX:
+                                    SEND_LATIN_NIX(SS_TAP(X_F)SS_TAP(X_3));
+                                    break;
+                                case OS_WIN:
+                                    break;
+                            }
+                            break;
+                        case LATIN_U:
+                            switch (getTargetOS()) {
+                                case OS_MAC:
+                                    SEND_LATIN_MAC(SS_LALT("e")"u");
+                                    break;
+                                case OS_NIX:
+                                    SEND_LATIN_NIX(SS_TAP(X_F)SS_TAP(X_A));
+                                    break;
+                                case OS_WIN:
+                                    break;
+                            }
+                            break;
+                        case LATIN_N:
+                            switch (getTargetOS()) {
+                                case OS_MAC:
+                                    SEND_LATIN_MAC(SS_LALT("n")"n");
+                                    break;
+                                case OS_NIX:
+                                    SEND_LATIN_NIX(SS_TAP(X_F)SS_TAP(X_1));
+                                    break;
+                                case OS_WIN:
+                                    break;
+                            }
+                            break;
+                        case LATIN_IEXC:
+                            switch (getTargetOS()) {
+                                case OS_MAC:
+                                    SEND_LATIN_MAC(SS_LALT("1"));
+                                    break;
+                                case OS_NIX:
+                                    SEND_LATIN_NIX(SS_TAP(X_A)SS_TAP(X_1));
+                                    break;
+                                case OS_WIN:
+                                    break;
+                            }
+                            break;
+                        case LATIN_IQS:
+                            switch (getTargetOS()) {
+                                case OS_MAC:
+                                    SEND_LATIN_MAC(SS_LALT("?"));
+                                    break;
+                                case OS_NIX:
+                                    SEND_LATIN_NIX(SS_TAP(X_B)SS_TAP(X_F));
+                                    break;
+                                case OS_WIN:
+                                    break;
+                            }
+                            break;
                     }
                 } else {
                     switch (keycode) {
