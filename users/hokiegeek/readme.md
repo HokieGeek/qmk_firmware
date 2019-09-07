@@ -16,7 +16,7 @@ Spanish accents and special symbols are supported with the following keycodes:
 | `LATIN_IEXC` | ¡ |
 | `LATIN_IQS`  | ¿ |
 
-The symbols will be entered as linux unicode values unless you set the `ACCENTS_MAC` define which will perform a MacOS key combo to get the symbols.
+The symbols will be entered as linux unicode values unless you set `setTargetOS(OS_MAC)` which will perform a MacOS key combo to get the symbols.
 
 ### TMUX
 The default prefix is set as `X_A` but can be overridden by setting the alternate value as the `TMUX_PREFIX` define.

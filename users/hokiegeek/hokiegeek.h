@@ -115,6 +115,15 @@ enum {
     TD_SAFE_RANGE
 };
 
+
+enum {
+    OS_NIX = 0,
+    OS_MAC,
+    OS_WIN
+};
+void setTargetOS(uint16_t os);
+uint16_t getTargetOS(void);
+
 #ifdef TAP_DANCE_ENABLE
 void tap_gui_shift_enter_td(td_stage);
 void tap_ctltab_td(td_stage);

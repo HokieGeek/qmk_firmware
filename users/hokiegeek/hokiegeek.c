@@ -1,6 +1,14 @@
 #include <mousekey.h>
 #include "hokiegeek.h"
 
+uint16_t TARGET_OS = OS_NIX;
+void setTargetOS(uint16_t os) {
+    TARGET_OS = os;
+}
+uint16_t getTargetOS() {
+    return TARGET_OS;
+}
+
 #ifdef TAP_DANCE_ENABLE
 void tap_gui_shift_enter_td(td_stage stage) {
     uint8_t mods[] = {2, KC_LGUI, KC_LSHIFT};
@@ -61,6 +69,26 @@ bool userspace_process_record_user(uint16_t keycode, keyrecord_t *record) {
         case ASCII_SHRUG:
             if (record->event.pressed) {
                 SEND_STRING("¯\\_(ツ)_/¯");
+            }
+            return false;
+            break;
+
+        // OS
+        case KC_OS_NIX:
+            if (record->event.pressed) {
+                setTargetOS(OS_NIX);
+            }
+            return false;
+            break;
+        case KC_OS_MAC:
+            if (record->event.pressed) {
+                setTargetOS(OS_MAC);
+            }
+            return false;
+            break;
+        case KC_OS_WIN:
+            if (record->event.pressed) {
+                setTargetOS(OS_WIN);
             }
             return false;
             break;
