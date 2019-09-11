@@ -338,6 +338,7 @@ qk_tap_dance_action_t tap_dance_actions[] = {
 #endif
     TD_TMUX_ENTRY,
     TD_SHIFT_LATIN,
+    TD_TERM_VSCODE_ENTRY,
     [td_mac_notif] = ACTION_TAP_DANCE_DOUBLE_FUNCS(td_notifs, td_no_notif),
     [td_ctltab_shorts] = ACTION_TAP_DANCE_TAP_HOLD(tap_ctltab_td, shorts_layer_on_hold)
 };

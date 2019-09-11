@@ -17,6 +17,11 @@ bool vscode_process_record_user(uint16_t keycode, keyrecord_t *record) {
         case VSC_PROBS:
             if (record->event.pressed) {
                 switch (getTargetOS()) {
+                    case OS_MAC: {
+                        uint8_t mods[] = {2, KC_LGUI, KC_LSHIFT};
+                        tap_mods_key(mods, KC_M);
+                    }
+                    break;
                     case OS_NIX: {
                         uint8_t mods[] = {2, KC_LCTRL, KC_LSHIFT};
                         tap_mods_key(mods, KC_M);
@@ -28,6 +33,11 @@ bool vscode_process_record_user(uint16_t keycode, keyrecord_t *record) {
         case VSC_SCM:
             if (record->event.pressed) {
                 switch (getTargetOS()) {
+                    case OS_MAC: {
+                        uint8_t mods[] = {2, KC_LCTRL, KC_LSHIFT};
+                        tap_mods_key(mods, KC_G);
+                    }
+                    break;
                     case OS_NIX: {
                         uint8_t mods[] = {2, KC_LCTRL, KC_LSHIFT};
                         tap_mods_key(mods, KC_G);
@@ -40,6 +50,11 @@ bool vscode_process_record_user(uint16_t keycode, keyrecord_t *record) {
         case VSC_FIND:
             if (record->event.pressed) {
                 switch (getTargetOS()) {
+                    case OS_MAC: {
+                        uint8_t mods[] = {2, KC_LGUI, KC_LSHIFT};
+                        tap_mods_key(mods, KC_F);
+                    }
+                    break;
                     case OS_NIX: {
                         uint8_t mods[] = {2, KC_LCTRL, KC_LSHIFT};
                         tap_mods_key(mods, KC_F);
@@ -51,16 +66,21 @@ bool vscode_process_record_user(uint16_t keycode, keyrecord_t *record) {
         case VSC_TERM:
             if (record->event.pressed) {
                 switch (getTargetOS()) {
-                    case OS_NIX: {
+                    case OS_MAC:
                         tap_mod_key(KC_LCTRL, KC_GRAVE);
-                    }
-                    break;
+                        break;
+                    case OS_NIX:
+                        tap_mod_key(KC_LCTRL, KC_GRAVE);
+                        break;
                 }
             }
             return false;
         case VSC_PKDEFS:
             if (record->event.pressed) {
                 switch (getTargetOS()) {
+                    case OS_MAC:
+                        tap_mod_key(KC_LALT, KC_F12);
+                        break;
                     case OS_NIX: {
                         uint8_t mods[] = {2, KC_LCTRL, KC_LSHIFT};
                         tap_mods_key(mods, KC_F10);
@@ -72,6 +92,7 @@ bool vscode_process_record_user(uint16_t keycode, keyrecord_t *record) {
         case VSC_PKSYMS:
             if (record->event.pressed) {
                 switch (getTargetOS()) {
+                    case OS_MAC:
                     case OS_NIX:
                         tap_mod_key(KC_LSHIFT, KC_F12);
                         break;
@@ -81,6 +102,11 @@ bool vscode_process_record_user(uint16_t keycode, keyrecord_t *record) {
         case VSC_G2SYM:
             if (record->event.pressed) {
                 switch (getTargetOS()) {
+                    case OS_MAC: {
+                        uint8_t mods[] = {2, KC_LSHIFT, KC_LGUI};
+                        tap_mods_key(mods, KC_O);
+                    }
+                    break;
                     case OS_NIX: {
                         uint8_t mods[] = {2, KC_LCTRL, KC_LSHIFT};
                         tap_mods_key(mods, KC_O);
@@ -92,6 +118,7 @@ bool vscode_process_record_user(uint16_t keycode, keyrecord_t *record) {
         case VSC_RENAME:
             if (record->event.pressed) {
                 switch (getTargetOS()) {
+                    case OS_MAC:
                     case OS_NIX:
                         tap_key(KC_F2);
                         break;
@@ -101,6 +128,9 @@ bool vscode_process_record_user(uint16_t keycode, keyrecord_t *record) {
         case VSC_PALETT:
             if (record->event.pressed) {
                 switch (getTargetOS()) {
+                    case OS_MAC:
+                        tap_mod_key(KC_LGUI, KC_P);
+                        break;
                     case OS_NIX:
                         tap_mod_key(KC_LCTRL, KC_P);
                         break;
@@ -110,6 +140,11 @@ bool vscode_process_record_user(uint16_t keycode, keyrecord_t *record) {
         case VSC_XPLORE:
             if (record->event.pressed) {
                 switch (getTargetOS()) {
+                    case OS_MAC: {
+                        uint8_t mods[] = {2, KC_LGUI, KC_LSHIFT};
+                        tap_mods_key(mods, KC_E);
+                    }
+                    break;
                     case OS_NIX: {
                         uint8_t mods[] = {2, KC_LCTRL, KC_LSHIFT};
                         tap_mods_key(mods, KC_E);
@@ -121,10 +156,12 @@ bool vscode_process_record_user(uint16_t keycode, keyrecord_t *record) {
         case VSC_ED_1:
             if (record->event.pressed) {
                 switch (getTargetOS()) {
-                    case OS_NIX: {
+                    case OS_MAC:
+                        tap_mod_key(KC_LGUI, KC_1);
+                        break;
+                    case OS_NIX:
                         tap_mod_key(KC_LCTRL, KC_1);
-                    }
-                    break;
+                        break;
                 }
             }
             return false;
