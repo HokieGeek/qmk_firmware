@@ -220,11 +220,6 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
 };
 
-// #ifdef SWAP_HANDS_ENABLE
-// Each half duplicates the other half
-// const keypos_t hand_swap_config[MATRIX_ROWS][MATRIX_COLS] = SWAP_HANDS_ORTHO_5X12_SPLIT;
-// #endif
-
 #if defined(TAP_DANCE_ENABLE) && defined(ENCODER_ENABLE)
 void encoder_td_actions (qk_tap_dance_state_t *state, void *user_data) {
     if (state->count == 1) {
