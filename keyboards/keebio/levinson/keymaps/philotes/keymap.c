@@ -29,7 +29,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  * |------+------+------+------+------+------|     |------+------+------+------+------+------|
  * |SftLat|   Z  |   X  |   C  |   V  |   B  |     |   N  |   M  |   ,  |   .  |   /  |ShEnt |
  * |------+------+------+------+------+------|     |------+------+------+------+------+------|
- * | Lower|VSCODE|      |      | GUI  |AltSpc|     |CtlTb | TMUX | ENC  | TERM | MACR |Raise |
+ * | Lower|      |      |      | GUI  |AltSpc|     |CtlTb | TMUX | ENC  |VSCTRM| SKDM |Raise |
  * `------------------------------------------     ------------------------------------------'
  */
 [_QWERTY] = LAYOUT_wrapper( \
@@ -47,7 +47,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  * |------+------+------+------+------+------|     |------+------+------+------+------+------|
  * |SftLat|   Z  |   X  |   C  |   V  |   B  |     |   K  |   M  |   ,  |   .  |   /  |ShEnt |
  * |------+------+------+------+------+------|     |------+------+------+------+------+------|
- * | Lower|VSCODE|      |      | GUI  |AltSpc|     |CtlTb | TMUX | ENC  | TERM | MACR |Raise |
+ * | Lower|      |      |      | GUI  |AltSpc|     |CtlTb | TMUX | ENC  |VSCTRM| SKDM |Raise |
  * `------------------------------------------     ------------------------------------------'
  */
 [_COLEMAK] = LAYOUT_wrapper( \
