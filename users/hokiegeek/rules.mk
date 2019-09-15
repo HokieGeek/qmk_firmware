@@ -3,13 +3,8 @@ EXTRAFLAGS += -flto
 SRC += hokiegeek.c taps.c latin.c vscode.c
 
 ## Enable options common to all of my boards
-ifndef BOOTLOADER
-	BOOTLOADER = qmk-dfu
-endif
-
-ifndef SPLIT_KEYBOARD
-	SPLIT_KEYBOARD = yes
-endif
+BOOTLOADER = qmk-dfu
+SPLIT_KEYBOARD = yes
 
 ifndef MOUSEKEY_ENABLE
 	MOUSEKEY_ENABLE = yes
