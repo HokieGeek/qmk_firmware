@@ -1,6 +1,8 @@
 #ifndef USERSPACE_CONFIG_H
 #define USERSPACE_CONFIG_H
 
+#define NO_ACTION_ONESHOT
+
 #if !defined(USE_SERIAL) && !defined(USE_I2C)
 #define USE_SERIAL
 #endif // !USE_SERIAL && !USE_I2C
@@ -19,7 +21,7 @@
 #define TAPPING_TOGGLE 3
 
 #if !defined(MASTER_LEFT) && !defined(MASTER_RIGHT) && !defined(EE_HANDS)
-#define MASTER_LEFT
+#define EE_HANDS
 #endif
 
 #endif
