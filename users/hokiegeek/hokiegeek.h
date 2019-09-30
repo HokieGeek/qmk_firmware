@@ -51,7 +51,7 @@
 #define TD_TERM_VSCODE_ENTRY [td_terminal_vscode] = ACTION_TAP_DANCE_TAP_HOLD(tap_gui_shift_enter_td, vscode_layer_on_hold)
 
 #define __BASE_LCR1__ KC_TRNS
-#define __BASE_LCR2__ LT(_ADJUST, KC_ESC)
+#define __BASE_LCR2__ KC_ESC
 #define __BASE_LCR3__ LCTL_T(KC_TAB)
 #define __BASE_LCR4__ SFT_LAT
 
