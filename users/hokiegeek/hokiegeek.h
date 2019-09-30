@@ -17,12 +17,18 @@
 #define KC_SKDM1 KC_NO
 #define KC_SKDM2 KC_NO
 #endif
+
 #ifdef ENCODER_ENABLE
 #include "hgencoder.h"
 #else
 #define KC_ENC KC_NO
 #endif
 
+#ifdef COMBO_ENABLE
+#include "combos.h"
+#endif
+
+#include "os.h"
 #include "vscode.h"
 #include "latin.h"
 #include "taps.h"
@@ -114,15 +120,6 @@ enum {
 #endif
     TD_SAFE_RANGE
 };
-
-
-enum {
-    OS_NIX = 0,
-    OS_MAC,
-    OS_WIN
-};
-void setTargetOS(uint16_t os);
-uint16_t getTargetOS(void);
 
 #ifdef TAP_DANCE_ENABLE
 void tap_gui_shift_enter_td(td_stage);
