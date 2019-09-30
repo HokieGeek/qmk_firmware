@@ -3,7 +3,7 @@
 
 extern keymap_config_t keymap_config;
 
-#define _SHORTS 5
+#define _EXTRAS 5
 #define _YABAI 6
 // #define _CAMTASIA 7
 
@@ -19,15 +19,15 @@ enum custom_keycodes {
 #ifdef TAP_DANCE_ENABLE
 enum {
     td_mac_notif = TD_SAFE_RANGE,
-    td_ctltab_shorts,
+    td_ctltab_extras,
     td_bscp_yabai
 };
 #define MAC_NOTIFS TD(td_mac_notif)
-#define CTLTAB_SHORTS TD(td_ctltab_shorts)
+#define CTLTAB_EXTRAS TD(td_ctltab_extras)
 #define TERM_VSCODE TD(td_terminal_vscode)
 #else
 #define MAC_NOTIFS G(S(KC_GRAVE))
-#define CTLTAB_SHORTS LCTL(KC_TAB)
+#define CTLTAB_EXTRAS LCTL(KC_TAB)
 #define TERM_VSCODE G(S(KC_ENT))
 #endif
 #define BSCP_YABAI LT(_YABAI, KC_BSPC)
@@ -44,7 +44,7 @@ enum {
 /*
 #define _____BASE_TOP_____     _______, MEH(KC_F14), _______, _______, _______, _______,   _______, _______, _______, MEH(KC_F19), MEH(KC_F20), _______
 */
-#define _____BASE_BOTTOM_____  MO(_LOWER),                KC_ENC,  GUIBSPC, LALT_T(KC_SPC),          CTLTAB_SHORTS,  KC_TMUX, _______,                   MO(_RAISE)
+#define _____BASE_BOTTOM_____  MO(_LOWER),                KC_ENC,  GUIBSPC, LALT_T(KC_SPC),          CTLTAB_EXTRAS,  KC_TMUX, _______,                   MO(_RAISE)
 #define _____BASE_THUMBS_____  KC_F13,  MO(_YABAI),               TERM_VSCODE, MEH(KC_P1)
 
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
@@ -133,23 +133,23 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
                                  HYPR(KC_F13), HYPR(KC_F15),    MEH(KC_P2), _______
 ),
 
-/* shortcuts
+/* extras
  * ,-----------------------------------------.     ,-----------------------------------------.
- * |      |      |      |      |      |      |     |      |      |      |      |      |      |
+ * |      |      |  7   |  8   |  9   |      |     |      |      |      |      |      |      |
  * |------+------+------+------+------+------|     |------+------+------+------+------+------|
- * |      |      |      |      |      |      |     |SSHRUG|SGIPHY|SRCTMB|SRCTHS|SRCTHI|SREACT|
+ * |      |      |  4   |  5   |  6   |      |     |SSHRUG|SGIPHY|SRCTMB|SRCTHS|SRCTHI|SREACT|
  * |------+------+------+------+------+------|     |------+------+------+------+------+------|
- * |      |      |      |      |      |      |     |      |      |      |      |      |      |
+ * |      |      |  1   |  2   |  3   |  0   |     |      |      |      |      |      |      |
  * |------+-------------+------+------+------|     |------+------+--------------------+------|
  * |      |             |      |      |      |     |      |      |                    |      |
  * `------'             `------+------+------|     |------+------|                    `------'
  *                             |      |      |     |      |      |
  *                             `-------------'     `-------------'
  */
-[_SHORTS] = LAYOUT_wrapper(
-  _______, _______, _______, _______, _______, _______,     _______,     _______,     _______,     _______,     _______,     _______, \
-  _______, _______, _______, _______, _______, _______,     SLACK_SHRUG, SLACK_GIPHY, SLACK_RCTMB, SLACK_RCTHS, SLACK_RCHI5, SLACK_REACT, \
-  _______, _______, _______, _______, _______, _______,     _______,     _______,     _______,     _______,     _______,     _______, \
+[_EXTRAS] = LAYOUT_wrapper(
+  _______, _______, KC_7,    KC_8,    KC_9,    _______,     _______,     _______,     _______,     _______,     _______,     _______, \
+  _______, _______, KC_4,    KC_5,    KC_6,    _______,     SLACK_SHRUG, SLACK_GIPHY, SLACK_RCTMB, SLACK_RCTHS, SLACK_RCHI5, SLACK_REACT, \
+  _______, _______, KC_1,    KC_2,    KC_3,    KC_0,        _______,     _______,     _______,     _______,     _______,     _______, \
   _______,                   _______, _______, _______,     _______,     _______,     _______,                               _______, \
                                       _______, _______,     _______,     _______
 ),
@@ -325,10 +325,10 @@ void td_no_notif(td_stage stage) {
         SEND_STRING(SS_LGUI(SS_LSFT(SS_TAP(X_GRAVE))));
     }
 }
-void shorts_layer_on_hold(td_stage stage) {
+void extras_layer_on_hold(td_stage stage) {
     switch (stage) {
-        case TD_FINISHED: layer_on(_SHORTS); break;
-        case TD_RESET: layer_off(_SHORTS); break;
+        case TD_FINISHED: layer_on(_EXTRAS); break;
+        case TD_RESET: layer_off(_EXTRAS); break;
         default: break;
     }
 }
@@ -341,7 +341,7 @@ qk_tap_dance_action_t tap_dance_actions[] = {
     TD_SHIFT_LATIN,
     TD_TERM_VSCODE_ENTRY,
     [td_mac_notif] = ACTION_TAP_DANCE_DOUBLE_FUNCS(td_notifs, td_no_notif),
-    [td_ctltab_shorts] = ACTION_TAP_DANCE_TAP_HOLD(tap_ctltab_td, shorts_layer_on_hold)
+    [td_ctltab_extras] = ACTION_TAP_DANCE_TAP_HOLD(tap_ctltab_td, extras_layer_on_hold)
 };
 #endif
 
