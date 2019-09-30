@@ -262,21 +262,21 @@ void encoder_update_user(uint8_t index, bool clockwise) {
             }
             */
         } else if (IS_LAYER_ON(_LOWER)) {
-            /*
             if (enc_opts.monBrightness) {
                 if (clockwise) {
-                    tap_key(KC_FIND);
+                    tap_key(KC_BRMU);
                 } else {
-                    tap_key(KC_HELP);
+                    tap_key(KC_BRMD);
                 }
+            /*
             } else {
                 if (clockwise) {
                     tap_key(KC_UNDO);
                 } else {
                     tap_key(KC_STOP);
                 }
-            }
             */
+            }
         } else if (IS_LAYER_ON(_RAISE)) {
             if (clockwise) {
                 tap_mod_key(KC_LCTL, KC_KP_PLUS);
