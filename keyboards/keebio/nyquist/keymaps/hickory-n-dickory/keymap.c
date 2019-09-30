@@ -49,9 +49,9 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  * |------+------+------+------+------+-------     -------+------+------+------+------+------|
  * |Ctl/Tb|   A  |   S  |   D  |   F  |   G  |     |   H  |   J  |   K  |   L  |   ;  |  '   |
  * |------+------+------+------+------+------|     |------+------+------+------+------+------|
- * |Sftlat|   Z  |   X  |   C  |   V  |   B  |     |   N  |   M  |   ,  |   .  |   /  |ShEnt |
+ * |SftLat|   Z  |   X  |   C  |   V  |   B  |     |   N  |   M  |   ,  |   .  |   /  |ShEnt |
  * |------+------+------+------+------+------+     +------+------+------+------+------+------|
- * | Lower|VSCODE| ENC  |      | GUI  |AltSpc|     |CtlTb | TMUX |      |      | MACR |Raise |
+ * | Lower|      | ENC  |YABAI |SpcGUI|AltSpc|     |CtlTb | TMUX |      |TRMVSC| MACR |Raise |
  * `------------------------------------------     ------------------------------------------'
  */
 [_QWERTY] = LAYOUT_wrapper( \
@@ -70,9 +70,9 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  * |------+------+------+------+------+-------     -------+------+------+------+------+------|
  * |Ctl/Tb|   A  |   R  |   S  |   T  |   D  |     |   H  |   N  |   E  |   I  |   O  |  '   |
  * |------+------+------+------+------+------|     |------+------+------+------+------+------|
- * |Sftlat|   Z  |   X  |   C  |   V  |   B  |     |   K  |   M  |   ,  |   .  |   /  |ShEnt |
+ * |SftLat|   Z  |   X  |   C  |   V  |   B  |     |   K  |   M  |   ,  |   .  |   /  |ShEnt |
  * |------+------+------+------+------+------+     +------+------+------+------+------+------|
- * | Lower|VSCODE| ENC  |      | GUI  |AltSpc|     |CtlTb | TMUX |      |      | MACR |Raise |
+ * | Lower|      | ENC  |YABAI |SpcGUI|AltSpc|     |CtlTb | TMUX |      |TRMVSC| MACR |Raise |
  * `------------------------------------------     ------------------------------------------'
  */
 [_COLEMAK] = LAYOUT_wrapper( \
