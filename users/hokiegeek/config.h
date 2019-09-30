@@ -25,4 +25,6 @@
 #define EE_HANDS
 #endif
 
+#define COMBO_COUNT 38
+
 #endif
