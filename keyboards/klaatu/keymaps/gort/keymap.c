@@ -42,10 +42,10 @@ enum {
 #define __BASE_RCR2__ MAC_NOTIFS
 
 /*
-#define _____BASE_TOP_____     KC_F13, MEH(KC_F14), _______, _______, _______, _______,   MEH(KC_F16), MEH(KC_F17), MEH(KC_F18), MEH(KC_F19), MEH(KC_F20), MAC_NOTIFS
+#define _____BASE_TOP_____     _______, MEH(KC_F14), _______, _______, _______, _______,   _______, _______, _______, MEH(KC_F19), MEH(KC_F20), _______
 */
 #define _____BASE_BOTTOM_____  MO(_LOWER),                KC_ENC,  GUIBSPC, LALT_T(KC_SPC),          CTLTAB_SHORTS,  KC_TMUX, _______,                   MO(_RAISE)
-#define _____BASE_THUMBS_____  KC_F13,  MO(_YABAI),               MEH(KC_F16),TERM_VSCODE
+#define _____BASE_THUMBS_____  KC_F13,  MO(_YABAI),               TERM_VSCODE, MEH(KC_P1)
 
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
@@ -101,15 +101,15 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  * |------+-------------+------+------+------|     |------+------+--------------------+------|
  * |      |             |      |      |      |     |      |      |                    |      |
  * `------'             `------+------+------|     |------+------|                    `------'
- *                             |      |      |     |      |      |
+ *                             |      |YABSTR|     |      |      |
  *                             `-------------'     `-------------'
  */
 [_LOWER] = LAYOUT_wrapper(
   KC_TILD,                                      ______SYMBOLS______,                                         KC_EQL, \
-  KC_CAPS, _______, _______, _______, _______, _______,         KC_HOME, KC_PGDN, KC_PGUP, KC_END,  KC_MINS, KC_PIPE, \
-  _______, _______, _______, _______, _______, _______,         _______, KC_LCBR, KC_RCBR, KC_LBRC, KC_RBRC, _______, \
-  _______,                   _______, _______, _______,         _______, _______, _______,                   _______, \
-                                  MEH(KC_F13), _______,         _______, _______
+  KC_CAPS, _______, _______, _______, _______, _______,         KC_HOME,     KC_PGDN, KC_PGUP, KC_END,  KC_MINS, KC_PIPE, \
+  _______, _______, _______, _______, _______, _______,         _______,     KC_LCBR, KC_RCBR, KC_LBRC, KC_RBRC, _______, \
+  _______,                   _______, _______, _______,         _______,     _______, _______,                   _______, \
+                                  MEH(KC_F13), MEH(KC_F15),     MEH(KC_P3), _______
 ),
 
 /* Raise
@@ -122,15 +122,15 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  * |------+-------------+------+------+------|     |------+------+--------------------+------|
  * |      |             |      |      |      |     |CSTAB | TX_P |                    |      |
  * `------'             `------+------+------|     |------+------|                    `------'
- *                             |      |      |     |      |      |
+ *                             |      |YABSTP|     |      |      |
  *                             `-------------'     `-------------'
  */
 [_RAISE] = LAYOUT_wrapper(
   KC_GRAVE,                                     ______NUMBERS______,                                              KC_PLUS, \
-  _______, _______, _______, _______, _______, _______,         KC_LEFT, KC_DOWN,   KC_UP,    KC_RGHT,  KC_UNDS,  KC_BSLS, \
-  KC_F1,   KC_F2,   KC_F3,   KC_F4,   KC_F5,   KC_F6,           KC_F7,   KC_F8,     KC_F9,    KC_F10,   KC_F11,   KC_F12, \
-  _______,                   _______, _______, _______,         CSTAB,   TMUX_PREV, _______,                      _______, \
-                                 HYPR(KC_F13), _______,         _______, _______
+  _______, _______, _______, _______, _______, _______,         KC_LEFT,     KC_DOWN,   KC_UP,    KC_RGHT,  KC_UNDS,  KC_BSLS, \
+  KC_F1,   KC_F2,   KC_F3,   KC_F4,   KC_F5,   KC_F6,           KC_F7,       KC_F8,     KC_F9,    KC_F10,   KC_F11,   KC_F12, \
+  _______,                   _______, _______, _______,         CSTAB,       TMUX_PREV, _______,                      _______, \
+                                 HYPR(KC_F13), HYPR(KC_F15),    MEH(KC_P2), _______
 ),
 
 /* shortcuts
@@ -164,7 +164,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  * |------+-------------+------+------+------|     |------+------+--------------------+------|
  * |      |             |      |      |      |     |      |      |                    |      |
  * `------'             `------+------+------|     |------+------|                    `------'
- *                             |      |      |     |START | STOP |
+ *                             |      |      |     |      |      |
  *                             `-------------'     `-------------'
  */
 [_YABAI] = LAYOUT_wrapper(
@@ -172,7 +172,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   MEH(KC_TAB), _______,    _______,    _______,    LGUI(KC_SPC), _______,          _______,     _______,     _______,    _______,    _______,    _______, \
   _______,     _______,    _______,    _______,    MEH(KC_V),    _______,          _______,     _______,     _______,    _______,    _______,    _______, \
   _______,                             _______,    _______,      LCAG(KC_SPC),     _______,     _______,     _______,                            _______, \
-                                                   _______,      _______,          MEH(KC_F15), HYPR(KC_F15)
+                                                   _______,      _______,          _______,     _______
 ),
 
 /* camtasia
