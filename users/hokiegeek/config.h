@@ -21,6 +21,7 @@
 #define TAPPING_TOGGLE 3
 
 #if !defined(MASTER_LEFT) && !defined(MASTER_RIGHT) && !defined(EE_HANDS)
+#undef MASTER_LEFT
 #define EE_HANDS
 #endif
 
