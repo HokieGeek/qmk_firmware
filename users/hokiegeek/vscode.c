@@ -1,6 +1,6 @@
 #include "vscode.h"
 
-#include "hokiegeek.h"
+#include "os.h"
 #include "keycodes.h"
 #include "taps.h"
 

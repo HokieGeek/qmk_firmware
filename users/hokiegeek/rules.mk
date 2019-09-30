@@ -1,6 +1,6 @@
 EXTRAFLAGS += -flto
 
-SRC += hokiegeek.c taps.c latin.c vscode.c
+SRC += hokiegeek.c os.c taps.c latin.c vscode.c
 
 ## Enable options common to all of my boards
 BOOTLOADER = qmk-dfu
@@ -22,6 +22,12 @@ ifndef ENCODER_ENABLE
 endif
 ifeq ($(strip $(ENCODER_ENABLE)), yes)
 	SRC += hgencoder.c
+endif
+ifndef COMBO_ENABLE
+	COMBO_ENABLE = no
+endif
+ifeq ($(strip $(COMBO_ENABLE)), yes)
+	SRC += combos.c
 endif
 
 ## Disable all the things I usually want off

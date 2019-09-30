@@ -1,6 +1,6 @@
 #include "latin.h"
 #include "taps.h"
-#include "hokiegeek.h"
+#include "os.h"
 
 bool useLatinChar = false;
 
