@@ -32,11 +32,11 @@ enum {
 
 #define SEND_APP_FRONT(app)   SEND_DELAYED(50, SS_LGUI(SS_TAP(X_SPACE)) app SS_TAP(X_ENTER))
 #define SEND_SLACK_SLASH(str) SEND_DELAYED(50, SS_TAP(X_SLASH) str SS_TAP(X_TAB))
-#define SEND_SLACK_REACT(str) SEND_DELAYED(30, SS_LGUI(SS_LSFT(SS_TAP(X_BSLASH))) str SS_TAP(X_ENTER))
+#define SEND_SLACK_REACT(str) SEND_DELAYED(40, SS_LGUI(SS_LSFT(SS_TAP(X_BSLASH))) str SS_TAP(X_ENTER))
 #define SEND_SLACK_GOTO(str)  SEND_DELAYED(50, SS_LGUI(SS_TAP(X_K)) str SS_TAP(X_ENTER))
 
 #define _____BASE_TOP_____     KC_F13, MEH(KC_F14), _______, _______, _______, _______,   MEH(KC_F16), MEH(KC_F17), MEH(KC_F18), MEH(KC_F19), MEH(KC_F20), MAC_NOTIFS
-#define _____BASE_BOTTOM_____  MO(_LOWER),  _______, KC_ENC,   MO(_YABAI),  GUIBSPC,  LALT_T(KC_SPC),       CTLTAB_EXTRAS,  KC_TMUX,  _______,  TERM_VSCODE,   KC_SKDM1,  TT(_RAISE)
+#define _____BASE_BOTTOM_____  MO(_LOWER),  _______, KC_ENC,   MO(_YABAI),  GUIBSPC,  LALT_T(KC_SPC),       CTLTAB_EXTRAS,  KC_TMUX,  _______,  _______,   KC_SKDM1,  TT(_RAISE)
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
 /* Qwerty
@@ -99,7 +99,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   KC_TILD,                                                  ______SYMBOLS______,                                            _______, \
   KC_CAPS,      _______,  KC_LBRC,  KC_LPRN,      KC_LCBR,  _______,      KC_HOME,  KC_PGDN,  KC_PGUP,  KC_END,   KC_MINS,  KC_PIPE, \
   _______,      _______,  _______,  _______,      _______,  _______,      _______,  _______,  _______,  _______,  _______,  _______, \
-  _______,      _______,  _______,  MEH(KC_F13),  _______,  _______,      _______,  _______,  _______,  _______,  _______,  _______ \
+  _______,      _______,  _______,  MEH(KC_F15),  _______,  _______,      _______,  _______,  _______,  _______,  _______,  _______ \
 ),
 
 /* Raise
@@ -120,7 +120,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   KC_GRAVE,                                                   ______NUMBERS______,                                              _______, \
   _______,       _______,  KC_RBRC,  KC_RPRN,       KC_RCBR,  _______,      KC_LEFT,  KC_DOWN,    KC_UP,    KC_RGHT,  KC_UNDS,  KC_BSLS, \
   KC_F1,         KC_F2,    KC_F3,    KC_F4,         KC_F5,    KC_F6,        KC_F7,    KC_F8,      KC_F9,    KC_F10,   KC_F11,   KC_F12, \
-  _______,       _______,  _______,  HYPR(KC_F13),  _______,  _______,      CSTAB,    TMUX_PREV,  _______,  _______,  _______,  _______ \
+  _______,       _______,  _______,  HYPR(KC_F15),  _______,  _______,      CSTAB,    TMUX_PREV,  _______,  _______,  _______,  _______ \
 ),
 
 /* extras
