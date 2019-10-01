@@ -70,7 +70,7 @@
  * |   !  |   @  |   #  |   $  |   %  |   ^  |   &  |   *  |   (  |   )  |
  */
 #define ______NUMBERS______  LATIN_IEXC,  KC_2,  KC_3,  KC_4,  KC_5,  KC_6,  KC_7,  KC_8,    KC_9,    KC_0
-#define ______SYMBOLS______  KC_EXLM, KC_AT,   KC_HASH, KC_DLR,  KC_PERC, KC_CIRC, KC_AMPR,  KC_ASTR,    KC_LPRN, KC_RPRN
+#define ______SYMBOLS______  KC_EXLM, KC_AT,   KC_HASH, KC_DLR,  KC_PERC, KC_CIRC, KC_AMPR,  KC_ASTR, KC_PLUS, KC_EQL
 
 /*
  * |   Q  |   W  |   E  |   R  |   T  |   Y  |   U  |   I  |   O  |   P  |
