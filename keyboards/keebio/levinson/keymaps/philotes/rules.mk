@@ -2,3 +2,4 @@ USER_NAME := hokiegeek
 
 BACKLIGHT_ENABLE = yes
 RGBLIGHT_ENABLE = yes
+COMBO_ENABLE = yes
