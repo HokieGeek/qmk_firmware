@@ -80,7 +80,7 @@
  * |   Z  |   X  |   C  |   V  |   B  |   N  |   M  |   ,  |   .  |   /  |
  */
 #define _____QWERTY_R1_____  KC_Q,  KC_W,  LATIN_E,  KC_R,  KC_T,  KC_Y,  LATIN_U,  LATIN_I,    LATIN_O,    KC_P
-#define _____QWERTY_R2_____  LATIN_A,  KC_S,  KC_D,  KC_F,  KC_G,  KC_H,  KC_J,  KC_K,    KC_L,    KC_SCLN,  KC_QUOT
+#define _____QWERTY_R2_____  LATIN_A,  KC_S,  KC_D,  KC_F,  LT(_VSCODE, KC_G),  KC_H,  KC_J,  KC_K,    KC_L,    KC_SCLN,  KC_QUOT
 #define _____QWERTY_R3_____  KC_Z,  KC_X,  KC_C,  KC_V,  KC_B,  LATIN_N,  KC_M,  KC_COMM, KC_DOT,  LATIN_IQS
 
 /*
@@ -91,7 +91,7 @@
  * |   Z  |   X  |   C  |   V  |   B  |   K  |   M  |   ,  |   .  |   /  |
  */
 #define _____COLEMAK_R1_____  KC_Q, KC_W,  KC_F,  KC_P,  KC_G,  KC_J,  KC_L,  LATIN_U,    KC_Y,    KC_SCLN
-#define _____COLEMAK_R2_____  LATIN_A, KC_R,  KC_S,  KC_T,  KC_D,  KC_H,  LATIN_N,  LATIN_E,    LATIN_I,    LATIN_O,    KC_QUOT
+#define _____COLEMAK_R2_____  LATIN_A, KC_R,  KC_S,  KC_T,  LT(_VSCODE, KC_D),  KC_H,  LATIN_N,  LATIN_E,    LATIN_I,    LATIN_O,    KC_QUOT
 #define _____COLEMAK_R3_____  KC_Z, KC_X,  KC_C,  KC_V,  KC_B,  KC_K,  KC_M,  KC_COMM, KC_DOT,  LATIN_IQS
 
 #ifdef SWAP_HANDS_ENABLE
