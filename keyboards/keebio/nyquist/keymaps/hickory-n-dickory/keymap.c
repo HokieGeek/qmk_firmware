@@ -30,7 +30,6 @@ enum {
 #define CTLTAB_EXTRAS LCTL(KC_TAB)
 #define TERM_VSCODE G(S(KC_ENT))
 #endif
-#define BSCP_YABAI LT(_YABAI, KC_BSPC)
 
 #define SEND_APP_FRONT(app)   SEND_DELAYED(50, SS_LGUI(SS_TAP(X_SPACE)) app SS_TAP(X_ENTER))
 #define SEND_SLACK_SLASH(str) SEND_DELAYED(50, SS_TAP(X_SLASH) str SS_TAP(X_TAB))
@@ -38,7 +37,7 @@ enum {
 #define SEND_SLACK_GOTO(str)  SEND_DELAYED(50, SS_LGUI(SS_TAP(X_K)) str SS_TAP(X_ENTER))
 
 #define _____BASE_TOP_____     KC_F13, MEH(KC_F14), _______, _______, _______, _______,   MEH(KC_F16), MEH(KC_F17), MEH(KC_F18), MEH(KC_F19), MEH(KC_F20), MAC_NOTIFS
-#define _____BASE_BOTTOM_____  MO(_LOWER),  _______, KC_ENC,  KC_LGUI,   BSCP_YABAI,  LALT_T(KC_SPC),       CTLTAB_EXTRAS,  KC_TMUX,  _______,  TERM_VSCODE,   KC_SKDM1,  TT(_RAISE)
+#define _____BASE_BOTTOM_____  MO(_LOWER),  _______, KC_ENC,   MO(_YABAI),  GUIBSPC,  LALT_T(KC_SPC),       CTLTAB_EXTRAS,  KC_TMUX,  _______,  TERM_VSCODE,   KC_SKDM1,  TT(_RAISE)
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
 /* Qwerty
