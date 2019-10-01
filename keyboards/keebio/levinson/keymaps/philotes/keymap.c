@@ -261,6 +261,51 @@ void matrix_init_user(void) {
     userspace_matrix_init_user();
 }
 
+combo_t key_combos[COMBO_COUNT] = {
+    COMBO_QA_1,
+    COMBO_WR_2,
+    COMBO_FS_3,
+    COMBO_PT_4,
+    COMBO_GD_5,
+    COMBO_JH_6,
+    COMBO_LN_7,
+    COMBO_UE_8,
+    COMBO_YI_9,
+    COMBO_SCLNO_0,
+
+    COMBO_AZ_EXLM,
+    COMBO_RX_AT,
+    COMBO_SC_HASH,
+    COMBO_TV_DLR,
+    COMBO_DB_PERC,
+    COMBO_HK_CIRC,
+    COMBO_NM_AMPR,
+    COMBO_ECOMM_ASTR,
+    COMBO_IDOT_LPRN,
+    COMBO_OSLSH_RPRN,
+
+    // Qwerty
+    COMBO_WS_2,
+    COMBO_ED_3,
+    COMBO_RF_4,
+    COMBO_TG_5,
+    COMBO_YH_6,
+    COMBO_UJ_7,
+    COMBO_IK_8,
+    COMBO_OL_9,
+    COMBO_PSCLN_0,
+
+    COMBO_SX_AT,
+    COMBO_DC_HASH,
+    COMBO_FV_DLR,
+    COMBO_GB_PERC,
+    COMBO_HN_CIRC,
+    COMBO_JM_AMPR,
+    COMBO_KCOMM_ASTR,
+    COMBO_LDOT_LPRN,
+    COMBO_SCLNSLSH_RPRN
+};
+
 layer_state_t layer_state_set_user(layer_state_t state) {
   return update_tri_layer_state(state, _LOWER, _RAISE, _ADJUST);
 }
