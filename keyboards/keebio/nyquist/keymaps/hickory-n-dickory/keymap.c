@@ -161,7 +161,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   MEH(KC_F15), HYPR(KC_F15), _______,    _______,    _______,       _______,            _______,    _______,    _______,    _______,    _______,    _______, \
   _______,     LGUI(KC_1),   LGUI(KC_2), LGUI(KC_3), LGUI(KC_4),    LGUI(KC_5),         LGUI(KC_6), LGUI(KC_7), LGUI(KC_8), LGUI(KC_9), LGUI(KC_0), _______, \
   MEH(KC_TAB), _______,      _______,    _______,    LGUI(KC_SPC),  _______,            MEH(KC_H),  S(C(KC_N)), S(C(KC_E)), MEH(KC_I),  _______,    _______, \
-  _______,     _______,      _______,    _______,    MEH(KC_V),     _______,            _______,    MEH(KC_M),  _______,    _______,    _______,    LGUI(KC_ENTER), \
+  _______,     LCA(KC_Z),    LCA(KC_X),  LCA(KC_C),  MEH(KC_V),     _______,            _______,    MEH(KC_M),  _______,    _______,    _______,    LGUI(KC_ENTER), \
   _______,     _______,      _______,    _______,    _______,       LCAG(KC_SPC),       _______,    _______,    _______,    _______,    _______,    _______  \
 ),
 
