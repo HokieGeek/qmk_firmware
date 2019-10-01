@@ -53,6 +53,7 @@
 #define LAYOUT_wrapper(...)  LAYOUT(__VA_ARGS__)
 
 #define CSTAB LCTL(LSFT(KC_TAB))
+#define GUIBSPC LGUI_T(KC_BSPC)
 #define ALTPSCR LALT(KC_PSCR)
 #define TD_TERM_VSCODE_ENTRY [td_terminal_vscode] = ACTION_TAP_DANCE_TAP_HOLD(tap_gui_shift_enter_td, vscode_layer_on_hold)
 
