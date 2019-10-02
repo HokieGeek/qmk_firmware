@@ -3,18 +3,19 @@
 ## Features
 
 ### Accents
-Spanish accents and special symbols are supported with the following keycodes:
+Spanish accents and special symbols are supported with a one-tap key called `KC_LATIN` or tap-dance combo with Shift using keycode `SFT_LAT`:
 
+Mapping of keycode with symbol
 | keycode | accent |
 |---|---|
-| `LATIN_E`    | é |
-| `LATIN_A`    | á |
-| `LATIN_I`    | í |
-| `LATIN_O`    | ó |
-| `LATIN_U`    | ú |
-| `LATIN_N`    | ň |
-| `LATIN_IEXC` | ¡ |
-| `LATIN_IQS`  | ¿ |
+| `KC_A`    | á |
+| `KC_E`    | é |
+| `KC_I`    | í |
+| `KC_O`    | ó |
+| `KC_U`    | ú |
+| `KC_N`    | ň |
+| `KC_Q`, `KC_1`, `KC_EXCLAIM`, `KC_EXLM` | ¡ |
+| `KC_SLASH`, `KC_SLSH`, `KC_QUESTION`, `KC_QUES` | ¿ |
 
 The symbols will be entered as linux unicode values unless you set `setTargetOS(OS_MAC)` which will perform a MacOS key combo to get the symbols.
 
