@@ -4,7 +4,6 @@
 
 enum {
     //// colemak
-    // numbers
     QA = 0,
     WR,
     FS,
@@ -16,7 +15,6 @@ enum {
     YI,
     SCLNO,
 
-    // symbols
     AZ,
     RX,
     SC,
@@ -28,8 +26,33 @@ enum {
     IDOT,
     OSLSH,
 
+    QW,
+    WF,
+    FP,
+    PG,
+    AS,
+    RS,
+    ST,
+    TD,
+    ZX,
+    XC,
+    CV,
+    VB,
+
+    JL,
+    LU,
+    UY,
+    YSCLN,
+    HN,
+    NE,
+    EI,
+    IO,
+    KM,
+    MCOMM,
+    COMMDOT,
+    DOTSLSH,
+
     //// qwerty
-    // numbers
     WS,
     ED,
     RF,
@@ -40,58 +63,59 @@ enum {
     OL,
     PSCLN,
 
-    // symbols
     SX,
     DC,
     FV,
     GB,
-    HN,
     JM,
     KCOMM,
     LDOT,
-    SCLNSLSH
+    SCLNSLSH,
+
+    PGTD
 };
 
-extern const uint16_t PROGMEM combos[][3];
+extern const uint16_t PROGMEM chords2[][3];
+extern const uint16_t PROGMEM chords4[][5];
 
-#define COMBO_QA_1    COMBO(combos[QA], KC_1)
-#define COMBO_WR_2    COMBO(combos[WR], KC_2)
-#define COMBO_FS_3    COMBO(combos[FS], KC_3)
-#define COMBO_PT_4    COMBO(combos[PT], KC_4)
-#define COMBO_GD_5    COMBO(combos[GD], KC_5)
-#define COMBO_JH_6    COMBO(combos[JH], KC_6)
-#define COMBO_LN_7    COMBO(combos[LN], KC_7)
-#define COMBO_UE_8    COMBO(combos[UE], KC_8)
-#define COMBO_YI_9    COMBO(combos[YI], KC_9)
-#define COMBO_SCLNO_0 COMBO(combos[SCLNO], KC_0)
+#define COMBO_QA_1    COMBO(chords2[QA], KC_1)
+#define COMBO_WR_2    COMBO(chords2[WR], KC_2)
+#define COMBO_FS_3    COMBO(chords2[FS], KC_3)
+#define COMBO_PT_4    COMBO(chords2[PT], KC_4)
+#define COMBO_GD_5    COMBO(chords2[GD], KC_5)
+#define COMBO_JH_6    COMBO(chords2[JH], KC_6)
+#define COMBO_LN_7    COMBO(chords2[LN], KC_7)
+#define COMBO_UE_8    COMBO(chords2[UE], KC_8)
+#define COMBO_YI_9    COMBO(chords2[YI], KC_9)
+#define COMBO_SCLNO_0 COMBO(chords2[SCLNO], KC_0)
 
-#define COMBO_AZ_EXLM    COMBO(combos[AZ], KC_EXLM)
-#define COMBO_RX_AT      COMBO(combos[RX], KC_AT)
-#define COMBO_SC_HASH    COMBO(combos[SC], KC_HASH)
-#define COMBO_TV_DLR     COMBO(combos[TV], KC_DLR)
-#define COMBO_DB_PERC    COMBO(combos[DB], KC_PERC)
-#define COMBO_HK_CIRC    COMBO(combos[HK], KC_CIRC)
-#define COMBO_NM_AMPR    COMBO(combos[NM], KC_AMPR)
-#define COMBO_ECOMM_ASTR COMBO(combos[ECOMM], KC_ASTR)
-#define COMBO_IDOT_LPRN  COMBO(combos[IDOT],  KC_LPRN)
-#define COMBO_OSLSH_RPRN COMBO(combos[OSLSH], KC_RPRN)
+#define COMBO_AZ_EXLM    COMBO(chords2[AZ], KC_EXLM)
+#define COMBO_RX_AT      COMBO(chords2[RX], KC_AT)
+#define COMBO_SC_HASH    COMBO(chords2[SC], KC_HASH)
+#define COMBO_TV_DLR     COMBO(chords2[TV], KC_DLR)
+#define COMBO_DB_PERC    COMBO(chords2[DB], KC_PERC)
+#define COMBO_HK_CIRC    COMBO(chords2[HK], KC_CIRC)
+#define COMBO_NM_AMPR    COMBO(chords2[NM], KC_AMPR)
+#define COMBO_ECOMM_ASTR COMBO(chords2[ECOMM], KC_ASTR)
+#define COMBO_IDOT_LPRN  COMBO(chords2[IDOT],  KC_LPRN)
+#define COMBO_OSLSH_RPRN COMBO(chords2[OSLSH], KC_RPRN)
 
-#define COMBO_WS_2    COMBO(combos[WS], KC_2)
-#define COMBO_ED_3    COMBO(combos[ED], KC_3)
-#define COMBO_RF_4    COMBO(combos[RF], KC_4)
-#define COMBO_TG_5    COMBO(combos[TG], KC_5)
-#define COMBO_YH_6    COMBO(combos[YH], KC_6)
-#define COMBO_UJ_7    COMBO(combos[UJ], KC_7)
-#define COMBO_IK_8    COMBO(combos[IK], KC_8)
-#define COMBO_OL_9    COMBO(combos[OL], KC_9)
-#define COMBO_PSCLN_0 COMBO(combos[PSCLN], KC_0)
+#define COMBO_WS_2    COMBO(chords2[WS], KC_2)
+#define COMBO_ED_3    COMBO(chords2[ED], KC_3)
+#define COMBO_RF_4    COMBO(chords2[RF], KC_4)
+#define COMBO_TG_5    COMBO(chords2[TG], KC_5)
+#define COMBO_YH_6    COMBO(chords2[YH], KC_6)
+#define COMBO_UJ_7    COMBO(chords2[UJ], KC_7)
+#define COMBO_IK_8    COMBO(chords2[IK], KC_8)
+#define COMBO_OL_9    COMBO(chords2[OL], KC_9)
+#define COMBO_PSCLN_0 COMBO(chords2[PSCLN], KC_0)
 
-#define COMBO_SX_AT         COMBO(combos[SX], KC_AT)
-#define COMBO_DC_HASH       COMBO(combos[DC], KC_HASH)
-#define COMBO_FV_DLR        COMBO(combos[FV], KC_DLR)
-#define COMBO_GB_PERC       COMBO(combos[GB], KC_PERC)
-#define COMBO_HN_CIRC       COMBO(combos[HN], KC_CIRC)
-#define COMBO_JM_AMPR       COMBO(combos[JM], KC_AMPR)
-#define COMBO_KCOMM_ASTR    COMBO(combos[KCOMM], KC_ASTR)
-#define COMBO_LDOT_LPRN     COMBO(combos[LDOT], KC_LPRN)
-#define COMBO_SCLNSLSH_RPRN COMBO(combos[SCLNSLSH], KC_RPRN)
+#define COMBO_SX_AT         COMBO(chords2[SX], KC_AT)
+#define COMBO_DC_HASH       COMBO(chords2[DC], KC_HASH)
+#define COMBO_FV_DLR        COMBO(chords2[FV], KC_DLR)
+#define COMBO_GB_PERC       COMBO(chords2[GB], KC_PERC)
+#define COMBO_HN_CIRC       COMBO(chords2[HN], KC_CIRC)
+#define COMBO_JM_AMPR       COMBO(chords2[JM], KC_AMPR)
+#define COMBO_KCOMM_ASTR    COMBO(chords2[KCOMM], KC_ASTR)
+#define COMBO_LDOT_LPRN     COMBO(chords2[LDOT], KC_LPRN)
+#define COMBO_SCLNSLSH_RPRN COMBO(chords2[SCLNSLSH], KC_RPRN)
