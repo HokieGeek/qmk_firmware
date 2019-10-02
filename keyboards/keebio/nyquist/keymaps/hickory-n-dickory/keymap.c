@@ -339,13 +339,13 @@ qk_tap_dance_action_t tap_dance_actions[] = {
 
 enum combo_events {
     JL_TERM = 0,
-    // JH_BROWSER,
+    JH_BROWSER,
     VB_VSCODE
 };
 
 combo_t key_combos[COMBO_COUNT] = {
     [JL_TERM] = COMBO_ACTION(chords2[JL]),
-    // [JH_BROWSER] = COMBO_ACTION(chords2[JH]),
+    [JH_BROWSER] = COMBO_ACTION(chords2[JH]),
     [VB_VSCODE] = COMBO_ACTION(chords2[VB])
 };
 
@@ -356,13 +356,11 @@ void process_combo_event(uint8_t combo_index, bool pressed) {
                 tap_code16(LGUI(LSFT(KC_ENT)));
             }
             break;
-            /*
         case JH_BROWSER:
             if (pressed) {
                 tap_code16(HYPR(KC_ENT));
             }
             break;
-            */
         case VB_VSCODE:
             if (pressed) {
                 layer_on(_VSCODE);
