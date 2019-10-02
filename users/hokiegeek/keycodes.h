@@ -11,15 +11,7 @@ enum userspace_custom_keycodes {
 
     ASCII_SHRUG,
 
-    LATIN_LATCH,
-    LATIN_E,
-    LATIN_A,
-    LATIN_I,
-    LATIN_O,
-    LATIN_U,
-    LATIN_N,
-    LATIN_IEXC,
-    LATIN_IQS,
+    KC_LATIN,
 
     TMUX_NEXT,
     TMUX_PREV,
