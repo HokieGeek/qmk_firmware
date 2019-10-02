@@ -74,7 +74,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 [_LOWER] = LAYOUT_wrapper( \
   KC_TILD,          ______SYMBOLS______,       _______, \
   KC_CAPS, ALTPSCR, KC_RBRC, KC_RPRN, KC_RCBR, _______,      KC_HOME, KC_PGDN, KC_PGUP, KC_END,  KC_MINS, KC_PIPE, \
-  _______, _______, _______, _______, _______, _______,      _______, KC_LCBR, KC_RCBR, KC_LBRC, KC_RBRC, _______, \
+  _______, _______, _______, _______, _______, _______,      _______, _______, _______, _______, _______, _______, \
   _______, _______, _______, _______, _______, _______,      _______, _______, _______, _______, _______, _______ \
 ),
 
@@ -255,56 +255,40 @@ qk_tap_dance_action_t tap_dance_actions[] = {
 };
 #endif
 
+enum combo_events {
+    JL_TERM = 0,
+    JH_BROWSER
+};
+
+combo_t key_combos[COMBO_COUNT] = {
+    [JL_TERM] = COMBO_ACTION(chords2[JL]),
+    [JH_BROWSER] = COMBO_ACTION(chords2[JH])
+    // COMBO(chords3[WFP], KC_1),
+    // COMBO(chords2[PT], KC_1),
+    // COMBO(chords2[GD], KC_2)
+};
+
+void process_combo_event(uint8_t combo_index, bool pressed) {
+      switch(combo_index) {
+        case JL_TERM:
+            if (pressed) {
+                tap_code16(LGUI(LSFT(KC_ENT)));
+            }
+            break;
+        case JH_BROWSER:
+            if (pressed) {
+                tap_code16(HYPR(KC_ENT));
+            }
+            break;
+      }
+}
+
 void matrix_init_user(void) {
     layer_on(_COLEMAK);
 
     userspace_matrix_init_user();
 }
 
-combo_t key_combos[COMBO_COUNT] = {
-    COMBO_QA_1,
-    COMBO_WR_2,
-    COMBO_FS_3,
-    COMBO_PT_4,
-    COMBO_GD_5,
-    COMBO_JH_6,
-    COMBO_LN_7,
-    COMBO_UE_8,
-    COMBO_YI_9,
-    COMBO_SCLNO_0,
-
-    COMBO_AZ_EXLM,
-    COMBO_RX_AT,
-    COMBO_SC_HASH,
-    COMBO_TV_DLR,
-    COMBO_DB_PERC,
-    COMBO_HK_CIRC,
-    COMBO_NM_AMPR,
-    COMBO_ECOMM_ASTR,
-    COMBO_IDOT_LPRN,
-    COMBO_OSLSH_RPRN,
-
-    // Qwerty
-    COMBO_WS_2,
-    COMBO_ED_3,
-    COMBO_RF_4,
-    COMBO_TG_5,
-    COMBO_YH_6,
-    COMBO_UJ_7,
-    COMBO_IK_8,
-    COMBO_OL_9,
-    COMBO_PSCLN_0,
-
-    COMBO_SX_AT,
-    COMBO_DC_HASH,
-    COMBO_FV_DLR,
-    COMBO_GB_PERC,
-    COMBO_HN_CIRC,
-    COMBO_JM_AMPR,
-    COMBO_KCOMM_ASTR,
-    COMBO_LDOT_LPRN,
-    COMBO_SCLNSLSH_RPRN
-};
 
 layer_state_t layer_state_set_user(layer_state_t state) {
   return update_tri_layer_state(state, _LOWER, _RAISE, _ADJUST);

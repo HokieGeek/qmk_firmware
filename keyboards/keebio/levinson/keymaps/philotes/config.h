@@ -17,4 +17,4 @@
 #define MATRIX_COL_PINS { F6, F7, B1, B3, B2, F0 }
 #define MATRIX_COL_PINS_RIGHT { F6, F7, B1, B3, B2, B6 }
 
-#define COMBO_COUNT 38
+#define COMBO_COUNT 2
