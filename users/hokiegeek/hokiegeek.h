@@ -66,12 +66,10 @@
 #define __BASE_RCR2__ KC_TRNS
 #define __BASE_RCR4__ KC_SFTENT
 
-/*
- * |   1  |   2  |   3  |   4  |   5  |   6  |   7  |   8  |   9  |   0  |
- * |   !  |   @  |   #  |   $  |   %  |   ^  |   &  |   *  |   (  |   )  |
- */
-#define ______NUMBERS______  KC_1,  KC_2,  KC_3,  KC_4,  KC_5,  KC_6,  KC_7,  KC_8,    KC_9,    KC_0
-#define ______SYMBOLS______  KC_EXLM, KC_AT,   KC_HASH, KC_DLR,  KC_PERC, KC_CIRC, KC_AMPR,  KC_ASTR, KC_PLUS, KC_EQL
+// * |   1  |   2  |   3  |   4  |   5  |   6  |   7  |   8  |   9  |   0  |
+#define ______NUMBERS______  KC_1,  KC_2,  KC_3,  KC_4,  KC_5,  KC_6,  KC_7,  KC_8,  KC_9,  KC_0
+// * |   !  |   @  |   #  |   $  |   %  |   ^  |   &  |   *  |   +  |   =  |
+#define ______SYMBOLS______  KC_EXLM, KC_AT, KC_HASH, KC_DLR,  KC_PERC, KC_CIRC, KC_AMPR,  KC_ASTR, KC_PLUS, KC_EQL
 
 /*
  * |   Q  |   W  |   E  |   R  |   T  |   Y  |   U  |   I  |   O  |   P  |
