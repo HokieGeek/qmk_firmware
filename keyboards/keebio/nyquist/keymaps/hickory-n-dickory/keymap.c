@@ -35,7 +35,7 @@ enum {
 #define SEND_SLACK_REACT(str) SEND_DELAYED(40, SS_LGUI(SS_LSFT(SS_TAP(X_BSLASH))) str SS_TAP(X_ENTER))
 #define SEND_SLACK_GOTO(str)  SEND_DELAYED(50, SS_LGUI(SS_TAP(X_K)) str SS_TAP(X_ENTER))
 
-#define _____BASE_TOP_____     KC_F13, MEH(KC_F14), _______, _______, _______, _______,   MEH(KC_F16), MEH(KC_F17), MEH(KC_F18), MEH(KC_F19), MEH(KC_F20), MAC_NOTIFS
+#define _____BASE_TOP_____     KC_F13, MEH(KC_F14), _______, _______, _______, _______,   MEH(KC_P1), MEH(KC_P2), MEH(KC_P3), MEH(KC_P4), MEH(KC_P5), MAC_NOTIFS
 #define _____BASE_BOTTOM_____  MO(_LOWER),  _______, KC_ENC,   MO(_YABAI),  GUIBSPC,  LALT_T(KC_SPC),       CTLTAB_EXTRAS,  KC_TMUX,  _______,  _______,   KC_SKDM1,  TT(_RAISE)
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
