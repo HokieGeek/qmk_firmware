@@ -80,7 +80,7 @@
  */
 #define _____QWERTY_R1_____  KC_Q,  KC_W,  KC_E,  KC_R,  KC_T,  KC_Y,  KC_U,  KC_I,    KC_O,    KC_P
 #define _____QWERTY_R2_____  KC_A,  KC_S,  KC_D,  KC_F,  KC_G,  KC_H,  KC_J,  KC_K,    KC_L,    KC_SCLN,  KC_QUOT
-#define _____QWERTY_R3_____  KC_Z,  KC_X,  KC_C,  KC_V,  LT(_VSCODE, KC_B),  KC_N,  KC_M,  KC_COMM, KC_DOT,  KC_SLSH
+#define _____QWERTY_R3_____  KC_Z,  KC_X,  KC_C,  KC_V,  KC_B,  KC_N,  KC_M,  KC_COMM, KC_DOT,  KC_SLSH
 
 /*
  * |   Q  |   W  |   F  |   P  |   G  |   J  |   L  |   U  |   Y  |   ;  |
@@ -91,7 +91,7 @@
  */
 #define _____COLEMAK_R1_____  KC_Q, KC_W,  KC_F,  KC_P,  KC_G,  KC_J,  KC_L,  KC_U,    KC_Y,    KC_SCLN
 #define _____COLEMAK_R2_____  KC_A, KC_R,  KC_S,  KC_T,  KC_D,  KC_H,  KC_N,  KC_E,    KC_I,    KC_O,    KC_QUOT
-#define _____COLEMAK_R3_____  KC_Z, KC_X,  KC_C,  KC_V,  LT(_VSCODE, KC_B),  KC_K,  KC_M,  KC_COMM, KC_DOT,  KC_SLSH
+#define _____COLEMAK_R3_____  KC_Z, KC_X,  KC_C,  KC_V,  KC_B,  KC_K,  KC_M,  KC_COMM, KC_DOT,  KC_SLSH
 
 #ifdef SWAP_HANDS_ENABLE
 #define SWAP_HANDS_ORTHO_5X12_SPLIT { \
