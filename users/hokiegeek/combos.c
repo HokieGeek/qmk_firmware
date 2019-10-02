@@ -71,6 +71,31 @@ const uint16_t PROGMEM chords2[][3] = {
     [SCLNSLSH] = {KC_SCLN, KC_SLSH,  COMBO_END}
 };
 
+const uint16_t PROGMEM chords3[][4] = {
+    // Colemak
+    [QWP] = {KC_Q, KC_W, KC_F, COMBO_END},
+    [WFP] = {KC_W, KC_F, KC_P, COMBO_END},
+    [FPG] = {KC_F, KC_P, KC_G, COMBO_END},
+    [ARS] = {KC_A, KC_R, KC_S, COMBO_END},
+    [RST] = {KC_R, KC_S, KC_T, COMBO_END},
+    [STD] = {KC_S, KC_T, KC_D, COMBO_END},
+    [ZXC] = {KC_Z, KC_X, KC_C, COMBO_END},
+    [XCV] = {KC_X, KC_C, KC_V, COMBO_END},
+    [CVB] = {KC_C, KC_V, KC_B, COMBO_END},
+
+    [JLU]         = {KC_J,    KC_L,    KC_U,    COMBO_END},
+    [LUY]         = {KC_L,    KC_U,    KC_Y,    COMBO_END},
+    [UYSCLN]      = {KC_U,    KC_Y,    KC_SCLN, COMBO_END},
+    [HNE]         = {KC_H,    KC_N,    KC_E,    COMBO_END},
+    [NEI]         = {KC_N,    KC_E,    KC_I,    COMBO_END},
+    [EIO]         = {KC_E,    KC_I,    KC_O,    COMBO_END},
+    [KMCOMM]      = {KC_K,    KC_M,    KC_COMM, COMBO_END},
+    [MCOMMDOT]    = {KC_M,    KC_COMM, KC_DOT,  COMBO_END},
+    [COMMDOTSLSH] = {KC_COMM, KC_DOT,  KC_SLSH, COMBO_END}
+};
+
 const uint16_t PROGMEM chords4[][5] = {
-    [PGTD] = {KC_P, KC_G,KC_T, KC_D, COMBO_END}
+    [PGTD] = {KC_P, KC_G, KC_T, KC_D, COMBO_END},
+    [WFRS] = {KC_W, KC_F, KC_R, KC_S, COMBO_END},
+    [RSPT] = {KC_R, KC_S, KC_P, KC_T, COMBO_END}
 };
