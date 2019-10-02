@@ -72,10 +72,35 @@ enum {
     LDOT,
     SCLNSLSH,
 
-    PGTD
+    QWP,
+    WFP,
+    FPG,
+    ARS,
+    RST,
+    STD,
+    ZXC,
+    XCV,
+    CVB,
+
+    JLU,
+    LUY,
+    UYSCLN,
+    HNE,
+    NEI,
+    EIO,
+    KMCOMM,
+    MCOMMDOT,
+    COMMDOTSLSH,
+
+    PGTD,
+    WFRS,
+    RSPT,
+
+    SAFE_COMBO_RANGE
 };
 
 extern const uint16_t PROGMEM chords2[][3];
+extern const uint16_t PROGMEM chords3[][4];
 extern const uint16_t PROGMEM chords4[][5];
 
 #define COMBO_QA_1    COMBO(chords2[QA], KC_1)
