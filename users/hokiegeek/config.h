@@ -15,6 +15,10 @@
 #endif // TAPPING_TERM
 #define TAPPING_TERM 180
 
+#ifdef COMBO_ENABLE
+#define COMBO_TERM 30
+#endif // COMBO_ENABLE
+
 #ifdef TAPPING_TOGGLE
 #undef TAPPING_TOGGLE
 #endif //TAPPING_TOGGLE
