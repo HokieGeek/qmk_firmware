@@ -8,15 +8,15 @@
 #define KC_VSCODE MO(_VSCODE)
 
 /*
- * |      |      |      |      |      |      |      |      |PROBS | SCM  | FIND | TERM |
+ * |      |      |      |      |      |      |      | ED_1 |XPLORE| FIND | SCM  |      |
  * |------+------+------+------+------+------+------+------+------+------+------+------|
- * |      |      |      |      |      |      |      |      |      |PKDEFS|PKSYMS|G2SYM |
+ * |      |      |      |      |      |      |      |PKDEFS|PKSYMS|G2SYM |PALETT|      |
  * |------+------+------+------+------+------+------+------+------+------+------+------|
- * |      |      |      |      |      |      |      |      |RENAME|PALETT|XPLORE| ED_1 |
+ * |      |      |      |      |      |      |TGLTST| TERM |RENAME|PROBS |XPLORE|      |
  */
-#define _____VSCODE_R1_____  _______, _______, _______, _______, _______, _______,    _______, _______, VSC_PROBS,   VSC_SCM,     VSC_FIND,    VSC_TERM
-#define _____VSCODE_R2_____  _______, _______, _______, _______, _______, _______,    _______, _______, _______,     VSC_PKDEFS,  VSC_PKSYMS,  VSC_G2SYM
-#define _____VSCODE_R3_____  _______, _______, _______, _______, _______, _______,    _______, _______, VSC_RENAME,  VSC_PALETT,  VSC_XPLORE,  VSC_ED_1
+#define _____VSCODE_R1_____  _______, _______, _______, _______, _______, _______,    _______,      VSC_ED_1,    VSC_XPLORE,  VSC_FIND,   VSC_SCM,    _______
+#define _____VSCODE_R2_____  _______, _______, _______, _______, _______, _______,    _______,      VSC_PKDEFS,  VSC_PKSYMS,  VSC_G2SYM,  VSC_PALETT,  _______
+#define _____VSCODE_R3_____  _______, _______, _______, _______, _______, _______,    VSC_TGL_GTST, VSC_TERM,    VSC_RENAME,  VSC_PROBS,  _______,  _______
 
 void vscode_layer_on_hold(td_stage stage);
 bool vscode_process_record_user(uint16_t keycode, keyrecord_t *record);
