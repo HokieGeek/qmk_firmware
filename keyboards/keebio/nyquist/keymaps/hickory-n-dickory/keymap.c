@@ -35,7 +35,7 @@ enum {
 #define SEND_SLACK_REACT(str) SEND_DELAYED(40, SS_LGUI(SS_LSFT(SS_TAP(X_BSLASH))) str SS_TAP(X_ENTER))
 #define SEND_SLACK_GOTO(str)  SEND_DELAYED(50, SS_LGUI(SS_TAP(X_K)) str SS_TAP(X_ENTER))
 
-#define _____BASE_TOP_____     KC_F13, MEH(KC_F14), _______, _______, _______, _______,   MEH(KC_P1), MEH(KC_P2), MEH(KC_P3), MEH(KC_P4), MEH(KC_P5), MAC_NOTIFS
+#define _____BASE_TOP_____     KC_F13, MEH(KC_F14), _______, _______, _______, _______,   MEH(KC_F16), MEH(KC_F17), MEH(KC_F18), MEH(KC_F19), MEH(KC_F20), MAC_NOTIFS
 #define _____BASE_BOTTOM_____  MO(_LOWER),  _______, KC_ENC,   MO(_YABAI),  GUIBSPC,  LALT_T(KC_SPC),       CTLTAB_EXTRAS,  KC_TMUX,  _______,  _______,   KC_SKDM1,  TT(_RAISE)
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
@@ -87,7 +87,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  * |------+------+------+------+------+-------     +------+------+------+------+------+------|
  * |   ~  |   !  |   @  |   #  |   $  |   %  |     |   ^  |   &  |   *  |   +  |   =  |      |
  * |------+------+------+------+------+-------     -------+------+------+------+------+------|
- * |      |      |  )   |  ]   |  [   |      |     | Home | PgDn | PgUp | End  |   -  |  |   |
+ * |      |      |  (   |  }   |  {   |      |     | Home | PgDn | PgUp | End  |   -  |  |   |
  * |------+------+------+------+------+------|     |------+------+------+------+------+------|
  * |      |      |      |      |      |      |     |      |      |      |      |      |      |
  * |------+------+------+------+------+------+     +------+------+------+------+------+------|
@@ -108,7 +108,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  * |------+------+------+------+------+-------     +------+------+------+------+------+------|
  * |  `   |   1  |   2  |   3  |   4  |   5  |     |   6  |   7  |   8  |   9  |   0  |      |
  * |------+------+------+------+------+-------     -------+------+------+------+------+------|
- * |      |      |  (   |  }   |  {   |      |     | Left | Down |  Up  |Right |   _  |  \   |
+ * |      |      |  )   |  ]   |  [   |      |     | Left | Down |  Up  |Right |   _  |  \   |
  * |------+------+------+------+------+------|     |------+------+------+------+------+------|
  * |  F1  |  F2  |  F3  |  F4  |  F5  |  F6  |     |  F7  |  F8  |  F9  |  F10 | F11  | F12  |
  * |------+------+------+------+------+------+     +------+------+------+------+------+------|
@@ -118,7 +118,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 [_RAISE] = LAYOUT_wrapper( \
   HYPR(KC_F13),  _______,  _______,  _______,       _______,  _______,      _______,  _______,    _______,  _______,  _______,  _______, \
   KC_GRAVE,                                                   ______NUMBERS______,                                              _______, \
-  _______,       _______,  KC_LBRC,  KC_LPRN,       KC_LCBR,  _______,      KC_LEFT,  KC_DOWN,    KC_UP,    KC_RGHT,  KC_UNDS,  KC_BSLS, \
+  _______,       _______,  KC_RBRC,  KC_RPRN,       KC_RCBR,  _______,      KC_LEFT,  KC_DOWN,    KC_UP,    KC_RGHT,  KC_UNDS,  KC_BSLS, \
   KC_F1,         KC_F2,    KC_F3,    KC_F4,         KC_F5,    KC_F6,        KC_F7,    KC_F8,      KC_F9,    KC_F10,   KC_F11,   KC_F12, \
   _______,       _______,  _______,  HYPR(KC_F15),  _______,  _______,      CSTAB,    TMUX_PREV,  _______,  _______,  _______,  _______ \
 ),
@@ -339,13 +339,13 @@ qk_tap_dance_action_t tap_dance_actions[] = {
 
 enum combo_events {
     JL_TERM = 0,
-    JH_BROWSER,
+    // JH_BROWSER,
     VB_VSCODE
 };
 
 combo_t key_combos[COMBO_COUNT] = {
     [JL_TERM] = COMBO_ACTION(chords2[JL]),
-    [JH_BROWSER] = COMBO_ACTION(chords2[JH]),
+    // [JH_BROWSER] = COMBO_ACTION(chords2[JH]),
     [VB_VSCODE] = COMBO_ACTION(chords2[VB])
 };
 
@@ -356,11 +356,13 @@ void process_combo_event(uint8_t combo_index, bool pressed) {
                 tap_code16(LGUI(LSFT(KC_ENT)));
             }
             break;
+            /*
         case JH_BROWSER:
             if (pressed) {
                 tap_code16(HYPR(KC_ENT));
             }
             break;
+            */
         case VB_VSCODE:
             if (pressed) {
                 layer_on(_VSCODE);
