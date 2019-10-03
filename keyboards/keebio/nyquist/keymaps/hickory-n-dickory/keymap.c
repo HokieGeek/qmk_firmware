@@ -35,7 +35,7 @@ enum {
 #define SEND_SLACK_REACT(str) SEND_DELAYED(40, SS_LGUI(SS_LSFT(SS_TAP(X_BSLASH))) str SS_TAP(X_ENTER))
 #define SEND_SLACK_GOTO(str)  SEND_DELAYED(50, SS_LGUI(SS_TAP(X_K)) str SS_TAP(X_ENTER))
 
-#define _____BASE_TOP_____     KC_F13, MEH(KC_F14), _______, _______, _______, _______,   MEH(KC_F16), MEH(KC_F17), MEH(KC_F18), MEH(KC_F19), MEH(KC_F20), MAC_NOTIFS
+#define _____BASE_TOP_____     KC_F13, MEH(KC_F14), _______, _______, _______, _______,   MEH(KC_P1), MEH(KC_P2), MEH(KC_P3), MEH(KC_P4), MEH(KC_P5), MAC_NOTIFS
 #define _____BASE_BOTTOM_____  MO(_LOWER),  _______, KC_ENC,   MO(_YABAI),  GUIBSPC,  LALT_T(KC_SPC),       CTLTAB_EXTRAS,  KC_TMUX,  _______,  _______,   KC_SKDM1,  TT(_RAISE)
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
@@ -339,14 +339,16 @@ qk_tap_dance_action_t tap_dance_actions[] = {
 
 enum combo_events {
     JL_TERM = 0,
-    // JH_BROWSER,
-    VB_VSCODE
+    JH_BROWSER,
+    VB_VSCODE,
+    FS_SLACK
 };
 
 combo_t key_combos[COMBO_COUNT] = {
     [JL_TERM] = COMBO_ACTION(chords2[JL]),
-    // [JH_BROWSER] = COMBO_ACTION(chords2[JH]),
-    [VB_VSCODE] = COMBO_ACTION(chords2[VB])
+    [JH_BROWSER] = COMBO_ACTION(chords2[JH]),
+    [DB_VSCODE] = COMBO_ACTION(chords2[DB]),
+    [FS_SLACK] = COMBO_ACTION(chords2[FS])
 };
 
 void process_combo_event(uint8_t combo_index, bool pressed) {
@@ -356,18 +358,21 @@ void process_combo_event(uint8_t combo_index, bool pressed) {
                 tap_code16(LGUI(LSFT(KC_ENT)));
             }
             break;
-            /*
         case JH_BROWSER:
             if (pressed) {
                 tap_code16(HYPR(KC_ENT));
             }
             break;
-            */
-        case VB_VSCODE:
+        case DB_VSCODE:
             if (pressed) {
                 layer_on(_VSCODE);
             } else {
                 layer_off(_VSCODE);
+            }
+            break;
+        case FS_SLACK:
+            if (pressed) {
+                tap_code16(MEH(KC_P1));
             }
             break;
       }
