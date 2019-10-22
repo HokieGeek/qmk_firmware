@@ -26,24 +26,6 @@ enum custom_keycodes {
 
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
-/* Qwerty
- * ,-----------------------------------------.   ,-----------------------------------------.
- * | Esc  |   Q  |   W  |   E  |   R  |   T  |   |   Y  |   U  |   I  |   O  |   P  |      |
- * |------+------+------+------+------+------|   |------+------+------+------+------+------|
- * |Ctl/Tb|   A  |   S  |   D  |   F  |   G  |   |   H  |   J  |   K  |   L  |   ;  |  '   |
- * |------+------+------+------+------+------|   |------+------+------+------+------+------|
- * |SftLat|   Z  |   X  |   C  |   V  |   B  |   |   N  |   M  |   ,  |   .  |   /  |ShEnt |
- * |------+------+------+------+------+------|   |------+------+------+------+------+------|
- * | Lower|      |      |      |GUIBsp|AltSpc|   |CtlTb | TMUX | ENC  |VSCTRM| SKDM |Raise |
- * `-----------------------------------------'   `-----------------------------------------'
- */
-[_QWERTY] = LAYOUT_wrapper( \
-  __BASE_LCR2__, _____QWERTY_R1_____, __BASE_RCR2__, \
-  __BASE_LCR3__, _____QWERTY_R2_____, \
-  __BASE_LCR4__, _____QWERTY_R3_____, __BASE_RCR4__, \
-  _____BASE_BOTTOM_____ \
-),
-
 /* Colemak
  * ,-----------------------------------------.   ,-----------------------------------------.
  * | Esc  |   Q  |   W  |   F  |   P  |   G  |   |   J  |   L  |   U  |   Y  |   ;  |      |
@@ -59,6 +41,24 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   __BASE_LCR2__, _____COLEMAK_R1_____, __BASE_RCR2__, \
   __BASE_LCR3__, _____COLEMAK_R2_____, \
   __BASE_LCR4__, _____COLEMAK_R3_____, __BASE_RCR4__, \
+  _____BASE_BOTTOM_____ \
+),
+
+/* Qwerty
+ * ,-----------------------------------------.   ,-----------------------------------------.
+ * | Esc  |   Q  |   W  |   E  |   R  |   T  |   |   Y  |   U  |   I  |   O  |   P  |      |
+ * |------+------+------+------+------+------|   |------+------+------+------+------+------|
+ * |Ctl/Tb|   A  |   S  |   D  |   F  |   G  |   |   H  |   J  |   K  |   L  |   ;  |  '   |
+ * |------+------+------+------+------+------|   |------+------+------+------+------+------|
+ * |SftLat|   Z  |   X  |   C  |   V  |   B  |   |   N  |   M  |   ,  |   .  |   /  |ShEnt |
+ * |------+------+------+------+------+------|   |------+------+------+------+------+------|
+ * | Lower|      |      |      |GUIBsp|AltSpc|   |CtlTb | TMUX | ENC  |VSCTRM| SKDM |Raise |
+ * `-----------------------------------------'   `-----------------------------------------'
+ */
+[_QWERTY] = LAYOUT_wrapper( \
+  __BASE_LCR2__, _____QWERTY_R1_____, __BASE_RCR2__, \
+  __BASE_LCR3__, _____QWERTY_R2_____, \
+  __BASE_LCR4__, _____QWERTY_R3_____, __BASE_RCR4__, \
   _____BASE_BOTTOM_____ \
 ),
 
@@ -299,7 +299,7 @@ void process_combo_event(uint8_t combo_index, bool pressed) {
 }
 
 void matrix_init_user(void) {
-    layer_on(_COLEMAK);
+    set_single_persistent_default_layer(_COLEMAK);
 
     userspace_matrix_init_user();
 }
