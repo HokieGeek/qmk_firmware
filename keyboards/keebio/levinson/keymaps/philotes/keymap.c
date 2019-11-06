@@ -21,7 +21,9 @@ enum custom_keycodes {
 #undef __BASE_RCR2__
 #define __BASE_RCR2__ KC_SKDM1
 
-// | Lower|      |      |      | GUI  |AltSpc|CtlTb | TMUX | ENC  | TERM_VSCODE | MACR |Raise |
+// |------+------+------+------+------+------|   |------+------+------+------+------+------|
+// | Lower|      |      |      |GUIBsp|AltSpc|   |CtlTb | TMUX | ENC  |VSCTRM| SKDM |Raise |
+// `-----------------------------------------'   `-----------------------------------------'
 #define _____BASE_BOTTOM_____   MO(_LOWER), _______, _______,  _______, GUIBSPC, LALT_T(KC_SPC),     TD(td_ctltab_extras),  KC_TMUX, KC_ENC,  _______,  _______,  MO(_RAISE)
 
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
@@ -143,8 +145,8 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  * `-----------------------------------------'   `-----------------------------------------'
  */
 [_ADJUST] = LAYOUT( \
-  QMK_MAKE, QWERTY,    COLEMAK,   RESET,     _______, _______,      _______, _______, _______, _______, _______, _______, \
-  _______,  KC_OS_NIX, KC_OS_MAC, KC_OS_WIN, _______, _______,      _______, _______, _______, _______, _______, _______, \
+  QMK_MAKE, QWERTY,    COLEMAK,   RESET,     _______, _______,      RGB_HUI,        RGB_HUD,    RGB_SAI,          RGB_SAD,          RGB_VAI,            RGB_VAD, \
+  _______,  KC_OS_NIX, KC_OS_MAC, KC_OS_WIN, _______, _______,      RGB_MODE_PLAIN, _______,    RGB_MODE_BREATHE, RGB_MODE_FORWARD, RGB_MODE_REVERSE,   RGB_MODE_XMAS, \
   _______,  _______,   _______,   _______,   _______, _______,      _______, _______, _______, _______, _______, _______, \
   _______,  _______,   _______,   _______,   _______, _______,      _______, _______, _______, _______, _______, _______  \
 ),
@@ -166,7 +168,7 @@ void encoder_td_actions (qk_tap_dance_state_t *state, void *user_data) {
             // TODO
         } else { // Default layers
             if (enc_opts.defaultVolume) {
-                tap_key(KC_MUTE);
+                tap_code(KC_MUTE);
             } else {
                 enc_opts.scrollVertical = !enc_opts.scrollVertical;
             }
@@ -199,29 +201,29 @@ void encoder_update_user(uint8_t index, bool clockwise) {
         } else if (IS_LAYER_ON(_LOWER)) {
             if (enc_opts.monBrightness) {
                 if (clockwise) {
-                    tap_key(KC_FIND);
+                    tap_code(KC_FIND);
                 } else {
-                    tap_key(KC_HELP);
+                    tap_code(KC_HELP);
                 }
             } else {
                 if (clockwise) {
-                    tap_key(KC_UNDO);
+                    tap_code(KC_UNDO);
                 } else {
-                    tap_key(KC_STOP);
+                    tap_code(KC_STOP);
                 }
             }
         } else if (IS_LAYER_ON(_RAISE)) {
             if (clockwise) {
-                tap_mod_key(KC_LCTL, KC_KP_PLUS);
+                tap_code16(LCTL(KC_KP_PLUS));
             } else {
-                tap_mod_key(KC_LCTL, KC_KP_MINUS);
+                tap_code16(LCTL(KC_KP_MINUS));
             }
         } else { // Default layers
             if (enc_opts.defaultVolume) {
                 if (clockwise) {
-                    tap_key(KC_VOLU);
+                    tap_code(KC_VOLU);
                 } else {
-                    tap_key(KC_VOLD);
+                    tap_code(KC_VOLD);
                 }
             } else {
                 if (enc_opts.scrollVertical) {
