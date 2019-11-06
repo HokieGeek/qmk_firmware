@@ -3,12 +3,11 @@
 
 #ifdef TAP_DANCE_ENABLE
 void tap_gui_shift_enter_td(td_stage stage) {
-    uint8_t mods[] = {2, KC_LGUI, KC_LSHIFT};
-    tap_mods_key(mods, KC_ENTER);
+    tap_code16(LGUI(LSFT(KC_ENTER)));
 }
 
 void tap_ctltab_td(td_stage stage) {
-    tap_mod_key(KC_LCTL, KC_TAB);
+    tap_code16(LCTL(KC_TAB));
 }
 #else
 #include "dynamic_macro.h"
@@ -17,6 +16,15 @@ void tap_ctltab_td(td_stage stage) {
 void userspace_matrix_init_user(void) {
 #ifdef ENCODER_ENABLE
     hgencoder_init();
+#endif
+}
+
+inline void tap_mousekey(uint8_t code) {
+#ifdef MOUSEKEY_ENABLE
+    mousekey_on(code);
+    mousekey_send();
+    mousekey_off(code);
+    mousekey_send();
 #endif
 }
 
