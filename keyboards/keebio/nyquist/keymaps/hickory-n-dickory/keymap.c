@@ -381,7 +381,7 @@ void process_combo_event(uint8_t combo_index, bool pressed) {
 void matrix_init_user(void) {
     setTargetOS(OS_MAC);
 
-    layer_on(_COLEMAK);
+    set_single_persistent_default_layer(_COLEMAK);
 
     userspace_matrix_init_user();
 }

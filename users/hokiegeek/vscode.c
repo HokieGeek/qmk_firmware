@@ -2,7 +2,6 @@
 
 #include "os.h"
 #include "keycodes.h"
-#include "taps.h"
 
 void vscode_layer_on_hold(td_stage stage) {
     switch (stage) {
@@ -34,7 +33,7 @@ bool vscode_process_record_user(uint16_t keycode, keyrecord_t *record) {
                         break;
                     case OS_NIX:
                         tap_code16(LCTL(LSFT(KC_G)));
-                        tap_key(KC_G);
+                        tap_code(KC_G);
                         break;
                 }
             }
@@ -78,7 +77,7 @@ bool vscode_process_record_user(uint16_t keycode, keyrecord_t *record) {
                 switch (getTargetOS()) {
                     case OS_MAC:
                     case OS_NIX:
-                        tap_mod_key(KC_LSHIFT, KC_F12);
+                        tap_code16(LSFT(KC_F12));
                         break;
                 }
             }

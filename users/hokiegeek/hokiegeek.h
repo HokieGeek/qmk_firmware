@@ -31,15 +31,13 @@
 #include "os.h"
 #include "vscode.h"
 #include "latin.h"
-#include "taps.h"
 #include "keycodes.h"
 
 // Layer names
-#define _QWERTY 0
-#define _COLEMAK 1
-#define _WORKMAN 2
-#define _LOWER 3
-#define _RAISE 4
+#define _COLEMAK 0
+#define _QWERTY 1
+#define _LOWER 2
+#define _RAISE 3
 // #define _VSCODE 8
 #define _EXTRAS 9
 #define _ADJUST 15
@@ -93,22 +91,6 @@
 #define _____COLEMAK_R2_____  KC_A, KC_R,  KC_S,  KC_T,  KC_D,  KC_H,  KC_N,  KC_E,    KC_I,    KC_O,    KC_QUOT
 #define _____COLEMAK_R3_____  KC_Z, KC_X,  KC_C,  KC_V,  KC_B,  KC_K,  KC_M,  KC_COMM, KC_DOT,  KC_SLSH
 
-#ifdef SWAP_HANDS_ENABLE
-#define SWAP_HANDS_ORTHO_5X12_SPLIT { \
-  {{5, 5}, {4, 5}, {3, 5}, {2, 5}, {1, 5}, {0, 5}}, \
-  {{5, 6}, {4, 6}, {3, 6}, {2, 6}, {1, 6}, {0, 6}}, \
-  {{5, 7}, {4, 7}, {3, 7}, {2, 7}, {1, 7}, {0, 7}}, \
-  {{5, 8}, {4, 8}, {3, 8}, {2, 8}, {1, 8}, {0, 8}}, \
-  {{5, 9}, {4, 9}, {3, 9}, {2, 9}, {1, 9}, {0, 9}}, \
- \
-  {{5, 0}, {4, 0}, {3, 0}, {2, 0}, {1, 0}, {0, 0}}, \
-  {{5, 1}, {4, 1}, {3, 1}, {2, 1}, {1, 1}, {0, 1}}, \
-  {{5, 2}, {4, 2}, {3, 2}, {2, 2}, {1, 2}, {0, 2}}, \
-  {{5, 3}, {4, 3}, {3, 3}, {2, 3}, {1, 3}, {0, 3}}, \
-  {{5, 4}, {4, 4}, {3, 4}, {2, 4}, {1, 4}, {0, 4}}, \
-}
-#endif
-
 enum {
 #ifdef TAP_DANCE_ENABLE
     td_encoder = 0,
@@ -124,6 +106,8 @@ enum {
 void tap_gui_shift_enter_td(td_stage);
 void tap_ctltab_td(td_stage);
 #endif
+
+void tap_mousekey(uint8_t);
 
 bool process_record_dynamic_macro(uint16_t keycode, keyrecord_t *record);
 

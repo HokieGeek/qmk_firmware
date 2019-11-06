@@ -1,6 +1,6 @@
 EXTRAFLAGS += -flto
 
-SRC += hokiegeek.c os.c taps.c latin.c vscode.c
+SRC += hokiegeek.c os.c latin.c vscode.c
 
 ## Enable options common to all of my boards
 BOOTLOADER = qmk-dfu
