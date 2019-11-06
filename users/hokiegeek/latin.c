@@ -1,5 +1,4 @@
 #include "latin.h"
-#include "taps.h"
 #include "os.h"
 #include "keycodes.h"
 
