@@ -1,6 +1,6 @@
 #pragma once
 
-#define SPLIT_USB_DETECT
+// #define SPLIT_USB_DETECT
 
 #undef SPLIT_HAND_PIN
 #undef MASTER_LEFT
@@ -24,8 +24,8 @@
 #undef RGBLED_NUM
 #undef RGBLED_SPLIT
 #define RGBLED_NUM 12
-#define RGBLED_SPLIT { 6, 6 }
-#define RGBLIGHT_HUE_STEP 10
+#define RGBLED_SPLIT { RGBLED_NUM / 2, RGBLED_NUM / 2 }
+#define RGBLIGHT_HUE_STEP 14
 #define RGBLIGHT_SAT_STEP 17
 #define RGBLIGHT_VAL_STEP 17
 #undef RGBLIGHT_ANIMATIONS

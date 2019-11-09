@@ -210,7 +210,7 @@ void encoder_td_actions (qk_tap_dance_state_t *state, void *user_data) {
             // TODO
         } else { // Default layers
             if (enc_opts.defaultVolume) {
-                tap_key(KC_MUTE);
+                tap_code(KC_MUTE);
             } else {
                 enc_opts.scrollVertical = !enc_opts.scrollVertical;
             }
@@ -243,29 +243,29 @@ void encoder_update_user(uint8_t index, bool clockwise) {
         } else if (IS_LAYER_ON(_LOWER)) {
             if (enc_opts.monBrightness) {
                 if (clockwise) {
-                    tap_key(KC_BRMU);
+                    tap_code(KC_BRMU);
                 } else {
-                    tap_key(KC_BRMD);
+                    tap_code(KC_BRMD);
                 }
             // } else {
             //     if (clockwise) {
-            //         tap_key(KC_UNDO);
+            //         tap_code(KC_UNDO);
             //     } else {
-            //         tap_key(KC_STOP);
+            //         tap_code(KC_STOP);
             //     }
             }
         } else if (IS_LAYER_ON(_RAISE)) {
             if (clockwise) {
-                tap_mod_key(KC_LCTL, KC_KP_PLUS);
+                tap_code16(LCTL(KC_KP_PLUS));
             } else {
-                tap_mod_key(KC_LCTL, KC_KP_MINUS);
+                tap_code16(LCTL(KC_KP_MINUS));
             }
         } else { // Default layers
             if (enc_opts.defaultVolume) {
                 if (clockwise) {
-                    tap_key(KC_VOLU);
+                    tap_code(KC_VOLU);
                 } else {
-                    tap_key(KC_VOLD);
+                    tap_code(KC_VOLD);
                 }
             } else {
                 if (enc_opts.scrollVertical) {
