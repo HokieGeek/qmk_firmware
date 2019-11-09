@@ -145,9 +145,9 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  * `-----------------------------------------'   `-----------------------------------------'
  */
 [_ADJUST] = LAYOUT( \
-  QMK_MAKE, QWERTY,    COLEMAK,   RESET,     _______, _______,      RGB_HUI,        RGB_HUD,    RGB_SAI,          RGB_SAD,          RGB_VAI,            RGB_VAD, \
-  _______,  KC_OS_NIX, KC_OS_MAC, KC_OS_WIN, _______, _______,      RGB_MODE_PLAIN, _______,    RGB_MODE_BREATHE, RGB_MODE_FORWARD, RGB_MODE_REVERSE,   RGB_MODE_XMAS, \
   _______,  _______,   _______,   _______,   _______, _______,      _______, _______, _______, _______, _______, _______, \
+  QMK_MAKE, QWERTY,    COLEMAK,   RESET,     _______, _______,      RGB_HUI,  RGB_HUD,          RGB_SAI,          RGB_SAD,          RGB_VAI,            RGB_VAD, \
+  _______,  KC_OS_NIX, KC_OS_MAC, KC_OS_WIN, _______, _______,      RGB_TOG,  RGB_MODE_PLAIN,   RGB_MODE_BREATHE, RGB_MOD, _______,   RGB_MODE_XMAS, \
   _______,  _______,   _______,   _______,   _______, _______,      _______, _______, _______, _______, _______, _______  \
 ),
 
@@ -261,7 +261,6 @@ qk_tap_dance_action_t tap_dance_actions[] = {
     TD_TMUX_ENTRY,
     TD_SHIFT_LATIN,
     TD_SKDM1_ENTRY,
-    TD_TERM_VSCODE_ENTRY,
     [td_ctltab_extras] = ACTION_TAP_DANCE_TAP_HOLD(tap_ctltab_td, extras_layer_on_hold)
 };
 #endif
