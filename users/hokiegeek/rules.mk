@@ -30,6 +30,10 @@ ifeq ($(strip $(COMBO_ENABLE)), yes)
 	SRC += combos.c
 endif
 
+ifndef NKRO_ENABLE
+	NKRO_ENABLE = yes
+endif
+
 ## Disable all the things I usually want off
 ifndef BOOTMAGIC_ENABLE
 	BOOTMAGIC_ENABLE = no
@@ -37,10 +41,6 @@ endif
 
 ifndef COMMAND_ENABLE
 	COMMAND_ENABLE = no
-endif
-
-ifndef NKRO_ENABLE
-	NKRO_ENABLE = yes
 endif
 
 ifndef BACKLIGHT_ENABLE
@@ -57,4 +57,8 @@ ifndef AUDIO_ENABLE
 	MIDI_ENABLE = no
 	AUDIO_ENABLE = no
 	FAUXCLICKY_ENABLE = no
+endif
+
+ifndef EXTRAKEY_ENABLE
+	EXTRAKEY_ENABLE = no
 endif

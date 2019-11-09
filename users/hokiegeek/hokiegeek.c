@@ -36,8 +36,26 @@ bool userspace_process_record_user(uint16_t keycode, keyrecord_t *record) {
         return false;
     }
 
-    if (!os_process_record_user(keycode, record)) {
-        return false;
+    switch (keycode) {
+        // OS
+        case KC_OS_NIX:
+            if (record->event.pressed) {
+                setTargetOS(OS_NIX);
+            }
+            return false;
+            break;
+        case KC_OS_MAC:
+            if (record->event.pressed) {
+                setTargetOS(OS_MAC);
+            }
+            return false;
+            break;
+        case KC_OS_WIN:
+            if (record->event.pressed) {
+                setTargetOS(OS_WIN);
+            }
+            return false;
+            break;
     }
 
     if (!latin_process_record_user(keycode, record)) {
@@ -69,11 +87,8 @@ bool userspace_process_record_user(uint16_t keycode, keyrecord_t *record) {
             return false;
             break;
 
-        // ASCII
-        case ASCII_SHRUG:
-            if (record->event.pressed) {
-                SEND_STRING("¯\\_(ツ)_/¯");
-            }
+        // TODO: DO NOT REMOVE
+        case KC_LATIN:
             return false;
             break;
 

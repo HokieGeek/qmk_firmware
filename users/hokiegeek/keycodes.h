@@ -9,8 +9,6 @@ enum userspace_custom_keycodes {
 
     QMK_MAKE,
 
-    ASCII_SHRUG,
-
     KC_LATIN,
 
     TMUX_NEXT,
