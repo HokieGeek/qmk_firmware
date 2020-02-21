@@ -1,8 +1,10 @@
 #ifndef USERSPACE_CONFIG_H
 #define USERSPACE_CONFIG_H
 
+// Disabling deprecated features
 #define NO_ACTION_MACRO
 #define NO_ACTION_FUNCTION
+
 #define NO_ACTION_ONESHOT
 
 #if !defined(USE_SERIAL) && !defined(USE_I2C)
