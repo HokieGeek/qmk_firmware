@@ -87,7 +87,7 @@ bool userspace_process_record_user(uint16_t keycode, keyrecord_t *record) {
             return false;
             break;
 
-        // TODO: DO NOT REMOVE
+        // TODO: DO NOT REMOVE OR IT WILL INCREASE FIRMWARE SIZE
         case KC_LATIN:
             return false;
             break;
