@@ -6,8 +6,8 @@
 #undef MASTER_LEFT
 #define EE_HANDS
 
-#define ENCODERS_PAD_A { F4 }
-#define ENCODERS_PAD_B { F5 }
+#define ENCODERS_PAD_A { F5 }
+#define ENCODERS_PAD_B { F4 }
 
 // Fixing bad row pin in left-hand Elite C
 #undef MATRIX_ROW_PINS // { D4, D7, E6, B4 }
