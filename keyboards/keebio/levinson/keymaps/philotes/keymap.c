@@ -15,7 +15,8 @@ enum {
 #endif
 
 enum custom_keycodes {
-    CTLTAB = NEW_SAFE_RANGE
+    CTLTAB = NEW_SAFE_RANGE,
+    RGBTST
 };
 
 #undef __BASE_RCR2__
@@ -145,9 +146,9 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  * `-----------------------------------------'   `-----------------------------------------'
  */
 [_ADJUST] = LAYOUT( \
-  _______,  _______,   _______,   _______,   _______, _______,      _______, _______, _______, _______, _______, _______, \
   QMK_MAKE, QWERTY,    COLEMAK,   RESET,     _______, _______,      RGB_HUI,  RGB_HUD,          RGB_SAI,          RGB_SAD,          RGB_VAI,            RGB_VAD, \
   _______,  KC_OS_NIX, KC_OS_MAC, KC_OS_WIN, _______, _______,      RGB_TOG,  RGB_MODE_PLAIN,   RGB_MODE_BREATHE, RGB_MOD, _______,   RGB_MODE_XMAS, \
+  _______,  _______,   _______,   _______,   _______, _______,      RGBTST, _______, _______, _______, _______, _______, \
   _______,  _______,   _______,   _______,   _______, _______,      _______, _______, _______, _______, _______, _______  \
 ),
 
@@ -300,15 +301,49 @@ void process_combo_event(uint8_t combo_index, bool pressed) {
 }
 
 void matrix_init_user(void) {
+// #ifdef RGBLIGHT_ENABLE
+    // rgblight_init();
+// #endif
+
     set_single_persistent_default_layer(_COLEMAK);
 
     userspace_matrix_init_user();
 }
 
 layer_state_t layer_state_set_user(layer_state_t state) {
-  return update_tri_layer_state(state, _LOWER, _RAISE, _ADJUST);
+    /*
+    switch (get_highest_layer(state)) {
+    // switch (biton32(state)) {
+        case _QWERTY:
+            rgblight_setrgb(RGB_RED);
+            break;
+        }
+    */
+    return update_tri_layer_state(state, _LOWER, _RAISE, _ADJUST);
 }
 
 bool process_record_user(uint16_t keycode, keyrecord_t *record) {
-    return userspace_process_record_user(keycode, record);
+    // return userspace_process_record_user(keycode, record);
+    if (!userspace_process_record_user(keycode, record)) {
+        return false;
+    }
+
+#ifdef RGBLIGHT_ENABLE
+    switch (keycode) {
+        case RGBTST:
+            if (record->event.pressed) {
+                // rgblight_enable();
+                // tap_code(KC_A);
+                // rgblight_mode(RGBLIGHT_MODE_STATIC_LIGHT);
+                rgblight_setrgb(RGB_GREEN);
+                rgblight_mode(RGBLIGHT_MODE_BREATHING + 2);
+            } else {
+                rgblight_mode(RGBLIGHT_MODE_STATIC_LIGHT);
+            }
+            return false;
+            break;
+    }
+#endif
+
+    return true;
 }
