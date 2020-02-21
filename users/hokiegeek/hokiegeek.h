@@ -3,10 +3,6 @@
 
 #include "quantum.h"
 
-// Disabling deprecated features
-#define NO_ACTION_MACRO
-#define NO_ACTION_FUNCTION
-
 #ifdef TAP_DANCE_ENABLE
 #include "td_extras.h"
 #include "tmux.h"
