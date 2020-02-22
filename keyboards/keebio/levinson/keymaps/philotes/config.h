@@ -1,6 +1,6 @@
 #pragma once
 
-// #define SPLIT_USB_DETECT
+#define SPLIT_USB_DETECT
 
 #undef SPLIT_HAND_PIN
 #undef MASTER_LEFT
