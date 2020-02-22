@@ -272,6 +272,7 @@ enum combo_events {
     RS_VSCODE,
     AR_VSCODE,
     WF_VSCODE,
+    FP_VSCODE,
     ST_VSCODE
 };
 
@@ -282,6 +283,7 @@ combo_t key_combos[COMBO_COUNT] = {
     [RS_VSCODE] = COMBO_ACTION(chords2[RS]),
     [AR_VSCODE] = COMBO_ACTION(chords2[AR]),
     [WF_VSCODE] = COMBO_ACTION(chords2[WF]),
+    [FP_VSCODE] = COMBO_ACTION(chords2[FP]),
     [ST_VSCODE] = COMBO_ACTION(chords2[ST])
 };
 
@@ -301,6 +303,7 @@ void process_combo_event(uint8_t combo_index, bool pressed) {
         case RS_VSCODE:
         case AR_VSCODE:
         case WF_VSCODE:
+        case FP_VSCODE:
         case ST_VSCODE:
             if (pressed) {
                 layer_on(_VSCODE);
