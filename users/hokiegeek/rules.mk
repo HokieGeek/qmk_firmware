@@ -10,12 +10,17 @@ ifndef MOUSEKEY_ENABLE
 	MOUSEKEY_ENABLE = yes
 endif
 
+ifndef DYNAMIC_MACRO_ENABLE
+	DYNAMIC_MACRO_ENABLE = no
+endif
 ifndef TAP_DANCE_ENABLE
 	TAP_DANCE_ENABLE = yes
 endif
 ifeq ($(strip $(TAP_DANCE_ENABLE)), yes)
 	SRC += td_extras.c tmux.c
+ifeq ($(strip $(DYNAMIC_MACRO_ENABLE)), yes)
 	SRC += skdm.c
+endif
 endif
 
 ifndef ENCODER_ENABLE
@@ -29,15 +34,6 @@ ifndef COMBO_ENABLE
 endif
 ifeq ($(strip $(COMBO_ENABLE)), yes)
 	SRC += combos.c
-endif
-
-ifndef DYNAMIC_MACRO_ENABLE
-	DYNAMIC_MACRO_ENABLE = no
-endif
-ifeq ($(strip $(DYNAMIC_MACRO_ENABLE)), yes)
-ifeq ($(strip $(TAP_DANCE_ENABLE)), yes)
-	SRC += skdm.c
-endif
 endif
 
 ifndef NKRO_ENABLE
