@@ -268,13 +268,21 @@ qk_tap_dance_action_t tap_dance_actions[] = {
 enum combo_events {
     JL_TERM = 0,
     JH_BROWSER,
-    DB_VSCODE
+    DB_VSCODE,
+    RS_VSCODE,
+    AR_VSCODE,
+    WF_VSCODE,
+    ST_VSCODE
 };
 
 combo_t key_combos[COMBO_COUNT] = {
     [JL_TERM] = COMBO_ACTION(chords2[JL]),
     [JH_BROWSER] = COMBO_ACTION(chords2[JH]),
-    [DB_VSCODE] = COMBO_ACTION(chords2[DB])
+    [DB_VSCODE] = COMBO_ACTION(chords2[DB]),
+    [RS_VSCODE] = COMBO_ACTION(chords2[RS]),
+    [AR_VSCODE] = COMBO_ACTION(chords2[AR]),
+    [WF_VSCODE] = COMBO_ACTION(chords2[WF]),
+    [ST_VSCODE] = COMBO_ACTION(chords2[ST])
 };
 
 void process_combo_event(uint8_t combo_index, bool pressed) {
@@ -290,6 +298,10 @@ void process_combo_event(uint8_t combo_index, bool pressed) {
             }
             break;
         case DB_VSCODE:
+        case RS_VSCODE:
+        case AR_VSCODE:
+        case WF_VSCODE:
+        case ST_VSCODE:
             if (pressed) {
                 layer_on(_VSCODE);
             } else {
