@@ -30,7 +30,7 @@ enum {
     WF,
     FP,
     PG,
-    AS,
+    AR,
     RS,
     ST,
     TD,
