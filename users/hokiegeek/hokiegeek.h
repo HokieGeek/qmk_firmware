@@ -6,7 +6,12 @@
 #ifdef TAP_DANCE_ENABLE
 #include "td_extras.h"
 #include "tmux.h"
+#ifdef DYNAMIC_MACRO_ENABLE
 #include "skdm.h"
+#else
+#define KC_SKDM1 KC_NO
+#define KC_SKDM2 KC_NO
+#endif
 #else
 #define TD(n) KC_NO
 #define KC_TMUX KC_NO
@@ -91,7 +96,10 @@ enum {
     td_encoder = 0,
     td_tmux,
     td_shift_latin,
+#ifdef DYNAMIC_MACRO_ENABLE
     td_skdm1,
+    td_skdm2,
+#endif
 #endif
     TD_SAFE_RANGE
 };
@@ -101,8 +109,6 @@ void tap_ctltab_td(td_stage);
 #endif
 
 void tap_mousekey(uint8_t);
-
-bool process_record_dynamic_macro(uint16_t keycode, keyrecord_t *record);
 
 void userspace_matrix_init_user(void);
 // void userspace_matrix_scan_user(void);

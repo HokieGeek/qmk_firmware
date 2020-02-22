@@ -9,8 +9,6 @@ void tap_gui_shift_enter_td(td_stage stage) {
 void tap_ctltab_td(td_stage stage) {
     tap_code16(LCTL(KC_TAB));
 }
-#else
-#include "dynamic_macro.h"
 #endif
 
 void userspace_matrix_init_user(void) {
@@ -32,10 +30,6 @@ inline void tap_mousekey(uint8_t code) {
 // }
 
 bool userspace_process_record_user(uint16_t keycode, keyrecord_t *record) {
-    if (!process_record_dynamic_macro(keycode, record)) {
-        return false;
-    }
-
     switch (keycode) {
         // OS
         case KC_OS_NIX:
