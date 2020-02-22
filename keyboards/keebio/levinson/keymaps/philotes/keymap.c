@@ -22,7 +22,7 @@ enum custom_keycodes {
 #define __BASE_RCR2__ KC_SKDM1
 
 // |------+------+------+------+------+------|   |------+------+------+------+------+------|
-// | Lower|      |      |      |GUIBsp|AltSpc|   |CtlTb | TMUX | ENC  |VSCTRM| SKDM |Raise |
+// | Lower|      |      |      |GUIBsp|AltSpc|   |CtlTb | TMUX | ENC  |      | SKDM |Raise |
 // `-----------------------------------------'   `-----------------------------------------'
 #define _____BASE_BOTTOM_____   MO(_LOWER), _______, _______,  _______, GUIBSPC, LALT_T(KC_SPC),     TD(td_ctltab_extras),  KC_TMUX, KC_ENC,  _______,  _______,  MO(_RAISE)
 
@@ -36,7 +36,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  * |------+------+------+------+------+------|   |------+------+------+------+------+------|
  * |SftLat|   Z  |   X  |   C  |   V  |   B  |   |   K  |   M  |   ,  |   .  |   /  |ShEnt |
  * |------+------+------+------+------+------|   |------+------+------+------+------+------|
- * | Lower|      |      |      |GUIBsp|AltSpc|   |CtlTb | TMUX | ENC  |VSCTRM| SKDM |Raise |
+ * | Lower|      |      |      |GUIBsp|AltSpc|   |CtlTb | TMUX | ENC  |      | SKDM |Raise |
  * `-----------------------------------------'   `-----------------------------------------'
  */
 [_COLEMAK] = LAYOUT_wrapper( \
@@ -54,7 +54,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  * |------+------+------+------+------+------|   |------+------+------+------+------+------|
  * |SftLat|   Z  |   X  |   C  |   V  |   B  |   |   N  |   M  |   ,  |   .  |   /  |ShEnt |
  * |------+------+------+------+------+------|   |------+------+------+------+------+------|
- * | Lower|      |      |      |GUIBsp|AltSpc|   |CtlTb | TMUX | ENC  |VSCTRM| SKDM |Raise |
+ * | Lower|      |      |      |GUIBsp|AltSpc|   |CtlTb | TMUX | ENC  |      | SKDM |Raise |
  * `-----------------------------------------'   `-----------------------------------------'
  */
 [_QWERTY] = LAYOUT_wrapper( \
