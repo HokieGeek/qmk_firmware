@@ -10,17 +10,17 @@ on my laptop, I don't need the cable that connects the two halves of this split 
 
 ## Features
 ### Accents
-Using keycodes defined in my [userspace files](../../../../users/hokiegeek/readme.md#accents).
+Using keycodes defined in my [userspace files](../../../../../users/hokiegeek/readme.md#accents).
 
 Each symbol is set as part of the lower layer for the respective ANSI character.
 
 ### TMUX
-Using keycodes defined in my [userspace files](../../../../users/hokiegeek/readme.md#tmux).
+Using keycodes defined in my [userspace files](../../../../../users/hokiegeek/readme.md#tmux).
 
 Mapped them the key under my right thumb.
 
 ### Single-Key Dynamic Macro
-Using keycodes defined in my [userspace files](../../../../users/hokiegeek/readme.md#skdm).
+Using keycodes defined in my [userspace files](../../../../../users/hokiegeek/readme.md#skdm).
 
 With one key I can record and play back a macro
 
