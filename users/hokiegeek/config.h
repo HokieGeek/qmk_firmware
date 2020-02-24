@@ -2,11 +2,18 @@
 #define USERSPACE_CONFIG_H
 
 // Disabling deprecated features
+#ifndef NO_ACTION_MACRO
 #define NO_ACTION_MACRO
+#endif
+#ifndef NO_ACTION_FUNCTION
 #define NO_ACTION_FUNCTION
+#endif
 
+#ifndef NO_ACTION_ONESHOT
 #define NO_ACTION_ONESHOT
+#endif
 
+// Use serial, by default
 #if !defined(USE_SERIAL) && !defined(USE_I2C)
 #define USE_SERIAL
 #endif // !USE_SERIAL && !USE_I2C
