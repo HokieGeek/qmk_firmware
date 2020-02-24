@@ -22,7 +22,7 @@ enum custom_keycodes {
 #define __BASE_RCR2__ KC_SKDM1
 
 // |------+------+------+------+------+------|   |------+------+------+------+------+------|
-// | Lower|      |      |      |GUIBsp|AltSpc|   |CtlTb | TMUX | ENC  |      | SKDM |Raise |
+// | Lower|      |      |      |GUIBsp|AltSpc|   |CtlTb | TMUX | ENC  |      |      |Raise |
 // `-----------------------------------------'   `-----------------------------------------'
 #define _____BASE_BOTTOM_____   MO(_LOWER), _______, _______,  _______, GUIBSPC, LALT_T(KC_SPC),     TD(td_ctltab_extras),  KC_TMUX, KC_ENC,  _______,  _______,  MO(_RAISE)
 
@@ -30,13 +30,13 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
 /* Colemak
  * ,-----------------------------------------.   ,-----------------------------------------.
- * | Esc  |   Q  |   W  |   F  |   P  |   G  |   |   J  |   L  |   U  |   Y  |   ;  |      |
+ * | Esc  |   Q  |   W  |   F  |   P  |   G  |   |   J  |   L  |   U  |   Y  |   ;  | SKDM |
  * |------+------+------+------+------+------|   |------+------+------+------+------+------|
  * |Ctl/Tb|   A  |   R  |   S  |   T  |   D  |   |   H  |   N  |   E  |   I  |   O  |  '   |
  * |------+------+------+------+------+------|   |------+------+------+------+------+------|
  * |SftLat|   Z  |   X  |   C  |   V  |   B  |   |   K  |   M  |   ,  |   .  |   /  |ShEnt |
  * |------+------+------+------+------+------|   |------+------+------+------+------+------|
- * | Lower|      |      |      |GUIBsp|AltSpc|   |CtlTb | TMUX | ENC  |      | SKDM |Raise |
+ * | Lower|      |      |      |GUIBsp|AltSpc|   |CtlTb | TMUX | ENC  |      |      |Raise |
  * `-----------------------------------------'   `-----------------------------------------'
  */
 [_COLEMAK] = LAYOUT_wrapper( \
@@ -48,13 +48,13 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
 /* Qwerty
  * ,-----------------------------------------.   ,-----------------------------------------.
- * | Esc  |   Q  |   W  |   E  |   R  |   T  |   |   Y  |   U  |   I  |   O  |   P  |      |
+ * | Esc  |   Q  |   W  |   E  |   R  |   T  |   |   Y  |   U  |   I  |   O  |   P  | SKDM |
  * |------+------+------+------+------+------|   |------+------+------+------+------+------|
  * |Ctl/Tb|   A  |   S  |   D  |   F  |   G  |   |   H  |   J  |   K  |   L  |   ;  |  '   |
  * |------+------+------+------+------+------|   |------+------+------+------+------+------|
  * |SftLat|   Z  |   X  |   C  |   V  |   B  |   |   N  |   M  |   ,  |   .  |   /  |ShEnt |
  * |------+------+------+------+------+------|   |------+------+------+------+------+------|
- * | Lower|      |      |      |GUIBsp|AltSpc|   |CtlTb | TMUX | ENC  |      | SKDM |Raise |
+ * | Lower|      |      |      |GUIBsp|AltSpc|   |CtlTb | TMUX | ENC  |      |      |Raise |
  * `-----------------------------------------'   `-----------------------------------------'
  */
 [_QWERTY] = LAYOUT_wrapper( \
@@ -250,6 +250,7 @@ qk_tap_dance_action_t tap_dance_actions[] = {
     TD_SHIFT_LATIN,
 #ifdef DYNAMIC_MACRO_ENABLE
     TD_SKDM1_ENTRY,
+    TD_SKDM2_ENTRY,
 #endif
     [td_ctltab_extras] = ACTION_TAP_DANCE_TAP_HOLD(tap_ctltab_td, extras_layer_on_hold)
 };
