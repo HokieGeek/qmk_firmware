@@ -1,4 +1,5 @@
 EXTRAFLAGS += -flto
+LINK_TIME_OPTIMIZATION_ENABLE = yes
 
 SRC += hokiegeek.c os.c latin.c vscode.c
 
