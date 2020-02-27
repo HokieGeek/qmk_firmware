@@ -85,7 +85,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  * |------+------+------+------+------+------|     |------+------+------+------+------+------|
  * |      |      |      |      |      |      |     |      |  {   |  }   |  [   |  ]   |      |
  * |------+-------------+------+------+------|     |------+------+--------------------+------|
- * |      |             |      |      |      |     |      |      |                    |      |
+ * |      |             | ENC  |      |      |     |      |      |                    |      |
  * `------'             `--------------------'     `-------------'                    `------'
  */
 [_LOWER] = LAYOUT_wrapper(
@@ -103,7 +103,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  * |------+------+------+------+------+------|     |------+------+------+------+------+------|
  * |  F1  |  F2  |  F3  |  F4  |  F5  |  F6  |     |  F7  |  F8  |  F9  |  F10 | F11  | F12  |
  * |------+-------------+------+------+------|     |------+------+--------------------+------|
- * |      |             |      |      |      |     |CSTAB | TX_P |                    |      |
+ * |      |             | ENC  |      |      |     |CSTAB | TX_P |                    |      |
  * `------'             `--------------------'     `-------------'                    `------'
  */
 [_RAISE] = LAYOUT_wrapper(
@@ -121,7 +121,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  * |------+------+------+------+------+------|     |------+------+------+------+------+------|
  * |      |      |      |      |      |      |     |      |      |      |      |      |      |
  * |------+-------------+------+------+------|     |------+------+--------------------+------|
- * |      |             |      |      |      |     |      |      |                    |      |
+ * |      |             | ENC  |      |      |     |      |      |                    |      |
  * `------'             `--------------------'     `-------------'                    `------'
  */
 [_YABAI] = LAYOUT_wrapper(
@@ -141,7 +141,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  * |------+------+------+------+------+------|     |------+------+------+------+------+------|
  * |      |      |  1   |  2   |  3   |  0   |     |      |      |      |      |      |      |
  * |------+-------------+------+------+------|     |------+------+--------------------+------|
- * |      |             |      |      |      |     |      |      |                    |      |
+ * |      |             | ENC  |      |      |     |      |      |                    |      |
  * `------'             `--------------------'     `-------------'                    `------'
  */
 [_EXTRAS] = LAYOUT_wrapper(
@@ -159,7 +159,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  * |------+------+------+------+------+------|     |------+------+------+------+------+------|
  * |      |      |      |      |      |      |     |      |      |      |      |      |      |
  * |------+-------------+------+------+------|     |------+------+--------------------+------|
- * |      |             |      |      |      |     |      |      |                    |      |
+ * |      |             | ENC  |      |      |     |      |      |                    |      |
  * `------'             `--------------------'     `-------------'                    `------'
  */
 /*
@@ -188,7 +188,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  * |------+------+------+------+------+------|     |------+------+------+------+------+------|
  * |      |      |      |      |      |      |     |      |      |      |      |      |      |
  * |------+-------------+------+------+------|     |------+------+--------------------+------|
- * |      |             |      |      |      |     |      |      |                    |      |
+ * |      |             | ENC  |      |      |     |      |      |                    |      |
  * `------'             `--------------------'     `-------------'                    `------'
  */
 [_ADJUST] = LAYOUT_wrapper(
@@ -318,6 +318,40 @@ qk_tap_dance_action_t tap_dance_actions[] = {
     [td_ctltab_extras] = ACTION_TAP_DANCE_TAP_HOLD(tap_ctltab_td, extras_layer_on_hold)
 };
 #endif
+
+enum combo_events {
+    JL_TERM = 0,
+    JH_BROWSER,
+    FP_VSCODE
+};
+
+combo_t key_combos[COMBO_COUNT] = {
+    [JL_TERM] = COMBO_ACTION(chords2[JL]),
+    [JH_BROWSER] = COMBO_ACTION(chords2[JH]),
+    [FP_VSCODE] = COMBO_ACTION(chords2[FP])
+};
+
+void process_combo_event(uint8_t combo_index, bool pressed) {
+      switch(combo_index) {
+        case JL_TERM:
+            if (pressed) {
+                tap_code16(LGUI(LSFT(KC_ENT)));
+            }
+            break;
+        case JH_BROWSER:
+            if (pressed) {
+                tap_code16(HYPR(KC_ENT));
+            }
+            break;
+        case FP_VSCODE:
+            if (pressed) {
+                layer_on(_VSCODE);
+            } else {
+                layer_off(_VSCODE);
+            }
+            break;
+      }
+}
 
 void matrix_init_user(void) {
     setTargetOS(OS_MAC);
