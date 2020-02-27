@@ -41,6 +41,10 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #define QMK_LED B0
 #define QMK_SPEAKER C6
 
+#define SPLIT_USB_DETECT
+
+#define EE_HANDS
+
 #define ENCODERS_PAD_A { F4 }
 #define ENCODERS_PAD_B { F5 }
 #define ENCODERS_PAD_A_RIGHT { F5 }
@@ -65,7 +69,11 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 /* ws2812 RGB LED */
 #define RGB_DI_PIN D3
-#define RGBLED_NUM 12    // Number of LEDs
-#define RGBLED_SPLIT { 6, 6 }
+#define RGBLED_NUM 12    // Number of LEDs for the whole keyboard
+#define RGBLED_SPLIT { RGBLED_NUM / 2, RGBLED_NUM / 2 }
+#define RGBLIGHT_ANIMATIONS
+#define RGBLIGHT_HUE_STEP 14
+#define RGBLIGHT_SAT_STEP 17
+#define RGBLIGHT_VAL_STEP 17
 
-#define DYNAMIC_KEYMAP_LAYER_COUNT 4
+// #define DYNAMIC_KEYMAP_LAYER_COUNT 4
