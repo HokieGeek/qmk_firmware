@@ -1,10 +1,10 @@
 #pragma once
 
+#include "quantum.h"
+
 #ifdef KEYBOARD_klaatu_rev1
     #include "rev1.h"
 #endif
-
-#include "quantum.h"
 
 // Used to create a keymap using only KC_ prefixed keys
 #define LAYOUT_kc( \

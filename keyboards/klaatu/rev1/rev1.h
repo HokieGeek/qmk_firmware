@@ -13,18 +13,18 @@
 #endif
 
 #define LAYOUT( \
-    LA1, LA2, LA3, LA4, LA5, LA6,  RA6, RA5, RA4, RA3, RA2, RA1, \
-    LB1, LB2, LB3, LB4, LB5, LB6,  RB6, RB5, RB4, RB3, RB2, RB1, \
-    LC1, LC2, LC3, LC4, LC5, LC6,  RC6, RC5, RC4, RC3, RC2, RC1, \
-    LD1,           LD4, LD5, LD6,  RD6, RD5, RD4,           RD1  \
+    L00, L01, L02, L03, L04, L05,  R00, R01, R02, R03, R04, R05, \
+    L10, L11, L12, L13, L14, L15,  R10, R11, R12, R13, R14, R15, \
+    L20, L21, L22, L23, L24, L25,  R20, R21, R22, R23, R24, R25, \
+    L30,           L33, L34, L35,  R30, R31, R32,           R35  \
     ) \
     { \
-        { LA1,   LA2,   LA3,   LA4,   LA5, LA6 }, \
-        { LB1,   LB2,   LB3,   LB4,   LB5, LB6 }, \
-        { LC1,   LC2,   LC3,   LC4,   LC5, LC6 }, \
-        { LD1,   KC_NO, KC_NO, LD4,   LD5, LD6 }, \
-        { RA1,   RA2,   RA3,   RA4,   RA5, RA6 }, \
-        { RB1,   RB2,   RB3,   RB4,   RB5, RB6 }, \
-        { RC1,   RC2,   RC3,   RC4,   RC5, RC6 }, \
-        { RD1,   KC_NO, KC_NO, RD4,   RD5, RD6 }  \
+        { L00,   L01,   L02,   L03,   L04,   L05 }, \
+        { L10,   L11,   L12,   L13,   L14,   L15 }, \
+        { L20,   L21,   L22,   L23,   L24,   L25 }, \
+        { L30,   KC_NO, KC_NO, L33,   L34,   L35 }, \
+        { R05,   R04,   R03,   R02,   R01,   R00 }, \
+        { R15,   R14,   R13,   R12,   R11,   R10 }, \
+        { R25,   R24,   R23,   R22,   R21,   R20 }, \
+        { R35,   KC_NO, KC_NO, R32,   R31,   R30 }  \
     }
