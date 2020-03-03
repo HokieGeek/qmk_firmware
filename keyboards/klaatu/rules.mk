@@ -3,10 +3,6 @@ F_CPU = 16000000
 ARCH = AVR8
 F_USB = $(F_CPU)
 
-# Bootloader
-#     This definition is optional, and if your keyboard supports multiple bootloaders of
-#     different sizes, comment this out, and the correct address will be loaded
-#     automatically (+60). See bootloader.mk for all options.
 BOOTLOADER = qmk-dfu
 
 # Interrupt driven control endpoint task(+60)
@@ -33,6 +29,5 @@ RGBLIGHT_ENABLE = yes       # Enable WS2812 RGB underlight.
 SLEEP_LED_ENABLE = no    # Breathing sleep LED during USB suspend
 
 SPLIT_KEYBOARD = yes
-# LAYOUTS = ortho_4x12
 
 DEFAULT_FOLDER = klaatu/rev1

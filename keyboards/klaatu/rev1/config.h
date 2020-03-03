@@ -25,6 +25,8 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #define PRODUCT         Klaatu
 #define DESCRIPTION     Klaatu barada nikto
 
+#define SPLIT_USB_DETECT
+
 /* key matrix size */
 // Rows are doubled-up
 #define MATRIX_ROWS 8
@@ -33,17 +35,10 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 // wiring of each half
 #define MATRIX_ROW_PINS { D4, D7, E6, B4 }
 #define MATRIX_COL_PINS { F6, F7, B1, B3, B2, B6 }
-// #define MATRIX_ROW_PINS_RIGHT { B1, B2, D2, F1, F4 }
-// #define MATRIX_COL_PINS_RIGHT { D4, D7, D3, B7, F0, B3 }
-// #define SPLIT_HAND_PIN D5
-#define QMK_ESC_OUTPUT F1
-#define QMK_ESC_INPUT B1
-#define QMK_LED B0
-#define QMK_SPEAKER C6
-
-#define SPLIT_USB_DETECT
-
-#define EE_HANDS
+// #define QMK_ESC_OUTPUT F1
+// #define QMK_ESC_INPUT B1
+// #define QMK_LED B0
+// #define QMK_SPEAKER C6
 
 #define ENCODERS_PAD_A { F4 }
 #define ENCODERS_PAD_B { F5 }
