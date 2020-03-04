@@ -227,7 +227,7 @@ void encoder_td_actions (qk_tap_dance_state_t *state, void *user_data) {
             // TODO
         } else { // Default layers
             if (enc_opts.defaultVolume) {
-                tap_key(KC_MUTE);
+                tap_code(KC_MUTE);
             } else {
                 enc_opts.scrollVertical = !enc_opts.scrollVertical;
             }
@@ -262,31 +262,31 @@ void encoder_update_user(uint8_t index, bool clockwise) {
         } else if (IS_LAYER_ON(_LOWER)) {
             if (enc_opts.monBrightness) {
                 if (clockwise) {
-                    tap_key(KC_BRMU);
+                    tap_code(KC_BRMU);
                 } else {
-                    tap_key(KC_BRMD);
+                    tap_code(KC_BRMD);
                 }
             /*
             } else {
                 if (clockwise) {
-                    tap_key(KC_UNDO);
+                    tap_code(KC_UNDO);
                 } else {
-                    tap_key(KC_STOP);
+                    tap_code(KC_STOP);
                 }
             */
             }
         } else if (IS_LAYER_ON(_RAISE)) {
             if (clockwise) {
-                tap_mod_key(KC_LCTL, KC_KP_PLUS);
+                tap_code16(LCTL(KC_KP_PLUS));
             } else {
-                tap_mod_key(KC_LCTL, KC_KP_MINUS);
+                tap_code16(LCTL(KC_KP_MINUS));
             }
         } else { // Default layers
             if (enc_opts.defaultVolume) {
                 if (clockwise) {
-                    tap_key(KC_VOLU);
+                    tap_code(KC_VOLU);
                 } else {
-                    tap_key(KC_VOLD);
+                    tap_code(KC_VOLD);
                 }
             } else {
                 if (enc_opts.scrollVertical) {
@@ -331,7 +331,6 @@ qk_tap_dance_action_t tap_dance_actions[] = {
 #endif
     TD_TMUX_ENTRY,
     TD_SHIFT_LATIN,
-    TD_TERM_VSCODE_ENTRY,
     [td_mac_notif] = ACTION_TAP_DANCE_DOUBLE_FUNCS(td_notifs, td_no_notif),
     [td_ctltab_extras] = ACTION_TAP_DANCE_TAP_HOLD(tap_ctltab_td, extras_layer_on_hold)
 };
@@ -391,10 +390,6 @@ layer_state_t layer_state_set_user(layer_state_t state) {
 }
 
 bool process_record_user(uint16_t keycode, keyrecord_t *record) {
-    if (!process_record_dynamic_macro(keycode, record)) {
-        return false;
-    }
-
     switch (keycode) {
         // SLACK
         case SLACK_GIPHY:
