@@ -7,7 +7,15 @@ void tap_gui_shift_enter_td(td_stage stage) {
 }
 
 void tap_ctltab_td(td_stage stage) {
+    td_tap_ctltab(stage);
+}
+
+void td_tap_ctltab(td_stage stage) {
     tap_code16(LCTL(KC_TAB));
+}
+
+void td_tap_bspc(td_stage stage) {
+    tap_code16(KC_BSPC);
 }
 #endif
 

@@ -77,3 +77,11 @@ void td_key(td_stage stage, uint16_t key) {
 inline void td_shift(td_stage stage) {
     td_key_mod(stage, KC_LSHIFT);
 }
+
+void td_layer_on_hold(td_stage stage, uint16_t layer) {
+    switch (stage) {
+        case TD_FINISHED: layer_on(layer); break;
+        case TD_RESET: layer_off(layer); break;
+        default: break;
+    }
+}

@@ -23,11 +23,11 @@ enum {
 };
 #define MAC_NOTIFS TD(td_mac_notif)
 #define CTLTAB_EXTRAS TD(td_ctltab_extras)
-#define TERM_VSCODE TD(td_terminal_vscode)
+#define BSCP_YABAI TD(td_bscp_yabai)
 #else
 #define MAC_NOTIFS G(S(KC_GRAVE))
 #define CTLTAB_EXTRAS LCTL(KC_TAB)
-#define TERM_VSCODE G(S(KC_ENT))
+#define BSCP_YABAI KC_TRANS
 #endif
 
 #undef __BASE_RCR2__
@@ -98,11 +98,11 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  * `------------------------------------------     ------------------------------------------'
  */
 [_LOWER] = LAYOUT_wrapper( \
-  MEH(KC_F13),  _______,  _______,  _______,      _______,  _______,      _______,  _______,  _______,  _______,  _______,  _______, \
-  KC_TILD,                                                  ______SYMBOLS______,                                            _______, \
-  KC_CAPS,      _______,  KC_LBRC,  KC_LPRN,      KC_LCBR,  _______,      KC_HOME,  KC_PGDN,  KC_PGUP,  KC_END,   KC_MINS,  KC_PIPE, \
-  _______,      _______,  _______,  _______,      _______,  _______,      _______,  _______,  _______,  _______,  _______,  _______, \
-  _______,      _______,  _______,  MEH(KC_F15),  _______,  _______,      _______,  _______,  _______,  _______,  _______,  _______ \
+  MEH(KC_F13),  _______,  _______,  _______,      _______,     _______,      _______,  _______,  _______,  _______,  _______,  _______, \
+  KC_TILD,                                                     ______SYMBOLS______,                                            _______, \
+  KC_CAPS,      _______,  KC_LBRC,  KC_LPRN,      KC_LCBR,     _______,      KC_HOME,  KC_PGDN,  KC_PGUP,  KC_END,   KC_MINS,  KC_PIPE, \
+  _______,      _______,  _______,  _______,      _______,     _______,      _______,  _______,  _______,  _______,  _______,  _______, \
+  _______,      _______,  _______,  MEH(KC_F15),  BSCP_YABAI,  _______,      _______,  _______,  _______,  _______,  _______,  _______ \
 ),
 
 /* Raise
@@ -321,11 +321,10 @@ void td_no_notif(td_stage stage) {
     }
 }
 void extras_layer_on_hold(td_stage stage) {
-    switch (stage) {
-        case TD_FINISHED: layer_on(_EXTRAS); break;
-        case TD_RESET: layer_off(_EXTRAS); break;
-        default: break;
-    }
+    td_layer_on_hold(stage, _EXTRAS);
+}
+void yabai_layer_on_hold(td_stage stage) {
+    td_layer_on_hold(stage, _YABAI);
 }
 
 qk_tap_dance_action_t tap_dance_actions[] = {
@@ -335,6 +334,7 @@ qk_tap_dance_action_t tap_dance_actions[] = {
     TD_TMUX_ENTRY,
     TD_SHIFT_LATIN,
     [td_mac_notif] = ACTION_TAP_DANCE_DOUBLE_FUNCS(td_notifs, td_no_notif),
+    [td_bscp_yabai] = ACTION_TAP_DANCE_TAP_HOLD(tap_ctltab_td, yabai_layer_on_hold),
     [td_ctltab_extras] = ACTION_TAP_DANCE_TAP_HOLD(tap_ctltab_td, extras_layer_on_hold)
 };
 #endif

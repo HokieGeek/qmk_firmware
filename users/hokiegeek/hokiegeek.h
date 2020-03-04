@@ -106,6 +106,8 @@ enum {
 
 #ifdef TAP_DANCE_ENABLE
 void tap_ctltab_td(td_stage);
+void td_tap_ctltab(td_stage);
+void td_tap_bspc(td_stage);
 #endif
 
 void tap_mousekey(uint8_t);
