@@ -338,15 +338,23 @@ qk_tap_dance_action_t tap_dance_actions[] = {
 
 enum combo_events {
     JL_TERM = 0,
+    SCLNO_SSHOT,
     JH_BROWSER,
+    HK_BROWSER,
     DB_VSCODE,
+    FP_VSCODE,
+    WR_SLACK,
     FS_SLACK
 };
 
 combo_t key_combos[COMBO_COUNT] = {
     [JL_TERM] = COMBO_ACTION(chords2[JL]),
+    [SCLNO_SSHOT] = COMBO_ACTION(chords2[SCLNO]),
     [JH_BROWSER] = COMBO_ACTION(chords2[JH]),
+    [HK_BROWSER] = COMBO_ACTION(chords2[HK]),
     [DB_VSCODE] = COMBO_ACTION(chords2[DB]),
+    [FP_VSCODE] = COMBO_ACTION(chords2[FP]),
+    [WR_SLACK] = COMBO_ACTION(chords2[WR]),
     [FS_SLACK] = COMBO_ACTION(chords2[FS])
 };
 
@@ -358,11 +366,13 @@ void process_combo_event(uint8_t combo_index, bool pressed) {
             }
             break;
         case JH_BROWSER:
+        case HK_BROWSER:
             if (pressed) {
                 tap_code16(HYPR(KC_ENT));
             }
             break;
         case DB_VSCODE:
+        case FP_VSCODE:
             if (pressed) {
                 layer_on(_VSCODE);
             } else {
@@ -370,10 +380,15 @@ void process_combo_event(uint8_t combo_index, bool pressed) {
             }
             break;
         case FS_SLACK:
+        case WR_SLACK:
             if (pressed) {
                 tap_code16(MEH(KC_P1));
             }
             break;
+        case SCLNO_SSHOT:
+            if (pressed) {
+                tap_code16(MEH(KC_F14));
+            }
       }
 }
 
