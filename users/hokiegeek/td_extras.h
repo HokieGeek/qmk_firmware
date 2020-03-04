@@ -24,6 +24,8 @@ typedef struct {
     void (*f2)(td_stage);
 } td_funcs_t;
 
+// #define ACTION_TAP_DANCE_TAPKEY_HOLDLAYER(f1, f2) {
+
 #define ACTION_TAP_DANCE_TAP_HOLD(f1, f2) { \
     .fn = { NULL, td_tap_hold_funcs_finished, td_tap_hold_funcs_reset }, \
     .user_data = (void *)&((td_funcs_t) { f1, f2 }),  \
@@ -43,6 +45,8 @@ void td_single_double_funcs(qk_tap_dance_state_t *state, void *user_data);
 
 void td_key_mod(td_stage, uint16_t);
 void td_key(td_stage, uint16_t);
+
+void td_layer_on_hold(td_stage stage, uint16_t layer);
 
 void td_shift(td_stage);
 
