@@ -23,11 +23,9 @@ enum {
 };
 #define MAC_NOTIFS TD(td_mac_notif)
 #define CTLTAB_EXTRAS TD(td_ctltab_extras)
-#define TERM_VSCODE TD(td_terminal_vscode)
 #else
 #define MAC_NOTIFS G(S(KC_GRAVE))
 #define CTLTAB_EXTRAS LCTL(KC_TAB)
-#define TERM_VSCODE G(S(KC_ENT))
 #endif
 
 #define SEND_APP_FRONT(app)   SEND_DELAYED(50, SS_LGUI(SS_TAP(X_SPACE)) app SS_TAP(X_ENTER))
