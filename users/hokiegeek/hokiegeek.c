@@ -2,12 +2,8 @@
 #include "hokiegeek.h"
 
 #ifdef TAP_DANCE_ENABLE
-void tap_gui_shift_enter_td(td_stage stage) {
+void td_tap_gui_shift_enter(td_stage stage) {
     tap_code16(LGUI(LSFT(KC_ENTER)));
-}
-
-void tap_ctltab_td(td_stage stage) {
-    td_tap_ctltab(stage);
 }
 
 void td_tap_ctltab(td_stage stage) {
