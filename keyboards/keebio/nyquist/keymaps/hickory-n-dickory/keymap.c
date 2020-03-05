@@ -19,16 +19,15 @@ enum custom_keycodes {
 enum {
     td_mac_notif = TD_SAFE_RANGE,
     td_ctltab_extras,
-    td_bscp_yabai
 };
 #define MAC_NOTIFS TD(td_mac_notif)
 #define CTLTAB_EXTRAS TD(td_ctltab_extras)
-#define BSCP_YABAI TD(td_bscp_yabai)
 #else
 #define MAC_NOTIFS G(S(KC_GRAVE))
 #define CTLTAB_EXTRAS LCTL(KC_TAB)
-#define BSCP_YABAI KC_TRANS
 #endif
+
+#define BSCP_YABAI LT(_YABAI, KC_BSPC)
 
 #undef __BASE_RCR2__
 #define __BASE_RCR2__ MAC_NOTIFS
@@ -323,9 +322,6 @@ void td_no_notif(td_stage stage) {
 void extras_layer_on_hold(td_stage stage) {
     td_layer_on_hold(stage, _EXTRAS);
 }
-void yabai_layer_on_hold(td_stage stage) {
-    td_layer_on_hold(stage, _YABAI);
-}
 
 qk_tap_dance_action_t tap_dance_actions[] = {
 #ifdef ENCODER_ENABLE
@@ -334,7 +330,6 @@ qk_tap_dance_action_t tap_dance_actions[] = {
     TD_TMUX_ENTRY,
     TD_SHIFT_LATIN,
     [td_mac_notif] = ACTION_TAP_DANCE_DOUBLE_FUNCS(td_notifs, td_no_notif),
-    [td_bscp_yabai] = ACTION_TAP_DANCE_TAP_HOLD(tap_ctltab_td, yabai_layer_on_hold),
     [td_ctltab_extras] = ACTION_TAP_DANCE_TAP_HOLD(tap_ctltab_td, extras_layer_on_hold)
 };
 #endif
