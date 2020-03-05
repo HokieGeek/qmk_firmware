@@ -231,13 +231,7 @@ void encoder_update_user(uint8_t index, bool clockwise) {
 #endif
 
 #ifdef TAP_DANCE_ENABLE
-void extras_layer_on_hold(td_stage stage) {
-    switch (stage) {
-        case TD_FINISHED: layer_on(_EXTRAS); break;
-        case TD_RESET:    layer_off(_EXTRAS); break;
-        default: break;
-    }
-}
+ACTION_TAP_DANCE_TAPKEY_HOLDLAYER_FUNCS(td_ctltab_extras, LCTL(KC_TAB), _EXTRAS)
 
 qk_tap_dance_action_t tap_dance_actions[] = {
     TD_TMUX_ENTRY,

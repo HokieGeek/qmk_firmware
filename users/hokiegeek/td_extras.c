@@ -63,8 +63,7 @@ void td_key_mod(td_stage stage, uint16_t key) {
 
 void td_key(td_stage stage, uint16_t key) {
     if (stage == TD_FINISHED) {
-        register_code(key);
-        unregister_code(key);
+        tap_code16(key);
     }
 }
 
