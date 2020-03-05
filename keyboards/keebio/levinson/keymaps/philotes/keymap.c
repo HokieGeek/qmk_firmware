@@ -9,9 +9,6 @@ extern keymap_config_t keymap_config;
 enum {
     td_ctltab_extras = TD_SAFE_RANGE
 };
-#define TERM_VSCODE TD(td_terminal_vscode)
-#else
-#define TERM_VSCODE G(S(KC_ENT))
 #endif
 
 enum custom_keycodes {
@@ -243,11 +240,11 @@ void extras_layer_on_hold(td_stage stage) {
 }
 
 qk_tap_dance_action_t tap_dance_actions[] = {
+    TD_TMUX_ENTRY,
+    TD_SHIFT_LATIN,
 #ifdef ENCODER_ENABLE
     TD_ENCODER_ENTRY,
 #endif
-    TD_TMUX_ENTRY,
-    TD_SHIFT_LATIN,
 #ifdef DYNAMIC_MACRO_ENABLE
     TD_SKDM1_ENTRY,
     TD_SKDM2_ENTRY,
@@ -260,22 +257,14 @@ enum combo_events {
     JL_TERM = 0,
     JH_BROWSER,
     DB_VSCODE,
-    RS_VSCODE,
-    AR_VSCODE,
-    WF_VSCODE,
-    FP_VSCODE,
-    ST_VSCODE
+    FP_VSCODE
 };
 
 combo_t key_combos[COMBO_COUNT] = {
     [JL_TERM] = COMBO_ACTION(chords2[JL]),
     [JH_BROWSER] = COMBO_ACTION(chords2[JH]),
     [DB_VSCODE] = COMBO_ACTION(chords2[DB]),
-    [RS_VSCODE] = COMBO_ACTION(chords2[RS]),
-    [AR_VSCODE] = COMBO_ACTION(chords2[AR]),
-    [WF_VSCODE] = COMBO_ACTION(chords2[WF]),
-    [FP_VSCODE] = COMBO_ACTION(chords2[FP]),
-    [ST_VSCODE] = COMBO_ACTION(chords2[ST])
+    [FP_VSCODE] = COMBO_ACTION(chords2[FP])
 };
 
 void process_combo_event(uint8_t combo_index, bool pressed) {
@@ -291,11 +280,7 @@ void process_combo_event(uint8_t combo_index, bool pressed) {
             }
             break;
         case DB_VSCODE:
-        case RS_VSCODE:
-        case AR_VSCODE:
-        case WF_VSCODE:
         case FP_VSCODE:
-        case ST_VSCODE:
             if (pressed) {
                 layer_on(_VSCODE);
             } else {
