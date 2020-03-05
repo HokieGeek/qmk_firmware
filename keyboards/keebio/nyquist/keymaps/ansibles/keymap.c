@@ -250,7 +250,7 @@ qk_tap_dance_action_t tap_dance_actions[] = {
     TD_TMUX_ENTRY,
     TD_SHIFT_LATIN,
     TD_SKDM1_ENTRY,
-    [td_ctltab_extras] = ACTION_TAP_DANCE_TAP_HOLD(tap_ctltab_td, extras_layer_on_hold)
+    [td_ctltab_extras] = ACTION_TAP_DANCE_TAP_HOLD(td_tap_ctltab, extras_layer_on_hold)
 };
 #endif
 
