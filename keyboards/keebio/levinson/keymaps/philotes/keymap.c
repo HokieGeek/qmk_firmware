@@ -243,37 +243,34 @@ qk_tap_dance_action_t tap_dance_actions[] = {
     TD_SKDM1_ENTRY,
     TD_SKDM2_ENTRY,
 #endif
-    [td_ctltab_extras] = ACTION_TAP_DANCE_TAP_HOLD(td_tap_ctltab, extras_layer_on_hold)
+    [td_ctltab_extras] = ACTION_TAP_DANCE_TAPKEY_HOLDLAYER(td_ctltab_extras)
 };
 #endif
 
 enum combo_events {
-    JL_TERM = 0,
-    JH_BROWSER,
-    DB_VSCODE,
+    JH_TERM = 0,
+    HK_BROWSER,
     FP_VSCODE
 };
 
 combo_t key_combos[COMBO_COUNT] = {
-    [JL_TERM] = COMBO_ACTION(chords2[JL]),
-    [JH_BROWSER] = COMBO_ACTION(chords2[JH]),
-    [DB_VSCODE] = COMBO_ACTION(chords2[DB]),
+    [JH_TERM] = COMBO_ACTION(chords2[JH]),
+    [HK_BROWSER] = COMBO_ACTION(chords2[HK]),
     [FP_VSCODE] = COMBO_ACTION(chords2[FP])
 };
 
 void process_combo_event(uint8_t combo_index, bool pressed) {
       switch(combo_index) {
-        case JL_TERM:
+        case JH_TERM:
             if (pressed) {
                 tap_code16(LGUI(LSFT(KC_ENT)));
             }
             break;
-        case JH_BROWSER:
+        case HK_BROWSER:
             if (pressed) {
                 tap_code16(HYPR(KC_ENT));
             }
             break;
-        case DB_VSCODE:
         case FP_VSCODE:
             if (pressed) {
                 layer_on(_VSCODE);
