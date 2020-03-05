@@ -150,7 +150,7 @@ void encoder_td_actions (qk_tap_dance_state_t *state, void *user_data) {
 #endif
             }
         } else if (IS_LAYER_ON(_LOWER)) {
-            // TODO
+            enc_opts.monBrightness = !enc_opts.monBrightness;
         } else { // Default layers
             if (enc_opts.defaultVolume) {
                 tap_code(KC_MUTE);
@@ -162,7 +162,7 @@ void encoder_td_actions (qk_tap_dance_state_t *state, void *user_data) {
         if (IS_LAYER_ON(_ADJUST)) {
             enc_opts.backlightBrightness = !enc_opts.backlightBrightness;
         } else if (IS_LAYER_ON(_LOWER)) {
-            enc_opts.monBrightness = !enc_opts.monBrightness;
+            // TODO
         } else { // Default layers
             enc_opts.defaultVolume = !enc_opts.defaultVolume;
         }
