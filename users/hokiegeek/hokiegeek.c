@@ -22,16 +22,25 @@ bool userspace_process_record_user(uint16_t keycode, keyrecord_t *record) {
         case KC_OS_NIX:
             if (record->event.pressed) {
                 setTargetOS(OS_NIX);
+#ifdef UNICODE_ENABLE
+                set_unicode_input_mode(UC_LNX);
+#endif
             }
             return false;
         case KC_OS_MAC:
             if (record->event.pressed) {
                 setTargetOS(OS_MAC);
+#ifdef UNICODE_ENABLE
+                set_unicode_input_mode(UC_OSX);
+#endif
             }
             return false;
         case KC_OS_WIN:
             if (record->event.pressed) {
                 setTargetOS(OS_WIN);
+#ifdef UNICODE_ENABLE
+                set_unicode_input_mode(UC_WINC);
+#endif
             }
             return false;
     }
