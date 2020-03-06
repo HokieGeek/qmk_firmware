@@ -14,7 +14,7 @@ void td_latin_reset(qk_tap_dance_state_t *state, void *user_data);
 #define SFT_LAT TD(td_shift_latin)
 #else
 #define SFT_LAT KC_TRNS
-#endif
+#endif // TAP_DANCE_ENABLE
 
 bool latin_process_record_user(uint16_t keycode, keyrecord_t *record);
 
