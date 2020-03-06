@@ -15,6 +15,8 @@ enum custom_keycodes {
     CTLTAB = NEW_SAFE_RANGE
 };
 
+#define NUMPAD_BSPC LT(_NUMPAD, KC_BSPC)
+
 #undef __BASE_RCR2__
 #define __BASE_RCR2__ KC_SKDM1
 
@@ -69,14 +71,14 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  * |------+------+------+------+------+------|   |------+------+------+------+------+------|
  * |      |      |      |      |      |      |   |      |      |      |      |      |      |
  * |------+------+------+------+------+------|   |------+------+------+------+------+------|
- * |      |      |      |      |      |      |   |      |      |      |      |      |      |
+ * |      |      |      |      |NPDBSP|      |   |      |      |      |      |      |      |
  * `-----------------------------------------'   `-----------------------------------------'
  */
 [_LOWER] = LAYOUT_wrapper( \
-  KC_TILD,          ______SYMBOLS______,       _______, \
-  KC_CAPS, ALTPSCR, KC_LBRC, KC_LPRN, KC_LCBR, _______,      KC_HOME, KC_PGDN, KC_PGUP, KC_END,  KC_MINS, KC_PIPE, \
-  _______, _______, _______, _______, _______, _______,      _______, _______, _______, _______, _______, _______, \
-  _______, _______, _______, _______, MO(_NUMPAD), _______,      _______, _______, _______, _______, _______, _______ \
+  KC_TILD,                                          ______SYMBOLS______,           _______, \
+  KC_CAPS, ALTPSCR, KC_LBRC, KC_LPRN, KC_LCBR,     _______,      KC_HOME, KC_PGDN, KC_PGUP, KC_END,  KC_MINS, KC_PIPE, \
+  _______, _______, _______, _______, _______,     _______,      _______, _______, _______, _______, _______, _______, \
+  _______, _______, _______, _______, NUMPAD_BSPC, _______,      _______, _______, _______, _______, _______, _______ \
 ),
 
 /* Raise
@@ -241,7 +243,7 @@ qk_tap_dance_action_t tap_dance_actions[] = {
 #endif
 #ifdef DYNAMIC_MACRO_ENABLE
     TD_SKDM1_ENTRY,
-    TD_SKDM2_ENTRY,
+    // TD_SKDM2_ENTRY,
 #endif
     [td_ctltab_extras] = ACTION_TAP_DANCE_TAPKEY_HOLDLAYER(td_ctltab_extras)
 };
