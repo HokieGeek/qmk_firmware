@@ -1,20 +1,6 @@
 #include <mousekey.h>
 #include "hokiegeek.h"
 
-#ifdef TAP_DANCE_ENABLE
-void td_tap_gui_shift_enter(td_stage stage) {
-    tap_code16(LGUI(LSFT(KC_ENTER)));
-}
-
-void td_tap_ctltab(td_stage stage) {
-    tap_code16(LCTL(KC_TAB));
-}
-
-void td_tap_bspc(td_stage stage) {
-    tap_code16(KC_BSPC);
-}
-#endif
-
 void userspace_matrix_init_user(void) {
 #ifdef ENCODER_ENABLE
     hgencoder_init();

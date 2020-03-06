@@ -284,8 +284,6 @@ void process_combo_event(uint8_t combo_index, bool pressed) {
 }
 
 void matrix_init_user(void) {
-    set_single_persistent_default_layer(_COLEMAK);
-
     userspace_matrix_init_user();
 }
 
