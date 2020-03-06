@@ -249,6 +249,7 @@ qk_tap_dance_action_t tap_dance_actions[] = {
 };
 #endif
 
+#ifdef COMBO_ENABLE
 enum combo_events {
     JH_TERM = 0,
     HK_BROWSER,
@@ -282,6 +283,7 @@ void process_combo_event(uint8_t combo_index, bool pressed) {
             break;
       }
 }
+#endif
 
 void matrix_init_user(void) {
     userspace_matrix_init_user();
