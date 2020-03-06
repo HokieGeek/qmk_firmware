@@ -3,152 +3,64 @@
 #include "os.h"
 #include "keycodes.h"
 
-void vscode_layer_on_hold(td_stage stage) {
-    switch (stage) {
-        case TD_FINISHED: layer_on(_VSCODE); break;
-        case TD_RESET:    layer_off(_VSCODE); break;
-        default: break;
+void vscode_os_tap_code(keyrecord_t *record, uint16_t mac_kc, uint16_t nix_kc) {
+    if (record->event.pressed) {
+        switch (getTargetOS()) {
+            case OS_MAC:
+                tap_code16(mac_kc);
+                break;
+            case OS_NIX:
+                tap_code16(nix_kc);
+                break;
+        }
     }
 }
 
 bool vscode_process_record_user(uint16_t keycode, keyrecord_t *record) {
     switch (keycode) {
         case VSC_PROBS:
-            if (record->event.pressed) {
-                switch (getTargetOS()) {
-                    case OS_MAC:
-                        tap_code16(LGUI(LSFT(KC_M)));
-                        break;
-                    case OS_NIX:
-                        tap_code16(LCTL(LSFT(KC_M)));
-                        break;
-                }
-            }
+            vscode_os_tap_code(record, LGUI(LSFT(KC_M)), LCTL(LSFT(KC_M)));
             return false;
         case VSC_SCM:
             if (record->event.pressed) {
-                switch (getTargetOS()) {
-                    case OS_MAC:
-                        tap_code16(LCTL(LSFT(KC_G)));
-                        break;
-                    case OS_NIX:
-                        tap_code16(LCTL(LSFT(KC_G)));
-                        tap_code(KC_G);
-                        break;
+                tap_code16(LCTL(LSFT(KC_G))); // Same for MAC and NIX
+                if (getTargetOS() == OS_NIX) {
+                    tap_code(KC_G);
                 }
             }
             return false;
         case VSC_FIND:
-            if (record->event.pressed) {
-                switch (getTargetOS()) {
-                    case OS_MAC:
-                        tap_code16(LGUI(LSFT(KC_F)));
-                        break;
-                    case OS_NIX:
-                        tap_code16(LCTL(LSFT(KC_F)));
-                        break;
-                }
-            }
+            vscode_os_tap_code(record, LGUI(LSFT(KC_F)), LCTL(LSFT(KC_F)));
             return false;
         case VSC_TERM:
-            if (record->event.pressed) {
-                switch (getTargetOS()) {
-                    case OS_NIX:
-                    case OS_MAC:
-                        tap_code16(LCTL(KC_GRAVE));
-                        break;
-                }
-            }
+            vscode_os_tap_code(record, LCTL(KC_GRAVE), LCTL(KC_GRAVE));
             return false;
         case VSC_PKDEFS:
-            if (record->event.pressed) {
-                switch (getTargetOS()) {
-                    case OS_MAC:
-                        tap_code16(LALT(KC_F12));
-                        break;
-                    case OS_NIX:
-                        tap_code16(LCTL(LSFT(KC_F10)));
-                        break;
-                }
-            }
+            vscode_os_tap_code(record, LALT(KC_F12), LCTL(LSFT(KC_F10)));
             return false;
         case VSC_PKSYMS:
-            if (record->event.pressed) {
-                switch (getTargetOS()) {
-                    case OS_MAC:
-                    case OS_NIX:
-                        tap_code16(LSFT(KC_F12));
-                        break;
-                }
-            }
+            vscode_os_tap_code(record, LSFT(KC_F12), LSFT(KC_F12));
             return false;
         case VSC_G2SYM:
-            if (record->event.pressed) {
-                switch (getTargetOS()) {
-                    case OS_MAC:
-                        tap_code16(LSFT(LGUI(KC_O)));
-                        break;
-                    case OS_NIX:
-                        tap_code16(LSFT(LCTL(KC_O)));
-                        break;
-                }
-            }
+            vscode_os_tap_code(record, LSFT(LGUI(KC_O)), LSFT(LCTL(KC_O)));
             return false;
         case VSC_RENAME:
-            if (record->event.pressed) {
-                switch (getTargetOS()) {
-                    case OS_MAC:
-                    case OS_NIX:
-                        tap_code(KC_F2);
-                        break;
-                }
-            }
+            vscode_os_tap_code(record, KC_F2, KC_F2);
             return false;
         case VSC_PALETT:
-            if (record->event.pressed) {
-                switch (getTargetOS()) {
-                    case OS_MAC:
-                        tap_code16(LGUI(KC_P));
-                        break;
-                    case OS_NIX:
-                        tap_code16(LCTL(KC_P));
-                        break;
-                }
-            }
+            vscode_os_tap_code(record, LGUI(KC_P), LCTL(KC_P));
             return false;
         case VSC_XPLORE:
-            if (record->event.pressed) {
-                switch (getTargetOS()) {
-                    case OS_MAC:
-                        tap_code16(LSFT(LGUI(KC_E)));
-                        break;
-                    case OS_NIX:
-                        tap_code16(LSFT(LCTL(KC_E)));
-                        break;
-                }
-            }
+            vscode_os_tap_code(record, LSFT(LGUI(KC_E)), LSFT(LCTL(KC_E)));
             return false;
         case VSC_ED_1:
-            if (record->event.pressed) {
-                switch (getTargetOS()) {
-                    case OS_MAC:
-                        tap_code16(LGUI(KC_1));
-                        break;
-                    case OS_NIX:
-                        tap_code16(LCTL(KC_1));
-                        break;
-                }
-            }
+            vscode_os_tap_code(record, LGUI(KC_1), LCTL(KC_1));
             return false;
         case VSC_TGL_GTST:
             if (record->event.pressed) {
-                switch (getTargetOS()) {
-                    case OS_NIX:
-                    case OS_MAC:
-                        tap_code16(HYPR(KC_G));
-                        tap_code(KC_T);
-                        break;
-                }
+                // Same for MAC and NIX
+                tap_code16(HYPR(KC_G));
+                tap_code(KC_T);
             }
             return false;
     }

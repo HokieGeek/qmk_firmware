@@ -106,7 +106,6 @@ enum {
 void tap_mousekey(uint8_t);
 
 void userspace_matrix_init_user(void);
-// void userspace_matrix_scan_user(void);
 bool userspace_process_record_user(uint16_t keycode, keyrecord_t *record);
 
 #endif // USERSPACE

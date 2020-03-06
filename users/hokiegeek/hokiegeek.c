@@ -16,9 +16,6 @@ inline void tap_mousekey(uint8_t code) {
 #endif
 }
 
-// void userspace_matrix_scan_user(void) {
-// }
-
 bool userspace_process_record_user(uint16_t keycode, keyrecord_t *record) {
     switch (keycode) {
         // OS
@@ -27,19 +24,16 @@ bool userspace_process_record_user(uint16_t keycode, keyrecord_t *record) {
                 setTargetOS(OS_NIX);
             }
             return false;
-            break;
         case KC_OS_MAC:
             if (record->event.pressed) {
                 setTargetOS(OS_MAC);
             }
             return false;
-            break;
         case KC_OS_WIN:
             if (record->event.pressed) {
                 setTargetOS(OS_WIN);
             }
             return false;
-            break;
     }
 
     if (!latin_process_record_user(keycode, record)) {
@@ -63,18 +57,11 @@ bool userspace_process_record_user(uint16_t keycode, keyrecord_t *record) {
                 set_single_persistent_default_layer(_QWERTY);
             }
             return false;
-            break;
         case COLEMAK:
             if (record->event.pressed) {
                 set_single_persistent_default_layer(_COLEMAK);
             }
             return false;
-            break;
-
-        // TODO: DO NOT REMOVE OR IT WILL INCREASE FIRMWARE SIZE
-        case KC_LATIN:
-            return false;
-            break;
 
         // RANDOM
         case QMK_MAKE:
@@ -92,7 +79,6 @@ bool userspace_process_record_user(uint16_t keycode, keyrecord_t *record) {
                 reset_keyboard();
             }
             return false;
-            break;
     }
 
     return true;
