@@ -40,7 +40,6 @@ bool tmux_process_record_user(uint16_t keycode, keyrecord_t *record) {
         case TMUX_PEEK:
             SEND_TMUX(SS_LCTRL("a"))
             return false;
-            break;
     }
     return true;
 }
