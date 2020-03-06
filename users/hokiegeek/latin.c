@@ -34,6 +34,9 @@ bool latin_process_record_user(uint16_t keycode, keyrecord_t *record) {
                 useLatinChar = true;
                 break;
             case KC_E:
+#ifdef UNICODE_ENABLE
+                send_unicode_string("é");
+#else
                 switch (getTargetOS()) {
                     case OS_MAC:
                         SEND_LATIN_MAC(SS_LALT("e")"e");
@@ -44,8 +47,12 @@ bool latin_process_record_user(uint16_t keycode, keyrecord_t *record) {
                     case OS_WIN:
                         break;
                 }
+#endif
                 break;
             case KC_A:
+#ifdef UNICODE_ENABLE
+                send_unicode_string("á");
+#else
                 switch (getTargetOS()) {
                     case OS_MAC:
                         SEND_LATIN_MAC(SS_LALT("e")"a");
@@ -56,8 +63,12 @@ bool latin_process_record_user(uint16_t keycode, keyrecord_t *record) {
                     case OS_WIN:
                         break;
                 }
+#endif
                 break;
             case KC_I:
+#ifdef UNICODE_ENABLE
+                send_unicode_string("í");
+#else
                 switch (getTargetOS()) {
                     case OS_MAC:
                         SEND_LATIN_MAC(SS_LALT("e")"i");
@@ -68,8 +79,12 @@ bool latin_process_record_user(uint16_t keycode, keyrecord_t *record) {
                     case OS_WIN:
                         break;
                 }
+#endif
                 break;
             case KC_O:
+#ifdef UNICODE_ENABLE
+                send_unicode_string("ó");
+#else
                 switch (getTargetOS()) {
                     case OS_MAC:
                         SEND_LATIN_MAC(SS_LALT("e")"o");
@@ -80,8 +95,12 @@ bool latin_process_record_user(uint16_t keycode, keyrecord_t *record) {
                     case OS_WIN:
                         break;
                 }
+#endif
                 break;
             case KC_U:
+#ifdef UNICODE_ENABLE
+                send_unicode_string("ú");
+#else
                 switch (getTargetOS()) {
                     case OS_MAC:
                         SEND_LATIN_MAC(SS_LALT("e")"u");
@@ -92,8 +111,12 @@ bool latin_process_record_user(uint16_t keycode, keyrecord_t *record) {
                     case OS_WIN:
                         break;
                 }
+#endif
                 break;
             case KC_N:
+#ifdef UNICODE_ENABLE
+                send_unicode_string("ñ");
+#else
                 switch (getTargetOS()) {
                     case OS_MAC:
                         SEND_LATIN_MAC(SS_LALT("n")"n");
@@ -104,10 +127,14 @@ bool latin_process_record_user(uint16_t keycode, keyrecord_t *record) {
                     case OS_WIN:
                         break;
                 }
+#endif
                 break;
             case KC_Q:
             case KC_1:
             case KC_EXCLAIM:
+#ifdef UNICODE_ENABLE
+                send_unicode_string("¡");
+#else
                 switch (getTargetOS()) {
                     case OS_MAC:
                         SEND_LATIN_MAC(SS_LALT("1"));
@@ -118,9 +145,13 @@ bool latin_process_record_user(uint16_t keycode, keyrecord_t *record) {
                     case OS_WIN:
                         break;
                 }
+#endif
                 break;
             case KC_SLASH:
             case KC_QUESTION:
+#ifdef UNICODE_ENABLE
+                send_unicode_string("¿");
+#else
                 switch (getTargetOS()) {
                     case OS_MAC:
                         SEND_LATIN_MAC(SS_LALT("?"));
@@ -131,6 +162,7 @@ bool latin_process_record_user(uint16_t keycode, keyrecord_t *record) {
                     case OS_WIN:
                         break;
                 }
+#endif
                 break;
             default:
                 return true;

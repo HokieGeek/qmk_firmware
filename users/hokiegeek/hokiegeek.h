@@ -39,7 +39,6 @@
 #define _QWERTY 1
 #define _LOWER 2
 #define _RAISE 3
-// #define _VSCODE 8
 #define _EXTRAS 9
 #define _ADJUST 15
 
