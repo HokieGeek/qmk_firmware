@@ -1,8 +1,10 @@
 #ifndef USERSPACE_LATIN
 #define USERSPACE_LATIN
 
+#ifndef UNICODE_ENABLE
 #define SEND_LATIN_MAC(str)   SEND_STRING(str)
 #define SEND_LATIN_NIX(str)   SEND_STRING(SS_DOWN(X_LCTRL)SS_DOWN(X_LSHIFT)SS_TAP(X_U)SS_TAP(X_0)SS_TAP(X_0) str SS_UP(X_LCTRL)SS_UP(X_LSHIFT));
+#endif
 
 #ifdef TAP_DANCE_ENABLE
 #include "td_extras.h"

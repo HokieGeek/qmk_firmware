@@ -290,19 +290,14 @@ void encoder_update_user(uint8_t index, bool clockwise) {
 #endif
 
 #ifdef TAP_DANCE_ENABLE
+ACTION_TAP_DANCE_TAPKEY_HOLDLAYER_FUNCS(td_ctltab_extras, LCTL(KC_TAB), _EXTRAS)
+
 void td_notifs(td_stage stage) {
     td_key(stage, KC_F18);
 }
 void td_no_notif(td_stage stage) {
     if (stage == TD_FINISHED) {
         SEND_STRING(SS_LGUI(SS_LSFT(SS_TAP(X_GRAVE))));
-    }
-}
-void extras_layer_on_hold(td_stage stage) {
-    switch (stage) {
-        case TD_FINISHED: layer_on(_EXTRAS); break;
-        case TD_RESET: layer_off(_EXTRAS); break;
-        default: break;
     }
 }
 
@@ -313,7 +308,7 @@ qk_tap_dance_action_t tap_dance_actions[] = {
     TD_TMUX_ENTRY,
     TD_SHIFT_LATIN,
     [td_mac_notif] = ACTION_TAP_DANCE_DOUBLE_FUNCS(td_notifs, td_no_notif),
-    [td_ctltab_extras] = ACTION_TAP_DANCE_TAP_HOLD(td_tap_ctltab, extras_layer_on_hold)
+    [td_ctltab_extras] = ACTION_TAP_DANCE_TAPKEY_HOLDLAYER(td_ctltab_extras)
 };
 #endif
 
