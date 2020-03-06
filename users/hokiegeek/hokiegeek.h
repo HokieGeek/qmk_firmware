@@ -39,7 +39,7 @@
 #define _QWERTY 1
 #define _LOWER 2
 #define _RAISE 3
-#define _EXTRAS 9
+#define _EXTRAS 4
 #define _ADJUST 15
 
 // Fillers to make layering more clear
@@ -102,11 +102,6 @@ enum {
 #endif
     TD_SAFE_RANGE
 };
-
-#ifdef TAP_DANCE_ENABLE
-void td_tap_ctltab(td_stage);
-void td_tap_bspc(td_stage);
-#endif
 
 void tap_mousekey(uint8_t);
 
