@@ -7,7 +7,6 @@ SRC += hokiegeek.c os.c latin.c vscode.c
 BOOTLOADER = qmk-dfu
 SPLIT_KEYBOARD = yes
 
-# UNICODE_ENABLE = yes
 ifndef MOUSEKEY_ENABLE
 	MOUSEKEY_ENABLE = yes
 endif
