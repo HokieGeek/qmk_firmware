@@ -313,6 +313,14 @@ qk_tap_dance_action_t tap_dance_actions[] = {
 };
 #endif
 
+#ifdef COMBO_ENABLE
+COMBO_CHORD2(J, L);
+COMBO_CHORD2(SCLN, O);
+COMBO_CHORD2(J, H);
+COMBO_CHORD2(H, K);
+COMBO_CHORD2(F, P);
+COMBO_CHORD2(W, R);
+
 enum combo_events {
     JL_TERM = 0,
     SCLNO_SSHOT,
@@ -323,12 +331,12 @@ enum combo_events {
 };
 
 combo_t key_combos[COMBO_COUNT] = {
-    [JL_TERM] = COMBO_ACTION(chords2[JL]),
-    [SCLNO_SSHOT] = COMBO_ACTION(chords2[SCLNO]),
-    [JH_BROWSER] = COMBO_ACTION(chords2[JH]),
-    [HK_BROWSER] = COMBO_ACTION(chords2[HK]),
-    [FP_VSCODE] = COMBO_ACTION(chords2[FP]),
-    [WR_SLACK] = COMBO_ACTION(chords2[WR])
+    [JL_TERM]     = COMBO_ACTION(chord2_JL),
+    [SCLNO_SSHOT] = COMBO_ACTION(chord2_SCLNO),
+    [JH_BROWSER]  = COMBO_ACTION(chord2_JH),
+    [HK_BROWSER]  = COMBO_ACTION(chord2_HK),
+    [FP_VSCODE]   = COMBO_ACTION(chord2_FP),
+    [WR_SLACK]    = COMBO_ACTION(chord2_WR)
 };
 
 void process_combo_event(uint8_t combo_index, bool pressed) {
@@ -363,6 +371,7 @@ void process_combo_event(uint8_t combo_index, bool pressed) {
             break;
       }
 }
+#endif
 
 void matrix_init_user(void) {
     setTargetOS(OS_MAC);
