@@ -3,6 +3,8 @@
 
 extern keymap_config_t keymap_config;
 
+#define _EXTRAS 4
+#define _NUMPAD 5
 #define _YABAI 6
 // #define _CAMTASIA 7
 
@@ -19,7 +21,6 @@ enum custom_keycodes {
 enum {
     td_mac_notif = TD_SAFE_RANGE,
     td_ctltab_extras,
-    td_bscp_yabai
 };
 #define MAC_NOTIFS TD(td_mac_notif)
 #define CTLTAB_EXTRAS TD(td_ctltab_extras)
@@ -28,13 +29,15 @@ enum {
 #define CTLTAB_EXTRAS LCTL(KC_TAB)
 #endif
 
+#define BSCP_YABAI LT(_YABAI, KC_BSPC)
+
+#undef __BASE_RCR2__
+#define __BASE_RCR2__ MAC_NOTIFS
+
 #define SEND_APP_FRONT(app)   SEND_DELAYED(50, SS_LGUI(SS_TAP(X_SPACE)) app SS_TAP(X_ENTER))
 #define SEND_SLACK_SLASH(str) SEND_DELAYED(50, SS_TAP(X_SLASH) str SS_TAP(X_TAB))
 #define SEND_SLACK_REACT(str) SEND_DELAYED(30, SS_LGUI(SS_LSFT(SS_TAP(X_BSLASH))) str SS_TAP(X_ENTER))
 #define SEND_SLACK_GOTO(str)  SEND_DELAYED(50, SS_LGUI(SS_TAP(X_K)) str SS_TAP(X_ENTER))
-
-#undef __BASE_RCR2__
-#define __BASE_RCR2__ MAC_NOTIFS
 
 #define _____BASE_BOTTOM_____  MO(_LOWER),                KC_ENC,  GUIBSPC, LALT_T(KC_SPC),          CTLTAB_EXTRAS,  KC_TMUX, _______,                   MO(_RAISE)
 
@@ -83,15 +86,15 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  * |------+------+------+------+------+------|     |------+------+------+------+------+------|
  * |      |      |      |      |      |      |     |      |  {   |  }   |  [   |  ]   |      |
  * |------+-------------+------+------+------|     |------+------+--------------------+------|
- * |      |             | ENC  |      |      |     |      |      |                    |      |
+ * |      |             | ENC  |YABBSP|      |     |      |      |                    |      |
  * `------'             `--------------------'     `-------------'                    `------'
  */
 [_LOWER] = LAYOUT_wrapper(
-  KC_TILD,                                      ______SYMBOLS______,                                         KC_EQL, \
-  KC_CAPS, _______, _______, _______, _______, _______,         KC_HOME,     KC_PGDN, KC_PGUP, KC_END,  KC_MINS, KC_PIPE, \
-  _______, _______, _______, _______, _______, _______,         _______,     KC_LCBR, KC_RCBR, KC_LBRC, KC_RBRC, _______, \
-  _______,                   _______, _______, _______,         _______,     _______, _______,                   _______
-),
+  KC_TILD,                                         ______SYMBOLS______,                                         KC_EQL, \
+  KC_CAPS, _______, _______, _______, _______,    _______,         KC_HOME,     KC_PGDN, KC_PGUP, KC_END,  KC_MINS, KC_PIPE, \
+  _______, _______, _______, _______, _______,    _______,         _______,     KC_LCBR, KC_RCBR, KC_LBRC, KC_RBRC, _______, \
+  _______,                   _______, BSCP_YABAI, _______,         _______,     _______, _______,                   _______
+  ),
 
 /* Raise
  * ,-----------------------------------------.     ,-----------------------------------------.
@@ -101,14 +104,14 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  * |------+------+------+------+------+------|     |------+------+------+------+------+------|
  * |  F1  |  F2  |  F3  |  F4  |  F5  |  F6  |     |  F7  |  F8  |  F9  |  F10 | F11  | F12  |
  * |------+-------------+------+------+------|     |------+------+--------------------+------|
- * |      |             | ENC  |      |      |     |CSTAB | TX_P |                    |      |
+ * |      |             | ENC  |YABBSP|      |     |CSTAB | TX_P |                    |      |
  * `------'             `--------------------'     `-------------'                    `------'
  */
 [_RAISE] = LAYOUT_wrapper(
-  KC_GRAVE,                                     ______NUMBERS______,                                              KC_PLUS, \
-  _______, _______, _______, _______, _______, _______,         KC_LEFT,     KC_DOWN,   KC_UP,    KC_RGHT,  KC_UNDS,  KC_BSLS, \
-  KC_F1,   KC_F2,   KC_F3,   KC_F4,   KC_F5,   KC_F6,           KC_F7,       KC_F8,     KC_F9,    KC_F10,   KC_F11,   KC_F12, \
-  _______,                   _______, _______, _______,         CSTAB,       TMUX_PREV, _______,                      _______
+  KC_GRAVE,                                        ______NUMBERS______,                                              KC_PLUS, \
+  _______, _______, _______, _______, _______,    _______,         KC_LEFT,     KC_DOWN,   KC_UP,    KC_RGHT,  KC_UNDS,  KC_BSLS, \
+  KC_F1,   KC_F2,   KC_F3,   KC_F4,   KC_F5,      KC_F6,           KC_F7,       KC_F8,     KC_F9,    KC_F10,   KC_F11,   KC_F12, \
+  _______,                   _______, BSCP_YABAI, _______,         CSTAB,       TMUX_PREV, _______,                      _______
   ),
 
 /* yabai
@@ -122,14 +125,12 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  * |      |             | ENC  |      |      |     |      |      |                    |      |
  * `------'             `--------------------'     `-------------'                    `------'
  */
-[_YABAI] = LAYOUT_wrapper(
-  _______,     LGUI(KC_1), LGUI(KC_2), LGUI(KC_3), LGUI(KC_4),   LGUI(KC_5),       LGUI(KC_6),  LGUI(KC_7),  LGUI(KC_8), LGUI(KC_9), LGUI(KC_0), _______, \
-  MEH(KC_TAB), _______,    _______,    _______,    LGUI(KC_SPC), _______,          _______,     _______,     _______,    _______,    _______,    _______, \
-  _______,     _______,    _______,    _______,    MEH(KC_V),    _______,          _______,     _______,     _______,    _______,    _______,    _______, \
-  _______,                             _______,    _______,      LCAG(KC_SPC),     _______,     _______,     _______,                            _______
+[_YABAI] = LAYOUT_wrapper( \
+  _______,     LGUI(KC_1),   LGUI(KC_2), LGUI(KC_3), LGUI(KC_4),    LGUI(KC_5),         LGUI(KC_6), LGUI(KC_7), LGUI(KC_8), LGUI(KC_9),   LGUI(KC_0),    _______, \
+  MEH(KC_TAB), _______,      _______,    _______,    LGUI(KC_SPC),  _______,            MEH(KC_H),  S(C(KC_N)), S(C(KC_E)), MEH(KC_I),    _______,       _______, \
+  _______,     LCA(KC_Z),    LCA(KC_X),  LCA(KC_C),  MEH(KC_V),     _______,            _______,    MEH(KC_M),  _______,    MEH(KC_F15),  HYPR(KC_F15),  LGUI(KC_ENTER), \
+  _______,                               _______,    _______,       LCAG(KC_SPC),       _______,    _______,    _______,                                 _______
   ),
-/*
-*/
 
 /* extras
  * ,-----------------------------------------.     ,-----------------------------------------.
@@ -314,14 +315,20 @@ qk_tap_dance_action_t tap_dance_actions[] = {
 
 enum combo_events {
     JL_TERM = 0,
+    SCLNO_SSHOT,
     JH_BROWSER,
-    FP_VSCODE
+    HK_BROWSER,
+    FP_VSCODE,
+    WR_SLACK
 };
 
 combo_t key_combos[COMBO_COUNT] = {
     [JL_TERM] = COMBO_ACTION(CHORD_JL),
+    [SCLNO_SSHOT] = COMBO_ACTION(CHORD_SCLNO),
     [JH_BROWSER] = COMBO_ACTION(CHORD_JH),
-    [FP_VSCODE] = COMBO_ACTION(CHORD_FP)
+    [HK_BROWSER] = COMBO_ACTION(CHORD_HK),
+    [FP_VSCODE] = COMBO_ACTION(CHORD_FP),
+    [WR_SLACK] = COMBO_ACTION(CHORD_WR)
 };
 
 void process_combo_event(uint8_t combo_index, bool pressed) {
@@ -332,6 +339,7 @@ void process_combo_event(uint8_t combo_index, bool pressed) {
             }
             break;
         case JH_BROWSER:
+        case HK_BROWSER:
             if (pressed) {
                 tap_code16(HYPR(KC_ENT));
             }
@@ -341,6 +349,16 @@ void process_combo_event(uint8_t combo_index, bool pressed) {
                 layer_on(_VSCODE);
             } else {
                 layer_off(_VSCODE);
+            }
+            break;
+        case WR_SLACK:
+            if (pressed) {
+                tap_code16(MEH(KC_P1));
+            }
+            break;
+        case SCLNO_SSHOT:
+            if (pressed) {
+                tap_code16(MEH(KC_F14));
             }
             break;
       }

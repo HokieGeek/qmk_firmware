@@ -1,6 +1,6 @@
 #pragma once
 
-#define COMBO_COUNT 3
+#define COMBO_COUNT 6
 
 #undef RGBLIGHT_ANIMATIONS
 #define RGBLIGHT_EFFECT_BREATHING
