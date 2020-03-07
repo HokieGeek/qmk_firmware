@@ -255,13 +255,33 @@ qk_tap_dance_action_t tap_dance_actions[] = {
 enum combo_events {
     JH_TERM = 0,
     HK_BROWSER,
-    FP_VSCODE
+    FP_VSCODE,
+    JL_7,
+    LU_8,
+    UY_9,
+    YSCLN_0,
+    HN_6,
+    NE_5,
+    EI_4,
+    KM_3,
+    MCOMM_2,
+    COMMDOT_1
 };
 
 combo_t key_combos[COMBO_COUNT] = {
     [JH_TERM] = COMBO_ACTION(chords2[JH]),
     [HK_BROWSER] = COMBO_ACTION(chords2[HK]),
-    [FP_VSCODE] = COMBO_ACTION(chords2[FP])
+    [FP_VSCODE] = COMBO_ACTION(chords2[FP]),
+    [JL_7] = COMBO_JL_7,
+    [LU_8] = COMBO_LU_8,
+    [UY_9] = COMBO_UY_9,
+    [YSCLN_0] = COMBO_YSCLN_0,
+    [HN_6] = COMBO_HN_6,
+    [NE_5] = COMBO_NE_5,
+    [EI_4] = COMBO_EI_4,
+    [KM_3] = COMBO_KM_3,
+    [MCOMM_2] = COMBO_MCOMM_2,
+    [COMMDOT_1] = COMBO_COMMDOT_1
 };
 
 void process_combo_event(uint8_t combo_index, bool pressed) {
