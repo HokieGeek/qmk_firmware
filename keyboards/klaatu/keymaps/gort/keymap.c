@@ -323,12 +323,12 @@ enum combo_events {
 };
 
 combo_t key_combos[COMBO_COUNT] = {
-    [JL_TERM] = COMBO_ACTION(CHORD_JL),
-    [SCLNO_SSHOT] = COMBO_ACTION(CHORD_SCLNO),
-    [JH_BROWSER] = COMBO_ACTION(CHORD_JH),
-    [HK_BROWSER] = COMBO_ACTION(CHORD_HK),
-    [FP_VSCODE] = COMBO_ACTION(CHORD_FP),
-    [WR_SLACK] = COMBO_ACTION(CHORD_WR)
+    [JL_TERM] = COMBO_ACTION(chords2[JL]),
+    [SCLNO_SSHOT] = COMBO_ACTION(chords2[SCLNO]),
+    [JH_BROWSER] = COMBO_ACTION(chords2[JH]),
+    [HK_BROWSER] = COMBO_ACTION(chords2[HK]),
+    [FP_VSCODE] = COMBO_ACTION(chords2[FP]),
+    [WR_SLACK] = COMBO_ACTION(chords2[WR])
 };
 
 void process_combo_event(uint8_t combo_index, bool pressed) {
