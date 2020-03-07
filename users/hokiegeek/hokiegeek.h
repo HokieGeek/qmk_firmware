@@ -39,7 +39,6 @@
 #define _QWERTY 1
 #define _LOWER 2
 #define _RAISE 3
-#define _EXTRAS 4
 #define _ADJUST 15
 
 // Fillers to make layering more clear
@@ -60,7 +59,7 @@
 #define __BASE_LCR4__ SFT_LAT
 
 #define __BASE_RCR1__ KC_TRNS
-#define __BASE_RCR2__ KC_TRNS
+#define __BASE_RCR2__ KC_SKDM1
 #define __BASE_RCR4__ KC_SFTENT
 
 // * |   1  |   2  |   3  |   4  |   5  |   6  |   7  |   8  |   9  |   0  |

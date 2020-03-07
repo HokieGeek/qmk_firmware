@@ -1,4 +1,6 @@
+#ifdef MOUSEKEY_ENABLE
 #include <mousekey.h>
+#endif
 #include "hokiegeek.h"
 
 void userspace_matrix_init_user(void) {

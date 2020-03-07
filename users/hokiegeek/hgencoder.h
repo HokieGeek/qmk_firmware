@@ -4,7 +4,7 @@
 #include "quantum.h"
 
 #ifndef ENCODER_RESOLUTION
-  #define ENCODER_RESOLUTION 4
+#   define ENCODER_RESOLUTION 4
 #endif
 
 typedef struct {

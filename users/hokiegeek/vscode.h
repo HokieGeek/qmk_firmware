@@ -4,7 +4,7 @@
 #include "quantum.h"
 #include "td_extras.h"
 
-#define _VSCODE 8
+#define _VSCODE 14
 #define KC_VSCODE MO(_VSCODE)
 
 /*
