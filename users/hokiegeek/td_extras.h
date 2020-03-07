@@ -30,6 +30,9 @@ typedef struct {
     .user_data = (void *)&((td_funcs_t) { fn_tap, fn_hold }),  \
   }
 
+#define ACTION_TAP_DANCE_TAPKEY_HOLDLAYER(name) \
+    ACTION_TAP_DANCE_TAP_HOLD(td_tap_##name, td_layer_on_hold_##name)
+
 #define ACTION_TAP_DANCE_TAPKEY_HOLDLAYER_FUNCS(name, key, layer) \
 void td_tap_##name(td_stage stage) { \
     tap_code16(key); \
@@ -37,9 +40,6 @@ void td_tap_##name(td_stage stage) { \
 void td_layer_on_hold_##name(td_stage stage) { \
     td_layer_on_hold(stage, layer); \
 }
-
-#define ACTION_TAP_DANCE_TAPKEY_HOLDLAYER(name) \
-    ACTION_TAP_DANCE_TAP_HOLD(td_tap_##name, td_layer_on_hold_##name)
 
 #define ACTION_TAP_DANCE_DOUBLE_FUNCS(fn_single, fn_double) { \
     .fn = { NULL, td_single_double_funcs, NULL }, \
@@ -57,7 +57,5 @@ void td_single_double_funcs(qk_tap_dance_state_t *state, void *user_data);
 void td_key_mod(td_stage, uint16_t);
 void td_key(td_stage, uint16_t);
 void td_layer_on_hold(td_stage stage, uint16_t layer);
-
-void td_shift(td_stage);
 
 #endif // USERSPACE_TD_EXTRAS

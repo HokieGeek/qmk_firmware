@@ -4,24 +4,20 @@ td_state process_td_state(qk_tap_dance_state_t *state, void *user_data) {
     if (state->count == 1) {
         if (state->interrupted || !state->pressed) {
             return SINGLE;
-        } else {
-            return SINGLE_HOLD;
         }
+        return SINGLE_HOLD;
     } else if (state->count == 2) {
         if (state->interrupted || !state->pressed) {
             return DOUBLE;
-        } else {
-            return DOUBLE_HOLD;
         }
+        return DOUBLE_HOLD;
     } else if (state->count == 3) {
         if (state->interrupted || !state->pressed) {
             return TRIPLE;
-        } else {
-            return TRIPLE_HOLD;
         }
-    } else {
-        return OTHER;
+        return TRIPLE_HOLD;
     }
+    return OTHER;
 }
 
 static int td_tap_hold_funcs_state = 0;
@@ -65,16 +61,6 @@ void td_key(td_stage stage, uint16_t key) {
     if (stage == TD_FINISHED) {
         tap_code16(key);
     }
-}
-
-// void td_send_stsing(td_stage stage, uint16_t key) {
-//     if (stage == TD_FINISHED) {
-//         SEND_STRING(SS_LGUI(SS_LSFT(SS_TAP(X_GRAVE))));
-//     }
-// }
-
-inline void td_shift(td_stage stage) {
-    td_key_mod(stage, KC_LSHIFT);
 }
 
 void td_layer_on_hold(td_stage stage, uint16_t layer) {

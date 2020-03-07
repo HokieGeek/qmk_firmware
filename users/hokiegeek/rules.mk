@@ -61,8 +61,8 @@ ifndef RGBLIGHT_ENABLE
 endif
 
 ifndef AUDIO_ENABLE
-	MIDI_ENABLE = no
 	AUDIO_ENABLE = no
+	MIDI_ENABLE = no
 	FAUXCLICKY_ENABLE = no
 endif
 

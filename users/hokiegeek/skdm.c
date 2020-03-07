@@ -14,14 +14,12 @@ int td_skdm_handler(qk_tap_dance_state_t *state, void *user_data, int kc_play, i
 
     keyrecord_t record;
     record.event.pressed = false;
-    uint16_t keycode = DYNAMIC_MACRO_RANGE;
+    uint16_t keycode = DYN_REC_STOP;
     int curr_td_state = process_td_state(state, user_data);
     switch (curr_td_state) {
         case SINGLE: keycode = kc_play; break;
         case TRIPLE: keycode = kc_start; break;
-        default: keycode = DYN_REC_STOP;
-                 record.event.pressed = true;
-                 break;
+        default: record.event.pressed = true; break;
     }
 
     process_dynamic_macro(keycode, &record);
