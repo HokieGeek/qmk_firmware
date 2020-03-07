@@ -252,11 +252,26 @@ qk_tap_dance_action_t tap_dance_actions[] = {
 #endif
 
 #ifdef COMBO_ENABLE
+COMBO_CHORD2(J, H);
+COMBO_CHORD2(H, K);
+COMBO_CHORD2(F, P);
+COMBO_CHORD4(T, D, V, B);
+COMBO_CHORD2(J, L);
+COMBO_CHORD2(L, U);
+COMBO_CHORD2(U, Y);
+COMBO_CHORD2(Y, SCLN);
+COMBO_CHORD2(H, N);
+COMBO_CHORD2(N, E);
+COMBO_CHORD2(E, I);
+COMBO_CHORD2(K, M);
+COMBO_CHORD2(M, COMM);
+COMBO_CHORD2(COMM, DOT);
+
 enum combo_events {
     JH_TERM = 0,
     HK_BROWSER,
     FP_VSCODE,
-    // TDVB_NUMPAD,
+    TDVB_NUMPAD,
     JL_7,
     LU_8,
     UY_9,
@@ -270,20 +285,20 @@ enum combo_events {
 };
 
 combo_t key_combos[COMBO_COUNT] = {
-    [JH_TERM] = COMBO_ACTION(chords2[JH]),
-    [HK_BROWSER] = COMBO_ACTION(chords2[HK]),
-    [FP_VSCODE] = COMBO_ACTION(chords2[FP]),
-    // [TDVB_NUMPAD] = COMBO_ACTION(CHORD_TDVB),
-    [JL_7] = COMBO_JL_7,
-    [LU_8] = COMBO_LU_8,
-    [UY_9] = COMBO_UY_9,
-    [YSCLN_0] = COMBO_YSCLN_0,
-    [HN_6] = COMBO_HN_6,
-    [NE_5] = COMBO_NE_5,
-    [EI_4] = COMBO_EI_4,
-    [KM_3] = COMBO_KM_3,
-    [MCOMM_2] = COMBO_MCOMM_2,
-    [COMMDOT_1] = COMBO_COMMDOT_1
+    [JH_TERM]     = COMBO_ACTION(chord2_JH),
+    [HK_BROWSER]  = COMBO_ACTION(chord2_HK),
+    [FP_VSCODE]   = COMBO_ACTION(chord2_FP),
+    [TDVB_NUMPAD] = COMBO_ACTION(chord4_TDVB),
+    [JL_7]        = COMBO(chord2_JL, KC_7),
+    [LU_8]        = COMBO(chord2_LU, KC_8),
+    [UY_9]        = COMBO(chord2_UY, KC_9),
+    [YSCLN_0]     = COMBO(chord2_YSCLN, KC_0),
+    [HN_6]        = COMBO(chord2_HN, KC_6),
+    [NE_5]        = COMBO(chord2_NE, KC_5),
+    [EI_4]        = COMBO(chord2_EI, KC_4),
+    [KM_3]        = COMBO(chord2_KM, KC_3),
+    [MCOMM_2]     = COMBO(chord2_MCOMM, KC_2),
+    [COMMDOT_1]   = COMBO(chord2_COMMDOT, KC_1)
 };
 
 void process_combo_event(uint8_t combo_index, bool pressed) {
@@ -305,7 +320,6 @@ void process_combo_event(uint8_t combo_index, bool pressed) {
                 layer_off(_VSCODE);
             }
             break;
-            /*
         case TDVB_NUMPAD:
             if (pressed) {
                 layer_on(_NUMPAD);
@@ -313,7 +327,6 @@ void process_combo_event(uint8_t combo_index, bool pressed) {
                 layer_off(_NUMPAD);
             }
             break;
-            */
       }
 }
 #endif
