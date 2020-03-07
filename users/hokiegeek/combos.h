@@ -92,9 +92,23 @@ enum {
     MCOMMDOT,
     COMMDOTSLSH,
 
-    PGTD,
+    //// Colemak
+    QWAR,
     WFRS,
-    RSPT,
+    FPST,
+    PGTD,
+    ARZX,
+    RSXC,
+    STCV,
+    TDVB,
+    JLHN,
+    LUNE,
+    UYEI,
+    YSCLNIO,
+    HNKM,
+    NEMCOMM,
+    EICOMMDOT,
+    IODOTSLSH,
 
     SAFE_COMBO_RANGE
 };
@@ -103,6 +117,7 @@ extern const uint16_t PROGMEM chords2[][3];
 extern const uint16_t PROGMEM chords3[][4];
 extern const uint16_t PROGMEM chords4[][5];
 
+/// qwerty
 #define COMBO_QA_1    COMBO(chords2[QA], KC_1)
 #define COMBO_WR_2    COMBO(chords2[WR], KC_2)
 #define COMBO_FS_3    COMBO(chords2[FS], KC_3)
@@ -113,6 +128,17 @@ extern const uint16_t PROGMEM chords4[][5];
 #define COMBO_UE_8    COMBO(chords2[UE], KC_8)
 #define COMBO_YI_9    COMBO(chords2[YI], KC_9)
 #define COMBO_SCLNO_0 COMBO(chords2[SCLNO], KC_0)
+
+#define COMBO_JL_7       COMBO(chords2[JL], KC_7)
+#define COMBO_LU_8       COMBO(chords2[LU], KC_8)
+#define COMBO_UY_9       COMBO(chords2[UY], KC_9)
+#define COMBO_YSCLN_0    COMBO(chords2[YSCLN], KC_0)
+#define COMBO_HN_6       COMBO(chords2[HN], KC_6)
+#define COMBO_NE_5       COMBO(chords2[NE], KC_5)
+#define COMBO_EI_4       COMBO(chords2[EI], KC_4)
+#define COMBO_KM_3       COMBO(chords2[KM], KC_3)
+#define COMBO_MCOMM_2    COMBO(chords2[MCOMM], KC_2)
+#define COMBO_COMMDOT_1  COMBO(chords2[COMMDOT], KC_1)
 
 #define COMBO_AZ_EXLM    COMBO(chords2[AZ], KC_EXLM)
 #define COMBO_RX_AT      COMBO(chords2[RX], KC_AT)

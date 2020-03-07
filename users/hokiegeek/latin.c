@@ -160,8 +160,8 @@ bool latin_process_record_user(uint16_t keycode, keyrecord_t *record) {
                     case OS_WIN:
                         break;
                 }
-                break;
 #endif
+                break;
             default:
                 return true;
         }
