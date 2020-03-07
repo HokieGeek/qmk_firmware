@@ -1,13 +1,14 @@
 #include QMK_KEYBOARD_H
 #include "hokiegeek.h"
 
+#define _MOUSE 4
 #define _NUMPAD 5
 
 extern keymap_config_t keymap_config;
 
 #ifdef TAP_DANCE_ENABLE
 enum {
-    td_ctltab_extras = TD_SAFE_RANGE
+    td_ctltab_mouse = TD_SAFE_RANGE
 };
 #endif
 
@@ -17,13 +18,10 @@ enum custom_keycodes {
 
 #define NUMPAD_BSPC LT(_NUMPAD, KC_BSPC)
 
-#undef __BASE_RCR2__
-#define __BASE_RCR2__ KC_SKDM1
-
 // |------+------+------+------+------+------|   |------+------+------+------+------+------|
 // | Lower|      |      |      |GUIBsp|AltSpc|   |CtlTb | TMUX | ENC  |      |      |Raise |
 // `-----------------------------------------'   `-----------------------------------------'
-#define _____BASE_BOTTOM_____   MO(_LOWER), _______, _______,  _______, GUIBSPC, LALT_T(KC_SPC),     TD(td_ctltab_extras),  KC_TMUX, KC_ENC,  _______,  _______,  MO(_RAISE)
+#define _____BASE_BOTTOM_____   MO(_LOWER), _______, _______,  _______, GUIBSPC, LALT_T(KC_SPC),     TD(td_ctltab_mouse),  KC_TMUX, KC_ENC,  _______,  _______,  MO(_RAISE)
 
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
@@ -106,7 +104,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   _______,  _______, _______, _______, _______, _______,      _______, _______, _______, _______, _______, _______  \
 ),
 
-[_EXTRAS] = LAYOUT( \
+[_MOUSE] = LAYOUT( \
   _______,  _______, _______, _______, _______, _______,      _______, _______, _______, _______, _______, _______, \
   _______,  _______, _______, _______, _______, _______,      KC_MS_L, KC_MS_D, KC_MS_U, KC_MS_R, _______, _______, \
   _______,  _______, _______, _______, _______, _______,      KC_BTN1, KC_BTN3, KC_BTN2, _______, _______, _______, \
@@ -145,7 +143,9 @@ void encoder_td_actions (qk_tap_dance_state_t *state, void *user_data) {
     if (state->count == 1) {
         if (IS_LAYER_ON(_ADJUST)) {
             if (enc_opts.backlightBrightness) {
+#ifdef BACKLIGHT_ENABLE
                 backlight_toggle();
+#endif
 #ifdef RGBLIGHT_ENABLE
             } else {
                 rgblight_toggle();
@@ -179,11 +179,13 @@ void encoder_update_user(uint8_t index, bool clockwise) {
     if (index == 1) {
         if (IS_LAYER_ON(_ADJUST)) {
             if (enc_opts.backlightBrightness) {
+#ifdef BACKLIGHT_ENABLE
                 if (clockwise) {
                     backlight_increase();
                 } else {
                     backlight_decrease();
                 }
+#endif
             }
         } else if (IS_LAYER_ON(_LOWER)) {
             if (enc_opts.monBrightness) {
@@ -192,14 +194,14 @@ void encoder_update_user(uint8_t index, bool clockwise) {
                 } else {
                     tap_code(KC_HELP);
                 }
-            } else {
+            } else { // Monitor warmth
                 if (clockwise) {
                     tap_code(KC_UNDO);
                 } else {
                     tap_code(KC_STOP);
                 }
             }
-        } else if (IS_LAYER_ON(_RAISE)) {
+        } else if (IS_LAYER_ON(_RAISE)) { // Browser zooming
             if (clockwise) {
                 tap_code16(LCTL(KC_KP_PLUS));
             } else {
@@ -233,7 +235,7 @@ void encoder_update_user(uint8_t index, bool clockwise) {
 #endif
 
 #ifdef TAP_DANCE_ENABLE
-ACTION_TAP_DANCE_TAPKEY_HOLDLAYER_FUNCS(td_ctltab_extras, LCTL(KC_TAB), _EXTRAS)
+ACTION_TAP_DANCE_TAPKEY_HOLDLAYER_FUNCS(td_ctltab_mouse, LCTL(KC_TAB), _MOUSE)
 
 qk_tap_dance_action_t tap_dance_actions[] = {
     TD_TMUX_ENTRY,
@@ -245,7 +247,7 @@ qk_tap_dance_action_t tap_dance_actions[] = {
     TD_SKDM1_ENTRY,
     // TD_SKDM2_ENTRY,
 #endif
-    [td_ctltab_extras] = ACTION_TAP_DANCE_TAPKEY_HOLDLAYER(td_ctltab_extras)
+    [td_ctltab_mouse] = ACTION_TAP_DANCE_TAPKEY_HOLDLAYER(td_ctltab_mouse)
 };
 #endif
 
