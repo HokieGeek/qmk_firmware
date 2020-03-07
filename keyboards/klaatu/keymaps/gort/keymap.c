@@ -319,9 +319,9 @@ enum combo_events {
 };
 
 combo_t key_combos[COMBO_COUNT] = {
-    [JL_TERM] = COMBO_ACTION(chords2[JL]),
-    [JH_BROWSER] = COMBO_ACTION(chords2[JH]),
-    [FP_VSCODE] = COMBO_ACTION(chords2[FP])
+    [JL_TERM] = COMBO_ACTION(CHORD_JL),
+    [JH_BROWSER] = COMBO_ACTION(CHORD_JH),
+    [FP_VSCODE] = COMBO_ACTION(CHORD_FP)
 };
 
 void process_combo_event(uint8_t combo_index, bool pressed) {
