@@ -1,4 +1,3 @@
 USER_NAME := hokiegeek
 
-COMBO_ENABLE = yes
-#DYNAMIC_MACRO_ENABLE = yes
+DYNAMIC_MACRO_ENABLE = no

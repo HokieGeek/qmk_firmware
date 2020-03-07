@@ -31,7 +31,7 @@ ifeq ($(strip $(ENCODER_ENABLE)), yes)
 	SRC += hgencoder.c
 endif
 ifndef COMBO_ENABLE
-	COMBO_ENABLE = no
+	COMBO_ENABLE = yes
 endif
 ifeq ($(strip $(COMBO_ENABLE)), yes)
 	SRC += combos.c
