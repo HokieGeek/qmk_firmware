@@ -6,12 +6,8 @@
 void vscode_os_tap_code(keyrecord_t *record, uint16_t mac_kc, uint16_t nix_kc) {
     if (record->event.pressed) {
         switch (getTargetOS()) {
-            case OS_MAC:
-                tap_code16(mac_kc);
-                break;
-            case OS_NIX:
-                tap_code16(nix_kc);
-                break;
+            case OS_MAC: tap_code16(mac_kc); break;
+            case OS_NIX: tap_code16(nix_kc); break;
         }
     }
 }
@@ -20,14 +16,6 @@ bool vscode_process_record_user(uint16_t keycode, keyrecord_t *record) {
     switch (keycode) {
         case VSC_PROBS:
             vscode_os_tap_code(record, LGUI(LSFT(KC_M)), LCTL(LSFT(KC_M)));
-            return false;
-        case VSC_SCM:
-            if (record->event.pressed) {
-                tap_code16(LCTL(LSFT(KC_G))); // Same for MAC and NIX
-                if (getTargetOS() == OS_NIX) {
-                    tap_code(KC_G);
-                }
-            }
             return false;
         case VSC_FIND:
             vscode_os_tap_code(record, LGUI(LSFT(KC_F)), LCTL(LSFT(KC_F)));
@@ -55,6 +43,14 @@ bool vscode_process_record_user(uint16_t keycode, keyrecord_t *record) {
             return false;
         case VSC_ED_1:
             vscode_os_tap_code(record, LGUI(KC_1), LCTL(KC_1));
+            return false;
+        case VSC_SCM:
+            if (record->event.pressed) {
+                tap_code16(LCTL(LSFT(KC_G))); // Same for MAC and NIX
+                if (getTargetOS() == OS_NIX) {
+                    tap_code(KC_G);
+                }
+            }
             return false;
         case VSC_TGL_GTST:
             if (record->event.pressed) {
