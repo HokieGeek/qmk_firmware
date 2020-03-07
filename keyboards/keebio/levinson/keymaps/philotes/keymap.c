@@ -269,9 +269,9 @@ enum combo_events {
 };
 
 combo_t key_combos[COMBO_COUNT] = {
-    [JH_TERM] = COMBO_ACTION(chords2[JH]),
-    [HK_BROWSER] = COMBO_ACTION(chords2[HK]),
-    [FP_VSCODE] = COMBO_ACTION(chords2[FP]),
+    [JH_TERM] = COMBO_ACTION(CHORD_JH),
+    [HK_BROWSER] = COMBO_ACTION(CHORD_HK),
+    [FP_VSCODE] = COMBO_ACTION(CHORD_FP),
     [JL_7] = COMBO_JL_7,
     [LU_8] = COMBO_LU_8,
     [UY_9] = COMBO_UY_9,
