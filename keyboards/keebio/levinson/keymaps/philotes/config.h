@@ -2,10 +2,6 @@
 
 #define SPLIT_USB_DETECT
 
-#undef SPLIT_HAND_PIN
-#undef MASTER_LEFT
-#define EE_HANDS
-
 #define ENCODERS_PAD_A { F4 }
 #define ENCODERS_PAD_B { F5 }
 
@@ -19,7 +15,7 @@
 #define MATRIX_COL_PINS { F6, F7, B1, B3, B2, F0 }
 #define MATRIX_COL_PINS_RIGHT { F6, F7, B1, B3, B2, B6 }
 
-#define COMBO_COUNT 3
+#define COMBO_COUNT 13
 
 #undef RGBLED_NUM
 #undef RGBLED_SPLIT
