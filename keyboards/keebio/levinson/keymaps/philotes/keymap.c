@@ -256,6 +256,7 @@ enum combo_events {
     JH_TERM = 0,
     HK_BROWSER,
     FP_VSCODE,
+    TDVB_NUMPAD,
     JL_7,
     LU_8,
     UY_9,
@@ -272,6 +273,7 @@ combo_t key_combos[COMBO_COUNT] = {
     [JH_TERM] = COMBO_ACTION(CHORD_JH),
     [HK_BROWSER] = COMBO_ACTION(CHORD_HK),
     [FP_VSCODE] = COMBO_ACTION(CHORD_FP),
+    [TDVB_NUMPAD] = COMBO_ACTION(CHORD_TDVB),
     [JL_7] = COMBO_JL_7,
     [LU_8] = COMBO_LU_8,
     [UY_9] = COMBO_UY_9,
@@ -301,6 +303,13 @@ void process_combo_event(uint8_t combo_index, bool pressed) {
                 layer_on(_VSCODE);
             } else {
                 layer_off(_VSCODE);
+            }
+            break;
+        case TDVB_NUMPAD:
+            if (pressed) {
+                layer_on(_NUMPAD);
+            } else {
+                layer_off(_NUMPAD);
             }
             break;
       }
