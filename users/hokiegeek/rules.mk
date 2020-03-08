@@ -42,6 +42,10 @@ ifndef NKRO_ENABLE
 endif
 
 ## Disable all the things I usually want off
+ifndef CONSOLE_ENABLE
+	CONSOLE_ENABLE = no
+endif
+
 ifndef BOOTMAGIC_ENABLE
 	BOOTMAGIC_ENABLE = no
 endif
