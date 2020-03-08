@@ -13,6 +13,13 @@
 #define NO_ACTION_ONESHOT
 #endif
 
+#ifndef NO_DEBUG
+#define NO_DEBUG
+#endif // !NO_DEBUG
+#if !defined(NO_PRINT) && !defined(CONSOLE_ENABLE)
+#define NO_PRINT
+#endif // !NO_PRINT
+
 // Use serial, by default
 #if !defined(USE_SERIAL) && !defined(USE_I2C)
 #define USE_SERIAL
@@ -37,6 +44,7 @@
 
 #if !defined(MASTER_LEFT) && !defined(MASTER_RIGHT) && !defined(EE_HANDS)
 #undef MASTER_LEFT
+#undef SPLIT_HAND_PIN
 #define EE_HANDS
 #endif
 
