@@ -7,8 +7,8 @@ SRC += hokiegeek.c os.c latin.c vscode.c
 BOOTLOADER = qmk-dfu
 SPLIT_KEYBOARD = yes
 
-ifndef MOUSEKEY_ENABLE
-	MOUSEKEY_ENABLE = yes
+ifndef UNICODE_ENABLE
+	UNICODE_ENABLE = yes
 endif
 
 ifndef DYNAMIC_MACRO_ENABLE
@@ -35,6 +35,10 @@ ifndef COMBO_ENABLE
 endif
 ifeq ($(strip $(COMBO_ENABLE)), yes)
 	SRC += combos.c
+endif
+
+ifndef MOUSEKEY_ENABLE
+	MOUSEKEY_ENABLE = yes
 endif
 
 ifndef NKRO_ENABLE
