@@ -352,6 +352,8 @@ COMBO_CHORD2(D, B);
 COMBO_CHORD2(F, P);
 COMBO_CHORD2(W, R);
 COMBO_CHORD2(F, S);
+COMBO_CHORD2(T, D);
+COMBO_CHORD2(H, N);
 
 enum combo_events {
     JL_TERM = 0,
@@ -361,7 +363,9 @@ enum combo_events {
     DB_VSCODE,
     FP_VSCODE,
     WR_SLACK,
-    FS_SLACK
+    FS_SLACK,
+    TD_YABAI,
+    HN_YABAI
 };
 
 combo_t key_combos[COMBO_COUNT] = {
@@ -372,7 +376,9 @@ combo_t key_combos[COMBO_COUNT] = {
     [DB_VSCODE]   = COMBO_ACTION(chord2_DB),
     [FP_VSCODE]   = COMBO_ACTION(chord2_FP),
     [WR_SLACK]    = COMBO_ACTION(chord2_WR),
-    [FS_SLACK]    = COMBO_ACTION(chord2_FS)
+    [FS_SLACK]    = COMBO_ACTION(chord2_FS),
+    [TD_YABAI]    = COMBO_ACTION(chord2_TD),
+    [HN_YABAI]    = COMBO_ACTION(chord2_HN)
 };
 
 void process_combo_event(uint8_t combo_index, bool pressed) {
@@ -405,6 +411,14 @@ void process_combo_event(uint8_t combo_index, bool pressed) {
         case SCLNO_SSHOT:
             if (pressed) {
                 tap_code16(MEH(KC_F14));
+            }
+            break;
+        case HN_YABAI:
+        case TD_YABAI:
+            if (pressed) {
+                layer_on(_YABAI);
+            } else {
+                layer_off(_YABAI);
             }
             break;
       }
