@@ -30,6 +30,7 @@ enum {
 #endif
 
 #define BSCP_YABAI LT(_YABAI, KC_BSPC)
+#define SSHOT MEH(KC_F14)
 
 #undef __BASE_RCR2__
 #define __BASE_RCR2__ MAC_NOTIFS
@@ -91,9 +92,9 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  * |------+------+------+------+------+-------     +------+------+------+------+------+------|
  * |   ~  |   !  |   @  |   #  |   $  |   %  |     |   ^  |   &  |   *  |   +  |   =  |      |
  * |------+------+------+------+------+-------     -------+------+------+------+------+------|
- * |      |      |  [   |  (   |  {   |      |     | Home | PgDn | PgUp | End  |   -  |  |   |
+ * | CAPS |      |  [   |  (   |  {   |      |     | Home | PgDn | PgUp | End  |   -  |  |   |
  * |------+------+------+------+------+------|     |------+------+------+------+------+------|
- * |      |      |      |      |      |      |     |      |      |      |      |      |      |
+ * |      |SSHOT |      |      |      |      |     |      |      |      |      |      |      |
  * |------+------+------+------+------+------+     +------+------+------+------+------+------|
  * |      |      | ENC  |      |YABBSP|      |     |      |      |      |      |      |      |
  * `------------------------------------------     ------------------------------------------'
@@ -101,7 +102,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 [_LOWER] = LAYOUT_wrapper( \
   _______,  _______,      _______,  _______,   _______,     _______,      _______,  _______,  _______,  _______,  _______,  _______, \
   KC_TILD,                                                  ______SYMBOLS______,                                            _______, \
-  KC_CAPS,  _______,      KC_LBRC,  KC_LPRN,   KC_LCBR,     _______,      KC_HOME,  KC_PGDN,  KC_PGUP,  KC_END,   KC_MINS,  KC_PIPE, \
+  KC_CAPS,  SSHOT,        KC_LBRC,  KC_LPRN,   KC_LCBR,     _______,      KC_HOME,  KC_PGDN,  KC_PGUP,  KC_END,   KC_MINS,  KC_PIPE, \
   _______,  _______,      _______,  _______,   _______,     _______,      _______,  _______,  _______,  _______,  _______,  _______, \
   _______,  MEH(KC_F13),  _______,  _______,   BSCP_YABAI,  _______,      _______,  _______,  _______,  _______,  _______,  _______ \
 ),
@@ -150,10 +151,10 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
 [_NUMPAD] = LAYOUT( \
   _______,  _______, _______, _______, _______, _______,      _______, _______, _______, _______, _______, _______, \
-  _______,  _______, _______, _______, _______, _______,      _______, KC_7,    KC_8,    KC_9,    KC_0,    _______, \
+  _______,  _______, _______, _______, _______, _______,      _______, KC_7,    KC_8,    KC_9,    _______, _______, \
   _______,  _______, _______, _______, _______, _______,      _______, KC_4,    KC_5,    KC_6,    _______, _______, \
   _______,  _______, _______, _______, _______, _______,      _______, KC_1,    KC_2,    KC_3,    _______, _______, \
-  _______,  _______, _______, _______, _______, _______,      _______, _______, _______, _______, _______, _______  \
+  _______,  _______, _______, _______, _______, _______,      KC_0,    KC_DOT,  _______, _______, _______, _______  \
 ),
 
 /* yabai
@@ -344,8 +345,6 @@ qk_tap_dance_action_t tap_dance_actions[] = {
 #endif
 
 #ifdef COMBO_ENABLE
-COMBO_CHORD2(J, L);
-COMBO_CHORD2(SCLN, O);
 COMBO_CHORD2(J, H);
 COMBO_CHORD2(H, K);
 COMBO_CHORD2(D, B);
@@ -353,48 +352,35 @@ COMBO_CHORD2(F, P);
 COMBO_CHORD2(W, R);
 COMBO_CHORD2(F, S);
 COMBO_CHORD2(T, D);
-COMBO_CHORD2(H, N);
 
 enum combo_events {
-    JL_TERM = 0,
-    SCLNO_SSHOT,
-    JH_BROWSER,
+    JH_TERM = 0,
     HK_BROWSER,
-    DB_VSCODE,
+    TD_NUMPAD,
     FP_VSCODE,
-    WR_SLACK,
-    FS_SLACK,
-    TD_YABAI,
-    HN_YABAI
+    WR_SLACK
 };
 
 combo_t key_combos[COMBO_COUNT] = {
-    [JL_TERM]     = COMBO_ACTION(chord2_JL),
-    [SCLNO_SSHOT] = COMBO_ACTION(chord2_SCLNO),
-    [JH_BROWSER]  = COMBO_ACTION(chord2_JH),
-    [HK_BROWSER]  = COMBO_ACTION(chord2_HK),
-    [DB_VSCODE]   = COMBO_ACTION(chord2_DB),
-    [FP_VSCODE]   = COMBO_ACTION(chord2_FP),
-    [WR_SLACK]    = COMBO_ACTION(chord2_WR),
-    [FS_SLACK]    = COMBO_ACTION(chord2_FS),
-    [TD_YABAI]    = COMBO_ACTION(chord2_TD),
-    [HN_YABAI]    = COMBO_ACTION(chord2_HN)
+    [JH_TERM]    = COMBO_ACTION(chord2_JH),
+    [HK_BROWSER] = COMBO_ACTION(chord2_HK),
+    [TD_NUMPAD]  = COMBO_ACTION(chord2_TD),
+    [FP_VSCODE]  = COMBO_ACTION(chord2_FP),
+    [WR_SLACK]   = COMBO_ACTION(chord2_WR)
 };
 
 void process_combo_event(uint8_t combo_index, bool pressed) {
       switch(combo_index) {
-        case JL_TERM:
+        case JH_TERM:
             if (pressed) {
                 tap_code16(LGUI(LSFT(KC_ENT)));
             }
             break;
-        case JH_BROWSER:
         case HK_BROWSER:
             if (pressed) {
                 tap_code16(HYPR(KC_ENT));
             }
             break;
-        case DB_VSCODE:
         case FP_VSCODE:
             if (pressed) {
                 layer_on(_VSCODE);
@@ -402,23 +388,16 @@ void process_combo_event(uint8_t combo_index, bool pressed) {
                 layer_off(_VSCODE);
             }
             break;
-        case FS_SLACK:
         case WR_SLACK:
             if (pressed) {
                 tap_code16(MEH(KC_P1));
             }
             break;
-        case SCLNO_SSHOT:
+        case TD_NUMPAD:
             if (pressed) {
-                tap_code16(MEH(KC_F14));
-            }
-            break;
-        case HN_YABAI:
-        case TD_YABAI:
-            if (pressed) {
-                layer_on(_YABAI);
+                layer_on(_NUMPAD);
             } else {
-                layer_off(_YABAI);
+                layer_off(_NUMPAD);
             }
             break;
       }
