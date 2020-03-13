@@ -255,7 +255,7 @@ qk_tap_dance_action_t tap_dance_actions[] = {
 COMBO_CHORD2(J, H);
 COMBO_CHORD2(H, K);
 COMBO_CHORD2(F, P);
-COMBO_CHORD4(T, D, V, B);
+COMBO_CHORD2(T, D);
 COMBO_CHORD2(J, L);
 COMBO_CHORD2(L, U);
 COMBO_CHORD2(U, Y);
@@ -271,7 +271,7 @@ enum combo_events {
     JH_TERM = 0,
     HK_BROWSER,
     FP_VSCODE,
-    TDVB_NUMPAD,
+    TD_NUMPAD,
     JL_7,
     LU_8,
     UY_9,
@@ -288,7 +288,7 @@ combo_t key_combos[COMBO_COUNT] = {
     [JH_TERM]     = COMBO_ACTION(chord2_JH),
     [HK_BROWSER]  = COMBO_ACTION(chord2_HK),
     [FP_VSCODE]   = COMBO_ACTION(chord2_FP),
-    [TDVB_NUMPAD] = COMBO_ACTION(chord4_TDVB),
+    [TD_NUMPAD]   = COMBO_ACTION(chord2_TD),
     [JL_7]        = COMBO(chord2_JL, KC_7),
     [LU_8]        = COMBO(chord2_LU, KC_8),
     [UY_9]        = COMBO(chord2_UY, KC_9),
@@ -320,7 +320,7 @@ void process_combo_event(uint8_t combo_index, bool pressed) {
                 layer_off(_VSCODE);
             }
             break;
-        case TDVB_NUMPAD:
+        case TD_NUMPAD:
             if (pressed) {
                 layer_on(_NUMPAD);
             } else {
