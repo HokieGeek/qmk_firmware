@@ -30,6 +30,7 @@ enum {
 #endif
 
 #define BSCP_YABAI LT(_YABAI, KC_BSPC)
+#define SSHOT MEH(KC_F14)
 
 #undef __BASE_RCR2__
 #define __BASE_RCR2__ MAC_NOTIFS
@@ -40,7 +41,6 @@ enum {
 #define SEND_SLACK_GOTO(str)  SEND_DELAYED(50, SS_LGUI(SS_TAP(X_K)) str SS_TAP(X_ENTER))
 
 #define _____BASE_BOTTOM_____  MO(_LOWER),                KC_ENC,  GUIBSPC, LALT_T(KC_SPC),          CTLTAB_EXTRAS,  KC_TMUX, _______,                   MO(_RAISE)
-
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 /* Colemak
  * ,-----------------------------------------.     ,-----------------------------------------.
@@ -91,8 +91,8 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  */
 [_LOWER] = LAYOUT_wrapper(
   KC_TILD,                                         ______SYMBOLS______,                                         KC_EQL, \
-  KC_CAPS, _______, _______, _______, _______,    _______,         KC_HOME,     KC_PGDN, KC_PGUP, KC_END,  KC_MINS, KC_PIPE, \
-  _______, _______, _______, _______, _______,    _______,         _______,     KC_LCBR, KC_RCBR, KC_LBRC, KC_RBRC, _______, \
+  KC_CAPS, SSHOT,   KC_LBRC, KC_LPRN, KC_LCBR,    _______,         KC_HOME,     KC_PGDN, KC_PGUP, KC_END,  KC_MINS, KC_PIPE, \
+  _______, _______, _______, _______, _______,    _______,         _______,     _______, _______, _______, _______, _______, \
   _______,                   _______, BSCP_YABAI, _______,         _______,     _______, _______,                   _______
   ),
 
@@ -134,21 +134,28 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
 /* extras
  * ,-----------------------------------------.     ,-----------------------------------------.
- * |      |      |  7   |  8   |  9   |      |     |      |      |      |      |      |      |
+ * |      |      |      |      |      |      |     |      |      |      |      |      |      |
  * |------+------+------+------+------+------|     |------+------+------+------+------+------|
- * |      |      |  4   |  5   |  6   |      |     |SSHRUG|SGIPHY|SRCTMB|SRCTHS|SRCTHI|SREACT|
+ * |      |      |      |      |      |      |     |SSHRUG|SGIPHY|SRCTMB|SRCTHS|SRCTHI|SREACT|
  * |------+------+------+------+------+------|     |------+------+------+------+------+------|
- * |      |      |  1   |  2   |  3   |  0   |     |      |      |      |      |      |      |
+ * |      |      |      |      |      |      |     |      |      |      |      |      |      |
  * |------+-------------+------+------+------|     |------+------+--------------------+------|
  * |      |             | ENC  |      |      |     |      |      |                    |      |
  * `------'             `--------------------'     `-------------'                    `------'
  */
 [_EXTRAS] = LAYOUT_wrapper(
-  _______, _______, KC_7,    KC_8,    KC_9,    _______,     _______,     _______,     _______,     _______,     _______,     _______, \
-  _______, _______, KC_4,    KC_5,    KC_6,    _______,     SLACK_SHRUG, SLACK_GIPHY, SLACK_RCTMB, SLACK_RCTHS, SLACK_RCHI5, SLACK_REACT, \
-  _______, _______, KC_1,    KC_2,    KC_3,    KC_0,        _______,     _______,     _______,     _______,     _______,     _______, \
+  _______, _______, _______, _______, _______, _______,     _______,     _______,     _______,     _______,     _______,     _______, \
+  _______, _______, _______, _______, _______, _______,     SLACK_SHRUG, SLACK_GIPHY, SLACK_RCTMB, SLACK_RCTHS, SLACK_RCHI5, SLACK_REACT, \
+  _______, _______, _______, _______, _______, _______,     _______,     _______,     _______,     _______,     _______,     _______, \
   _______,                   _______, _______, _______,     _______,     _______,     _______,                               _______
   ),
+
+[_NUMPAD] = LAYOUT( \
+  _______, _______, _______, _______, _______, _______,      _______, KC_7,    KC_8,    KC_9,    _______, _______, \
+  _______, _______, _______, _______, _______, _______,      _______, KC_4,    KC_5,    KC_6,    _______, _______, \
+  _______, _______, _______, _______, _______, _______,      _______, KC_1,    KC_2,    KC_3,    _______, _______, \
+  _______,                   _______, _______, _______,      KC_0,    KC_DOT,  _______,                   _______  \
+),
 
 /* camtasia
  * ,-----------------------------------------.     ,-----------------------------------------.
@@ -314,39 +321,35 @@ qk_tap_dance_action_t tap_dance_actions[] = {
 #endif
 
 #ifdef COMBO_ENABLE
-COMBO_CHORD2(J, L);
-COMBO_CHORD2(SCLN, O);
 COMBO_CHORD2(J, H);
 COMBO_CHORD2(H, K);
+COMBO_CHORD2(T, D);
 COMBO_CHORD2(F, P);
 COMBO_CHORD2(W, R);
 
 enum combo_events {
-    JL_TERM = 0,
-    SCLNO_SSHOT,
-    JH_BROWSER,
+    JH_TERM = 0,
     HK_BROWSER,
+    TD_NUMPAD,
     FP_VSCODE,
     WR_SLACK
 };
 
 combo_t key_combos[COMBO_COUNT] = {
-    [JL_TERM]     = COMBO_ACTION(chord2_JL),
-    [SCLNO_SSHOT] = COMBO_ACTION(chord2_SCLNO),
-    [JH_BROWSER]  = COMBO_ACTION(chord2_JH),
-    [HK_BROWSER]  = COMBO_ACTION(chord2_HK),
-    [FP_VSCODE]   = COMBO_ACTION(chord2_FP),
-    [WR_SLACK]    = COMBO_ACTION(chord2_WR)
+    [JH_TERM]    = COMBO_ACTION(chord2_JH),
+    [HK_BROWSER] = COMBO_ACTION(chord2_HK),
+    [TD_NUMPAD]  = COMBO_ACTION(chord2_TD),
+    [FP_VSCODE]  = COMBO_ACTION(chord2_FP),
+    [WR_SLACK]   = COMBO_ACTION(chord2_WR)
 };
 
 void process_combo_event(uint8_t combo_index, bool pressed) {
       switch(combo_index) {
-        case JL_TERM:
+        case JH_TERM:
             if (pressed) {
                 tap_code16(LGUI(LSFT(KC_ENT)));
             }
             break;
-        case JH_BROWSER:
         case HK_BROWSER:
             if (pressed) {
                 tap_code16(HYPR(KC_ENT));
@@ -364,9 +367,11 @@ void process_combo_event(uint8_t combo_index, bool pressed) {
                 tap_code16(MEH(KC_P1));
             }
             break;
-        case SCLNO_SSHOT:
+        case TD_NUMPAD:
             if (pressed) {
-                tap_code16(MEH(KC_F14));
+                layer_on(_NUMPAD);
+            } else {
+                layer_off(_NUMPAD);
             }
             break;
       }
@@ -376,7 +381,7 @@ void process_combo_event(uint8_t combo_index, bool pressed) {
 void matrix_init_user(void) {
     setTargetOS(OS_MAC);
 
-    layer_on(_COLEMAK);
+    set_single_persistent_default_layer(_COLEMAK);
 
     userspace_matrix_init_user();
 }
