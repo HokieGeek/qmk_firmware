@@ -346,11 +346,9 @@ qk_tap_dance_action_t tap_dance_actions[] = {
 #ifdef COMBO_ENABLE
 COMBO_CHORD2(J, H);
 COMBO_CHORD2(H, K);
-COMBO_CHORD2(D, B);
+COMBO_CHORD2(T, D);
 COMBO_CHORD2(F, P);
 COMBO_CHORD2(W, R);
-COMBO_CHORD2(F, S);
-COMBO_CHORD2(T, D);
 
 enum combo_events {
     JH_TERM = 0,
