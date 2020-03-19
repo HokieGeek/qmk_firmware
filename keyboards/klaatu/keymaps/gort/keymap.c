@@ -100,7 +100,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  * ,-----------------------------------------.     ,-----------------------------------------.
  * |  `   |   1  |   2  |   3  |   4  |   5  |     |   6  |   7  |   8  |   9  |   0  |   +  |
  * |------+------+------+------+------+------|     |------+------+------+------+------+------|
- * |      |      |      |      |      |      |     | Left | Down |  Up  |Right |   _  |  \   |
+ * |      |      |   )  |  ]   |  [   |      |     | Left | Down |  Up  |Right |   _  |  \   |
  * |------+------+------+------+------+------|     |------+------+------+------+------+------|
  * |  F1  |  F2  |  F3  |  F4  |  F5  |  F6  |     |  F7  |  F8  |  F9  |  F10 | F11  | F12  |
  * |------+-------------+------+------+------|     |------+------+--------------------+------|
@@ -109,7 +109,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  */
 [_RAISE] = LAYOUT_wrapper(
   KC_GRAVE,                                        ______NUMBERS______,                                              KC_PLUS, \
-  _______, _______, _______, _______, _______,    _______,         KC_LEFT,     KC_DOWN,   KC_UP,    KC_RGHT,  KC_UNDS,  KC_BSLS, \
+  _______, _______, KC_RBRC, KC_RPRN, KC_RCBR,    _______,         KC_LEFT,     KC_DOWN,   KC_UP,    KC_RGHT,  KC_UNDS,  KC_BSLS, \
   KC_F1,   KC_F2,   KC_F3,   KC_F4,   KC_F5,      KC_F6,           KC_F7,       KC_F8,     KC_F9,    KC_F10,   KC_F11,   KC_F12, \
   _______,                   _______, BSCP_YABAI, _______,         CSTAB,       TMUX_PREV, _______,                      _______
   ),
@@ -198,8 +198,8 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  * `------'             `--------------------'     `-------------'                    `------'
  */
 [_ADJUST] = LAYOUT_wrapper(
-  QMK_MAKE, RESET,     COLEMAK,   QWERTY,    _______, _______,     _______, _______, _______, _______, _______, _______, \
-  _______,  KC_OS_NIX, KC_OS_MAC, KC_OS_WIN, _______, _______,     _______, _______, _______, _______, _______, _______, \
+  QMK_MAKE, RESET,     COLEMAK,   QWERTY,    _______, _______,     RGB_HUI,  RGB_HUD,          RGB_SAI,          RGB_SAD,          RGB_VAI,            RGB_VAD, \
+  _______,  KC_OS_NIX, KC_OS_MAC, KC_OS_WIN, _______, _______,     RGB_TOG,  RGB_MODE_PLAIN,   RGB_MODE_BREATHE, RGB_MOD, _______,   RGB_MODE_XMAS, \
   _______,  _______,   _______,   _______,   _______, _______,     _______, _______, _______, _______, _______, _______, \
   _______,                        _______,   _______, _______,     _______, _______, _______,                   _______
   )
