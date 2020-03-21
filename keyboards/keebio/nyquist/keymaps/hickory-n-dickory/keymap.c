@@ -3,10 +3,11 @@
 
 extern keymap_config_t keymap_config;
 
-#define _EXTRAS 4
+#define _MOUSE 4
 #define _NUMPAD 5
 #define _YABAI 6
-#define _CAMTASIA 7
+#define _EXTRAS 7
+#define _CAMTASIA 8
 
 enum custom_keycodes {
     SLACK_GIPHY = NEW_SAFE_RANGE,
@@ -20,13 +21,13 @@ enum custom_keycodes {
 #ifdef TAP_DANCE_ENABLE
 enum {
     td_mac_notif = TD_SAFE_RANGE,
-    td_ctltab_extras,
+    td_ctltab_mouse,
 };
 #define MAC_NOTIFS TD(td_mac_notif)
-#define CTLTAB_EXTRAS TD(td_ctltab_extras)
+#define CTLTAB_MOUSE TD(td_ctltab_mouse)
 #else
 #define MAC_NOTIFS G(S(KC_GRAVE))
-#define CTLTAB_EXTRAS LCTL(KC_TAB)
+#define CTLTAB_MOUSE LCTL(KC_TAB)
 #endif
 
 #define BSCP_YABAI LT(_YABAI, KC_BSPC)
@@ -41,7 +42,7 @@ enum {
 #define SEND_SLACK_GOTO(str)  SEND_DELAYED(50, SS_LGUI(SS_TAP(X_K)) str SS_TAP(X_ENTER))
 
 #define _____BASE_TOP_____     _______, _______, _______, _______, _______, _______,   _______, _______, _______, _______, _______, _______
-#define _____BASE_BOTTOM_____  MO(_LOWER),  KC_F13, KC_ENC,   _______,  GUIBSPC,  LALT_T(KC_SPC),       CTLTAB_EXTRAS,  KC_TMUX,  _______,  _______,   KC_SKDM1,  MO(_RAISE)
+#define _____BASE_BOTTOM_____  MO(_LOWER),  KC_F13, KC_ENC,   _______,  GUIBSPC,  LALT_T(KC_SPC),       CTLTAB_MOUSE,  KC_TMUX,  _______,  _______,   KC_SKDM1,  MO(_RAISE)
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 /* Colemak
  * ,------------------------------------------     ------------------------------------------.
@@ -127,26 +128,13 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   _______,   HYPR(KC_F13),  _______,  _______,   BSCP_YABAI,  _______,      CSTAB,    TMUX_PREV,  _______,  _______,  _______,  _______ \
 ),
 
-/* extras
- * ,------------------------------------------     ------------------------------------------.
- * |      |      |      |      |      |      |     |      |      |      |      |      |      |
- * |------+------+------+------+------+------|     |------+------+------+------+------+------|
- * |      |      |      |      |      |      |     |      |      |      |      |      |      |
- * |------+------+------+------+------+------|     |------+------+------+------+------+------|
- * |      |      |      |      |      |      |     |SSHRUG|SGIPHY|SRCTMB|SRCTHS|SRCTHI|SREACT|
- * |------+------+------+------+------+------|     |------+------+------+------+------+------|
- * |      |      |      |      |      |      |     |      |      |      |      |      |      |
- * |------+------+------+------+------+------|     |------+------+------+------+------+------|
- * |      |      | ENC  |      |      |      |     |      |      |      |      |      |      |
- * `------------------------------------------     ------------------------------------------'
- */
-[_EXTRAS] = LAYOUT( \
-  _______, _______, _______, _______, _______, _______,      _______,     _______,     _______,     _______,     _______,     _______, \
-  _______, _______, _______, _______, _______, _______,      _______,     _______,     _______,     _______,     _______,     _______, \
-  _______, _______, _______, _______, _______, _______,      SLACK_SHRUG, SLACK_GIPHY, SLACK_RCTMB, SLACK_RCTHS, SLACK_RCHI5, SLACK_REACT, \
-  _______, _______, _______, _______, _______, _______,      _______,     _______,     _______,     _______,     _______,     _______, \
-  _______, _______, _______, _______, _______, _______,      _______,     _______,     _______,     _______,     _______,     _______  \
-),
+[_MOUSE] = LAYOUT( \
+  _______,  _______, _______, _______, _______, _______,      _______, _______, _______, _______, _______, _______, \
+  _______,  _______, _______, _______, _______, _______,      _______, _______, _______, _______, _______, _______, \
+  _______,  _______, _______, _______, _______, _______,      KC_MS_L, KC_MS_D, KC_MS_U, KC_MS_R, _______, _______, \
+  _______,  _______, _______, _______, _______, _______,      _______, KC_BTN1, KC_BTN3, KC_BTN2, _______, _______, \
+  _______,  _______, _______, _______, _______, _______,      _______, _______, _______, _______, _______, _______
+  ),
 
 [_NUMPAD] = LAYOUT( \
   _______, _______, _______, _______, _______, _______,      _______, _______, _______, _______, _______, _______, \
@@ -175,6 +163,27 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   MEH(KC_TAB), _______,      _______,    _______,    LGUI(KC_SPC),  _______,            MEH(KC_H),  S(C(KC_N)), S(C(KC_E)), MEH(KC_I),    _______,       _______, \
   _______,     LCA(KC_Z),    LCA(KC_X),  LCA(KC_C),  MEH(KC_V),     _______,            _______,    MEH(KC_M),  _______,    MEH(KC_F15),  HYPR(KC_F15),  LGUI(KC_ENTER), \
   _______,     _______,      _______,    _______,    _______,       LCAG(KC_SPC),       _______,    _______,    _______,    _______,      _______,       _______  \
+),
+
+/* extras
+ * ,------------------------------------------     ------------------------------------------.
+ * |      |      |      |      |      |      |     |      |      |      |      |      |      |
+ * |------+------+------+------+------+------|     |------+------+------+------+------+------|
+ * |      |      |      |      |      |      |     |      |      |      |      |      |      |
+ * |------+------+------+------+------+------|     |------+------+------+------+------+------|
+ * |      |      |      |      |      |      |     |SSHRUG|SGIPHY|SRCTMB|SRCTHS|SRCTHI|SREACT|
+ * |------+------+------+------+------+------|     |------+------+------+------+------+------|
+ * |      |      |      |      |      |      |     |      |      |      |      |      |      |
+ * |------+------+------+------+------+------|     |------+------+------+------+------+------|
+ * |      |      | ENC  |      |      |      |     |      |      |      |      |      |      |
+ * `------------------------------------------     ------------------------------------------'
+ */
+[_EXTRAS] = LAYOUT( \
+  _______, _______, _______, _______, _______, _______,      _______,     _______,     _______,     _______,     _______,     _______, \
+  _______, _______, _______, _______, _______, _______,      _______,     _______,     _______,     _______,     _______,     _______, \
+  _______, _______, _______, _______, _______, _______,      SLACK_SHRUG, SLACK_GIPHY, SLACK_RCTMB, SLACK_RCTHS, SLACK_RCHI5, SLACK_REACT, \
+  _______, _______, _______, _______, _______, _______,      _______,     _______,     _______,     _______,     _______,     _______, \
+  _______, _______, _______, _______, _______, _______,      _______,     _______,     _______,     _______,     _______,     _______  \
 ),
 
 /* camtasia
@@ -321,7 +330,7 @@ void encoder_update_user(uint8_t index, bool clockwise) {
 #endif
 
 #ifdef TAP_DANCE_ENABLE
-ACTION_TAP_DANCE_TAPKEY_HOLDLAYER_FUNCS(td_ctltab_extras, LCTL(KC_TAB), _EXTRAS)
+ACTION_TAP_DANCE_TAPKEY_HOLDLAYER_FUNCS(td_ctltab_mouse, LCTL(KC_TAB), _MOUSE)
 
 void td_notifs(td_stage stage) {
     td_key(stage, KC_F18);
@@ -339,7 +348,7 @@ qk_tap_dance_action_t tap_dance_actions[] = {
     TD_TMUX_ENTRY,
     TD_SHIFT_LATIN,
     [td_mac_notif] = ACTION_TAP_DANCE_DOUBLE_FUNCS(td_notifs, td_no_notif),
-    [td_ctltab_extras] = ACTION_TAP_DANCE_TAPKEY_HOLDLAYER(td_ctltab_extras)
+    [td_ctltab_mouse] = ACTION_TAP_DANCE_TAPKEY_HOLDLAYER(td_ctltab_mouse)
 };
 #endif
 
@@ -349,13 +358,15 @@ COMBO_CHORD2(H, K);
 COMBO_CHORD2(T, D);
 COMBO_CHORD2(F, P);
 COMBO_CHORD2(W, R);
+COMBO_CHORD2(V, B);
 
 enum combo_events {
     JH_TERM = 0,
     HK_BROWSER,
     TD_NUMPAD,
     FP_VSCODE,
-    WR_SLACK
+    WR_SLACK,
+    VB_EXTRAS
 };
 
 combo_t key_combos[COMBO_COUNT] = {
@@ -363,7 +374,8 @@ combo_t key_combos[COMBO_COUNT] = {
     [HK_BROWSER] = COMBO_ACTION(chord2_HK),
     [TD_NUMPAD]  = COMBO_ACTION(chord2_TD),
     [FP_VSCODE]  = COMBO_ACTION(chord2_FP),
-    [WR_SLACK]   = COMBO_ACTION(chord2_WR)
+    [WR_SLACK]   = COMBO_ACTION(chord2_WR),
+    [VB_EXTRAS]  = COMBO_ACTION(chord2_VB)
 };
 
 void process_combo_event(uint8_t combo_index, bool pressed) {
@@ -395,6 +407,13 @@ void process_combo_event(uint8_t combo_index, bool pressed) {
                 layer_on(_NUMPAD);
             } else {
                 layer_off(_NUMPAD);
+            }
+            break;
+        case VB_EXTRAS:
+            if (pressed) {
+                layer_on(_EXTRAS);
+            } else {
+                layer_off(_EXTRAS);
             }
             break;
       }
