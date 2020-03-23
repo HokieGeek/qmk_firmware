@@ -274,9 +274,9 @@ void encoder_update_user(uint8_t index, bool clockwise) {
             }
         } else if (IS_LAYER_ON(_RAISE)) {
             if (clockwise) {
-                tap_code16(LCTL(KC_KP_PLUS));
+                tap_code16(LGUI(KC_PLUS));
             } else {
-                tap_code16(LCTL(KC_KP_MINUS));
+                tap_code16(LGUI(KC_MINS));
             }
         } else { // Default layers
             if (enc_opts.defaultVolume) {
