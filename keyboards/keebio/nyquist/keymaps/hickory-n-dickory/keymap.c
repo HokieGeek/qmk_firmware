@@ -239,6 +239,14 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
 };
 
+#ifdef ENCODER_ENABLE
+encoder_options enc_opts = {
+    .scrollVertical = true,
+    .monBrightness = true,
+    .backlightBrightness = true,
+    .defaultVolume = true
+};
+#endif
 #if defined(TAP_DANCE_ENABLE) && defined(ENCODER_ENABLE)
 void encoder_td_actions (qk_tap_dance_state_t *state, void *user_data) {
     if (state->count == 1) {

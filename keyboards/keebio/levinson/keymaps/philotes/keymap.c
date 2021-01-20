@@ -136,43 +136,14 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
 };
 
-#if defined(TAP_DANCE_ENABLE) && defined(ENCODER_ENABLE)
-void encoder_td_actions (qk_tap_dance_state_t *state, void *user_data) {
-    if (state->count == 1) {
-        if (IS_LAYER_ON(_ADJUST)) {
-            if (enc_opts.backlightBrightness) {
-#ifdef BACKLIGHT_ENABLE
-                backlight_toggle();
-#endif
-#ifdef RGBLIGHT_ENABLE
-            } else {
-                rgblight_toggle();
-#endif
-            }
-        } else if (IS_LAYER_ON(_LOWER)) {
-            enc_opts.monBrightness = !enc_opts.monBrightness;
-        } else { // Default layers
-            if (enc_opts.defaultVolume) {
-                tap_code(KC_MUTE);
-            } else {
-                enc_opts.scrollVertical = !enc_opts.scrollVertical;
-            }
-        }
-    } else if (state->count == 2) {
-        if (IS_LAYER_ON(_ADJUST)) {
-            enc_opts.backlightBrightness = !enc_opts.backlightBrightness;
-        } else if (IS_LAYER_ON(_LOWER)) {
-            // TODO
-        } else { // Default layers
-            enc_opts.defaultVolume = !enc_opts.defaultVolume;
-        }
-    }
-
-    reset_tap_dance (state);
-}
-#endif
-
 #ifdef ENCODER_ENABLE
+encoder_options enc_opts = {
+    .scrollVertical = true,
+    .monBrightness = true,
+    .backlightBrightness = true,
+    .defaultVolume = true
+};
+
 void encoder_update_user(uint8_t index, bool clockwise) {
     if (index == 1) {
         if (IS_LAYER_ON(_ADJUST)) {
@@ -229,6 +200,42 @@ void encoder_update_user(uint8_t index, bool clockwise) {
             }
         }
     }
+}
+#endif
+
+#if defined(TAP_DANCE_ENABLE) && defined(ENCODER_ENABLE)
+void encoder_td_actions (qk_tap_dance_state_t *state, void *user_data) {
+    if (state->count == 1) {
+        if (IS_LAYER_ON(_ADJUST)) {
+            if (enc_opts.backlightBrightness) {
+#ifdef BACKLIGHT_ENABLE
+                backlight_toggle();
+#endif
+#ifdef RGBLIGHT_ENABLE
+            } else {
+                rgblight_toggle();
+#endif
+            }
+        } else if (IS_LAYER_ON(_LOWER)) {
+            enc_opts.monBrightness = !enc_opts.monBrightness;
+        } else { // Default layers
+            if (enc_opts.defaultVolume) {
+                tap_code(KC_MUTE);
+            } else {
+                enc_opts.scrollVertical = !enc_opts.scrollVertical;
+            }
+        }
+    } else if (state->count == 2) {
+        if (IS_LAYER_ON(_ADJUST)) {
+            enc_opts.backlightBrightness = !enc_opts.backlightBrightness;
+        } else if (IS_LAYER_ON(_LOWER)) {
+            // TODO
+        } else { // Default layers
+            enc_opts.defaultVolume = !enc_opts.defaultVolume;
+        }
+    }
+
+    reset_tap_dance (state);
 }
 #endif
 
