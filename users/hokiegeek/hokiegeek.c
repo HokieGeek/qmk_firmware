@@ -4,9 +4,9 @@
 #include "hokiegeek.h"
 
 void userspace_matrix_init_user(void) {
-#ifdef ENCODER_ENABLE
-    hgencoder_init();
-#endif
+// #ifdef ENCODER_ENABLE
+//     hgencoder_init();
+// #endif
 }
 
 inline void tap_mousekey(uint8_t code) {
