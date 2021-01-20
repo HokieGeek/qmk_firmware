@@ -306,7 +306,7 @@ combo_t key_combos[COMBO_COUNT] = {
     [COMMDOT_1]   = COMBO(chord2_COMMDOT, KC_1)
 };
 
-void process_combo_event(uint8_t combo_index, bool pressed) {
+void process_combo_event(uint16_t combo_index, bool pressed) {
       switch(combo_index) {
         case JH_TERM:
             if (pressed) {
