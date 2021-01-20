@@ -360,7 +360,7 @@ combo_t key_combos[COMBO_COUNT] = {
     [VB_EXTRAS]  = COMBO_ACTION(chord2_VB)
 };
 
-void process_combo_event(uint8_t combo_index, bool pressed) {
+void process_combo_event(uint16_t combo_index, bool pressed) {
       switch(combo_index) {
         case JH_TERM:
             if (pressed) {
