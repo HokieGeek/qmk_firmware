@@ -6,17 +6,22 @@
 #define ENCODERS_PAD_B { F5 }
 
 // Fixing bad row pin in left-hand Elite C
+#ifndef CONVERT_TO_PROTON_C
 #undef MATRIX_ROW_PINS // { D4, D7, E6, B4 }
 #define MATRIX_ROW_PINS { D4, D7, B7, B4 }
 #define MATRIX_ROW_PINS_RIGHT { D4, D7, E6, B4 }
+#endif
 
 // Fixing bad column pin in left-hand Elite C
+#ifndef CONVERT_TO_PROTON_C
 #undef MATRIX_COL_PINS // { F6, F7, B1, B3, B2, B6 }
 #define MATRIX_COL_PINS { F6, F7, B1, B3, B2, F0 }
 #define MATRIX_COL_PINS_RIGHT { F6, F7, B1, B3, B2, B6 }
+#endif
 
 #define COMBO_COUNT 14
 
+#ifndef CONVERT_TO_PROTON_C
 #undef RGBLED_NUM
 #undef RGBLED_SPLIT
 #define RGBLED_NUM 12
@@ -27,6 +32,7 @@
 #undef RGBLIGHT_ANIMATIONS
 #define RGBLIGHT_EFFECT_BREATHING
 #define RGBLIGHT_EFFECT_CHRISTMAS
+#endif
 // #define RGBLIGHT_EFFECT_STATIC_GRADIENT
 // #define RGBLIGHT_EFFECT_RAINBOW_MOOD
 // #define RGBLIGHT_EFFECT_RAINBOW_SWIRL
