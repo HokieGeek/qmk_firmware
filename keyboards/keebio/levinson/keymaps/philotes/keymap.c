@@ -144,7 +144,7 @@ encoder_options enc_opts = {
     .defaultVolume = true
 };
 
-void encoder_update_user(uint8_t index, bool clockwise) {
+bool encoder_update_user(uint8_t index, bool clockwise) {
     if (index == 1) {
         if (IS_LAYER_ON(_ADJUST)) {
             if (enc_opts.backlightBrightness) {
@@ -200,6 +200,7 @@ void encoder_update_user(uint8_t index, bool clockwise) {
             }
         }
     }
+    return true;
 }
 #endif
 
