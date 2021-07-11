@@ -254,7 +254,7 @@ void encoder_td_actions (qk_tap_dance_state_t *state, void *user_data) {
 }
 #endif
 
-void encoder_update_user(uint8_t index, bool clockwise) {
+bool encoder_update_user(uint8_t index, bool clockwise) {
     // if (index == 1) {
         if (IS_LAYER_ON(_ADJUST)) {
             if (enc_opts.backlightBrightness) {
@@ -308,6 +308,7 @@ void encoder_update_user(uint8_t index, bool clockwise) {
             }
         }
     // }
+    return true;
 }
 #endif
 
