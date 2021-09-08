@@ -141,10 +141,10 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  * `------'             `--------------------'     `-------------'                    `------'
  */
 [_YABAI] = LAYOUT_wrapper( \
-  _______,     LGUI(KC_1),   LGUI(KC_2), LGUI(KC_3), LGUI(KC_4),    LGUI(KC_5),         LGUI(KC_6), LGUI(KC_7), LGUI(KC_8), LGUI(KC_9),   LGUI(KC_0),    _______, \
-  MEH(KC_TAB), _______,      _______,    _______,    LGUI(KC_SPC),  _______,            MEH(KC_H),  S(C(KC_N)), S(C(KC_E)), MEH(KC_I),    _______,       _______, \
-  _______,     LCA(KC_Z),    LCA(KC_X),  LCA(KC_C),  MEH(KC_V),     _______,            _______,    MEH(KC_M),  _______,    MEH(KC_F15),  HYPR(KC_F15),  LGUI(KC_ENTER), \
-  _______,                               _______,    _______,       LCAG(KC_SPC),       _______,    _______,    _______,                                 _______
+  _______,     LCA(KC_1),    LCA(KC_2),  LCA(KC_3),  LCA(KC_4),     LCA(KC_5),       LCA(KC_6),  LCA(KC_7),  LCA(KC_8),  LCA(KC_9),    LCA(KC_0),     _______, \
+  MEH(KC_TAB), _______,      _______,    _______,    LGUI(KC_SPC),  _______,         MEH(KC_H),  S(C(KC_N)), S(C(KC_E)), MEH(KC_I),    _______,       _______, \
+  _______,     _______,      _______,    _______,    MEH(KC_V),     _______,         _______,    MEH(KC_M),  _______,    MEH(KC_F15),  HYPR(KC_F15),  LGUI(KC_ENTER), \
+  _______,                               _______,    _______,       LCAG(KC_SPC),    _______,    _______,    _______,                                 _______
   ),
 
 /* extras
