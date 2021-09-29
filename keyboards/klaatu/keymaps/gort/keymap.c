@@ -16,6 +16,7 @@ enum custom_keycodes {
     SLACK_RCTMB,
     SLACK_RCTHS,
     SLACK_RCHI5,
+    SLACK_FOCUS,
 };
 
 #ifdef TAP_DANCE_ENABLE
@@ -37,7 +38,7 @@ enum {
 #define __BASE_RCR2__ MAC_NOTIFS
 
 #define SEND_APP_FRONT(app)   SEND_DELAYED(50, SS_LGUI(SS_TAP(X_SPACE)) app SS_TAP(X_ENTER))
-#define SEND_SLACK_SLASH(str) SEND_DELAYED(50, SS_TAP(X_SLASH) str SS_TAP(X_TAB))
+#define SEND_SLACK_SLASH(str) SEND_DELAYED(50, SS_TAP(X_SLASH) str SS_TAP(X_ENTER))
 #define SEND_SLACK_REACT(str) SEND_DELAYED(30, SS_LGUI(SS_LSFT(SS_TAP(X_BSLASH))) str SS_TAP(X_ENTER))
 #define SEND_SLACK_GOTO(str)  SEND_DELAYED(50, SS_LGUI(SS_TAP(X_K)) str SS_TAP(X_ENTER))
 
@@ -143,7 +144,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 [_YABAI] = LAYOUT_wrapper( \
   _______,     LCA(KC_1),    LCA(KC_2),  LCA(KC_3),  LCA(KC_4),     LCA(KC_5),       LCA(KC_6),  LCA(KC_7),  LCA(KC_8),  LCA(KC_9),    LCA(KC_0),     _______, \
   MEH(KC_TAB), _______,      _______,    _______,    LGUI(KC_SPC),  _______,         MEH(KC_H),  S(C(KC_N)), S(C(KC_E)), MEH(KC_I),    _______,       _______, \
-  _______,     _______,      _______,    _______,    MEH(KC_V),     _______,         _______,    MEH(KC_M),  _______,    MEH(KC_F15),  HYPR(KC_F15),  LGUI(KC_ENTER), \
+  _______,     _______,      _______,    _______,    MEH(KC_V),     _______,         _______,    MEH(KC_M),  _______,    MEH(KC_F13),  HYPR(KC_F13),  LGUI(KC_ENTER), \
   _______,                               _______,    _______,       LCAG(KC_SPC),    _______,    _______,    _______,                                 _______
   ),
 
@@ -159,10 +160,10 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  * `------'             `--------------------'     `-------------'                    `------'
  */
 [_EXTRAS] = LAYOUT_wrapper(
-  _______, _______, _______, _______, _______, _______,     _______,     _______,     _______,     _______,     _______,     _______, \
-  _______, _______, _______, _______, _______, _______,     SLACK_SHRUG, SLACK_GIPHY, SLACK_RCTMB, SLACK_RCTHS, SLACK_RCHI5, SLACK_REACT, \
-  _______, _______, _______, _______, _______, _______,     _______,     _______,     _______,     _______,     _______,     _______, \
-  _______,                   _______, _______, _______,     _______,     _______,     _______,                               _______
+  _______, _______, _______, _______, _______, _______,     SLACK_FOCUS, LALT(KC_F16),  LSFT(KC_F16),  LCTL(KC_F16),  LGUI(KC_F16),  KC_HELP, \
+  _______, _______, _______, _______, _______, _______,     SLACK_SHRUG, SLACK_GIPHY,   SLACK_RCTMB,   SLACK_RCTHS,   SLACK_RCHI5,   SLACK_REACT, \
+  _______, _______, _______, _______, _______, _______,     _______,     _______,       _______,       _______,       _______,       _______, \
+  _______,                   _______, _______, _______,     _______,     _______,       _______,                                     _______
   ),
 
 /* camtasia
@@ -417,6 +418,7 @@ layer_state_t layer_state_set_user(layer_state_t state) {
 bool process_record_user(uint16_t keycode, keyrecord_t *record) {
     switch (keycode) {
         // SLACK
+        case SLACK_FOCUS:
         case SLACK_GIPHY:
         case SLACK_SHRUG:
         case SLACK_REACT:
@@ -425,6 +427,7 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
         case SLACK_RCHI5:
             if (record->event.pressed) {
                 switch (keycode) {
+                case SLACK_FOCUS: SEND_APP_FRONT("slack"); break;
                 case SLACK_GIPHY: SEND_SLACK_SLASH("giphy"); break;
                 case SLACK_SHRUG: SEND_SLACK_SLASH("shrug");
                                   SEND_STRING(SS_TAP(X_ENTER));
