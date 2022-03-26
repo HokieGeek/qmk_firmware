@@ -42,7 +42,7 @@
 #define _ADJUST 15
 
 // Fillers to make layering more clear
-#define _______ KC_TRNS
+#define KC_TRNS KC_TRANSPARENT
 #define XXXXXXX KC_NO
 
 #define SEND_DELAYED(delay, str) send_string_with_delay_P(PSTR(str), delay)
