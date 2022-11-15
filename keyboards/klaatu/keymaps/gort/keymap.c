@@ -7,7 +7,6 @@ extern keymap_config_t keymap_config;
 #define _NUMPAD 5
 #define _YABAI 6
 #define _EXTRAS 7
-// #define _CAMTASIA 8
 
 enum custom_keycodes {
     SLACK_GIPHY = NEW_SAFE_RANGE,
@@ -138,14 +137,14 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  * |------+------+------+------+------+------|     |------+------+------+------+------+------|
  * |      |      |      |      |      |      |     |      |      |      |      |      |      |
  * |------+-------------+------+------+------|     |------+------+--------------------+------|
- * |      |             | ENC  |      |      |     |      |      |                    |      |
+ * |      |             |      |      |      |     |      |      |                    |      |
  * `------'             `--------------------'     `-------------'                    `------'
  */
 [_YABAI] = LAYOUT_wrapper( \
-  _______,     LCA(KC_1),    LCA(KC_2),  LCA(KC_3),  LCA(KC_4),     LCA(KC_5),       LCA(KC_6),  LCA(KC_7),  LCA(KC_8),  LCA(KC_9),    LCA(KC_0),     _______, \
-  MEH(KC_TAB), _______,      _______,    _______,    LGUI(KC_SPC),  _______,         MEH(KC_H),  S(C(KC_N)), S(C(KC_E)), MEH(KC_I),    _______,       _______, \
-  _______,     _______,      _______,    _______,    MEH(KC_V),     _______,         _______,    MEH(KC_M),  _______,    MEH(KC_F13),  HYPR(KC_F13),  LGUI(KC_ENTER), \
-  _______,                               _______,    _______,       LCAG(KC_SPC),    _______,    _______,    _______,                                 _______
+  _______,     LCA(KC_1),    LCA(KC_2),  LCA(KC_3),  LCA(KC_4),     LCA(KC_7),       C(A(KC_HELP)), KC_F17,      LALT(KC_F17),  LCTL(KC_F17),  LGUI(KC_F17),     MEH(KC_F17), \
+  MEH(KC_TAB), _______,      _______,    _______,    LGUI(KC_SPC),  _______,         MEH(KC_H),     S(C(KC_N)),  S(C(KC_E)),    MEH(KC_I),     _______,          _______, \
+  _______,     _______,      _______,    KC_HELP,    MEH(KC_V),     LSFT(KC_HELP),   _______,       MEH(KC_M),   _______,       MEH(KC_F13),   HYPR(KC_F13),     LGUI(KC_ENTER), \
+  _______,                               _______,    _______,       LCAG(KC_SPC),    _______,       _______,     _______,                                        _______
   ),
 
 /* extras
@@ -160,32 +159,11 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  * `------'             `--------------------'     `-------------'                    `------'
  */
 [_EXTRAS] = LAYOUT_wrapper(
-  _______, _______, _______, _______, _______, _______,     SLACK_FOCUS, LALT(KC_F16),  LSFT(KC_F16),  LCTL(KC_F16),  LGUI(KC_F16),  KC_HELP, \
+  _______, _______, _______, _______, _______, _______,     MEH(KC_F16), LALT(KC_F16),  LSFT(KC_F16),  LCTL(KC_F16),  LGUI(KC_F16),  KC_F16, \
   _______, _______, _______, _______, _______, _______,     SLACK_SHRUG, SLACK_GIPHY,   SLACK_RCTMB,   SLACK_RCTHS,   SLACK_RCHI5,   SLACK_REACT, \
   _______, _______, _______, _______, _______, _______,     _______,     _______,       _______,       _______,       _______,       _______, \
   _______,                   _______, _______, _______,     _______,     _______,       _______,                                     _______
   ),
-
-/* camtasia
- * ,-----------------------------------------.     ,-----------------------------------------.
- * |      |      |      |      |      |      |     |      |      |      |      |      |      |
- * |------+------+------+------+------+------|     |------+------+------+------+------+------|
- * |      |      |      |      |      |      |     |      |      |      |      |      |      |
- * |------+------+------+------+------+------|     |------+------+------+------+------+------|
- * |      |      |      |      |      |      |     |      |      |      |      |      |      |
- * |------+-------------+------+------+------|     |------+------+--------------------+------|
- * |      |             | ENC  |      |      |     |      |      |                    |      |
- * `------'             `--------------------'     `-------------'                    `------'
- */
-/*
-[_CAMTASIA] = LAYOUT_wrapper(
-  // LSFT(LGUI(KC_2)), LALT(LGUI(KC_2)),  KC_2,
-  _______, _______, _______, _______  _______, _______,     _______,     _______,     _______,     _______,     _______,     _______, \
-  _______, _______, _______, _______, _______, _______,     _______,     _______,     _______,     _______,     _______,     _______, \
-  _______, _______, _______, _______, _______, _______,     _______,     _______,     _______,     _______,     _______,     _______, \
-  _______,                   _______, _______, _______,     _______,     _______,     _______,                               _______
-  ),
-*/
 
 // vscode
 [_VSCODE] = LAYOUT_wrapper(
@@ -348,7 +326,7 @@ enum combo_events {
     HK_BROWSER,
     TD_NUMPAD,
     FP_VSCODE,
-    WR_SLACK,
+    // WR_SLACK,
     VB_EXTRAS
 };
 
@@ -357,7 +335,7 @@ combo_t key_combos[COMBO_COUNT] = {
     [HK_BROWSER] = COMBO_ACTION(chord2_HK),
     [TD_NUMPAD]  = COMBO_ACTION(chord2_TD),
     [FP_VSCODE]  = COMBO_ACTION(chord2_FP),
-    [WR_SLACK]   = COMBO_ACTION(chord2_WR),
+    // [WR_SLACK]   = COMBO_ACTION(chord2_WR),
     [VB_EXTRAS]  = COMBO_ACTION(chord2_VB)
 };
 
@@ -380,11 +358,13 @@ void process_combo_event(uint16_t combo_index, bool pressed) {
                 layer_off(_VSCODE);
             }
             break;
+            /*
         case WR_SLACK:
             if (pressed) {
-                tap_code16(MEH(KC_P1));
+                tap_code16(MEH(KC_P1)); // SLACK?
             }
             break;
+            */
         case TD_NUMPAD:
             if (pressed) {
                 layer_on(_NUMPAD);
