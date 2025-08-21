@@ -9,8 +9,8 @@ from milc import cli
 from qmk.path import normpath
 from qmk.c_parse import c_source_files
 
-c_file_suffixes = ('c', 'h', 'cpp')
-core_dirs = ('drivers', 'quantum', 'tests', 'tmk_core', 'platforms')
+c_file_suffixes = ('c', 'h', 'cpp', 'hpp')
+core_dirs = ('drivers', 'quantum', 'tests', 'tmk_core', 'platforms', 'modules')
 ignored = ('tmk_core/protocol/usb_hid', 'platforms/chibios/boards')
 
 
