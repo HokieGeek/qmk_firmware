@@ -77,16 +77,7 @@ bool userspace_process_record_user(uint16_t keycode, keyrecord_t *record) {
         // RANDOM
         case QMK_MAKE:
             if (record->event.pressed) {
-                // Thanks, @drashna!
-                SEND_DELAYED(10, "make " QMK_KEYBOARD ":" QMK_KEYMAP
-#if  (defined(BOOTLOADER_DFU) || defined(BOOTLOADER_LUFA_DFU) || defined(BOOTLOADER_QMK_DFU))
-                   ":dfu"
-#elif defined(BOOTLOADER_HALFKAY)
-                   ":teensy"
-#elif defined(BOOTLOADER_CATERINA)
-                   ":avrdude"
-#endif // bootloader options
-                   SS_TAP(X_ENTER));
+                SEND_DELAYED(10, "qmk flash -kb " QMK_KEYBOARD " -km " QMK_KEYMAP SS_TAP(X_ENTER));
                 reset_keyboard();
             }
             return false;
