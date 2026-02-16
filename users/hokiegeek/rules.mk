@@ -4,7 +4,9 @@ LTO_ENABLE = yes
 SRC += hokiegeek.c os.c latin.c vscode.c
 
 ## Enable options common to all of my boards
-BOOTLOADER = qmk-dfu
+ifndef BOOTLOADER
+	BOOTLOADER = qmk-dfu
+endif
 SPLIT_KEYBOARD = yes
 
 ifndef UNICODE_ENABLE

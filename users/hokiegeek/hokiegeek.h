@@ -32,7 +32,7 @@
 #include "os.h"
 #include "vscode.h"
 #include "latin.h"
-#include "keycodes.h"
+#include "hg_keycodes.h"
 
 // Layer names
 #define _COLEMAK 0
@@ -51,6 +51,7 @@
 
 #define CSTAB LCTL(LSFT(KC_TAB))
 #define GUIBSPC LGUI_T(KC_BSPC)
+#define GUIDEL LGUI_T(KC_DELETE)
 #define ALTPSCR LALT(KC_PSCR)
 
 #define __BASE_LCR1__ KC_TRNS
@@ -60,7 +61,7 @@
 
 #define __BASE_RCR1__ KC_TRNS
 #define __BASE_RCR2__ KC_SKDM1
-#define __BASE_RCR4__ KC_SFTENT
+#define __BASE_RCR4__ SC_SENT
 
 // * |   1  |   2  |   3  |   4  |   5  |   6  |   7  |   8  |   9  |   0  |
 #define ______NUMBERS______  KC_1,  KC_2,  KC_3,  KC_4,  KC_5,  KC_6,  KC_7,  KC_8,  KC_9,  KC_0

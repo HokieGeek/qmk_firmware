@@ -48,11 +48,11 @@ void td_layer_on_hold_##name(td_stage stage) { \
 // .state = 
 // .custom_tapping_term = 
 
-td_state process_td_state(qk_tap_dance_state_t *state, void *user_data);
+td_state process_td_state(tap_dance_state_t *state, void *user_data);
 
-void td_tap_hold_funcs_finished(qk_tap_dance_state_t *state, void *user_data);
-void td_tap_hold_funcs_reset(qk_tap_dance_state_t *state, void *user_data);
-void td_single_double_funcs(qk_tap_dance_state_t *state, void *user_data);
+void td_tap_hold_funcs_finished(tap_dance_state_t *state, void *user_data);
+void td_tap_hold_funcs_reset(tap_dance_state_t *state, void *user_data);
+void td_single_double_funcs(tap_dance_state_t *state, void *user_data);
 
 void td_key_mod(td_stage, uint16_t);
 void td_key(td_stage, uint16_t);

@@ -25,7 +25,7 @@ bool userspace_process_record_user(uint16_t keycode, keyrecord_t *record) {
             if (record->event.pressed) {
                 setTargetOS(OS_NIX);
 #ifdef UNICODE_ENABLE
-                set_unicode_input_mode(UC_LNX);
+                set_unicode_input_mode(UNICODE_MODE_LINUX);
 #endif
             }
             return false;
@@ -33,7 +33,7 @@ bool userspace_process_record_user(uint16_t keycode, keyrecord_t *record) {
             if (record->event.pressed) {
                 setTargetOS(OS_MAC);
 #ifdef UNICODE_ENABLE
-                set_unicode_input_mode(UC_OSX);
+                set_unicode_input_mode(UNICODE_MODE_MACOS);
 #endif
             }
             return false;
@@ -41,7 +41,7 @@ bool userspace_process_record_user(uint16_t keycode, keyrecord_t *record) {
             if (record->event.pressed) {
                 setTargetOS(OS_WIN);
 #ifdef UNICODE_ENABLE
-                set_unicode_input_mode(UC_WINC);
+                set_unicode_input_mode(UNICODE_MODE_WINCOMPOSE);
 #endif
             }
             return false;

@@ -1,6 +1,6 @@
 #include "os.h"
 
-#include "keycodes.h"
+#include "hg_keycodes.h"
 
 uint16_t TARGET_OS = OS_NIX;
 

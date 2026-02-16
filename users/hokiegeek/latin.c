@@ -1,24 +1,24 @@
 #include "latin.h"
 #include "os.h"
-#include "keycodes.h"
+#include "hg_keycodes.h"
 
 bool useLatinChar = false;
 
 #ifdef TAP_DANCE_ENABLE
 #include "td_extras.h"
 
-void td_latin_finished(qk_tap_dance_state_t *state, void *user_data) {
+void td_latin_finished(tap_dance_state_t *state, void *user_data) {
     td_state td_latin_state = process_td_state(state, user_data);
 
     switch (td_latin_state) {
         case SINGLE:      useLatinChar = true; break;
-        case SINGLE_HOLD: register_code(KC_LSHIFT); break;
+        case SINGLE_HOLD: register_code(KC_LSFT); break;
         default: break;
     }
 }
 
-void td_latin_reset(qk_tap_dance_state_t *state, void *user_data) {
-    unregister_code(KC_LSHIFT);
+void td_latin_reset(tap_dance_state_t *state, void *user_data) {
+    unregister_code(KC_LSFT);
 }
 #endif
 

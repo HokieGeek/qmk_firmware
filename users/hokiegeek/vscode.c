@@ -1,7 +1,7 @@
 #include "vscode.h"
 
 #include "os.h"
-#include "keycodes.h"
+#include "hg_keycodes.h"
 
 void vscode_os_tap_code(keyrecord_t *record, uint16_t mac_kc, uint16_t nix_kc) {
     if (record->event.pressed) {

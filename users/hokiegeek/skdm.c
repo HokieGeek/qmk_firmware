@@ -1,12 +1,12 @@
 #include "skdm.h"
 
-#include "keycodes.h"
+#include "hg_keycodes.h"
 #include "td_extras.h"
 
 static int td_skdm1_state = 0;
 static int td_skdm2_state = 0;
 
-int td_skdm_handler(qk_tap_dance_state_t *state, void *user_data, int kc_play, int kc_start) {
+int td_skdm_handler(tap_dance_state_t *state, void *user_data, int kc_play, int kc_start) {
     // TODO: try to remember why you put this check in to begin with...
     // if (keycode < DYNAMIC_MACRO_RANGE) {
     //     return;
@@ -27,18 +27,18 @@ int td_skdm_handler(qk_tap_dance_state_t *state, void *user_data, int kc_play, i
     return curr_td_state;
 }
 
-void td_skdm1_finished(qk_tap_dance_state_t *state, void *user_data) {
+void td_skdm1_finished(tap_dance_state_t *state, void *user_data) {
     td_skdm1_state = td_skdm_handler(state, user_data, DYN_MACRO_PLAY1, DYN_REC_START1);
 }
 
-void td_skdm2_finished(qk_tap_dance_state_t *state, void *user_data) {
+void td_skdm2_finished(tap_dance_state_t *state, void *user_data) {
     td_skdm2_state = td_skdm_handler(state, user_data, DYN_MACRO_PLAY2, DYN_REC_START2);
 }
 
-void td_skdm1_reset(qk_tap_dance_state_t *state, void *user_data) {
+void td_skdm1_reset(tap_dance_state_t *state, void *user_data) {
     td_skdm1_state = 0;
 }
 
-void td_skdm2_reset(qk_tap_dance_state_t *state, void *user_data) {
+void td_skdm2_reset(tap_dance_state_t *state, void *user_data) {
     td_skdm2_state = 0;
 }

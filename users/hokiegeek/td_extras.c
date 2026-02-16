@@ -1,6 +1,6 @@
 #include "td_extras.h"
 
-td_state process_td_state(qk_tap_dance_state_t *state, void *user_data) {
+td_state process_td_state(tap_dance_state_t *state, void *user_data) {
     if (state->count == 1) {
         if (state->interrupted || !state->pressed) {
             return SINGLE;
@@ -21,7 +21,7 @@ td_state process_td_state(qk_tap_dance_state_t *state, void *user_data) {
 }
 
 static int td_tap_hold_funcs_state = 0;
-void td_tap_hold_funcs_finished(qk_tap_dance_state_t *state, void *user_data) {
+void td_tap_hold_funcs_finished(tap_dance_state_t *state, void *user_data) {
     td_funcs_t *funcs = (td_funcs_t *)user_data;
     td_tap_hold_funcs_state = process_td_state(state, user_data);
 
@@ -31,7 +31,7 @@ void td_tap_hold_funcs_finished(qk_tap_dance_state_t *state, void *user_data) {
     }
 }
 
-void td_tap_hold_funcs_reset(qk_tap_dance_state_t *state, void *user_data) {
+void td_tap_hold_funcs_reset(tap_dance_state_t *state, void *user_data) {
     td_funcs_t *funcs = (td_funcs_t *)user_data;
     switch (td_tap_hold_funcs_state) {
         case SINGLE_HOLD: funcs->f2(TD_RESET); break;
@@ -39,7 +39,7 @@ void td_tap_hold_funcs_reset(qk_tap_dance_state_t *state, void *user_data) {
     td_tap_hold_funcs_state = 0;
 }
 
-void td_single_double_funcs(qk_tap_dance_state_t *state, void *user_data) {
+void td_single_double_funcs(tap_dance_state_t *state, void *user_data) {
     td_funcs_t *funcs = (td_funcs_t *)user_data;
     td_tap_hold_funcs_state = process_td_state(state, user_data);
 
