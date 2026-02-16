@@ -1,5 +1,7 @@
 #pragma once
 
+#define USB_SUSPEND_WAKEUP_DELAY 500
+
 #define SPLIT_USB_DETECT
 
 #define ENCODERS_PAD_A { F4 }
@@ -18,8 +20,6 @@
 #define MATRIX_COL_PINS { F6, F7, B1, B3, B2, F0 }
 #define MATRIX_COL_PINS_RIGHT { F6, F7, B1, B3, B2, B6 }
 #endif
-
-#define COMBO_COUNT 14
 
 #ifndef CONVERT_TO_PROTON_C
 #undef RGBLED_NUM

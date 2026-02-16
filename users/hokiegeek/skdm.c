@@ -14,7 +14,7 @@ int td_skdm_handler(tap_dance_state_t *state, void *user_data, int kc_play, int 
 
     keyrecord_t record;
     record.event.pressed = false;
-    uint16_t keycode = DYN_REC_STOP;
+    uint16_t keycode = DM_RSTP;
     int curr_td_state = process_td_state(state, user_data);
     switch (curr_td_state) {
         case SINGLE: keycode = kc_play; break;
@@ -28,11 +28,11 @@ int td_skdm_handler(tap_dance_state_t *state, void *user_data, int kc_play, int 
 }
 
 void td_skdm1_finished(tap_dance_state_t *state, void *user_data) {
-    td_skdm1_state = td_skdm_handler(state, user_data, DYN_MACRO_PLAY1, DYN_REC_START1);
+    td_skdm1_state = td_skdm_handler(state, user_data, DM_PLY1, DM_REC1);
 }
 
 void td_skdm2_finished(tap_dance_state_t *state, void *user_data) {
-    td_skdm2_state = td_skdm_handler(state, user_data, DYN_MACRO_PLAY2, DYN_REC_START2);
+    td_skdm2_state = td_skdm_handler(state, user_data, DM_PLY2, DM_REC2);
 }
 
 void td_skdm1_reset(tap_dance_state_t *state, void *user_data) {

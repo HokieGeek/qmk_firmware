@@ -1,5 +1,7 @@
 USER_NAME := hokiegeek
 
+BOOTLOADER = atmel-dfu
+
 
 #CONVERT_TO_PROTON_C = yes
 

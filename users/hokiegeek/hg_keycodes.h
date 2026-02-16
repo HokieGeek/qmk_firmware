@@ -33,8 +33,7 @@ enum userspace_custom_keycodes {
     VSC_ED_1,
     VSC_TGL_GTST,
 
-    DYNAMIC_MACRO_RANGE,
-    NEW_SAFE_RANGE = DYNAMIC_MACRO_RANGE + 5,
+    NEW_SAFE_RANGE,
 };
 
 #endif // USERSPACE_KEYCODES

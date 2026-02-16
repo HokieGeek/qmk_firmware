@@ -74,7 +74,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   KC_TILD,                                          ______SYMBOLS______,           _______, \
   KC_CAPS, ALTPSCR, KC_LBRC, KC_LPRN, KC_LCBR,     _______,      KC_HOME, KC_PGDN, KC_PGUP, KC_END,  KC_MINS, KC_PIPE, \
   _______, _______, _______, _______, _______,     _______,      _______, _______, _______, _______, _______, _______, \
-  _______, _______, _______, _______, _______, _______,      _______, _______, _______, _______, _______, _______ \
+  _______, BL_TOGG, _______, _______, _______, _______,      _______, _______, _______, _______, _______, _______ \
 ),
 
 /* Raise
@@ -92,7 +92,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   KC_GRAVE,          ______NUMBERS______,       _______,
   _______,  KC_PSCR, KC_RBRC, KC_RPRN, KC_RCBR, _______,      KC_LEFT, KC_DOWN,   KC_UP,    KC_RGHT, KC_UNDS, KC_BSLS, \
   KC_F1,    KC_F2,   KC_F3,   KC_F4,   KC_F5,   KC_F6,        KC_F7,   KC_F8,     KC_F9,    KC_F10,  KC_F11,  KC_F12, \
-  _______,  _______, _______, _______, _______, _______,      CSTAB,   TMUX_PREV, _______,  _______, _______, _______ \
+  _______,  _______, _______, _______, GUIDEL, _______,      CSTAB,   TMUX_PREV, _______,  _______, _______, _______ \
 ),
 
 [_VSCODE] = LAYOUT_wrapper( \
@@ -104,8 +104,8 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
 [_MOUSE] = LAYOUT( \
   _______,  _______, _______, _______, _______, _______,      _______, _______, _______, _______, _______, _______, \
-  _______,  _______, _______, _______, _______, _______,      KC_MS_L, KC_MS_D, KC_MS_U, KC_MS_R, _______, _______, \
-  _______,  _______, _______, _______, _______, _______,      _______, KC_BTN1, KC_BTN3, KC_BTN2, _______, _______, \
+  _______,  _______, _______, _______, _______, _______,      MS_LEFT, MS_DOWN, MS_UP,   MS_RGHT, _______, _______, \
+  _______,  _______, _______, _______, _______, _______,      _______, MS_BTN1, MS_BTN3, MS_BTN2, _______, _______, \
   _______,  _______, _______, _______, _______, _______,      _______, _______, _______, _______, _______, _______  \
 ),
 
@@ -128,8 +128,8 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  * `-----------------------------------------'   `-----------------------------------------'
  */
 [_ADJUST] = LAYOUT( \
-  QMK_MAKE, RESET,     COLEMAK,    QWERTY,   _______, _______,      RGB_HUI,  RGB_HUD,          RGB_SAI,          RGB_SAD,          RGB_VAI,            RGB_VAD, \
-  _______,  KC_OS_NIX, KC_OS_MAC, KC_OS_WIN, _______, _______,      RGB_TOG,  RGB_MODE_PLAIN,   RGB_MODE_BREATHE, RGB_MOD, _______,   RGB_MODE_XMAS, \
+  QMK_MAKE, QK_BOOT,     COLEMAK,    QWERTY,   _______, _______,      UG_HUEU,  UG_HUED,          UG_SATU,          UG_SATD,          UG_VALU,            UG_VALD, \
+  _______,  KC_OS_NIX, KC_OS_MAC, KC_OS_WIN, _______, _______,      UG_TOGG,  RGB_MODE_PLAIN,   RGB_MODE_BREATHE, UG_NEXT, _______,   RGB_MODE_XMAS, \
   _______,  _______,   _______,   _______,   _______, _______,      _______, _______, _______, _______, _______, _______, \
   _______,  _______,   _______,   _______,   _______, _______,      _______, _______, _______, _______, _______, _______  \
 ),
@@ -186,15 +186,15 @@ bool encoder_update_user(uint8_t index, bool clockwise) {
             } else {
                 if (enc_opts.scrollVertical) {
                     if (clockwise) {
-                        tap_mousekey(KC_MS_WH_DOWN);
+                        tap_mousekey(MS_WHLD);
                     } else {
-                        tap_mousekey(KC_MS_WH_UP);
+                        tap_mousekey(MS_WHLU);
                     }
                 } else {
                     if (clockwise) {
-                        tap_mousekey(KC_MS_WH_RIGHT);
+                        tap_mousekey(MS_WHLR);
                     } else {
-                        tap_mousekey(KC_MS_WH_LEFT);
+                        tap_mousekey(MS_WHLL);
                     }
                 }
             }
@@ -205,7 +205,7 @@ bool encoder_update_user(uint8_t index, bool clockwise) {
 #endif
 
 #if defined(TAP_DANCE_ENABLE) && defined(ENCODER_ENABLE)
-void encoder_td_actions (qk_tap_dance_state_t *state, void *user_data) {
+void encoder_td_actions (tap_dance_state_t *state, void *user_data) {
     if (state->count == 1) {
         if (IS_LAYER_ON(_ADJUST)) {
             if (enc_opts.backlightBrightness) {
@@ -243,7 +243,7 @@ void encoder_td_actions (qk_tap_dance_state_t *state, void *user_data) {
 #ifdef TAP_DANCE_ENABLE
 ACTION_TAP_DANCE_TAPKEY_HOLDLAYER_FUNCS(td_ctltab_mouse, LCTL(KC_TAB), _MOUSE)
 
-qk_tap_dance_action_t tap_dance_actions[] = {
+tap_dance_action_t tap_dance_actions[] = {
     TD_TMUX_ENTRY,
     TD_SHIFT_LATIN,
 #ifdef ENCODER_ENABLE
@@ -290,7 +290,7 @@ enum combo_events {
     COMMDOT_1
 };
 
-combo_t key_combos[COMBO_COUNT] = {
+combo_t key_combos[] = {
     [JH_TERM]     = COMBO_ACTION(chord2_JH),
     [HK_BROWSER]  = COMBO_ACTION(chord2_HK),
     [FP_VSCODE]   = COMBO_ACTION(chord2_FP),
