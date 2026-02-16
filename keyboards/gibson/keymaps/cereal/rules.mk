@@ -1,0 +1,6 @@
+USER_NAME := hokiegeek
+
+BOOTLOADER = stm32-dfu
+BOOTMAGIC_ENABLE = yes
+EXTRAKEY_ENABLE = yes
+RGBLIGHT_ENABLE = yes

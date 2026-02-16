@@ -13,6 +13,14 @@
           inherit system;
         };
 
+        qmk-db = pkgs.writeShellScriptBin "qmk-db" ''
+          exec qmk compile --compiledb -kb "''${1:-gibson}" -km "''${2:-cereal}"
+        '';
+
+        qmk-flash-cereal = pkgs.writeShellScriptBin "qmk-flash-cereal" ''
+          exec qmk flash -kb gibson -km cereal
+        '';
+
         pythonEnv = pkgs.python3.withPackages (ps: with ps; [
           # from requirements.txt
           argcomplete
@@ -36,8 +44,7 @@
             # Compilers
             gcc-arm-embedded    # ARM-based boards (RP2040, STM32, etc.)
             pkgsCross.avr.buildPackages.gcc # AVR-based boards (Pro Micro, Elite-C, etc.)
-            avrdude             # AVR flashing
-            avrlibc
+            avrdude                        # AVR flashing
 
             # Flashing tools
             dfu-programmer      # Atmel DFU (ATmega32U4, etc.)
@@ -57,14 +64,20 @@
 
             # udev rules helper
             libusb1
+
+            # Helpers
+            qmk-db
+            qmk-flash-cereal
           ];
 
           shellHook = ''
             export QMK_HOME="$(pwd)"
+
             echo "QMK dev shell ready — QMK_HOME=$QMK_HOME"
             echo ""
             echo "  Build:  qmk compile -kb <keyboard> -km <keymap>"
             echo "  Flash:  qmk flash   -kb <keyboard> -km <keymap>"
+            echo "  DB:     qmk-db [keyboard] [keymap]  (default: gibson/cereal)"
             echo ""
           '';
         };
